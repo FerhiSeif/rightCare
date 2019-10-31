@@ -1,6 +1,5 @@
 {
-  "translations" : {
-    "Welcome to": "Bienvenue à",
-    "Switch language": "Choisir langue"
+  "home" : {
+    "welcome_to": "Bienvenue à"
   }
 }

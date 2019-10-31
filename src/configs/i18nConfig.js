@@ -1,27 +1,28 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
+import BrowserLanguage from '../utils/BrowserLanguage';
+import en from '../locale/en.json';
+import fr from '../locale/fr.json';
 
-import en from '../locale/en';
-import fr from '../locale/fr';
+const CURRENT_LANG = BrowserLanguage.getDefaultLanguage();
 
-i18n.use(initReactI18next).init({
+i18n
+ .use(initReactI18next)
+ .init({
   resources: {
-    en,
-    fr,
+    en: { common: en },
+    fr: { common: fr },
   },
   fallbackLng: 'en',
-  // debug only when not in production
-  debug: process.env.NODE_ENV !== 'production',
-  ns: ['translations'],
-  defaultNS: 'translations',
-  keySeparator: false,
+  lng: CURRENT_LANG,
+  ns: ['common'],
+  defaultNS: 'common',
+  fallbackNS: ['common'],
   interpolation: {
     escapeValue: false,
-    formatSeparator: ',',
   },
-  react: {
-    wait: true,
-  },
+  // debug only when not in production
+  debug: process.env.NODE_ENV !== 'production',
 });
 
 export default i18n;

@@ -1,6 +1,5 @@
 {
-  "translations" : {
-    "Welcome to": "Welcome to",
-    "Switch language": "Switch language"
+  "home" : {
+    "welcome_to": "Welcome to"
   }
 }
