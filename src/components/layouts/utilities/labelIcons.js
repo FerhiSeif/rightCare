@@ -14,14 +14,14 @@ const langStyles = {
 
 export const frLabelIcon = (
   <div style={langStyles.langContainer}>
-    <img alt="lang icon" src={LangIconFr} style={langStyles.langIcons}/>
+    <img alt="lang icon" src={LangIconFr} style={langStyles.langIcons} />
     <span>Français</span>
   </div>
 );
 
 export const enLabelIcon = (
   <div style={langStyles.langContainer}>
-    <img alt="lang icon" src={LangIconEn} style={langStyles.langIcons}/>
+    <img alt="lang icon" src={LangIconEn} style={langStyles.langIcons} />
     <span>English</span>
   </div>
 );
