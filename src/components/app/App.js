@@ -1,19 +1,30 @@
-import React, { Component } from 'react';
-import Select from 'react-select';
+import React, { Component, Fragment } from 'react';
 import { withTranslation } from 'react-i18next';
 import BrowserLanguage from '../../utils/BrowserLanguage';
+import Header from '../layouts/Header';
 import { options } from '../../configs/options';
+import LangIconEn from '../../assets/images/locale/uk.png';
+import LangIconFr from '../../assets/images/locale/fr.png';
+import 'bulma/css/bulma.css'
 import './App.css';
 
 const appStyles = {
-  fontSize: '7rem',
-  textAligne: 'center',
+  langIcons: {
+    height: '1.6rem',
+    marginRight: '.5rem',
+  },
+  langContainer: {
+    display: 'flex',
+  },
 }
+
+const enLabelIcon = <div style={appStyles.langContainer}><img alt="lang icon" src={LangIconEn} style={appStyles.langIcons}/><span>English</span></div>;
+const frLabelIcon = <div style={appStyles.langContainer}><img alt="lang icon" src={LangIconFr} style={appStyles.langIcons}/><span>Francais</span></div>;
 
 class App extends Component  {
   state = {
     defaultLang: {
-      label: this.props.i18n.language === 'en' ? 'English' : 'Francais',
+      label: this.props.i18n.language === 'en' ? enLabelIcon : frLabelIcon,
       value: this.props.i18n.language === 'en' ? 'English' : 'Francais',
     }
   }
@@ -37,18 +48,16 @@ class App extends Component  {
 
   render() {
     const { t } = this.props;
+    const { defaultLang } = this.state;
     return (
-      <div style={appStyles}>
-        {t('home.welcome_to')} <span>RighCare</span>
-        <div className="App__language">
-          <Select
-            options={options}
-            value={this.state.defaultLang}
-            onChange={this.changeLang}
-            className="App-Select"
-          />
-        </div>
-      </div>
+      <Fragment>
+        <Header
+          options={options}
+          defaultLang={defaultLang}
+          changeLang={this.changeLang}
+          t={t}
+        />
+      </Fragment>
     );
   }
 }
