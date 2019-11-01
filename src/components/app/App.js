@@ -1,11 +1,12 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { withTranslation } from 'react-i18next';
+import PropTypes from 'prop-types';
 import BrowserLanguage from '../../utils/BrowserLanguage';
 import Header from '../layouts/Header';
 import { options } from '../../configs/options';
 import LangIconEn from '../../assets/images/locale/uk.png';
 import LangIconFr from '../../assets/images/locale/fr.png';
-import 'bulma/css/bulma.css'
+import 'bulma/css/bulma.css';
 import './App.css';
 
 const appStyles = {
@@ -16,24 +17,38 @@ const appStyles = {
   langContainer: {
     display: 'flex',
   },
-}
+};
 
-const enLabelIcon = <div style={appStyles.langContainer}><img alt="lang icon" src={LangIconEn} style={appStyles.langIcons}/><span>English</span></div>;
-const frLabelIcon = <div style={appStyles.langContainer}><img alt="lang icon" src={LangIconFr} style={appStyles.langIcons}/><span>Francais</span></div>;
+const enLabelIcon = (
+  <div style={appStyles.langContainer}>
+    <img alt="lang icon" src={LangIconEn} style={appStyles.langIcons} />
+    <span>English</span>
+  </div>
+);
 
-class App extends Component  {
-  state = {
-    defaultLang: {
-      label: this.props.i18n.language === 'en' ? enLabelIcon : frLabelIcon,
-      value: this.props.i18n.language === 'en' ? 'English' : 'Francais',
-    }
+const frLabelIcon = (
+  <div style={appStyles.langContainer}>
+    <img alt="lang icon" src={LangIconFr} style={appStyles.langIcons} />
+    <span>Francais</span>
+  </div>
+);
+
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      defaultLang: {
+        label: this.props.i18n.language === 'en' ? enLabelIcon : frLabelIcon,
+        value: this.props.i18n.language === 'en' ? 'English' : 'Francais',
+      },
+    };
   }
 
   changeLang = (lang) => {
-   const { i18n } = this.props;
+    const { i18n } = this.props;
     if (!lang) {
       const tempLang = BrowserLanguage.getDefaultLanguage();
-      lang = tempLang === "en" ? "fr" : "en";
+      lang = tempLang === 'en' ? 'fr' : 'en';
     }
     this.setState({ defaultLang: lang });
 
@@ -50,15 +65,22 @@ class App extends Component  {
     const { t } = this.props;
     const { defaultLang } = this.state;
     return (
-      <Fragment>
+      <>
         <Header
           options={options}
           defaultLang={defaultLang}
           changeLang={this.changeLang}
           t={t}
         />
-      </Fragment>
+      </>
     );
   }
 }
+App.propTypes = {
+  i18n: PropTypes.shape({
+    defaultNS: PropTypes.string,
+    changeLanguage: PropTypes.func,
+  }).isRequired,
+  t: PropTypes.func.isRequired,
+};
 export default withTranslation()(App);
