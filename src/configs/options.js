@@ -1,6 +1,8 @@
 // todo remove suppression on multiple exports
 // eslint-disable-next-line import/prefer-default-export
+import {enLabelIcon, frLabelIcon} from '../components/layouts/utilities/labelIcons';
+
 export const options = [
-  { value: 'en', label: 'English' },
-  { value: 'fr', label: 'Français' },
+  { value: 'en', label: enLabelIcon },
+  { value: 'fr', label: frLabelIcon },
 ];
