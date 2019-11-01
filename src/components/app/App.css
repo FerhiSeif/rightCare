@@ -1,14 +1,22 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
+.select:not(.is-multiple):not(.is-loading)::after {
+  border-color: #616161;
 }
 
 .App-Select {
   width: 200px;
   margin-top: .5rem;
+}
+.App-Select>.css-yk16xz-control>.css-1hb7zxy-IndicatorsContainer>.css-1okebmr-indicatorSeparator {
+  display: none;
+}
+.App-Select>.css-yk16xz-control, .App-Select>.css-1pahdxg-control {
+  width: 10rem;
+  height: 48px;
+  border-radius: 34px;
+  box-shadow: 0 3px 20px 0 rgba(137, 137, 137, 0.24);
+  border: solid 1px #e5e5e5;
+  background-color: #ffffff;
+  cursor: pointer;
 }
 
 .App-link {
@@ -17,4 +25,10 @@
 
 .App__language {
   font-size: 1.2rem;
+}
+.css-26l3qy-menu {
+  width: 10rem!important;
+}
+.css-26l3qy-menu>* {
+  cursor: pointer!important;
 }
