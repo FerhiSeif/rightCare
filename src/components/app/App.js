@@ -6,8 +6,7 @@ import Header from '../layouts/Header';
 import { options } from '../../configs/options';
 import LangIconEn from '../../assets/images/locale/uk.png';
 import LangIconFr from '../../assets/images/locale/fr.png';
-import 'bulma/css/bulma.css';
-import './App.css';
+import '../../assets/styles/bluma.scss';
 
 const appStyles = {
   langIcons: {
@@ -29,7 +28,7 @@ const enLabelIcon = (
 const frLabelIcon = (
   <div style={appStyles.langContainer}>
     <img alt="lang icon" src={LangIconFr} style={appStyles.langIcons} />
-    <span>Francais</span>
+    <span>Français</span>
   </div>
 );
 
@@ -39,7 +38,7 @@ class App extends Component {
     this.state = {
       defaultLang: {
         label: this.props.i18n.language === 'en' ? enLabelIcon : frLabelIcon,
-        value: this.props.i18n.language === 'en' ? 'English' : 'Francais',
+        value: this.props.i18n.language === 'en' ? 'English' : 'Français',
       },
     };
   }
@@ -70,6 +69,8 @@ class App extends Component {
           options={options}
           defaultLang={defaultLang}
           changeLang={this.changeLang}
+          kind="onboard"
+          isLogged={false}
           t={t}
         />
       </>
