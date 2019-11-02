@@ -1,28 +1,53 @@
 import React, { Component } from 'react';
-import Select from 'react-select';
 import { withTranslation } from 'react-i18next';
+import PropTypes from 'prop-types';
 import BrowserLanguage from '../../utils/BrowserLanguage';
+import Header from '../layouts/Header';
 import { options } from '../../configs/options';
-import './App.css';
+import LangIconEn from '../../assets/images/locale/uk.png';
+import LangIconFr from '../../assets/images/locale/fr.png';
+import '../../assets/styles/bluma.scss';
 
 const appStyles = {
-  fontSize: '7rem',
-  textAligne: 'center',
-}
+  langIcons: {
+    height: '1.6rem',
+    marginRight: '.5rem',
+  },
+  langContainer: {
+    display: 'flex',
+  },
+};
 
-class App extends Component  {
-  state = {
-    defaultLang: {
-      label: this.props.i18n.language === 'en' ? 'English' : 'Francais',
-      value: this.props.i18n.language === 'en' ? 'English' : 'Francais',
-    }
+const enLabelIcon = (
+  <div style={appStyles.langContainer}>
+    <img alt="lang icon" src={LangIconEn} style={appStyles.langIcons} />
+    <span>English</span>
+  </div>
+);
+
+const frLabelIcon = (
+  <div style={appStyles.langContainer}>
+    <img alt="lang icon" src={LangIconFr} style={appStyles.langIcons} />
+    <span>Français</span>
+  </div>
+);
+
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      defaultLang: {
+        label: this.props.i18n.language === 'en' ? enLabelIcon : frLabelIcon,
+        value: this.props.i18n.language === 'en' ? 'English' : 'Français',
+      },
+    };
   }
 
   changeLang = (lang) => {
-   const { i18n } = this.props;
+    const { i18n } = this.props;
     if (!lang) {
       const tempLang = BrowserLanguage.getDefaultLanguage();
-      lang = tempLang === "en" ? "fr" : "en";
+      lang = tempLang === 'en' ? 'fr' : 'en';
     }
     this.setState({ defaultLang: lang });
 
@@ -37,19 +62,26 @@ class App extends Component  {
 
   render() {
     const { t } = this.props;
+    const { defaultLang } = this.state;
     return (
-      <div style={appStyles}>
-        {t('home.welcome_to')} <span>RighCare</span>
-        <div className="App__language">
-          <Select
-            options={options}
-            value={this.state.defaultLang}
-            onChange={this.changeLang}
-            className="App-Select"
-          />
-        </div>
-      </div>
+      <>
+        <Header
+          options={options}
+          defaultLang={defaultLang}
+          changeLang={this.changeLang}
+          kind="onboard"
+          isLogged={false}
+          t={t}
+        />
+      </>
     );
   }
 }
+App.propTypes = {
+  i18n: PropTypes.shape({
+    defaultNS: PropTypes.string,
+    changeLanguage: PropTypes.func,
+  }).isRequired,
+  t: PropTypes.func.isRequired,
+};
 export default withTranslation()(App);

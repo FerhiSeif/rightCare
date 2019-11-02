@@ -2,15 +2,15 @@
 import { CONSTANT } from '../constants/browser';
 
 const BrowserLanguage = {
-  getBrowserLanguage: function() {
+  getBrowserLanguage() {
     return navigator.language || navigator.userLanguage;
   },
 
-  getPrevLanguage: function () {
-    return localStorage ? localStorage.getItem(CONSTANT.LOCAL_STORAGE_LANG_KEY): null;
+  getPrevLanguage() {
+    return localStorage ? localStorage.getItem(CONSTANT.LOCAL_STORAGE_LANG_KEY) : null;
   },
 
-  setLanguage: function (lang) {
+  setLanguage(lang) {
     if (localStorage) {
       localStorage.setItem(CONSTANT.LOCAL_STORAGE_LANG_KEY, lang);
       return true;
@@ -18,23 +18,23 @@ const BrowserLanguage = {
     return false;
   },
 
-  getDefaultLanguage: function () {
+  getDefaultLanguage() {
     const langSet = this.getPrevLanguage();
     if (langSet) {
-      return langSet
-    } else {
-      const browserLang = this.getBrowserLanguage();
-      if (browserLang) {
-        let lang = '';
-        for (let lang of CONSTANT.LANGUAGES) {
-          if (lang && browserLang.includes(lang.key)){
-            lang = lang.key;
-            break;
-          }
-        };
-        return lang ? lang : 'en';
-      }
+      return langSet;
     }
-  }
-}
+    const browserLang = this.getBrowserLanguage();
+    if (browserLang) {
+      const lang = '';
+      for (let lang of CONSTANT.LANGUAGES) {
+        if (lang && browserLang.includes(lang.key)) {
+          lang = lang.key;
+          break;
+        }
+      }
+      return lang || 'en';
+    }
+  },
+};
+
 export default BrowserLanguage;

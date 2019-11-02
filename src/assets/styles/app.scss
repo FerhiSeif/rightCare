@@ -1,0 +1,26 @@
+.App-Select {
+  width: 200px;
+  .css-yk16xz-control {
+    .css-1hb7zxy-IndicatorsContainer {
+      .css-1okebmr-indicatorSeparator {
+        display: none;
+      }
+    }
+  }
+  .css-yk16xz-control, .css-1pahdxg-control {
+    width: 10rem;
+    height: 48px;
+    border-radius: 34px;
+    box-shadow: 0 3px 20px 0 rgba(137, 137, 137, 0.24);
+    border: solid 1px #e5e5e5;
+    background-color: #ffffff;
+    cursor: pointer;
+  }
+}
+
+.css-26l3qy-menu {
+  width: 10rem!important;
+}
+.css-26l3qy-menu>* {
+  cursor: pointer!important;
+}

@@ -1,5 +1,8 @@
 {
   "home" : {
     "welcome_to": "Welcome to"
+  },
+  "header": {
+    "get_started": "Get started"
   }
 }
