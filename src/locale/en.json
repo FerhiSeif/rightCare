@@ -28,5 +28,12 @@
     "add_agent_to_your_platform": "Add agent to your platform",
     "assign_agent_to_work": "Assign agent to work on the channel you selected",
     "onboarding_process": "Onboarding process"
+  },
+  "dashboard": {
+    "number_of_agents": "Number of agents",
+    "pending_request": "Pending Request",
+    "new_request": "New Request",
+    "complete_request": "Complete Request",
+    "add_agent": "Add agent"
   }
 }

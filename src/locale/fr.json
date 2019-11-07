@@ -23,5 +23,12 @@
   "onboard": {
     "select_available_channel": "Choisir Canal disponible",
     "get_started": "Commencer"
+  },
+  "dashboard": {
+    "number_of_agents": "Nombre d'agents",
+    "pending_request": "Demande en attente",
+    "new_request": "Nouvelle demande",
+    "complete_request": "Demande complète",
+    "add_agent": "Ajouter agent"
   }
 }
