@@ -3,6 +3,30 @@
     "welcome_to": "Welcome to"
   },
   "header": {
-    "get_started": "Get started"
+    "get_started": "Get started",
+    "search": "Search..."
+  },
+  "side_menu": {
+    "channels": "Channels",
+    "no_channel_added": "No Channel Added",
+    "add_channel": "Add channel",
+    "menu": "Menu",
+    "dashboard": "Dashboard",
+    "agents": "Agents",
+    "tickets": "Tickets",
+    "profile": "Profile",
+    "settings": "Settings",
+    "logout": "Logout",
+    "channel": "Channel",
+    "agents_added": "agents added"
+  },
+  "onboard": {
+    "select_available_channel": "Select Available Channel",
+    "get_started": "Get Started",
+    "assign_agent_to_channel": "Assign Agent to Channel",
+    "account_setup_summary": "Account setup, Summary",
+    "add_agent_to_your_platform": "Add agent to your platform",
+    "assign_agent_to_work": "Assign agent to work on the channel you selected",
+    "onboarding_process": "Onboarding process"
   }
 }
