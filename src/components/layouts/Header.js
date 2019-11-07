@@ -5,6 +5,7 @@ import DesktopLogo from '../../assets/images/logo/medium.png';
 import ProfileIcon from '../../assets/images/profile/idpic.jpg';
 import NotifIcon from '../../assets/images/profile/notif.svg';
 import SearchIcon from '../../assets/images/profile/search.svg';
+import Analytics from '../dashboard/Analytics';
 
 const Header = (props) => {
   const {
@@ -109,6 +110,7 @@ const Header = (props) => {
           </div>
         </div>
       </nav>
+      { kind === 'dashboard' && (<Analytics t={t} />)}
     </div>
   );
 };
