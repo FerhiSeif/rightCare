@@ -6,7 +6,7 @@ import {
   Switch,
   Route,
 } from 'react-router-dom';
-import Home from '../onboarding/Home';
+import Welcome from '../onboarding/Welcome';
 import Steps from '../onboarding/Steps';
 import Dashboard from '../dashboard/Dashboard';
 import BrowserLanguage from '../../utils/BrowserLanguage';
@@ -74,7 +74,7 @@ class App extends Component {
     return (
       <Router>
         <Route exact path="/">
-          <Home
+          <Welcome
             t={t}
             changeLang={changeLang}
             defaultLang={defaultLang}
