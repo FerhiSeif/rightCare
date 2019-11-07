@@ -25,7 +25,7 @@ const FakeChannels = [
     icon: WebIcon,
   },
   {
-    type: 'faceebook',
+    type: 'facebook',
     agentCount: 12,
     icon: WebIcon,
   },
