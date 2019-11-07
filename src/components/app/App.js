@@ -1,9 +1,15 @@
 import React, { Component } from 'react';
 import { withTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+} from 'react-router-dom';
+import Welcome from '../onboarding/Welcome';
+import Steps from '../onboarding/Steps';
+import Dashboard from '../dashboard/Dashboard';
 import BrowserLanguage from '../../utils/BrowserLanguage';
-import Header from '../layouts/Header';
-import { options } from '../../configs/options';
 import LangIconEn from '../../assets/images/locale/uk.png';
 import LangIconFr from '../../assets/images/locale/fr.png';
 import '../../assets/styles/bluma.scss';
@@ -40,6 +46,7 @@ class App extends Component {
         label: this.props.i18n.language === 'en' ? enLabelIcon : frLabelIcon,
         value: this.props.i18n.language === 'en' ? 'English' : 'Français',
       },
+      isLogged: true,
     };
   }
 
@@ -62,21 +69,44 @@ class App extends Component {
 
   render() {
     const { t } = this.props;
-    const { defaultLang } = this.state;
+    const { changeLang } = this;
+    const { defaultLang, isLogged } = this.state;
     return (
-      <>
-        <Header
-          options={options}
-          defaultLang={defaultLang}
-          changeLang={this.changeLang}
-          kind="onboard"
-          isLogged={false}
-          t={t}
-        />
-      </>
+      <Router>
+        <Route exact path="/">
+          <Welcome
+            t={t}
+            changeLang={changeLang}
+            defaultLang={defaultLang}
+            kind="onboard"
+            isLogged={false}
+          />
+        </Route>
+        <Switch>
+          <Route path="/dashboard">
+            <Dashboard
+              t={t}
+              changeLang={changeLang}
+              defaultLang={defaultLang}
+              kind="dashboard"
+              isLogged={isLogged}
+            />
+          </Route>
+          <Route path="/onboard">
+            <Steps
+              t={t}
+              changeLang={changeLang}
+              defaultLang={defaultLang}
+              kind="app"
+              isLogged={isLogged}
+            />
+          </Route>
+        </Switch>
+      </Router>
     );
   }
 }
+
 App.propTypes = {
   i18n: PropTypes.shape({
     defaultNS: PropTypes.string,
@@ -84,4 +114,5 @@ App.propTypes = {
   }).isRequired,
   t: PropTypes.func.isRequired,
 };
+
 export default withTranslation()(App);

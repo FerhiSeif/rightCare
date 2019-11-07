@@ -1,0 +1,32 @@
+.home-container {
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 5rem;
+  .columns {
+    .is-three-fifths {
+      padding-top: 7rem;
+      h1 {
+        font-size: 3.5625rem;
+        line-height: 1.21;
+        letter-spacing: normal;
+        font-weight: bold;
+        padding-right: 8rem;
+        color: $secondary;
+      }
+      p {
+        font-size: 2.125rem;
+        line-height: 1.39;
+        padding: 2rem 0;
+        color: rgb(179,179,179);
+        padding-right: 10rem;
+      }
+      a>button {
+        font-size: 1.4375rem;
+        padding-left: 1.2em;
+        padding-right: 1.2em;
+      }
+    }
+  }
+}

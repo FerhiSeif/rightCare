@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="20.85" height="25.173" viewBox="0 0 20.85 25.173">
+    <defs>
+        <style>
+            .cls-1{fill:#4c4c4c}
+        </style>
+    </defs>
+    <g id="copy_1_" data-name="copy (1)" transform="translate(-43.968)">
+        <g id="Group_55" data-name="Group 55" transform="translate(51.885 5.311)">
+            <g id="Group_54" data-name="Group 54">
+                <path id="Path_43" d="M212.953 108.016h-6.977a.983.983 0 0 0 0 1.967h6.977a.983.983 0 1 0 0-1.967z" class="cls-1" data-name="Path 43" transform="translate(-204.992 -108.016)"/>
+            </g>
+        </g>
+        <g id="Group_57" data-name="Group 57" transform="translate(51.885 9.245)">
+            <g id="Group_56" data-name="Group 56">
+                <path id="Path_44" d="M212.953 188.027h-6.977a.983.983 0 1 0 0 1.967h6.977a.983.983 0 1 0 0-1.967z" class="cls-1" data-name="Path 44" transform="translate(-204.992 -188.027)"/>
+            </g>
+        </g>
+        <g id="Group_59" data-name="Group 59" transform="translate(51.885 13.178)">
+            <g id="Group_58" data-name="Group 58">
+                <path id="Path_45" d="M208.975 268.039h-3a.983.983 0 1 0 0 1.967h3a.983.983 0 1 0 0-1.967z" class="cls-1" data-name="Path 45" transform="translate(-204.992 -268.039)"/>
+            </g>
+        </g>
+        <g id="Group_61" data-name="Group 61" transform="translate(43.968)">
+            <g id="Group_60" data-name="Group 60">
+                <path id="Path_46" d="M63.834 13.375a.983.983 0 0 0 .983-.983V3.934A3.938 3.938 0 0 0 60.884 0h-9.048A3.938 3.938 0 0 0 47.9 3.93a3.938 3.938 0 0 0-3.934 3.934v13.375a3.938 3.938 0 0 0 3.934 3.934h9.54a3.938 3.938 0 0 0 3.934-3.934v-.03a3.94 3.94 0 0 0 3.442-3.9.983.983 0 1 0-1.967 0 1.969 1.969 0 0 1-1.966 1.967h-9.048a1.967 1.967 0 0 1-1.967-1.967V3.934a1.969 1.969 0 0 1 1.967-1.967h9.048a1.969 1.969 0 0 1 1.967 1.967v8.458a.983.983 0 0 0 .984.983zm-12 7.867h7.572a1.969 1.969 0 0 1-1.967 1.966H47.9a1.969 1.969 0 0 1-1.967-1.967V7.864A1.969 1.969 0 0 1 47.9 5.9v11.408a3.934 3.934 0 0 0 3.934 3.934z" class="cls-1" data-name="Path 46" transform="translate(-43.968)"/>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -3,6 +3,25 @@
     "welcome_to": "Bienvenue à"
   },
   "header": {
+    "get_started": "Commencer",
+    "search": "Recherche..."
+  },
+  "side_menu": {
+    "channels": "Canaux",
+    "no_channel_added": "Aucun Canal Ajouté",
+    "add_channel": "Ajouter un canal",
+    "menu": "Menu",
+    "dashboard": "Dashboard",
+    "agents": "Agents",
+    "tickets": "Tickets",
+    "profile": "Profile",
+    "settings": "Paramètres",
+    "logout": "Déconnexion",
+    "channel": "Channel",
+    "agents_added": "agents ajouté"
+  },
+  "onboard": {
+    "select_available_channel": "Choisir Canal disponible",
     "get_started": "Commencer"
   }
 }
