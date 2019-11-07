@@ -1,3 +1,7 @@
+body, html {
+  font-size: 14px !important;
+  font-family: 'Product Sans' !important;
+}
 .App-Select {
   width: 200px;
   .css-yk16xz-control {
@@ -9,7 +13,7 @@
   }
   .css-yk16xz-control, .css-1pahdxg-control {
     width: 10rem;
-    height: 48px;
+    height: 3rem;
     border-radius: 34px;
     box-shadow: 0 3px 20px 0 rgba(137, 137, 137, 0.24);
     border: solid 1px #e5e5e5;
@@ -23,4 +27,7 @@
 }
 .css-26l3qy-menu>* {
   cursor: pointer!important;
+}
+.button {
+  border-radius: 10px!important;
 }
