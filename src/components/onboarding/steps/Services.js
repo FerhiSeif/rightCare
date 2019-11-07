@@ -57,7 +57,6 @@ const Services = (props) => {
 
 Services.propTypes = {
   t: PropTypes.func.isRequired,
-  kind: PropTypes.string.isRequired,
 };
 
 export default withTranslation()(Services);

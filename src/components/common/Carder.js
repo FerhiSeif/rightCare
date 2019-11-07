@@ -4,6 +4,7 @@ import Modal from './Modal';
 import ProfileIcon from '../../assets/images/profile/idpic.jpg';
 import FakeAgents from '../../faker/agents';
 import SelectedChannels from '../onboarding/steps/SelectedChannels';
+import HasAgents from '../onboarding/steps/HasAgents';
 
 const Carder = (props) => {
   const [state, setState] = useState({ initialItems: FakeAgents });
@@ -13,9 +14,11 @@ const Carder = (props) => {
     kind,
     title,
     content,
+    hasAgents,
     buttonText,
     serviceCount,
     agentAssigned,
+    isChannelEmpty,
     channelSelected,
   } = props;
   const alreadyAdded = true; // this needs to be dynamic for eah agent
@@ -71,10 +74,13 @@ const Carder = (props) => {
     agentStyle: {
       padding: channelSelected || kind === 'channel' ? 'padding: 1.3125rem' : '2.5rem 1.5rem',
     },
+    emptyChannel: {
+      background: !isChannelEmpty ? '#ffffff' : 'rgba(200, 211, 214, 0.12)',
+    },
   };
 
   return (
-    <div className={[1, 2, 4, 5].indexOf(serviceCount) !== -1 ? 'card-custom' : 'card'}>
+    <div className={[1, 2, 4, 5].indexOf(serviceCount) !== -1 ? 'card-custom' : 'card'} style={cardStyle.emptyChannel}>
       <header className="card-header">
         <p className={`${kind === 'channel' ? 'card-header-title' : 'card-header-title agents'}`}>
           <span className="icon">
@@ -108,11 +114,13 @@ const Carder = (props) => {
           <div className="content">
             { channelSelected ? (<SelectedChannels kind={kind} t={t} />) :
               (
-                <div>
+                hasAgents ? (<HasAgents handleAddRessourceModal={handleAddRessourceModal} kind={kind} isChannelEmpty={isChannelEmpty} />) :
+                  (<>
                   <p>{content}</p>
                   <button className="button is-success is-outlined" onClick={handleAddRessourceModal}>{buttonText}</button>
-                </div>
+                  </>)
               )}
+
           </div>
         )}
       </div>
@@ -136,10 +144,12 @@ Carder.propTypes = {
   kind: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   content: PropTypes.string.isRequired,
+  hasAgents: PropTypes.bool.isRequired,
   buttonText: PropTypes.string.isRequired,
   serviceCount: PropTypes.number.isRequired,
-  agentAssigned: PropTypes.bool.isRequired,
-  channelSelected: PropTypes.bool.isRequired,
+  agentAssigned: PropTypes.bool,
+  isChannelEmpty: PropTypes.bool.isRequired,
+  channelSelected: PropTypes.bool,
 };
 
 export default Carder;

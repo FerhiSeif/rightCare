@@ -11,6 +11,10 @@ const AccountSummary = (props) => {
   const {
     t,
   } = props;
+  const hasAgentsO = true;
+  const hasAgentsA = false;
+  const hasAgentsB = false;
+  const hasAgentsC = false;
 
   return (
     <div className="card-container">
@@ -23,6 +27,8 @@ const AccountSummary = (props) => {
         serviceCount={4}
         icon={ChannelIcon}
         channelSelected
+        isChannelEmpty={false}
+        hasAgents={hasAgentsA}
       />
       <Carder
         kind="channel"
@@ -32,6 +38,8 @@ const AccountSummary = (props) => {
         buttonText="Assign agent"
         serviceCount={4}
         icon={AgentIcon}
+        isChannelEmpty
+        hasAgents={hasAgentsO}
       />
       <Carder
         kind="channel"
@@ -41,6 +49,8 @@ const AccountSummary = (props) => {
         buttonText="Assign agent"
         serviceCount={4}
         icon={EmailIcon}
+        isChannelEmpty
+        hasAgents={hasAgentsC}
       />
       <Carder
         kind="channel"
@@ -50,6 +60,8 @@ const AccountSummary = (props) => {
         buttonText="Assign agent"
         serviceCount={4}
         icon={ChatIcon}
+        isChannelEmpty
+        hasAgents={hasAgentsB}
       />
     </div>
   );

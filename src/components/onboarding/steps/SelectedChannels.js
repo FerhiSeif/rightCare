@@ -31,6 +31,7 @@ const SelectedChannels = (props) => {
         <img src={AnswerIcon} alt="answer service" />
         <span>Live Chat</span>
       </div>
+      <div className="add-more"><span>+</span></div>
     </div>
   );
 };
