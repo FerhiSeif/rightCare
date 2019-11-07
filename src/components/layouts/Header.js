@@ -19,11 +19,10 @@ const Header = (props) => {
   const topNavCustomStyle = {
     navbar: {
       padding: '.8rem 5rem',
-      borderBottom: kind === 'onboard' ? '1px solid #e5e5e5' : '0',
+      borderBottom: kind !== 'app' ? '1px solid #e5e5e5' : '0',
       backgroundColor: kind === 'dashboard' ? '#fafbfd' : '#fff',
     },
     isPrimary: {
-      borderRadius: '10px',
       marginRight: '5rem',
       marginBottom: 0,
       fontSize: '18px',
@@ -50,33 +49,33 @@ const Header = (props) => {
       margin: '0 .5rem',
     },
     search: {
-      border: 0,
-      boxShadow: 'none',
       backgroundColor: kind === 'dashboard' ? '#fafbfd' : '#fff',
     },
   };
 
   return (
-    <>
+    <div className={`${kind === 'dashboard' ? 'column dashboard is-four-fifths' : ''}`}>
       <nav className="navbar" role="navigation" aria-label="main navigation" style={topNavCustomStyle.navbar}>
-        <div className="navbar-brand">
-          <a className="navbar-item" href="https://bulma.io">
-            <img alt="logo icon" src={DesktopLogo} />
-          </a>
-          <a href="!#" role="button" className="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-            <span aria-hidden="true" />
-            <span aria-hidden="true" />
-            <span aria-hidden="true" />
-          </a>
-        </div>
-
+        { kind !== 'dashboard'
+        && (
+          <div className="navbar-brand">
+            <a className="navbar-item" href="http://localhost:3000/">
+              <img alt="logo icon" src={DesktopLogo} />
+            </a>
+            <a href="!#" role="button" className="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+              <span aria-hidden="true" />
+              <span aria-hidden="true" />
+              <span aria-hidden="true" />
+            </a>
+          </div>
+        )}
         <div id="navbarBasicExample" className="navbar-menu">
           { kind === 'dashboard'
             && (
               <div className="navbar-start">
                 <div className="field navbar-item">
                   <p className="control has-icons-left has-icons-right">
-                    <input className="input" type="text" placeholder="Search..." style={topNavCustomStyle.search} />
+                    <input className="input search-input" type="text" placeholder={t('header.search')} style={topNavCustomStyle.search} />
                     <span className="icon is-small is-left">
                       <img alt="profil icon" src={SearchIcon} />
                     </span>
@@ -110,7 +109,7 @@ const Header = (props) => {
           </div>
         </div>
       </nav>
-    </>
+    </div>
   );
 };
 
