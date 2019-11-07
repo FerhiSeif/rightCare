@@ -12,11 +12,15 @@ const SingleChannel = (props) => {
       : type === 'live chat' ? LiveIcon
       : type === 'phone call' ? PhoneIcon
       : type === 'web form' ? WebIcon
+      : type === 'facebook' ? WebIcon
+      : type === 'twitter' ? WebIcon
       : '';
   const customClass = type === 'email' ? 'email-icon'
       : type === 'live chat' ? 'live-icon'
       : type === 'phone call' ? 'phone-icon'
       : type === 'web form' ? 'web-icon'
+      : type === 'facebook' ? 'web-icon'
+      : type === 'twitter' ? 'web-icon'
       : '';
 
   return (
