@@ -34,6 +34,10 @@
     "pending_request": "Pending Request",
     "new_request": "New Request",
     "complete_request": "Complete Request",
-    "add_agent": "Add agent"
+    "add_agent": "Add agent",
+    "dashboard_overview": "Dashboard overview",
+    "live_updates": "Live Updates",
+    "no_live_update": "No Live update",
+    "channel_chart": "Channel Chart"
   }
 }

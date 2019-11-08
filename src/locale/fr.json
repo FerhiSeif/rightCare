@@ -29,6 +29,10 @@
     "pending_request": "Demande en attente",
     "new_request": "Nouvelle demande",
     "complete_request": "Demande complète",
-    "add_agent": "Ajouter agent"
+    "add_agent": "Ajouter agent",
+    "dashboard_overview": "Dashboard Global",
+    "live_updates": "Mise à jour",
+    "no_live_update": "Aucune mise à jour",
+    "channel_chart": "Tableau des chaînes"
   }
 }
