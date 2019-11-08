@@ -30,6 +30,7 @@ const Channels = (props) => {
                 type={item.type}
                 agentCount={item.agentCount}
                 key={i}
+                icon={item.icon}
               />
             ))}
           </div>
