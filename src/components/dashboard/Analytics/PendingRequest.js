@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import FakeChannels from '../../../faker/channels';
 
 const PendingRequest = (props) => {
   const {
@@ -7,6 +8,14 @@ const PendingRequest = (props) => {
     CalendarIcon,
     MoreIcon,
   } = props;
+
+  const status = 'pending';
+  const requestCount = FakeChannels.filter((request) => request
+    .status
+    .toLowerCase()
+    .includes(status
+      .toLowerCase()))
+    .length;
 
   return (
     <div className="column">
@@ -16,7 +25,7 @@ const PendingRequest = (props) => {
             {t('dashboard.pending_request')}
           </p>
           <p className="title">
-            0
+            {requestCount}
           </p>
           <button className="button is-secondary is-outlined">
             <img className="calendar-icon" src={CalendarIcon} alt='caneldar' />

@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import FakeChannels from '../../../faker/channels';
 
 const CompleteRequest = (props) => {
   const {
@@ -7,6 +8,13 @@ const CompleteRequest = (props) => {
     CalendarIcon,
     MoreIcon,
   } = props;
+  const status = 'completed';
+  const requestCount = FakeChannels.filter((request) => request
+    .status
+    .toLowerCase()
+    .includes(status
+      .toLowerCase()))
+    .length;
 
   return (
     <div className="column">
@@ -16,7 +24,7 @@ const CompleteRequest = (props) => {
             {t('dashboard.complete_request')}
           </p>
           <p className="title">
-            0
+            {requestCount}
           </p>
           <button className="button is-secondary is-outlined">
             <img className="calendar-icon" src={CalendarIcon} alt='caneldar' />

@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import FakeAgents from '../../../faker/agents';
 
 const Agents = (props) => {
   const {
@@ -14,7 +15,7 @@ const Agents = (props) => {
             {t('dashboard.number_of_agents')}
           </p>
           <p className="title">
-            0
+            {FakeAgents ? FakeAgents.length : 0}
           </p>
           <button className="button is-secondary is-blue-secondary is-outlined">
             <span>+</span>
