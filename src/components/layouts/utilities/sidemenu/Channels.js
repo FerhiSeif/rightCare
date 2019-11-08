@@ -24,16 +24,14 @@ const Channels = (props) => {
           </div>
         ) : (
           <div className="available-channels">
-            { FakeChannels.map((item, i) => {
-              return (
-                <SingleChannel
-                  t={t}
-                  type={item.type}
-                  agentCount={item.agentCount}
-                  key={i}
-                />
-              );
-            })}
+            { FakeChannels.map((item, i) => (
+              <SingleChannel
+                t={t}
+                type={item.type}
+                agentCount={item.agentCount}
+                key={i}
+              />
+            ))}
           </div>
         )}
     </div>

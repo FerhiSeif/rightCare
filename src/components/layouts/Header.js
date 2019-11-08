@@ -5,6 +5,7 @@ import DesktopLogo from '../../assets/images/logo/medium.png';
 import ProfileIcon from '../../assets/images/profile/idpic.jpg';
 import NotifIcon from '../../assets/images/profile/notif.svg';
 import SearchIcon from '../../assets/images/profile/search.svg';
+import Analytics from '../dashboard/Analytics';
 
 const Header = (props) => {
   const {
@@ -18,7 +19,7 @@ const Header = (props) => {
 
   const topNavCustomStyle = {
     navbar: {
-      padding: '.8rem 5rem',
+      padding: '.8rem 1rem .8rem 5rem',
       borderBottom: kind !== 'app' ? '1px solid #e5e5e5' : '0',
       backgroundColor: kind === 'dashboard' ? '#fafbfd' : '#fff',
     },
@@ -109,6 +110,7 @@ const Header = (props) => {
           </div>
         </div>
       </nav>
+      { kind === 'dashboard' && (<Analytics t={t} />)}
     </div>
   );
 };

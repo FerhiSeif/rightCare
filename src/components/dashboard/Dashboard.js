@@ -15,11 +15,7 @@ const Dashboard = (props) => {
 
   return (
     <div className={`${kind === 'dashboard' ? 'columns' : ''}`}>
-      { kind === 'dashboard'
-        && (
-          <SideMenu t={t} />
-        )}
-
+      { kind === 'dashboard' && (<SideMenu t={t} />)}
       <Header
         options={options}
         defaultLang={defaultLang}
