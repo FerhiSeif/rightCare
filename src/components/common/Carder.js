@@ -11,6 +11,7 @@ const Carder = (props) => {
   const {
     t,
     icon,
+    darkIcon,
     kind,
     title,
     content,
@@ -84,7 +85,7 @@ const Carder = (props) => {
       <header className="card-header">
         <p className={`${kind === 'channel' ? 'card-header-title' : 'card-header-title agents'}`}>
           <span className="icon">
-            <img src={icon} alt="toto" />
+            <img src={`${kind === 'channel' ? icon : darkIcon}`} alt="Channel Icon" />
           </span>
           {title}
         </p>

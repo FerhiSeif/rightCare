@@ -50,7 +50,13 @@ a.navbar-item, .navbar-link:hover {
             .web-icon {
               background-color: $danger;
             }
-            .email-icon, .live-icon, .phone-icon, .web-icon {
+            .facebook-icon {
+              background-color: $facebook;
+            }
+            .twitter-icon {
+              background-color: $twitter;
+            }
+            .email-icon, .live-icon, .phone-icon, .web-icon, .facebook-icon, .twitter-icon {
               text-align: center;
               padding-left: 0;
               border-radius: 0.3125rem;

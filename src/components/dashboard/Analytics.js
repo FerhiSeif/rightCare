@@ -1,12 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Agents from './Analytics/Agents';
-import CompleteRequest from './Analytics/CompleteRequest';
-import PendingRequest from './Analytics/PendingRequest';
+import ChartDatas from './canvas/ChartDatas';
 import NewRequest from './Analytics/NewRequest';
-import CalendarIcon from '../../assets/images/dashboard/calendar.svg';
+import PendingRequest from './Analytics/PendingRequest';
+import CompleteRequest from './Analytics/CompleteRequest';
 import MoreIcon from '../../assets/images/dashboard/more.svg';
 import AntennaIcon from '../../assets/images/dashboard/antenna.svg';
+import CalendarIcon from '../../assets/images/dashboard/calendar.svg';
 
 const Analytics = (props) => {
   const {
@@ -35,6 +36,7 @@ const Analytics = (props) => {
         </div>
         <div className="column column-chart">
           <h3>{t('dashboard.channel_chart')}</h3>
+          <ChartDatas />
         </div>
       </div>
     </div>
