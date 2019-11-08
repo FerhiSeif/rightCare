@@ -19,7 +19,7 @@ const Header = (props) => {
 
   const topNavCustomStyle = {
     navbar: {
-      padding: '.8rem 5rem',
+      padding: '.8rem 1rem .8rem 5rem',
       borderBottom: kind !== 'app' ? '1px solid #e5e5e5' : '0',
       backgroundColor: kind === 'dashboard' ? '#fafbfd' : '#fff',
     },
