@@ -41,6 +41,9 @@
   }
   .column-chart {
     padding: 2rem;
+    >h3 {
+      padding-bottom: 1rem;  
+    }
   }
   .column-chart, .column>.column-content{
     border: solid 1px rgba(10, 10, 10, 0.1);
