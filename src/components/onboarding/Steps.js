@@ -119,8 +119,8 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   instructions: {
-    marginTop: theme.spacing(1),
-    marginBottom: theme.spacing(1),
+    marginTop: '1rem',
+    marginBottom: '2rem',
   },
 }));
 
@@ -128,14 +128,14 @@ function getSteps() {
   return ['Select campaign settings', 'Create an ad group', 'Create an ad'];
 }
 
-function getStepContent(step) {
+function getStepContent(step, handleChooseService, checkedServices) {
   switch (step) {
     case 0:
-      return <AddAgent />;
+      return <AddAgent handleChooseService={handleChooseService} checkedServices={checkedServices} />;
     case 1:
-      return <AssignAgent />;
+      return <AssignAgent handleChooseService={handleChooseService} checkedServices={checkedServices} />;
     case 2:
-      return <AccountSummary />;
+      return <AccountSummary handleChooseService={handleChooseService} checkedServices={checkedServices} />;
     default:
       return 'Unknown step';
   }
@@ -179,6 +179,8 @@ export default function Steps(props) {
     defaultLang,
     changeLang,
     isLogged,
+    handleChooseService,
+    checkedServices,
   } = props;
 
   return (
@@ -233,7 +235,7 @@ export default function Steps(props) {
                   </div>
                 ) : (
                   <div className="content-selector">
-                    <div className={classes.instructions}>{getStepContent(activeStep)}</div>
+                    <div className={classes.instructions}>{getStepContent(activeStep, handleChooseService, checkedServices)}</div>
                     <div>
                       <Button
                         variant="contained"
@@ -282,4 +284,6 @@ Steps.propTypes = {
   defaultLang: PropTypes.shape({}).isRequired,
   changeLang: PropTypes.func.isRequired,
   isLogged: PropTypes.bool.isRequired,
+  handleChooseService: PropTypes.func.isRequired,
+  checkedServices: PropTypes.shape({}).isRequired,
 };
