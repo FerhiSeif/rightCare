@@ -18,6 +18,8 @@ const Carder = (props) => {
     hasAgents,
     buttonText,
     serviceCount,
+    handleChooseService,
+    checkedServices,
     agentAssigned,
     isChannelEmpty,
     channelSelected,
@@ -134,6 +136,8 @@ const Carder = (props) => {
         content={addAgent}
         kind={kind}
         buttonText="Continue"
+        handleChooseService={handleChooseService}
+        checkedServices={checkedServices}
       />
     </div>
   );
@@ -146,11 +150,14 @@ Carder.propTypes = {
   title: PropTypes.string.isRequired,
   content: PropTypes.string.isRequired,
   hasAgents: PropTypes.bool.isRequired,
+  handleChooseService: PropTypes.func.isRequired,
   buttonText: PropTypes.string.isRequired,
   serviceCount: PropTypes.number.isRequired,
   agentAssigned: PropTypes.bool,
   isChannelEmpty: PropTypes.bool.isRequired,
   channelSelected: PropTypes.bool,
+  checkedServices: PropTypes.shape({}).isRequired,
+  darkIcon: PropTypes.string.isRequired,
 };
 
 export default Carder;
