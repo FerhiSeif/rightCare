@@ -10,6 +10,8 @@ import ChatIcon from '../../../assets/images/onboard/channels/answer.svg';
 const AccountSummary = (props) => {
   const {
     t,
+    handleChooseService,
+    checkedServices,
   } = props;
   const hasAgentsO = true;
   const hasAgentsA = false;
@@ -29,6 +31,8 @@ const AccountSummary = (props) => {
         channelSelected
         isChannelEmpty={false}
         hasAgents={hasAgentsA}
+        handleChooseService={handleChooseService}
+        checkedServices={checkedServices}
       />
       <Carder
         kind="channel"
@@ -40,6 +44,8 @@ const AccountSummary = (props) => {
         icon={AgentIcon}
         isChannelEmpty
         hasAgents={hasAgentsO}
+        handleChooseService={handleChooseService}
+        checkedServices={checkedServices}
       />
       <Carder
         kind="channel"
@@ -51,6 +57,8 @@ const AccountSummary = (props) => {
         icon={EmailIcon}
         isChannelEmpty
         hasAgents={hasAgentsC}
+        handleChooseService={handleChooseService}
+        checkedServices={checkedServices}
       />
       <Carder
         kind="channel"
@@ -62,6 +70,8 @@ const AccountSummary = (props) => {
         icon={ChatIcon}
         isChannelEmpty
         hasAgents={hasAgentsB}
+        handleChooseService={handleChooseService}
+        checkedServices={checkedServices}
       />
     </div>
   );
@@ -69,6 +79,8 @@ const AccountSummary = (props) => {
 
 AccountSummary.propTypes = {
   t: PropTypes.func.isRequired,
+  handleChooseService: PropTypes.func.isRequired,
+  checkedServices: PropTypes.shape({}).isRequired,
 };
 
 export default withTranslation()(AccountSummary);

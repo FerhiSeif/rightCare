@@ -10,6 +10,8 @@ const Modal = (props) => {
     kind,
     buttonText,
     agentModal,
+    handleChooseService,
+    checkedServices,
     handleCloseRessourceModal,
     handleSearchAgent,
   } = props;
@@ -36,7 +38,7 @@ const Modal = (props) => {
           )}
         </header>
         <section className="modal-card-body">
-          { kind === 'agent' ? (<div>{content}</div>) : <Services kind={kind} /> }
+          { kind === 'agent' ? (<div>{content}</div>) : <Services kind={kind} handleChooseService={handleChooseService} checkedServices={checkedServices} /> }
         </section>
         <footer className="modal-card-foot">
           <button className="button is-primary">{buttonText}</button>
@@ -55,6 +57,8 @@ Modal.propTypes = {
   agentModal: PropTypes.shape({}).isRequired,
   handleCloseRessourceModal: PropTypes.func.isRequired,
   handleSearchAgent: PropTypes.func.isRequired,
+  handleChooseService: PropTypes.func.isRequired,
+  checkedServices: PropTypes.shape({}).isRequired,
 };
 
 export default Modal;

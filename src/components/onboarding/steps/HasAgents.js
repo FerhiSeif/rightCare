@@ -14,8 +14,8 @@ const HasAgents = (props) => {
   const agentStyle = {
     addMore: {
       background: !isChannelEmpty ? '#ffffff' : 'rgba(200, 211, 214, 0.12)',
-    }
-  }
+    },
+  };
 
   return (
     <div className="content">
@@ -30,7 +30,7 @@ const HasAgents = (props) => {
         <br />
         { FakeAgents.length > 10 && (
           <div className="cobok-channel">
-            <button className="button is-primary is-outlined">View all</button>
+            <button className="button is-primary is-outlined">{t('onboard.view_all')}</button>
           </div>
         )}
         <div className="add-more" onClick={handleAddRessourceModal} style={agentStyle.addMore}>
@@ -43,6 +43,8 @@ const HasAgents = (props) => {
 
 HasAgents.propTypes = {
   t: PropTypes.func.isRequired,
+  kind: PropTypes.string.isRequired,
+  isChannelEmpty: PropTypes.bool.isRequired,
   handleAddRessourceModal: PropTypes.func.isRequired,
 };
 

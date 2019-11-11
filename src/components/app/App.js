@@ -47,8 +47,19 @@ class App extends Component {
         value: this.props.i18n.language === 'en' ? 'English' : 'Français',
       },
       isLogged: true,
+      checkedServices: {},
     };
   }
+
+  handleChooseService = (event) => {
+    const { checkedServices } = this.state;
+    this.setState({
+      checkedServices: {
+        ...checkedServices,
+        [event.target.name]: event.target.checked,
+      },
+    });
+  };
 
   changeLang = (lang) => {
     const { i18n } = this.props;
@@ -69,8 +80,8 @@ class App extends Component {
 
   render() {
     const { t } = this.props;
-    const { changeLang } = this;
-    const { defaultLang, isLogged } = this.state;
+    const { changeLang, handleChooseService } = this;
+    const { defaultLang, isLogged, checkedServices } = this.state;
     return (
       <Router>
         <Route exact path="/">
@@ -99,6 +110,8 @@ class App extends Component {
               defaultLang={defaultLang}
               kind="app"
               isLogged={isLogged}
+              handleChooseService={handleChooseService}
+              checkedServices={checkedServices}
             />
           </Route>
         </Switch>

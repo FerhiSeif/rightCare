@@ -5,18 +5,18 @@ import Services from './Services';
 
 const AddAgent = (props) => {
   const {
-    t,
+    handleChooseService,
+    checkedServices,
   } = props;
 
   return (
-    <>
-      <Services />
-    </>
+    <Services handleChooseService={handleChooseService} checkedServices={checkedServices} />
   );
 };
 
 AddAgent.propTypes = {
-  t: PropTypes.func.isRequired,
+  handleChooseService: PropTypes.func.isRequired,
+  checkedServices: PropTypes.shape({}).isRequired,
 };
 
 export default withTranslation()(AddAgent);

@@ -5,7 +5,7 @@ import Carder from '../../common/Carder';
 import FakeChannels from '../../../faker/channels';
 import DarkEmailIcon from '../../../assets/images/onboard/channels/dark/add-message.svg';
 
-const AssignAgent = ({ t }) => (
+const AssignAgent = ({ t, handleChooseService, checkedServices }) => (
   <div className="card-container">
     <Carder
       kind="agent"
@@ -20,6 +20,8 @@ const AssignAgent = ({ t }) => (
       hasAgents
       isChannelEmpty={false}
       channelSelected={false}
+      handleChooseService={handleChooseService}
+      checkedServices={checkedServices}
     />
     { FakeChannels.map((item, i) => (
       <Carder
@@ -36,6 +38,8 @@ const AssignAgent = ({ t }) => (
         channelSelected={false}
         serviceCount={6}
         agentAssigned={false}
+        handleChooseService={handleChooseService}
+        checkedServices={checkedServices}
       />
     ))}
   </div>
@@ -43,6 +47,8 @@ const AssignAgent = ({ t }) => (
 
 AssignAgent.propTypes = {
   t: PropTypes.func.isRequired,
+  handleChooseService: PropTypes.func.isRequired,
+  checkedServices: PropTypes.shape({}).isRequired,
 };
 
 export default withTranslation()(AssignAgent);

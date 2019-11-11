@@ -60,4 +60,8 @@
       color: $success;
     }
   }
+  .is-selected-case {
+    border-color: $success;
+    background-color: rgba(0, 189, 57, 0.05);
+  }
 }
