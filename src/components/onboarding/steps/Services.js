@@ -6,8 +6,8 @@ import FakeChannels from '../../../faker/channels';
 const Services = (props) => {
   const {
     kind,
-    checkedItems,
-    handleChange,
+    checkedServices,
+    handleChooseService,
   } = props;
 
   const serviceStyle = {
@@ -28,7 +28,7 @@ const Services = (props) => {
     <div className="service-container" style={serviceStyle.serviceContainer}>
       { FakeChannels.map((item, i) => (
         <label
-          className={`${checkedItems[item.type] ? 'service-card is-selected-case' : 'service-card'}`}
+          className={`${checkedServices[item.type] ? 'service-card is-selected-case' : 'service-card'}`}
           control={item.type}
           key={i}
         >
@@ -37,8 +37,8 @@ const Services = (props) => {
           <input
             type="checkbox"
             name={item.type}
-            checked={checkedItems[item.type]}
-            onChange={handleChange}
+            checked={checkedServices[item.type]}
+            onChange={handleChooseService}
             style={serviceStyle.input}
           />
         </label>
@@ -49,8 +49,8 @@ const Services = (props) => {
 
 Services.propTypes = {
   kind: PropTypes.string.isRequired,
-  handleChange: PropTypes.func.isRequired,
-  checkedItems: PropTypes.shape({}).isRequired,
+  handleChooseService: PropTypes.func.isRequired,
+  checkedServices: PropTypes.shape({}).isRequired,
 };
 
 export default withTranslation()(Services);
