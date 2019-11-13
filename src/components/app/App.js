@@ -97,8 +97,13 @@ class App extends Component {
 
   render() {
     const { t } = this.props;
-    const { changeLang, handleChooseService } = this;
-    const { defaultLang, isLogged, checkedServices } = this.state;
+    const { changeLang, handleChooseService, handleSimulateChooseServices } = this;
+    const {
+      defaultLang,
+      isLogged,
+      checkedServices,
+      activeServices,
+    } = this.state;
     return (
       <Router>
         <Route exact path="/">
