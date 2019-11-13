@@ -134,6 +134,9 @@ class App extends Component {
               isLogged={isLogged}
               handleChooseService={handleChooseService}
               checkedServices={checkedServices}
+              activeServices={activeServices}
+              selectServiceRef={selectServiceRef}
+              handleSimulateChooseServices={handleSimulateChooseServices}
             />
           </Route>
         </Switch>
