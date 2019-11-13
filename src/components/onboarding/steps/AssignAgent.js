@@ -59,7 +59,7 @@ AssignAgent.propTypes = {
   t: PropTypes.func.isRequired,
   handleChooseService: PropTypes.func.isRequired,
   checkedServices: PropTypes.shape({}).isRequired,
-  activeServices: PropTypes.array.isRequired,
+  activeServices: PropTypes.shape([]).isRequired,
 };
 
 export default withTranslation()(AssignAgent);
