@@ -128,12 +128,12 @@ function getSteps() {
   return ['Select campaign settings', 'Create an ad group', 'Create an ad'];
 }
 
-function getStepContent(step, handleChooseService, checkedServices) {
+function getStepContent(step, handleChooseService, checkedServices, activeServices) {
   switch (step) {
     case 0:
       return <AddAgent handleChooseService={handleChooseService} checkedServices={checkedServices} />;
     case 1:
-      return <AssignAgent handleChooseService={handleChooseService} checkedServices={checkedServices} />;
+      return <AssignAgent handleChooseService={handleChooseService} checkedServices={checkedServices} activeServices={activeServices} />;
     case 2:
       return <AccountSummary handleChooseService={handleChooseService} checkedServices={checkedServices} />;
     default:
