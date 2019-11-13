@@ -131,11 +131,27 @@ function getSteps() {
 function getStepContent(step, handleChooseService, checkedServices, activeServices) {
   switch (step) {
     case 0:
-      return <AddAgent handleChooseService={handleChooseService} checkedServices={checkedServices} />;
+      return (
+        <AddAgent
+          handleChooseService={handleChooseService}
+          checkedServices={checkedServices}
+        />
+      );
     case 1:
-      return <AssignAgent handleChooseService={handleChooseService} checkedServices={checkedServices} activeServices={activeServices} />;
+      return (
+        <AssignAgent
+          handleChooseService={handleChooseService}
+          checkedServices={checkedServices}
+          activeServices={activeServices}
+        />
+      );
     case 2:
-      return <AccountSummary handleChooseService={handleChooseService} checkedServices={checkedServices} />;
+      return (
+        <AccountSummary
+          handleChooseService={handleChooseService}
+          checkedServices={checkedServices}
+        />
+      );
     default:
       return 'Unknown step';
   }
@@ -239,9 +255,15 @@ export default function Steps(props) {
                   </div>
                 ) : (
                   <div className="content-selector">
-                    <div className={classes.instructions}>{getStepContent(activeStep, handleChooseService, checkedServices, activeServices)}</div>
+                    <div className={classes.instructions}>
+                      {
+                        getStepContent(
+                          activeStep, handleChooseService, checkedServices, activeServices,
+                        )
+                      }
+                    </div>
                     <div>
-                      <Button onClick={handleSimulateChooseServices} ref={selectServiceRef} style={{ display: 'none' }} />
+                      <Button onClick={handleSimulateChooseServices} ref={selectServiceRef} style={{ display: 'none' }}>Simulate</Button>
                       <Button
                         variant="contained"
                         color="primary"
@@ -292,5 +314,6 @@ Steps.propTypes = {
   handleChooseService: PropTypes.func.isRequired,
   checkedServices: PropTypes.shape({}).isRequired,
   selectServiceRef: PropTypes.shape({}).isRequired,
+  activeServices: PropTypes.shape([]).isRequired,
   handleSimulateChooseServices: PropTypes.func.isRequired,
 };
