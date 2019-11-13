@@ -290,4 +290,6 @@ Steps.propTypes = {
   isLogged: PropTypes.bool.isRequired,
   handleChooseService: PropTypes.func.isRequired,
   checkedServices: PropTypes.shape({}).isRequired,
+  selectServiceRef: PropTypes.shape({}).isRequired,
+  handleSimulateChooseServices: PropTypes.func.isRequired,
 };
