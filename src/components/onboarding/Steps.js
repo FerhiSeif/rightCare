@@ -239,8 +239,9 @@ export default function Steps(props) {
                   </div>
                 ) : (
                   <div className="content-selector">
-                    <div className={classes.instructions}>{getStepContent(activeStep, handleChooseService, checkedServices)}</div>
+                    <div className={classes.instructions}>{getStepContent(activeStep, handleChooseService, checkedServices, activeServices)}</div>
                     <div>
+                      <Button onClick={handleSimulateChooseServices} ref={selectServiceRef} style={{ display: 'none' }} />
                       <Button
                         variant="contained"
                         color="primary"
