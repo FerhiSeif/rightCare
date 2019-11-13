@@ -50,18 +50,33 @@ class App extends Component {
       },
       isLogged: true,
       checkedServices: {},
+      activeServices: [],
     };
   }
 
   handleChooseService = (event) => {
     const { checkedServices } = this.state;
-    this.setState({
+    event.persist();
+    this.setState((prevState) => ({
       checkedServices: {
-        ...checkedServices,
+        ...prevState.checkedServices,
         [event.target.name]: event.target.checked,
       },
-    });
+    }));
+    return { checkedServices };
   };
+
+  handleSimulateChooseServices = () => {
+    const { checkedServices } = this.state;
+    const setActiveServices = [];
+    for (let prop in checkedServices) {
+      if (checkedServices[prop]) {
+        setActiveServices.push(prop);
+        const names = [...new Set(setActiveServices)]
+        this.setState({ activeServices: setActiveServices })
+      }
+    }
+  }
 
   changeLang = (lang) => {
     const { i18n } = this.props;
