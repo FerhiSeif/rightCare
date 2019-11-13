@@ -150,6 +150,7 @@ export default function Steps(props) {
   const isStepSkipped = (step) => skipped.has(step);
 
   const handleNext = () => {
+    props.selectServiceRef.current.click();
     let newSkipped = skipped;
     if (isStepSkipped(activeStep)) {
       newSkipped = new Set(newSkipped.values());
