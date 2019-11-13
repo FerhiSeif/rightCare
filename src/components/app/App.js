@@ -38,6 +38,8 @@ const frLabelIcon = (
   </div>
 );
 
+const selectServiceRef = React.createRef();
+
 class App extends Component {
   constructor(props) {
     super(props);
