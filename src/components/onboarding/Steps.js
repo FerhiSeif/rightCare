@@ -128,14 +128,30 @@ function getSteps() {
   return ['Select campaign settings', 'Create an ad group', 'Create an ad'];
 }
 
-function getStepContent(step, handleChooseService, checkedServices) {
+function getStepContent(step, handleChooseService, checkedServices, activeServices) {
   switch (step) {
     case 0:
-      return <AddAgent handleChooseService={handleChooseService} checkedServices={checkedServices} />;
+      return (
+        <AddAgent
+          handleChooseService={handleChooseService}
+          checkedServices={checkedServices}
+        />
+      );
     case 1:
-      return <AssignAgent handleChooseService={handleChooseService} checkedServices={checkedServices} />;
+      return (
+        <AssignAgent
+          handleChooseService={handleChooseService}
+          checkedServices={checkedServices}
+          activeServices={activeServices}
+        />
+      );
     case 2:
-      return <AccountSummary handleChooseService={handleChooseService} checkedServices={checkedServices} />;
+      return (
+        <AccountSummary
+          handleChooseService={handleChooseService}
+          checkedServices={checkedServices}
+        />
+      );
     default:
       return 'Unknown step';
   }
@@ -150,6 +166,7 @@ export default function Steps(props) {
   const isStepSkipped = (step) => skipped.has(step);
 
   const handleNext = () => {
+    props.selectServiceRef.current.click();
     let newSkipped = skipped;
     if (isStepSkipped(activeStep)) {
       newSkipped = new Set(newSkipped.values());
@@ -181,6 +198,9 @@ export default function Steps(props) {
     isLogged,
     handleChooseService,
     checkedServices,
+    activeServices,
+    handleSimulateChooseServices,
+    selectServiceRef,
   } = props;
 
   return (
@@ -235,8 +255,15 @@ export default function Steps(props) {
                   </div>
                 ) : (
                   <div className="content-selector">
-                    <div className={classes.instructions}>{getStepContent(activeStep, handleChooseService, checkedServices)}</div>
+                    <div className={classes.instructions}>
+                      {
+                        getStepContent(
+                          activeStep, handleChooseService, checkedServices, activeServices,
+                        )
+                      }
+                    </div>
                     <div>
+                      <Button onClick={handleSimulateChooseServices} ref={selectServiceRef} style={{ display: 'none' }}>Simulate</Button>
                       <Button
                         variant="contained"
                         color="primary"
@@ -286,4 +313,7 @@ Steps.propTypes = {
   isLogged: PropTypes.bool.isRequired,
   handleChooseService: PropTypes.func.isRequired,
   checkedServices: PropTypes.shape({}).isRequired,
+  selectServiceRef: PropTypes.shape({}).isRequired,
+  activeServices: PropTypes.shape([]).isRequired,
+  handleSimulateChooseServices: PropTypes.func.isRequired,
 };
