@@ -182,6 +182,9 @@ export default function Steps(props) {
     isLogged,
     handleChooseService,
     checkedServices,
+    activeServices,
+    handleSimulateChooseServices,
+    selectServiceRef,
   } = props;
 
   return (
