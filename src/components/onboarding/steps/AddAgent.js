@@ -10,7 +10,7 @@ const AddAgent = (props) => {
   } = props;
 
   return (
-    <Services handleChooseService={handleChooseService} checkedServices={checkedServices} />
+    <Services handleChooseService={handleChooseService} checkedServices={checkedServices} kind="agent" />
   );
 };
 
