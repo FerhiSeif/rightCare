@@ -270,7 +270,7 @@ export default function Steps(props) {
                         onClick={handleNext}
                         className={classes.button}
                       >
-                        {activeStep === steps.length - 1 ? 'Finish' : 'Continue'}
+                        {activeStep === steps.length - 1 ? t('onboard.finish') : t('onboard.continue')}
                       </Button>
                       {activeStep !== steps.length - 1 && (
                         <Button
@@ -279,7 +279,7 @@ export default function Steps(props) {
                           onClick={handleSkip}
                           className={classes.buttonOutlined}
                         >
-                          Skip
+                          {t('onboard.skip')}
                         </Button>
                       )}
                     </div>
@@ -314,6 +314,6 @@ Steps.propTypes = {
   handleChooseService: PropTypes.func.isRequired,
   checkedServices: PropTypes.shape({}).isRequired,
   selectServiceRef: PropTypes.shape({}).isRequired,
-  activeServices: PropTypes.shape([]).isRequired,
+  activeServices: PropTypes.shape(PropTypes.array.isRequired).isRequired,
   handleSimulateChooseServices: PropTypes.func.isRequired,
 };
