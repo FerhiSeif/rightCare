@@ -23,6 +23,8 @@ const Services = (props) => {
       display: 'none',
     },
   };
+  console.log('newService', newService);
+    console.log('previsous services', localService);
 
   return (
     <div className="service-container" style={serviceStyle.serviceContainer}>
