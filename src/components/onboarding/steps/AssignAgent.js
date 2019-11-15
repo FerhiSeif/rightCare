@@ -13,6 +13,13 @@ const AssignAgent = (props) => {
     activeServices,
   } = props;
 
+  const selectedServices = FakeChannels
+    .filter((channel) => activeServices.indexOf(channel.type) >= 0);
+
+  if (selectedServices.length > 0 && localStorage) {
+    localStorage.setItem('cr_services', JSON.stringify(selectedServices));
+  }
+
   return (
     <div className="card-container">
       <Carder
