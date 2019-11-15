@@ -7,7 +7,7 @@ import SelectedChannels from '../onboarding/steps/SelectedChannels';
 import HasAgents from '../onboarding/steps/HasAgents';
 
 const Carder = (props) => {
-  const [state, setState] = useState({ initialItems: FakeAgents });
+  const [state, setState] = useState({ initialAgents: FakeAgents });
   const {
     t,
     icon,
@@ -26,7 +26,19 @@ const Carder = (props) => {
   } = props;
   const alreadyAdded = true; // this needs to be dynamic for eah agent
   const agentCount = FakeAgents.length;
-  const addAgent = (
+
+  const handleAddAgent = (e, id) => {
+    const localService = JSON.parse(localStorage.getItem('cr_services'));
+    const correspondingChannel = localService.find(
+      (option) => option.type.toLowerCase().includes((title).toLowerCase()),
+    );
+    if (!correspondingChannel.agents.includes(id)) {
+      correspondingChannel.agents.push(id);
+    }
+    localStorage.setItem('cr_services', JSON.stringify(localService));
+  };
+
+  const listAgents = (
     <ul className="menu-list">
       <li>
         <img src={ProfileIcon} alt="portrait" />
@@ -35,11 +47,11 @@ const Carder = (props) => {
           {alreadyAdded ? '-' : '+'}
         </span>
       </li>
-      { state.initialItems.map((item, i) => (
+      { state.initialAgents.map((item, i) => (
         <li key={i}>
           <img src={item.profile_image} alt="portrait" />
           <span className="user-name">{item.full_name}</span>
-          <span className="add-user">+</span>
+          <span className="add-user" onClick={(e) => handleAddAgent(e, item.id)}>+</span>
         </li>
       ))}
     </ul>
@@ -49,13 +61,13 @@ const Carder = (props) => {
     const newFilter = event.target.value;
     if (newFilter !== '') {
       setState(() => ({
-        initialItems: state.initialItems.filter(
+        initialAgents: state.initialAgents.filter(
           (option) => option.full_name.toLowerCase().includes(newFilter.toLowerCase()),
         ),
       }));
     } else {
       setState(() => ({
-        initialItems: FakeAgents,
+        initialAgents: FakeAgents,
       }));
     }
   };
@@ -133,7 +145,7 @@ const Carder = (props) => {
         handleSearchAgent={handleSearchAgent}
         handleCloseRessourceModal={handleCloseRessourceModal}
         title={kind === 'agent' ? 'Add available agents' : 'Add channel'}
-        content={addAgent}
+        content={listAgents}
         kind={kind}
         buttonText="Continue"
         handleChooseService={handleChooseService}
