@@ -1,6 +1,9 @@
 {
   "home" : {
-    "welcome_to": "Welcome to"
+    "welcome_to": "Welcome to",
+    "customer_engagement_on_one_plateform": "Customer engagement on One Plateform",
+    "get_started": "Get started",
+    "resolve_your_customer": "Resolve your customer issue in real time with as little turnevoras possible."
   },
   "header": {
     "get_started": "Get started",
@@ -28,7 +31,10 @@
     "add_agent_to_your_platform": "Add agent to your platform",
     "assign_agent_to_work": "Assign agent to work on the channel you selected",
     "onboarding_process": "Onboarding process",
-    "view_all": "View all"
+    "view_all": "View all",
+    "finish": "Finish",
+    "continue": "Continue",
+    "skip": "Sauter"
   },
   "dashboard": {
     "number_of_agents": "Number of agents",
