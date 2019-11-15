@@ -38,6 +38,7 @@ const SelectedChannels = (props) => {
 
 SelectedChannels.propTypes = {
   t: PropTypes.func.isRequired,
+  kind: PropTypes.string.isRequired,
 };
 
 export default withTranslation()(SelectedChannels);
