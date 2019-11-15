@@ -41,7 +41,7 @@ const Modal = (props) => {
           { kind === 'agent' ? (<div>{content}</div>) : <Services kind={kind} handleChooseService={handleChooseService} checkedServices={checkedServices} /> }
         </section>
         <footer className="modal-card-foot">
-          <button className="button is-primary">{buttonText}</button>
+          <button className="button is-primary" aria-label="close" onClick={handleCloseRessourceModal}>{buttonText}</button>
         </footer>
       </div>
       <button className="modal-close is-large" aria-label="close" onClick={handleCloseRessourceModal} />
