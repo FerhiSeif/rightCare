@@ -8,6 +8,9 @@ const SelectedChannels = (props) => {
   const {
     t,
     kind,
+    title,
+    icon,
+    handleAddRessourceModal,
   } = props;
 
   const serviceStyle = {
@@ -22,22 +25,42 @@ const SelectedChannels = (props) => {
   };
 
   return (
-    <div className={`${kind === 'channel' ? 'service-container-custom' : 'service-container'}`} style={serviceStyle.serviceContainer}>
-      <div className="service-card">
-        <img src={MailIcon} alt="mail service" style={serviceStyle.firstImage} />
-        <span>Email</span>
+    <div className="card-custom">
+      <header className="card-header">
+        <p className="card-header-title">
+          <span className="icon">
+            <img src={icon} alt="Channel Icon" />
+          </span>
+          {title}
+        </p>
+        <a href="/onboard" className="card-header-icon" aria-label="more options">
+          <span className="icon">
+            0
+          </span>
+        </a>
+      </header>
+      <div className="card-content">
+        <div className="content">
+          <div className="service-container-custom" style={serviceStyle.serviceContainer}>
+            <div className="service-card">
+              <img src={MailIcon} alt="mail service" style={serviceStyle.firstImage} />
+              <span>{t('onboard.steps.email')}</span>
+            </div>
+            <div className="service-card">
+              <img src={AnswerIcon} alt="answer service" />
+              <span>{t('onboard.steps.live_chat')}</span>
+            </div>
+            <div className="add-more" onClick={handleAddRessourceModal}><span>+</span></div>
+          </div>
+        </div>
       </div>
-      <div className="service-card">
-        <img src={AnswerIcon} alt="answer service" />
-        <span>Live Chat</span>
-      </div>
-      <div className="add-more"><span>+</span></div>
     </div>
   );
 };
 
 SelectedChannels.propTypes = {
   t: PropTypes.func.isRequired,
+  handleAddRessourceModal: PropTypes.func.isRequired,
   kind: PropTypes.string.isRequired,
 };
 
