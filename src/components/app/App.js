@@ -72,9 +72,11 @@ class App extends Component {
     for (let prop in checkedServices) {
       if (checkedServices[prop]) {
         setActiveServices.push(prop);
-        const names = [...new Set(setActiveServices)]
         this.setState({ activeServices: setActiveServices })
+      } else {
+        this.setState({ activeServices: [] })
       }
+      localStorage.setItem('cr_actservices', JSON.stringify(setActiveServices));
     }
   }
 
