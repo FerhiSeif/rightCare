@@ -23,15 +23,14 @@ const Services = (props) => {
       display: 'none',
     },
   };
-  const newService = FakeChannels;
-  console.log('newService', newService);
-  const localService = JSON.parse(localStorage.getItem('cr_services'));
-  if (localService) {
-    console.log('previsous services', localService);
-    localService.map((item, i) => (
-      console.log('items', item.type)
-    ));
-  }
+  // const newService = FakeChannels;
+  const localService = JSON.parse(localStorage.getItem('cr_actservices'));
+  console.log('localService', localService);
+  // if (localService) {
+  //   localService.map((item, i) => (
+  //     console.log('items', item.type)
+  //   ));
+  // }
 
   return (
     <div className="service-container" style={serviceStyle.serviceContainer}>
