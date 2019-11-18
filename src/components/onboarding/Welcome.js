@@ -29,6 +29,11 @@ const Welcome = (props) => {
         <div className="columns">
           <div className="column is-three-fifths">
             <h1>360° {t('home.customer_engagement_on_one_plateform')}</h1>
+            <h1>
+              360°
+              {' '}
+              {t('home.customer_engagement_on_one_plateform')}
+            </h1>
             <p>{t('home.resolve_your_customer')}</p>
             <Link to={`/${kind}`}>
               <button className="button is-primary">{t('home.get_started')}</button>
