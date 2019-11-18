@@ -150,6 +150,7 @@ function getStepContent(step, handleChooseService, checkedServices, activeServic
         <AccountSummary
           handleChooseService={handleChooseService}
           checkedServices={checkedServices}
+          activeServices={activeServices}
         />
       );
     default:
