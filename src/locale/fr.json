@@ -34,7 +34,11 @@
     "view_all": "Tout voir",
     "finish": "Finir",
     "continue": "Continuer",
-    "skip": "Passer"
+    "skip": "Passer",
+    "steps": {
+      "email": "Email",
+      "live_chat": "Chat en Live"
+    }
   },
   "dashboard": {
     "number_of_agents": "Nombre d'agents",

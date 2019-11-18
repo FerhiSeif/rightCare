@@ -34,7 +34,11 @@
     "view_all": "View all",
     "finish": "Finish",
     "continue": "Continue",
-    "skip": "Sauter"
+    "skip": "Sauter",
+    "steps": {
+      "email": "Email",
+      "live_chat": "Live Chat"
+    }
   },
   "dashboard": {
     "number_of_agents": "Number of agents",
