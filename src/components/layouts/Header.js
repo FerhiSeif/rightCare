@@ -105,6 +105,7 @@ const Header = (props) => {
                 value={defaultLang}
                 onChange={changeLang}
                 className="App-Select"
+                isSearchable={false}
               />
             </div>
           </div>
