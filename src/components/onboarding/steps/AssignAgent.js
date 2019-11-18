@@ -10,7 +10,21 @@ const AssignAgent = (props) => {
     checkedServices,
     handleChooseService,
     activeServices,
+    handleBack,
   } = props;
+
+  const agentStyles = {
+    empty: {
+      marginBottom: '1rem',
+      fontSize: '1.5rem',
+    },
+    here: {
+      cursor: 'pointer',
+      textDecoration: 'underline',
+      color: '#00bd39',
+    },
+  };
+
 
   const selectedServices = FakeChannels
     .filter((channel) => activeServices.indexOf(channel.type) >= 0);
@@ -24,7 +38,7 @@ const AssignAgent = (props) => {
   return (
     <div className="card-container">
       {
-        localService && localService.length > 0 ? (
+        selectedServices.length > 0 && (localService && localService.length) > 0 ? (
           <>
             { localService.map((item, i) => (
               <Carder
@@ -71,7 +85,11 @@ const AssignAgent = (props) => {
           </>
         )
       }
-
+      { activeServices.length === 0 && (
+        <div style={agentStyles.empty}>
+          You have no selected channels, click <span style={agentStyles.here} className="select-channel-first" onClick={handleBack}>here</span> to choose channel(s).
+        </div>
+      )}
     </div>
   );
 };
