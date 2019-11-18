@@ -128,7 +128,7 @@ function getSteps() {
   return ['Select campaign settings', 'Create an ad group', 'Create an ad'];
 }
 
-function getStepContent(step, handleChooseService, checkedServices, activeServices) {
+function getStepContent(step, handleChooseService, checkedServices, activeServices, handleBack) {
   switch (step) {
     case 0:
       return (
@@ -143,6 +143,7 @@ function getStepContent(step, handleChooseService, checkedServices, activeServic
           handleChooseService={handleChooseService}
           checkedServices={checkedServices}
           activeServices={activeServices}
+          handleBack={handleBack}
         />
       );
     case 2:
@@ -166,6 +167,10 @@ export default function Steps(props) {
 
   const isStepSkipped = (step) => skipped.has(step);
 
+  const handleBack = () => {
+    setActiveStep((prevActiveStep) => prevActiveStep - 1);
+  };
+
   const handleNext = () => {
     props.selectServiceRef.current.click();
     let newSkipped = skipped;
@@ -173,7 +178,6 @@ export default function Steps(props) {
       newSkipped = new Set(newSkipped.values());
       newSkipped.delete(activeStep);
     }
-
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
     setSkipped(newSkipped);
   };
@@ -187,9 +191,7 @@ export default function Steps(props) {
     });
   };
 
-  const handleReset = () => {
-    setActiveStep(0);
-  };
+  const handleReset = () => { setActiveStep(0); };
 
   const {
     t,
@@ -260,6 +262,7 @@ export default function Steps(props) {
                       {
                         getStepContent(
                           activeStep, handleChooseService, checkedServices, activeServices,
+                          handleBack,
                         )
                       }
                     </div>
