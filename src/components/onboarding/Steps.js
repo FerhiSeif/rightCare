@@ -128,7 +128,13 @@ function getSteps() {
   return ['Select campaign settings', 'Create an ad group', 'Create an ad'];
 }
 
-function getStepContent(step, handleChooseService, checkedServices, activeServices, handleBack) {
+function getStepContent(
+  step,
+  handleChooseService,
+  checkedServices,
+  activeServices,
+  handleBack,
+) {
   switch (step) {
     case 0:
       return (
@@ -261,7 +267,10 @@ export default function Steps(props) {
                     <div className={classes.instructions}>
                       {
                         getStepContent(
-                          activeStep, handleChooseService, checkedServices, activeServices,
+                          activeStep,
+                          handleChooseService,
+                          checkedServices,
+                          activeServices,
                           handleBack,
                         )
                       }
