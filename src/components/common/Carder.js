@@ -52,7 +52,7 @@ const Carder = (props) => {
       const index = agents.indexOf(id);
       if (index > -1) { agents.splice(index, 1); }
       localStorage.setItem('cr_services', JSON.stringify(localService));
-      const updatedAgents = FakeAgents.filter((agent) => agents.includes(agent.id))
+      const updatedAgents = FakeAgents.filter((agent) => agents.includes(agent.id));
       setState((prevState) => ({
         ...prevState,
         initialAgents: updatedAgents,
@@ -67,16 +67,17 @@ const Carder = (props) => {
         .toLowerCase()))
     .agents.includes(id);
 
-
   const listAgents = (
     <ul className="menu-list">
       { state.initAgents && state.initAgents.map((item, i) => (
         <li key={i}>
           <img src={item.profile_image} alt="portrait" />
           <span className="user-name">{item.full_name}</span>
-          <>
-          
-          </>
+          {
+            fetchDatas(item.id) ? (<span className="remove-user" onClick={(e) => handleRemoveAgent(e, item.id)}>-</span>)
+            :
+            (<span className="add-user" onClick={(e) => handleAddAgent(e, item.id)}>+</span>)
+          }
         </li>
       ))}
     </ul>
