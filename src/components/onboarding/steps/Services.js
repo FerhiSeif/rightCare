@@ -23,20 +23,14 @@ const Services = (props) => {
       display: 'none',
     },
   };
-  // const newService = FakeChannels;
+
   const localService = JSON.parse(localStorage.getItem('cr_actservices'));
-  console.log('localService', localService);
-  // if (localService) {
-  //   localService.map((item, i) => (
-  //     console.log('items', item.type)
-  //   ));
-  // }
 
   return (
     <div className="service-container" style={serviceStyle.serviceContainer}>
       { FakeChannels.map((item, i) => (
         <label
-          className={`${checkedServices[item.type] ? 'service-card is-selected-case' : 'service-card'}`}
+          className={`${checkedServices[item.type] || (localService && localService.includes(item.type)) ? 'service-card is-selected-case' : 'service-card'}`}
           control={item.type}
           key={i}
         >
