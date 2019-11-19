@@ -13,12 +13,9 @@ const AccountSummary = (props) => {
     handleChooseService,
     checkedServices,
     activeServices,
-    handleAddRessourceModal,
   } = props;
 
   const localService = JSON.parse(localStorage.getItem('cr_services'));
-  const localChecked = JSON.parse(localStorage.getItem('cr_actservices'));
-  console.log('localChecked', localChecked);
 
   const selectedServices = FakeChannels
     .filter((channel) => activeServices.indexOf(channel.type) >= 0);
@@ -26,11 +23,11 @@ const AccountSummary = (props) => {
   return (
     <div className="card-container">
       {
-        selectedServices.length > 0 && (localService && localService.length) > 0 ? (
+        selectedServices.length > 0 || (localService && localService.length) > 0 ? (
           <>
             { localService.map((item, i) => (
               <Carder
-                kind="channel"
+                kind="agent"
                 icon={item.darkIcon}
                 darkIcon={item.darkIcon}
                 key={i}
@@ -59,7 +56,7 @@ const AccountSummary = (props) => {
                   key={i}
                   t={t}
                   title={`${item.type} channel`}
-                  content="No agent have been assinged to this channel"
+                  content="No agent have been assigned to this channel"
                   buttonText="Assign agent"
                   hasAgents={false}
                   isChannelEmpty={false}
@@ -77,7 +74,6 @@ const AccountSummary = (props) => {
       <SelectedChannels
         kind="channel"
         t={t}
-        handleAddRessourceModal={handleAddRessourceModal}
         handleChooseService={handleChooseService}
         title="Channels selected"
         icon={ChannelIcon}
@@ -86,14 +82,13 @@ const AccountSummary = (props) => {
       <Carder
         kind="channel"
         t={t}
-        title="Email channel"
-        content="No agent have been assinged to this channel"
+        title="email"
+        content="No agent have been assigned to this channel"
         buttonText="Assign agent"
         serviceCount={4}
         icon={AgentIcon}
         isChannelEmpty
         hasAgents
-        handleChooseService={handleChooseService}
         checkedServices={checkedServices}
         assignedAgents={[]}
       />
