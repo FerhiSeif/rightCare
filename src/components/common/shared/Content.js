@@ -11,7 +11,6 @@ const Header = (props) => {
     content,
     handleAddRessourceModal,
     agentAssigned,
-    t,
     buttonText,
     isChannelEmpty,
   } = props;
@@ -52,12 +51,10 @@ const Header = (props) => {
 };
 
 Header.propTypes = {
-  t: PropTypes.func.isRequired,
   kind: PropTypes.string.isRequired,
   hasAgents: PropTypes.bool.isRequired,
   isChannelEmpty: PropTypes.bool.isRequired,
   buttonText: PropTypes.string.isRequired,
-  channelSelected: PropTypes.bool.isRequired,
   cardStyle: PropTypes.shape({}).isRequired,
   agentAssigned: PropTypes.shape({}).isRequired,
   content: PropTypes.string.isRequired,
