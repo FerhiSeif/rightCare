@@ -38,7 +38,7 @@ const AssignAgent = (props) => {
   return (
     <div className="card-container">
       {
-        selectedServices.length > 0 && (localService && localService.length) > 0 ? (
+        localService && localService.length > 0 ? (
           <>
             { localService.map((item, i) => (
               <Carder
@@ -85,7 +85,7 @@ const AssignAgent = (props) => {
           </>
         )
       }
-      { activeServices.length === 0 && (
+      { localService.length === 0 && (
         <div style={agentStyles.empty}>
           You have no selected channels, click <span style={agentStyles.here} className="select-channel-first" onClick={handleBack}>here</span> to choose channel(s).
         </div>
