@@ -5,12 +5,13 @@ import Services from './Services';
 
 const AddAgent = (props) => {
   const {
+    kind,
     handleChooseService,
     checkedServices,
   } = props;
 
   return (
-    <Services handleChooseService={handleChooseService} checkedServices={checkedServices} kind="agent" />
+    <Services handleChooseService={handleChooseService} checkedServices={checkedServices} kind={kind} />
   );
 };
 
