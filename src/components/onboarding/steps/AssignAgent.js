@@ -25,14 +25,6 @@ const AssignAgent = (props) => {
     },
   };
 
-
-  const selectedServices = FakeChannels
-    .filter((channel) => activeServices.indexOf(channel.type) >= 0);
-
-  if (selectedServices.length > 0 && localStorage) {
-    localStorage.setItem('cr_services', JSON.stringify(selectedServices));
-  }
-
   const localService = JSON.parse(localStorage.getItem('cr_services'));
 
   return (
@@ -48,8 +40,8 @@ const AssignAgent = (props) => {
                 key={i}
                 t={t}
                 title={item.type}
-                content="No agent have been added"
-                buttonText="Add agent"
+                content={t('onboard.steps.no_agent_has_been_added')}
+                buttonText={t('onboard.steps.add_agent')}
                 isChannelEmpty={false}
                 channelSelected={false}
                 serviceCount={6}
@@ -71,8 +63,8 @@ const AssignAgent = (props) => {
                   key={i}
                   t={t}
                   title={item.type}
-                  content="No agent have been added"
-                  buttonText="Add agent"
+                  content={t('onboard.steps.no_agent_has_been_added')}
+                  buttonText={t('onboard.steps.add_agent')}
                   isChannelEmpty={false}
                   channelSelected={false}
                   serviceCount={6}
@@ -87,9 +79,15 @@ const AssignAgent = (props) => {
       }
       { localService.length === 0 && (
         <div style={agentStyles.empty}>
-          You have no selected channels, click <span style={agentStyles.here} className="select-channel-first" onClick={handleBack}>here</span> to choose channel(s).
+          {t('onboard.steps.you_have_no_selected_channels_click')}
+          <span
+            style={agentStyles.here}
+            className="select-channel-first"
+            onClick={handleBack}> {t('onboard.steps.here')}
+          </span> {t('onboard.steps.to_choose_channel(s)')}.
         </div>
       )}
+
     </div>
   );
 };
