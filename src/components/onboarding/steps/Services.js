@@ -24,13 +24,11 @@ const Services = (props) => {
     },
   };
 
-  const localService = JSON.parse(localStorage.getItem('cr_actservices'));
-
   return (
     <div className="service-container" style={serviceStyle.serviceContainer}>
       { FakeChannels.map((item, i) => (
         <label
-          className={`${checkedServices[item.type] || (localService && localService.includes(item.type)) ? 'service-card is-selected-case' : 'service-card'}`}
+          className={`${checkedServices[item.type] ? 'service-card is-selected-case' : 'service-card'}`}
           control={item.type}
           key={i}
         >
