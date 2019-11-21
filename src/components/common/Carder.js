@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Modal from './Modal';
-import ProfileIcon from '../../assets/images/profile/idpic.jpg';
 import FakeAgents from '../../faker/agents';
-import SelectedChannels from '../onboarding/steps/SelectedChannels';
-import HasAgents from '../onboarding/steps/HasAgents';
+
+import Header from './shared/Header';
+import Content from './shared/Content';
 
 const Carder = (props) => {
-  const [state, setState] = useState({ initialItems: FakeAgents });
   const {
     t,
     icon,
@@ -15,7 +14,6 @@ const Carder = (props) => {
     kind,
     title,
     content,
-    hasAgents,
     buttonText,
     serviceCount,
     handleChooseService,
@@ -23,23 +21,63 @@ const Carder = (props) => {
     agentAssigned,
     isChannelEmpty,
     channelSelected,
+    assignedAgents,
   } = props;
-  const alreadyAdded = true; // this needs to be dynamic for eah agent
-  const agentCount = FakeAgents.length;
-  const addAgent = (
+
+  const [state, setState] = useState({
+    initialAgents: assignedAgents && FakeAgents.filter((agent) => assignedAgents.includes(agent.id)),
+    initAgents: FakeAgents,
+  });
+
+  const handleAddAgent = (e, id) => {
+    const localService = JSON.parse(localStorage.getItem('cr_services'));
+    const correspondingChannel = localService.find(
+      (option) => option.type.toLowerCase().includes((title).toLowerCase()),
+    );
+    if (!correspondingChannel.agents.includes(id)) {
+      correspondingChannel.agents.push(id);
+    }
+    localStorage.setItem('cr_services', JSON.stringify(localService));
+    const updatedAgents = FakeAgents.filter((agent) => correspondingChannel.agents.includes(agent.id))
+    setState((prevState) => ({
+      ...prevState,
+      initialAgents: updatedAgents,
+    }));
+  };
+
+  const handleRemoveAgent = (e, id) => {
+    const localService = JSON.parse(localStorage.getItem('cr_services'));
+    const { agents } = localService.find((option) => option.type.toLowerCase().includes((title).toLowerCase()));
+    if (agents.includes(id)) {
+      const index = agents.indexOf(id);
+      if (index > -1) { agents.splice(index, 1); }
+      localStorage.setItem('cr_services', JSON.stringify(localService));
+      const updatedAgents = FakeAgents.filter((agent) => agents.includes(agent.id));
+      setState((prevState) => ({
+        ...prevState,
+        initialAgents: updatedAgents,
+      }));
+    }
+  }
+
+  const fetchDatas = (id) => JSON
+    .parse(localStorage.getItem('cr_services'))
+    .find((option) => option.type.toLowerCase()
+      .includes((title)
+        .toLowerCase()))
+    .agents.includes(id);
+
+  const listAgents = (
     <ul className="menu-list">
-      <li>
-        <img src={ProfileIcon} alt="portrait" />
-        <span className="user-name">Customers</span>
-        <span className={alreadyAdded ? 'remove-user' : 'add-user'}>
-          {alreadyAdded ? '-' : '+'}
-        </span>
-      </li>
-      { state.initialItems.map((item, i) => (
+      { state.initAgents && state.initAgents.map((item, i) => (
         <li key={i}>
           <img src={item.profile_image} alt="portrait" />
           <span className="user-name">{item.full_name}</span>
-          <span className="add-user">+</span>
+          {
+            fetchDatas(item.id) ? (<span className="remove-user" onClick={(e) => handleRemoveAgent(e, item.id)}>-</span>)
+            :
+            (<span className="add-user" onClick={(e) => handleAddAgent(e, item.id)}>+</span>)
+          }
         </li>
       ))}
     </ul>
@@ -48,14 +86,16 @@ const Carder = (props) => {
   const handleSearchAgent = (event) => {
     const newFilter = event.target.value;
     if (newFilter !== '') {
-      setState(() => ({
-        initialItems: state.initialItems.filter(
+      setState((prevState) => ({
+        ...prevState,
+        initAgents: FakeAgents.filter(
           (option) => option.full_name.toLowerCase().includes(newFilter.toLowerCase()),
         ),
       }));
     } else {
-      setState(() => ({
-        initialItems: FakeAgents,
+      setState((prevState) => ({
+        ...prevState,
+        initAgents: FakeAgents,
       }));
     }
   };
@@ -78,64 +118,41 @@ const Carder = (props) => {
       padding: channelSelected || kind === 'channel' ? 'padding: 1.3125rem' : '1.5rem',
     },
     emptyChannel: {
-      background: !isChannelEmpty ? '#ffffff' : 'rgba(200, 211, 214, 0.12)',
+      background: state.initialAgents && state.initialAgents.length !== 0 ? '#ffffff' : 'rgba(200, 211, 214, 0.12)',
     },
   };
 
   return (
     <div className={[1, 2, 4, 5].indexOf(serviceCount) !== -1 ? 'card-custom' : 'card'} style={cardStyle.emptyChannel}>
-      <header className="card-header">
-        <p className={`${kind === 'channel' ? 'card-header-title' : 'card-header-title agents'}`}>
-          <span className="icon">
-            <img src={`${kind === 'channel' ? icon : darkIcon}`} alt="Channel Icon" />
-          </span>
-          {title}
-        </p>
-        <a href="!#" className="card-header-icon" aria-label="more options">
-          <span className="icon">
-            {agentCount}
-          </span>
-        </a>
-      </header>
-      <div className={`${agentAssigned ? 'sleep-padding' : 'card-content'}`} style={cardStyle.agentStyle}>
-        { agentAssigned ? (
-          <div className="content">
-            <div className="content-container">
-              { FakeAgents.map((item, i) => (
-                <div className="cobok" key={i}>
-                  <div data-tooltip={item.full_name} className="tooltip-title">
-                    <img src={item.profile_image} alt={item.full_name} data-tooltip={item.full_name} />
-                  </div>
-                </div>
-              ))}
-              <div className="add-more" onClick={handleAddRessourceModal}>
-                <span>+</span>
-              </div>
-            </div>
-          </div>
-        ) : (
-          <div className="content">
-            { channelSelected ? (<SelectedChannels kind={kind} t={t} />) :
-              (
-                hasAgents ? (<HasAgents handleAddRessourceModal={handleAddRessourceModal} kind={kind} isChannelEmpty={isChannelEmpty} />) :
-                  (<>
-                  <p>{content}</p>
-                  <button className="button is-success is-outlined" onClick={handleAddRessourceModal}>{buttonText}</button>
-                  </>)
-              )}
 
-          </div>
-        )}
-      </div>
+      <Header
+        kind={kind}
+        initialAgents={state.initialAgents}
+        icon={icon}
+        darkIcon={darkIcon}
+        title={title}
+      />
+      <Content
+        agentAssigned={agentAssigned}
+        initialAgents={state.initialAgents}
+        handleAddRessourceModal={handleAddRessourceModal}
+        channelSelected={channelSelected}
+        kind={kind}
+        t={t}
+        isChannelEmpty={isChannelEmpty}
+        content={content}
+        buttonText={buttonText}
+        cardStyle={cardStyle.agentStyle}
+      />
       <Modal
         t={t}
         agentModal={referedModal}
         handleSearchAgent={handleSearchAgent}
         handleCloseRessourceModal={handleCloseRessourceModal}
-        title={kind === 'agent' ? 'Add available agents' : 'Add channel'}
-        content={addAgent}
+        title={kind === 'agent' ? t('onboard.steps.add_available_agents') : t('onboard.steps.add_channel')}
+        content={listAgents}
         kind={kind}
-        buttonText="Continue"
+        buttonText={t('onboard.steps.continue')}
         handleChooseService={handleChooseService}
         checkedServices={checkedServices}
       />
@@ -149,7 +166,6 @@ Carder.propTypes = {
   kind: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   content: PropTypes.string.isRequired,
-  hasAgents: PropTypes.bool.isRequired,
   handleChooseService: PropTypes.func.isRequired,
   buttonText: PropTypes.string.isRequired,
   serviceCount: PropTypes.number.isRequired,

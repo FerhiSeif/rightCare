@@ -64,22 +64,6 @@
         max-height: 3.0625rem;
       }
     }
-    .add-more {
-      color: #c8d3d6;
-      width: 2.5rem;
-      border: 2px solid #c8d3d6;
-      height: 2.5rem;
-      display: flex;
-      z-index: 1;
-      align-items: center;
-      border-radius: 50%;
-      justify-content: center;
-      background-color: #fff;
-      margin-left: auto;
-      border-style: dashed;
-      cursor: pointer;
-      margin-top: .5rem;
-    }
     .content>.content-container {
       -ms-box-orient: horizontal;
       display: -webkit-box;
@@ -182,4 +166,20 @@
       }
     }
   }
+}
+.add-more {
+  color: #c8d3d6;
+  width: 2.5rem;
+  border: 2px solid #c8d3d6;
+  height: 2.5rem;
+  display: flex;
+  z-index: 1;
+  align-items: center;
+  border-radius: 50%;
+  justify-content: center;
+  background-color: #fff;
+  margin-left: auto;
+  border-style: dashed;
+  cursor: pointer;
+  // margin-top: .5rem;
 }

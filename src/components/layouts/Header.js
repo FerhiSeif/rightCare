@@ -60,10 +60,10 @@ const Header = (props) => {
         { kind !== 'dashboard'
         && (
           <div className="navbar-brand">
-            <a className="navbar-item" href="http://localhost:3000/">
+            <a className="navbar-item" href="/">
               <img alt="logo icon" src={DesktopLogo} />
             </a>
-            <a href="!#" role="button" className="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+            <a href="/" role="button" className="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
               <span aria-hidden="true" />
               <span aria-hidden="true" />
               <span aria-hidden="true" />
@@ -88,7 +88,7 @@ const Header = (props) => {
             <div className="navbar-item">
               { kind === 'onboard'
                 && (
-                  <a href="!#" className="button is-primary" style={topNavCustomStyle.isPrimary}>
+                  <a href="/" className="button is-primary" style={topNavCustomStyle.isPrimary}>
                     {t('header.get_started')}
                   </a>
                 )}
@@ -105,6 +105,7 @@ const Header = (props) => {
                 value={defaultLang}
                 onChange={changeLang}
                 className="App-Select"
+                isSearchable={false}
               />
             </div>
           </div>

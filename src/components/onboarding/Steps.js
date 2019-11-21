@@ -128,7 +128,13 @@ function getSteps() {
   return ['Select campaign settings', 'Create an ad group', 'Create an ad'];
 }
 
-function getStepContent(step, handleChooseService, checkedServices, activeServices) {
+function getStepContent(
+  step,
+  handleChooseService,
+  checkedServices,
+  activeServices,
+  handleBack,
+) {
   switch (step) {
     case 0:
       return (
@@ -143,6 +149,7 @@ function getStepContent(step, handleChooseService, checkedServices, activeServic
           handleChooseService={handleChooseService}
           checkedServices={checkedServices}
           activeServices={activeServices}
+          handleBack={handleBack}
         />
       );
     case 2:
@@ -150,6 +157,7 @@ function getStepContent(step, handleChooseService, checkedServices, activeServic
         <AccountSummary
           handleChooseService={handleChooseService}
           checkedServices={checkedServices}
+          activeServices={activeServices}
         />
       );
     default:
@@ -165,6 +173,10 @@ export default function Steps(props) {
 
   const isStepSkipped = (step) => skipped.has(step);
 
+  const handleBack = () => {
+    setActiveStep((prevActiveStep) => prevActiveStep - 1);
+  };
+
   const handleNext = () => {
     props.selectServiceRef.current.click();
     let newSkipped = skipped;
@@ -172,7 +184,6 @@ export default function Steps(props) {
       newSkipped = new Set(newSkipped.values());
       newSkipped.delete(activeStep);
     }
-
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
     setSkipped(newSkipped);
   };
@@ -186,9 +197,7 @@ export default function Steps(props) {
     });
   };
 
-  const handleReset = () => {
-    setActiveStep(0);
-  };
+  const handleReset = () => { setActiveStep(0); };
 
   const {
     t,
@@ -227,7 +236,7 @@ export default function Steps(props) {
               <h2 className="common-medium-title">{t('onboard.account_setup_summary')}</h2>
             )}
             {activeStep === 0 && (
-              <p>{t('onboard.add_agent_to_your_platform')}</p>
+              <p>{t('onboard.add_channels_to_your_platform')}</p>
             )}
             {activeStep === 1 && (
               <p>{t('onboard.assign_agent_to_work')}</p>
@@ -258,7 +267,11 @@ export default function Steps(props) {
                     <div className={classes.instructions}>
                       {
                         getStepContent(
-                          activeStep, handleChooseService, checkedServices, activeServices,
+                          activeStep,
+                          handleChooseService,
+                          checkedServices,
+                          activeServices,
+                          handleBack,
                         )
                       }
                     </div>
@@ -270,7 +283,7 @@ export default function Steps(props) {
                         onClick={handleNext}
                         className={classes.button}
                       >
-                        {activeStep === steps.length - 1 ? 'Finish' : 'Continue'}
+                        {activeStep === steps.length - 1 ? t('onboard.finish') : t('onboard.continue')}
                       </Button>
                       {activeStep !== steps.length - 1 && (
                         <Button
@@ -279,7 +292,7 @@ export default function Steps(props) {
                           onClick={handleSkip}
                           className={classes.buttonOutlined}
                         >
-                          Skip
+                          {t('onboard.skip')}
                         </Button>
                       )}
                     </div>
@@ -314,6 +327,6 @@ Steps.propTypes = {
   handleChooseService: PropTypes.func.isRequired,
   checkedServices: PropTypes.shape({}).isRequired,
   selectServiceRef: PropTypes.shape({}).isRequired,
-  activeServices: PropTypes.shape([]).isRequired,
+  activeServices: PropTypes.shape(PropTypes.array.isRequired).isRequired,
   handleSimulateChooseServices: PropTypes.func.isRequired,
 };

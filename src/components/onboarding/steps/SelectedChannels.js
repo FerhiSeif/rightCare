@@ -3,11 +3,17 @@ import PropTypes from 'prop-types';
 import { withTranslation } from 'react-i18next';
 import MailIcon from '../../../assets/images/onboard/services/add-message.svg';
 import AnswerIcon from '../../../assets/images/onboard/services/answer.svg';
+import FakeChannels from '../../../faker/channels';
+import Services from './Services';
 
 const SelectedChannels = (props) => {
   const {
     t,
     kind,
+    title,
+    icon,
+    checkedServices,
+    handleChooseService,
   } = props;
 
   const serviceStyle = {
@@ -19,25 +25,101 @@ const SelectedChannels = (props) => {
       width: kind === 'channel' ? 'initial' : '',
       margin: kind === 'channel' ? 'initial' : '',
     },
+    label: {
+      backgroundColor: 'transparent',
+    },
+    title: {
+      paddingBottom: kind === 'channel' ? 0 : '1.125rem',
+    },
+    empty: {
+      marginBottom: '1rem',
+      fontSize: '1.2rem',
+      color: 'orange',
+    },
   };
 
+  const selectChannel = React.createRef();
+  const addAgentsRef = React.createRef();
+
+  const handleAddChannelModal = () => {
+    selectChannel.current.classList.add('is-active');
+  };
+
+  const handleCloseChannelModal = () => {
+    selectChannel.current.classList.remove('is-active');
+  };
+
+  const handleContinue = () => { addAgentsRef.current.click(); };
+
+  const localServices = JSON.parse(localStorage.getItem('cr_actservices'));
+
+  const selectedServices = FakeChannels
+    .filter((channel) => localServices.indexOf(channel.type) >= 0);
+
   return (
-    <div className={`${kind === 'channel' ? 'service-container-custom' : 'service-container'}`} style={serviceStyle.serviceContainer}>
-      <div className="service-card">
-        <img src={MailIcon} alt="mail service" style={serviceStyle.firstImage} />
-        <span>Email</span>
+    <div className="card-custom">
+      <header className="card-header">
+        <p className="card-header-title">
+          <span className="icon">
+            <img src={icon} alt="Channel Icon" />
+          </span>
+          {title}
+        </p>
+        <a href="/onboard" className="card-header-icon" aria-label="more options">
+          <span className="icon">
+            {selectedServices.length}
+          </span>
+        </a>
+      </header>
+      <div className="card-content">
+        <div className="content">
+          <div className="service-container-custom" style={serviceStyle.serviceContainer}>
+            { (selectedServices && selectedServices.length > 0) && selectedServices.map((item, i) => ((
+              <label
+                className="service-card is-selected-case"
+                control={item.type}
+                key={i}
+                style={serviceStyle.label}
+              >
+                <img src={item.darkIcon} alt={i} />
+                <span>{item.name}</span>
+              </label>
+            )))}
+            { !(selectedServices && selectedServices.length > 0) && (
+              <div style={serviceStyle.empty}>
+                {t('onboard.steps.there_is_no_channel_available_yet')}
+              </div>
+            )}
+            <div className="add-more" onClick={handleAddChannelModal} data-tooltip={t('onboard.steps.add_channel')}><span>+</span></div>
+          </div>
+        </div>
       </div>
-      <div className="service-card">
-        <img src={AnswerIcon} alt="answer service" />
-        <span>Live Chat</span>
+
+      <div className="modal" ref={selectChannel}>
+        <div className="modal-background" />
+        <div className="modal-card">
+          <header className="modal-card-head">
+            <div className="title-container" style={serviceStyle.title}>
+              <h2 className="title">{title}</h2>
+            </div>
+          </header>
+          <section className="modal-card-body">
+            <Services kind={kind} handleChooseService={handleChooseService} checkedServices={checkedServices} />
+          </section>
+          <footer className="modal-card-foot">
+            <button className="button is-primary" aria-label="close" onClick={handleContinue}>Continue</button>
+          </footer>
+        </div>
+        <button className="modal-close is-large" aria-label="close" ref={addAgentsRef} onClick={handleCloseChannelModal} />
       </div>
-      <div className="add-more"><span>+</span></div>
     </div>
   );
 };
 
 SelectedChannels.propTypes = {
   t: PropTypes.func.isRequired,
+  handleAddRessourceModal: PropTypes.func.isRequired,
+  kind: PropTypes.string.isRequired,
 };
 
 export default withTranslation()(SelectedChannels);

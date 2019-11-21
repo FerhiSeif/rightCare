@@ -23,53 +23,50 @@ export default class Chart extends Component {
     this.myChart = new ChartJs(this.chartRef.current, {
       type: 'bar',
       data: {
-        labels: 'Channelso',
+        labels: ['<  1', '1 - 2', '3 - 4', '5 - 9', '10 - 14', '15 - 19', '20 - 24', '25 - 29', '> - 29'],
         datasets: [{
-          backgroundColor: '#0089e1',
-          data: [12, 59, 5, 56, 58, 12, 59, 85, 45],
-          fill,
-          label: 'Channels',
-          borderColor: color,
-          lineTension: 0,
-          steppedLine,
-        },
-        {
-          backgroundColor: '#c8d3d6',
-          data: [85, 85, 85, 85, 85, 85, 85, 85, 85],
-          fill,
           label: 'Agents',
-          borderColor: color,
-          lineTension: 0,
-          steppedLine,
+          backgroundColor: '#caf270',
+          data: [85, 85, 85, 85, 85, 85, 85, 85, 85],
+        }, {
+          label: 'Pending requests',
+          backgroundColor: '#45c490',
+          data: [12, 59, 5, 56, 58, 12, 59, 80, 23],
+        }, {
+          label: 'Completed requests',
+          backgroundColor: '#00bd39',
+          data: [12, 59, 5, 56, 58, 12, 59, 65, 51],
+        }, {
+          label: 'New requests',
+          backgroundColor: '#0089e1',
+          data: [12, 59, 5, 56, 58, 12, 59, 12, 74],
         }],
       },
       options: {
-        elements: {
-          point: {
-            radius: 0,
+        tooltips: {
+          displayColors: true,
+          callbacks: {
+            mode: 'x',
           },
         },
         scales: {
-          xAxes: [
-            {
-              stacked: true,
-              gridLines: {
-                display: false,
-              },
-            },
-          ],
-          yAxes: [{
+          xAxes: [{
+            stacked: true,
             gridLines: {
               display: false,
             },
+          }],
+          yAxes: [{
+            stacked: true,
             ticks: {
               beginAtZero: true,
-              stepSize: stepSize || 1,
             },
+            type: 'linear',
           }],
         },
         responsive: true,
-    		legend: { position: 'bottom' },
+        maintainAspectRatio: false,
+        legend: { position: 'bottom' },
       },
     });
   }

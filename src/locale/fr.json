@@ -1,6 +1,9 @@
 {
   "home" : {
-    "welcome_to": "Bienvenue à"
+    "welcome_to": "Bienvenue à",
+    "customer_engagement_on_one_plateform": "d'Engagement clientèle sur une plate-forme",
+    "get_started": "Commencer",
+    "resolve_your_customer": "Résolvez votre problème client en temps réel avec le moins de tourbillons possible."
   },
   "header": {
     "get_started": "Commencer",
@@ -25,10 +28,29 @@
     "get_started": "Commencer",
     "assign_agent_to_channel": "Affecter un agent à un canal",
     "account_setup_summary": "Configuration du compte, résumé",
-    "add_agent_to_your_platform": "Ajouter un agent à votre plateforme",
+    "add_channels_to_your_platform": "Ajouter des canaux à votre plateforme",
     "assign_agent_to_work": "Affecter un agent à travailler sur le canal que vous avez sélectionné",
     "onboarding_process": "Processus d'onboarding",
-    "view_all": "Tout voir"
+    "view_all": "Tout voir",
+    "finish": "Finir",
+    "continue": "Continuer",
+    "skip": "Passer",
+    "steps": {
+      "email": "Email",
+      "live_chat": "Chat en Live",
+      "there_is_no_channel_available_yet": "Il n'y a pas de canal disponible pour le moment!",
+      "add_channel": "Ajouter canal",
+      "you_have_no_selected_channels_click": "Vous n'avez sélectionné aucun canal, cliquez",
+      "to_choose_channel(s)": "pour choisir un canal",
+      "here": "ici",
+      "channel_selected": "Canaux sélectionnés",
+      "assign_agent": "Assigner agent",
+      "add_agent": "Ajouter agent",
+      "no_agent_has_been_added": "Aucun agent affecté",
+      "no_agent_has_been_assigned_to_this_channel": "Aucun agent n'a été affecté à ce canal",
+      "add_available_agents": "Ajouter des agents disponibles",
+      "continue": "Continuer"
+    }
   },
   "dashboard": {
     "number_of_agents": "Nombre d'agents",
