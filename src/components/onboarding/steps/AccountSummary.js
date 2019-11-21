@@ -33,8 +33,8 @@ const AccountSummary = (props) => {
                 key={i}
                 t={t}
                 title={item.type}
-                content="No agent have been added"
-                buttonText="Add agent"
+                content={t('onboard.steps.no_agent_has_been_added')}
+                buttonText={t('onboard.steps.add_agent')}
                 isChannelEmpty={false}
                 channelSelected={false}
                 serviceCount={5}
@@ -56,8 +56,8 @@ const AccountSummary = (props) => {
                   key={i}
                   t={t}
                   title={`${item.type} channel`}
-                  content="No agent have been assigned to this channel"
-                  buttonText="Assign agent"
+                  content={t('onboard.steps.no_agent_has_been_assigned_to_this_channel')}
+                  buttonText={t('onboard.steps.assign_agent')}
                   hasAgents={false}
                   isChannelEmpty={false}
                   channelSelected={false}
@@ -74,11 +74,12 @@ const AccountSummary = (props) => {
       <SelectedChannels
         kind="channel"
         t={t}
-        handleChooseService={handleChooseService}
-        title="Channels selected"
+        title={t('onboard.steps.channel_selected')}
         icon={ChannelIcon}
+        checkedServices={checkedServices}
+        handleChooseService={handleChooseService}
       />
-
+    {/*
       <Carder
         kind="channel"
         t={t}
@@ -92,7 +93,7 @@ const AccountSummary = (props) => {
         checkedServices={checkedServices}
         assignedAgents={[]}
       />
-
+    */}
     </div>
   );
 };

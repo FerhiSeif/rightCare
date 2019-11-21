@@ -236,7 +236,7 @@ export default function Steps(props) {
               <h2 className="common-medium-title">{t('onboard.account_setup_summary')}</h2>
             )}
             {activeStep === 0 && (
-              <p>{t('onboard.add_agent_to_your_platform')}</p>
+              <p>{t('onboard.add_channels_to_your_platform')}</p>
             )}
             {activeStep === 1 && (
               <p>{t('onboard.assign_agent_to_work')}</p>

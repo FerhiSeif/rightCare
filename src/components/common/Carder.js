@@ -149,10 +149,10 @@ const Carder = (props) => {
         agentModal={referedModal}
         handleSearchAgent={handleSearchAgent}
         handleCloseRessourceModal={handleCloseRessourceModal}
-        title={kind === 'agent' ? 'Add available agents' : 'Add channel'}
+        title={kind === 'agent' ? t('onboard.steps.add_available_agents') : t('onboard.steps.add_channel')}
         content={listAgents}
         kind={kind}
-        buttonText="Continue"
+        buttonText={t('onboard.steps.continue')}
         handleChooseService={handleChooseService}
         checkedServices={checkedServices}
       />
