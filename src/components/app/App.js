@@ -81,17 +81,48 @@ class App extends Component {
   };
 
   handleSimulateChooseServices = () => {
-    const { checkedServices } = this.state;
+    const { checkedServices, activeServices } = this.state;
     const setActiveServices = [];
-    for (let prop in checkedServices) {
-      if (checkedServices[prop]) {
-        setActiveServices.push(prop);
-        this.setState({ activeServices: setActiveServices })
-      } else {
-        this.setState({ activeServices: [] })
+    const stateServices = Object.keys(checkedServices).length;
+    if (stateServices > 0) {
+      for (let prop in checkedServices) {
+        if (checkedServices[prop]) {
+          setActiveServices.push(prop);
+          this.setState({ activeServices: setActiveServices });
+        } else {
+          this.setState({ activeServices: [] });
+        }
+        this.updateServicesLocally(setActiveServices, activeServices);
       }
-      localStorage.setItem('cr_actservices', JSON.stringify(setActiveServices));
+    } else {
+      {/* we just do nothing*/}
     }
+  }
+
+  updateServicesLocally = (setActiveServices, activeServices) => {
+    // before we update everything locally,
+    // we make sure we check if the previous channels
+    // have agents assigned, if so then we merge the agents
+    // otherwise, we just update with empty agents list.
+    localStorage.setItem('cr_actservices', JSON.stringify(setActiveServices));
+    const selectedServices = FakeChannels.filter((channel) => setActiveServices.indexOf(channel.type) >= 0);
+    const prevServices = JSON.parse(localStorage.getItem('cr_services'));
+    if (prevServices && prevServices.length >0) {
+      for (let i = 0; i < prevServices.length; i++) {
+        const currentChannel = prevServices[i];
+        const agentList = currentChannel.agents;
+        const channelId = currentChannel.id;
+        if (agentList.length >0) {
+          const correspondingChannel = FakeChannels.find(channel => channel.id === channelId);
+          correspondingChannel.agents = agentList;
+        }
+      }
+    } else {
+      if (!(activeServices && activeServices.length > 0)) {
+        localStorage.setItem('cr_services', JSON.stringify([]));
+      }
+    }
+    localStorage.setItem('cr_services', JSON.stringify(selectedServices));
   }
 
   changeLang = (lang) => {
