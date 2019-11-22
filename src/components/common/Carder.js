@@ -173,6 +173,7 @@ Carder.propTypes = {
   isChannelEmpty: PropTypes.bool.isRequired,
   channelSelected: PropTypes.bool,
   checkedServices: PropTypes.shape({}).isRequired,
+  assignedAgents: PropTypes.shape({}).isRequired,
   darkIcon: PropTypes.string.isRequired,
 };
 
