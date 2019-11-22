@@ -16,7 +16,7 @@ const Services = (props) => {
       marginTop: '.2rem',
     },
     serviceContainer: {
-      width: kind === 'channel' ? '21rem' : '28rem',
+      width: kind === 'channel' ? '21rem' : '33rem',
       margin: kind === 'channel' ? 'auto' : 'initial',
     },
     input: {
