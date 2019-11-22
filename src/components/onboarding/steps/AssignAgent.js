@@ -54,46 +54,53 @@ const AssignAgent = (props) => {
           </>
         ) : (
           <>
-            { FakeChannels.filter((channel) => activeServices.indexOf(channel.type) >= 0)
-              .map((item, i) => (
-                <Carder
-                  kind="agent"
-                  icon={item.icon}
-                  darkIcon={item.darkIcon}
-                  key={i}
-                  t={t}
-                  title={item.type}
-                  content={t('onboard.steps.no_agent_has_been_added')}
-                  buttonText={t('onboard.steps.add_agent')}
-                  isChannelEmpty={false}
-                  channelSelected={false}
-                  serviceCount={6}
-                  agentAssigned={false}
-                  handleChooseService={handleChooseService}
-                  checkedServices={checkedServices}
-                  assignedAgents={item.agents}
-                />
-              ))}
+            { activeServices && activeServices.length > 0 ? (
+              <>
+                { FakeChannels.filter((channel) => activeServices.indexOf(channel.type) >= 0)
+                  .map((item, i) => (
+                    <Carder
+                      kind="agent"
+                      icon={item.icon}
+                      darkIcon={item.darkIcon}
+                      key={i}
+                      t={t}
+                      title={item.type}
+                      content={t('onboard.steps.no_agent_has_been_added')}
+                      buttonText={t('onboard.steps.add_agent')}
+                      isChannelEmpty={false}
+                      channelSelected={false}
+                      serviceCount={6}
+                      agentAssigned={false}
+                      handleChooseService={handleChooseService}
+                      checkedServices={checkedServices}
+                      assignedAgents={item.agents}
+                    />
+                  ))}
+              </>
+            ) : (
+              <>
+                { (!localService || localService.length === 0) && (
+                  <div style={agentStyles.empty}>
+                    {t('onboard.steps.you_have_no_selected_channels_click')}
+                    <span
+                      style={agentStyles.here}
+                      className="select-channel-first"
+                      onClick={handleBack}> {t('onboard.steps.here')}
+                    </span> {t('onboard.steps.to_choose_channel(s)')}.
+                  </div>
+                )}
+              </>
+            )}
           </>
         )
       }
-      { localService.length === 0 && (
-        <div style={agentStyles.empty}>
-          {t('onboard.steps.you_have_no_selected_channels_click')}
-          <span
-            style={agentStyles.here}
-            className="select-channel-first"
-            onClick={handleBack}> {t('onboard.steps.here')}
-          </span> {t('onboard.steps.to_choose_channel(s)')}.
-        </div>
-      )}
-
     </div>
   );
 };
 
 AssignAgent.propTypes = {
   t: PropTypes.func.isRequired,
+  handleBack: PropTypes.func.isRequired,
   handleChooseService: PropTypes.func.isRequired,
   checkedServices: PropTypes.shape({}).isRequired,
   activeServices: PropTypes.shape([]).isRequired,
