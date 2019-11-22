@@ -14,6 +14,7 @@ import AssignAgent from './steps/AssignAgent';
 import AccountSummary from './steps/AccountSummary';
 import { options } from '../../configs/options';
 import SelectAgent from '../../assets/images/onboard/get-started/select-agent.png';
+import SingleService from '../../assets/images/onboard/group.png';
 
 const ColorlibConnector = withStyles({
   alternativeLabel: {
@@ -212,6 +213,8 @@ export default function Steps(props) {
     selectServiceRef,
   } = props;
 
+  const localService = JSON.parse(localStorage.getItem('cr_services'));
+
   return (
     <>
       <Header
@@ -225,7 +228,7 @@ export default function Steps(props) {
 
       <div className="steps-container">
         <div className="columns">
-          <div className={`${activeStep === 0 ? 'column is-three-fifths steps-column' : 'column is-full steps-column'}`}>
+          <div className={`${(activeStep === 0 || (activeStep === 1 && (localService && localService.length === 1))) ? 'column is-three-fifths steps-column' : 'column is-full steps-column'}`}>
             {activeStep === 0 && (
               <h2 className="common-medium-title">{t('onboard.get_started')}</h2>
             )}
@@ -304,6 +307,11 @@ export default function Steps(props) {
           { activeStep === 0 && (
             <div className="column">
               <img src={SelectAgent} alt="select agent" />
+            </div>
+          )}
+          { (activeStep === 1 && (localService && localService.length === 1)) && (
+            <div className="column column-image-container">
+              <img src={SingleService} alt="select service" />
             </div>
           )}
         </div>
