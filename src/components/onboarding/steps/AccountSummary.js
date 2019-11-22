@@ -22,54 +22,58 @@ const AccountSummary = (props) => {
 
   return (
     <div className="card-container">
-      {
-        selectedServices.length > 0 || (localService && localService.length) > 0 ? (
-          <>
-            { localService.map((item, i) => (
-              <Carder
-                kind="agent"
-                icon={item.darkIcon}
-                darkIcon={item.darkIcon}
-                key={i}
-                t={t}
-                title={item.type}
-                content={t('onboard.steps.no_agent_has_been_added')}
-                buttonText={t('onboard.steps.add_agent')}
-                isChannelEmpty={false}
-                channelSelected={false}
-                serviceCount={5}
-                agentAssigned={false}
-                handleChooseService={handleChooseService}
-                checkedServices={checkedServices}
-                assignedAgents={item.agents}
-              />
-            ))}
-          </>
-        ) : (
-          <>
-            { FakeChannels.filter((channel) => activeServices.indexOf(channel.type) >= 0)
-              .map((item, i) => (
-                <Carder
-                  kind="channel"
-                  icon={item.darkIcon}
-                  darkIcon={item.darkIcon}
-                  key={i}
-                  t={t}
-                  title={`${item.type} channel`}
-                  content={t('onboard.steps.no_agent_has_been_assigned_to_this_channel')}
-                  buttonText={t('onboard.steps.assign_agent')}
-                  hasAgents={false}
-                  isChannelEmpty={false}
-                  channelSelected={false}
-                  serviceCount={4}
-                  agentAssigned={false}
-                  assignedAgents={item.agents}
-                  checkedServices={checkedServices}
-                />
-              ))}
-          </>
-        )
-      }
+      { activeServices && activeServices.length > 0 && (
+        <>
+          {
+            selectedServices.length > 0 || (localService && localService.length) > 0 ? (
+              <>
+                { localService.map((item, i) => (
+                  <Carder
+                    kind="agent"
+                    icon={item.darkIcon}
+                    darkIcon={item.darkIcon}
+                    key={i}
+                    t={t}
+                    title={item.type}
+                    content={t('onboard.steps.no_agent_has_been_added')}
+                    buttonText={t('onboard.steps.add_agent')}
+                    isChannelEmpty={false}
+                    channelSelected={false}
+                    serviceCount={5}
+                    agentAssigned={false}
+                    handleChooseService={handleChooseService}
+                    checkedServices={checkedServices}
+                    assignedAgents={item.agents}
+                  />
+                ))}
+              </>
+            ) : (
+              <>
+                { FakeChannels.filter((channel) => activeServices.indexOf(channel.type) >= 0)
+                  .map((item, i) => (
+                    <Carder
+                      kind="channel"
+                      icon={item.darkIcon}
+                      darkIcon={item.darkIcon}
+                      key={i}
+                      t={t}
+                      title={`${item.type} channel`}
+                      content={t('onboard.steps.no_agent_has_been_assigned_to_this_channel')}
+                      buttonText={t('onboard.steps.assign_agent')}
+                      hasAgents={false}
+                      isChannelEmpty={false}
+                      channelSelected={false}
+                      serviceCount={4}
+                      agentAssigned={false}
+                      assignedAgents={item.agents}
+                      checkedServices={checkedServices}
+                    />
+                  ))}
+              </>
+            )
+          }
+        </>
+      )}
 
       <SelectedChannels
         kind="channel"

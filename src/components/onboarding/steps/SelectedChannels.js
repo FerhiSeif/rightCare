@@ -51,9 +51,6 @@ const SelectedChannels = (props) => {
 
   const localServices = JSON.parse(localStorage.getItem('cr_actservices'));
 
-  const selectedServices = FakeChannels
-    .filter((channel) => localServices.indexOf(channel.type) >= 0);
-
   return (
     <div className="card-custom">
       <header className="card-header">
@@ -65,28 +62,41 @@ const SelectedChannels = (props) => {
         </p>
         <a href="/onboard" className="card-header-icon" aria-label="more options">
           <span className="icon">
-            {selectedServices.length}
+          {localServices && localServices.length > 0 ? (
+            <>
+              {FakeChannels .filter((channel) => localServices.indexOf(channel.type) >= 0).length}
+            </>
+          ) : (
+            <>0</>
+          )}
           </span>
         </a>
       </header>
       <div className="card-content">
         <div className="content">
           <div className="service-container-custom" style={serviceStyle.serviceContainer}>
-            { (selectedServices && selectedServices.length > 0) && selectedServices.map((item, i) => ((
-              <label
-                className="service-card is-selected-case"
-                control={item.type}
-                key={i}
-                style={serviceStyle.label}
-              >
-                <img src={item.darkIcon} alt={i} />
-                <span>{item.name}</span>
-              </label>
-            )))}
-            { !(selectedServices && selectedServices.length > 0) && (
-              <div style={serviceStyle.empty}>
-                {t('onboard.steps.there_is_no_channel_available_yet')}
-              </div>
+            { localServices && localServices.length > 0 && (
+              <>
+                { (FakeChannels .filter((channel) => localServices.indexOf(channel.type) >= 0)
+                    && FakeChannels .filter((channel) => localServices.indexOf(channel.type) >= 0).length > 0)
+                    && FakeChannels .filter((channel) => localServices.indexOf(channel.type) >= 0).map((item, i) => ((
+                  <label
+                    className="service-card is-selected-case"
+                    control={item.type}
+                    key={i}
+                    style={serviceStyle.label}
+                  >
+                    <img src={item.darkIcon} alt={i} />
+                    <span>{item.name}</span>
+                  </label>
+                )))}
+                { !(FakeChannels .filter((channel) => localServices.indexOf(channel.type) >= 0)
+                    && FakeChannels .filter((channel) => localServices.indexOf(channel.type) >= 0).length > 0) && (
+                  <div style={serviceStyle.empty}>
+                    {t('onboard.steps.there_is_no_channel_available_yet')}
+                  </div>
+                )}
+              </>
             )}
             <div className="add-more" onClick={handleAddChannelModal} data-tooltip={t('onboard.steps.add_channel')}><span>+</span></div>
           </div>
