@@ -31,3 +31,11 @@ body, html {
 .button {
   border-radius: 10px!important;
 }
+.btn-customed {
+  background-color: rgb(229, 243, 252)!important;
+  border: 0px!important;
+  border-radius: 34px !important;
+  &:hover {
+    color: #0089e1!important;
+  }
+}
