@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withTranslation } from 'react-i18next';
-import MailIcon from '../../../assets/images/onboard/services/add-message.svg';
-import AnswerIcon from '../../../assets/images/onboard/services/answer.svg';
 import FakeChannels from '../../../faker/channels';
 import Services from './Services';
 
@@ -118,8 +116,11 @@ const SelectedChannels = (props) => {
 
 SelectedChannels.propTypes = {
   t: PropTypes.func.isRequired,
-  handleAddRessourceModal: PropTypes.func.isRequired,
   kind: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  icon: PropTypes.string.isRequired,
+  checkedServices: PropTypes.shape({}).isRequired,
+  handleChooseService: PropTypes.func.isRequired,
 };
 
 export default withTranslation()(SelectedChannels);

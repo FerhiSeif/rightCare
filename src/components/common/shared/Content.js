@@ -17,35 +17,35 @@ const Header = (props) => {
 
   return (
     <>
-    <div className={`${agentAssigned ? 'sleep-padding' : 'card-content'}`} style={cardStyle}>
-      { initialAgents && initialAgents.length > 0 ? (
-        <div className="content">
-          <div className="content-container">
-            {
-              initialAgents.map((item, i) => (
-                <div className="cobok" key={i}>
-                  <div data-tooltip={item.full_name} className="tooltip-title">
-                    <img src={item.profile_image} alt={item.full_name} data-tooltip={item.full_name} />
+      <div className={`${agentAssigned ? 'sleep-padding' : 'card-content'}`} style={cardStyle}>
+        { initialAgents && initialAgents.length > 0 ? (
+          <div className="content">
+            <div className="content-container">
+              {
+                initialAgents.map((item, i) => (
+                  <div className="cobok" key={i}>
+                    <div data-tooltip={item.full_name} className="tooltip-title">
+                      <img src={item.profile_image} alt={item.full_name} data-tooltip={item.full_name} />
+                    </div>
                   </div>
-                </div>
-              ))
-            }
-            <div className="add-more" onClick={handleAddRessourceModal}>
-              <span>+</span>
+                ))
+              }
+              <div className="add-more" onClick={handleAddRessourceModal}>
+                <span>+</span>
+              </div>
             </div>
           </div>
-        </div>
-      ) : (
-        <div className="content">
-          {hasAgents ? (<HasAgents handleAddRessourceModal={handleAddRessourceModal} kind={kind} isChannelEmpty={isChannelEmpty} />) :
-            (<>
-            <p>{content}</p>
-            <button className="button is-success is-outlined" onClick={handleAddRessourceModal}>{buttonText}</button>
-            </>
-          )}
-        </div>
-      )}
-    </div>
+        ) : (
+          <div className="content">
+            {hasAgents ? (<HasAgents handleAddRessourceModal={handleAddRessourceModal} kind={kind} isChannelEmpty={isChannelEmpty} />) :
+              (<>
+              <p>{content}</p>
+              <button className="button is-success is-outlined" onClick={handleAddRessourceModal}>{buttonText}</button>
+              </>
+            )}
+          </div>
+        )}
+      </div>
     </>
   );
 };

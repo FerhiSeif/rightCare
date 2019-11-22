@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { withTranslation } from 'react-i18next';
 import Carder from '../../common/Carder';
 import SelectedChannels from './SelectedChannels';
-import AgentIcon from '../../../assets/images/dashboard/menu/profile.svg';
+import HasAgents from './HasAgents';
 import ChannelIcon from '../../../assets/images/dashboard/menu/channel.svg';
 import FakeChannels from '../../../faker/channels';
 
@@ -79,21 +79,12 @@ const AccountSummary = (props) => {
         checkedServices={checkedServices}
         handleChooseService={handleChooseService}
       />
-    {/*
-      <Carder
+
+      <HasAgents
         kind="channel"
         t={t}
-        title="email"
-        content="No agent have been assigned to this channel"
-        buttonText="Assign agent"
-        serviceCount={4}
-        icon={AgentIcon}
-        isChannelEmpty
-        hasAgents
-        checkedServices={checkedServices}
-        assignedAgents={[]}
+        title={t('onboard.steps.added_agents')}
       />
-    */}
     </div>
   );
 };

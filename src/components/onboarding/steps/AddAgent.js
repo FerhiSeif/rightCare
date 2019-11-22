@@ -11,12 +11,17 @@ const AddAgent = (props) => {
   } = props;
 
   return (
-    <Services handleChooseService={handleChooseService} checkedServices={checkedServices} kind={kind} />
+    <Services
+      handleChooseService={handleChooseService}
+      checkedServices={checkedServices}
+      kind={kind}
+    />
   );
 };
 
 AddAgent.propTypes = {
   handleChooseService: PropTypes.func.isRequired,
+  kind: PropTypes.string.isRequired,
   checkedServices: PropTypes.shape({}).isRequired,
 };
 
