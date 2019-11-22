@@ -36,6 +36,11 @@ const FakeAgents = [
     full_name: 'Ben Harm',
     profile_image: ProfileIcon,
   },
+  {
+    id: '5b56e70ab533020033373gs5',
+    full_name: 'John Hubbert',
+    profile_image: ProfileIcon,
+  },
 ];
 
 export default FakeAgents;
