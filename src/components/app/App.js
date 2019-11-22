@@ -62,14 +62,14 @@ class App extends Component {
     const newValues = {};
     if (prevServices) {
       for (let i = 0; i < prevServices.length; i++) {
-        newValues[prevServices[i]] =  true;
+        newValues[prevServices[i]] = true;
       }
     }
     return newValues;
   }
 
   handleChooseService = (event) => {
-    const { checkedServices, activeServices } = this.state;
+    const { checkedServices } = this.state;
     event.persist();
     this.setState((prevState) => ({
       checkedServices: {
@@ -95,7 +95,7 @@ class App extends Component {
         this.updateServicesLocally(setActiveServices, activeServices);
       }
     } else {
-      {/* we just do nothing*/}
+      {/* we just do nothing */}
     }
   }
 
@@ -107,20 +107,18 @@ class App extends Component {
     localStorage.setItem('cr_actservices', JSON.stringify(setActiveServices));
     const selectedServices = FakeChannels.filter((channel) => setActiveServices.indexOf(channel.type) >= 0);
     const prevServices = JSON.parse(localStorage.getItem('cr_services'));
-    if (prevServices && prevServices.length >0) {
+    if (prevServices && prevServices.length > 0) {
       for (let i = 0; i < prevServices.length; i++) {
         const currentChannel = prevServices[i];
         const agentList = currentChannel.agents;
         const channelId = currentChannel.id;
-        if (agentList.length >0) {
-          const correspondingChannel = FakeChannels.find(channel => channel.id === channelId);
+        if (agentList.length > 0) {
+          const correspondingChannel = FakeChannels.find((channel) => channel.id === channelId);
           correspondingChannel.agents = agentList;
         }
       }
-    } else {
-      if (!(activeServices && activeServices.length > 0)) {
-        localStorage.setItem('cr_services', JSON.stringify([]));
-      }
+    } else if (!(activeServices && activeServices.length > 0)) {
+      localStorage.setItem('cr_services', JSON.stringify([]));
     }
     localStorage.setItem('cr_services', JSON.stringify(selectedServices));
   }
