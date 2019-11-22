@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
+import { Link } from "react-router-dom";
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
@@ -256,51 +257,42 @@ export default function Steps(props) {
                 ))}
               </Stepper>
               <div>
-                {activeStep === steps.length ? (
+                <div className="content-selector">
+                  <div className={classes.instructions}>
+                    {
+                      getStepContent(
+                        activeStep,
+                        handleChooseService,
+                        checkedServices,
+                        activeServices,
+                        handleBack,
+                      )
+                    }
+                  </div>
                   <div>
-                    <Typography className={classes.instructions}>
-                      All steps completed - you&apos;re finished
-                    </Typography>
-                    <Button onClick={handleReset} className={classes.button}>
-                      Reset
+                    <Button onClick={handleSimulateChooseServices} ref={selectServiceRef} style={{ display: 'none' }}>Simulate</Button>
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      onClick={handleNext}
+                      className={classes.button}
+                    >
+                      { activeStep === steps.length - 1 ?
+                        (<Link to="/dashboard" style={{ color: '#ffffff' }}>{t('onboard.finish')}</Link>)
+                        : t('onboard.continue')}
                     </Button>
-                  </div>
-                ) : (
-                  <div className="content-selector">
-                    <div className={classes.instructions}>
-                      {
-                        getStepContent(
-                          activeStep,
-                          handleChooseService,
-                          checkedServices,
-                          activeServices,
-                          handleBack,
-                        )
-                      }
-                    </div>
-                    <div>
-                      <Button onClick={handleSimulateChooseServices} ref={selectServiceRef} style={{ display: 'none' }}>Simulate</Button>
+                    {activeStep !== steps.length - 1 && (
                       <Button
-                        variant="contained"
+                        variant="outlined"
                         color="primary"
-                        onClick={handleNext}
-                        className={classes.button}
+                        onClick={handleSkip}
+                        className={classes.buttonOutlined}
                       >
-                        {activeStep === steps.length - 1 ? t('onboard.finish') : t('onboard.continue')}
+                        {t('onboard.skip')}
                       </Button>
-                      {activeStep !== steps.length - 1 && (
-                        <Button
-                          variant="outlined"
-                          color="primary"
-                          onClick={handleSkip}
-                          className={classes.buttonOutlined}
-                        >
-                          {t('onboard.skip')}
-                        </Button>
-                      )}
-                    </div>
+                    )}
                   </div>
-                )}
+                </div>
               </div>
             </div>
           </div>
