@@ -49,7 +49,8 @@
       "no_agent_has_been_added": "No agent has been added",
       "no_agent_has_been_assigned_to_this_channel": "No agent have been assigned to this channel",
       "add_available_agents": "Add available agents",
-      "continue": "Continue"
+      "continue": "Continue",
+      "added_agents": "Added agents"
     }
   },
   "dashboard": {
