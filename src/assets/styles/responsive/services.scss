@@ -1,0 +1,26 @@
+@media (min-width: 330px)  and (max-width: 470px) {
+  .service-container {
+    width: 22rem!important;
+  }
+  .service-container .service-card, .service-container-custom .service-card {
+    cursor: pointer;
+    width: 10rem;
+    max-width: 10rem;
+    height: 10rem;
+    min-height: 10rem;
+  }
+  .service-container .service-card img, .service-container-custom .service-card img {
+    width: auto;
+  }
+  .service-container .service-card span, .service-container-custom .service-card span {
+    margin-top: 1rem;
+    font-size: 1.5rem;
+  }
+
+  .steps-container>.columns>.column>img.select-image {
+    display: none!important;
+  }
+  .next-back-container {
+    text-align: center!important;
+  }
+}

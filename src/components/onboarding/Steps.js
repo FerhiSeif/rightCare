@@ -2,22 +2,23 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
+import { Link } from 'react-router-dom';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
 import StepConnector from '@material-ui/core/StepConnector';
 import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
 import Header from '../layouts/Header';
 import AddAgent from './steps/AddAgent';
 import AssignAgent from './steps/AssignAgent';
 import AccountSummary from './steps/AccountSummary';
 import { options } from '../../configs/options';
 import SelectAgent from '../../assets/images/onboard/get-started/select-agent.png';
+import SingleService from '../../assets/images/onboard/group.png';
 
 const ColorlibConnector = withStyles({
   alternativeLabel: {
-    top: 20,
+    top: 25,
   },
   active: {
     '& $line': {
@@ -42,8 +43,8 @@ const useColorlibStepIconStyles = makeStyles({
     backgroundColor: '#fff',
     zIndex: 1,
     color: '#c8d3d6',
-    width: 40,
-    height: 40,
+    width: 50,
+    height: 50,
     display: 'flex',
     borderRadius: '50%',
     justifyContent: 'center',
@@ -52,7 +53,6 @@ const useColorlibStepIconStyles = makeStyles({
   },
   active: {
     backgroundColor: '#00bd39',
-    boxShadow: '0 4px 10px 0 rgba(0,0,0,.25)',
     border: 0,
     color: '#ffffff',
   },
@@ -93,13 +93,14 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: '-4rem',
   },
   button: {
-    marginRight: theme.spacing(1),
+    marginRight: theme.spacing(2),
     backgroundColor: '#0089e1',
     borderRadius: '10px',
-    padding: '.5rem 2.5rem',
+    padding: '1rem 3rem',
     textTransform: 'capitalize',
     fontSize: '1rem',
     color: '#ffffff',
+    boxShadow: 'none',
     '&:hover': {
       backgroundColor: '#0089e1',
     },
@@ -109,7 +110,7 @@ const useStyles = makeStyles((theme) => ({
     color: '#0089e1',
     borderColor: '#0089e1',
     borderRadius: '10px',
-    padding: '.5rem 2.5rem',
+    padding: '1rem 3rem',
     textTransform: 'capitalize',
     fontSize: '1rem',
     '&:hover': {
@@ -197,8 +198,6 @@ export default function Steps(props) {
     });
   };
 
-  const handleReset = () => { setActiveStep(0); };
-
   const {
     t,
     kind,
@@ -211,6 +210,8 @@ export default function Steps(props) {
     handleSimulateChooseServices,
     selectServiceRef,
   } = props;
+
+  const localService = JSON.parse(localStorage.getItem('cr_services'));
 
   return (
     <>
@@ -225,7 +226,7 @@ export default function Steps(props) {
 
       <div className="steps-container">
         <div className="columns">
-          <div className={`${activeStep === 0 ? 'column is-three-fifths steps-column' : 'column is-full steps-column'}`}>
+          <div className={`${(activeStep === 0 || (activeStep === 1 && (localService && localService.length === 1))) ? 'column is-three-fifths steps-column' : 'column is-full steps-column'}`}>
             {activeStep === 0 && (
               <h2 className="common-medium-title">{t('onboard.get_started')}</h2>
             )}
@@ -253,57 +254,63 @@ export default function Steps(props) {
                 ))}
               </Stepper>
               <div>
-                {activeStep === steps.length ? (
-                  <div>
-                    <Typography className={classes.instructions}>
-                      All steps completed - you&apos;re finished
-                    </Typography>
-                    <Button onClick={handleReset} className={classes.button}>
-                      Reset
-                    </Button>
+                <div className="content-selector">
+                  <div className={classes.instructions}>
+                    {
+                      getStepContent(
+                        activeStep,
+                        handleChooseService,
+                        checkedServices,
+                        activeServices,
+                        handleBack,
+                      )
+                    }
                   </div>
-                ) : (
-                  <div className="content-selector">
-                    <div className={classes.instructions}>
-                      {
-                        getStepContent(
-                          activeStep,
-                          handleChooseService,
-                          checkedServices,
-                          activeServices,
-                          handleBack,
-                        )
-                      }
-                    </div>
-                    <div>
-                      <Button onClick={handleSimulateChooseServices} ref={selectServiceRef} style={{ display: 'none' }}>Simulate</Button>
+                  <div className="next-back-container">
+                    <Button onClick={handleSimulateChooseServices} ref={selectServiceRef} style={{ display: 'none' }}>Simulate</Button>
+                    { activeStep === steps.length - 1 ? (
+                      <Link to="/dashboard" style={{ color: '#ffffff' }}>
+                        <Button
+                          variant="contained"
+                          color="primary"
+                          className={classes.button}
+                        >
+                          {t('onboard.finish')}
+                        </Button>
+                      </Link>
+                    ) : (
                       <Button
                         variant="contained"
                         color="primary"
                         onClick={handleNext}
                         className={classes.button}
                       >
-                        {activeStep === steps.length - 1 ? t('onboard.finish') : t('onboard.continue')}
+                        {t('onboard.continue')}
                       </Button>
-                      {activeStep !== steps.length - 1 && (
-                        <Button
-                          variant="outlined"
-                          color="primary"
-                          onClick={handleSkip}
-                          className={classes.buttonOutlined}
-                        >
-                          {t('onboard.skip')}
-                        </Button>
-                      )}
-                    </div>
+                    )}
+                    {activeStep !== steps.length - 1 && (
+                      <Button
+                        variant="outlined"
+                        color="primary"
+                        onClick={handleSkip}
+                        className={classes.buttonOutlined}
+                      >
+                        {t('onboard.skip')}
+                      </Button>
+                    )}
                   </div>
-                )}
+                </div>
               </div>
             </div>
           </div>
           { activeStep === 0 && (
             <div className="column">
-              <img src={SelectAgent} alt="select agent" />
+              <img src={SelectAgent} alt="select agent" className="select-image" />
+            </div>
+          )}
+          { (activeStep === 1 && (localService && localService.length === 1)) && (
+            <div className="column column-image-container">
+              <img src={SingleService} alt="select service" className="select-image" />
             </div>
           )}
         </div>

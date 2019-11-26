@@ -88,7 +88,7 @@ const Header = (props) => {
             <div className="navbar-item">
               { kind === 'onboard'
                 && (
-                  <a href="/" className="button is-primary" style={topNavCustomStyle.isPrimary}>
+                  <a href="/onboard" className="button is-primary" style={topNavCustomStyle.isPrimary}>
                     {t('header.get_started')}
                   </a>
                 )}
