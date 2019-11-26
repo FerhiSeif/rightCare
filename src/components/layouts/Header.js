@@ -5,7 +5,8 @@ import DesktopLogo from '../../assets/images/logo/medium.png';
 import ProfileIcon from '../../assets/images/profile/idpic.jpg';
 import NotifIcon from '../../assets/images/profile/notif.svg';
 import SearchIcon from '../../assets/images/profile/search.svg';
-import Analytics from '../dashboard/Analytics';
+import DrawerIcon from '../../assets/images/dashboard/drawer.svg';
+import AnalyticsManager from '../dashboard/AnalyticsManager';
 
 const Header = (props) => {
   const {
@@ -15,6 +16,8 @@ const Header = (props) => {
     changeLang,
     kind,
     isLogged,
+    containerWidth,
+    containerHeight,
   } = props;
 
   const topNavCustomStyle = {
@@ -57,6 +60,7 @@ const Header = (props) => {
   return (
     <div className={`${kind === 'dashboard' ? 'column dashboard is-four-fifths' : ''}`}>
       <nav className="navbar" role="navigation" aria-label="main navigation" style={topNavCustomStyle.navbar}>
+        { containerWidth <= 768 && <img src={DrawerIcon} className="menu-dash-icon"/>}
         { kind !== 'dashboard'
         && (
           <div className="navbar-brand">
@@ -111,7 +115,7 @@ const Header = (props) => {
           </div>
         </div>
       </nav>
-      { kind === 'dashboard' && (<Analytics t={t} />)}
+      { kind === 'dashboard' && (<AnalyticsManager t={t} containerWidth={containerWidth} containerHeight={containerHeight} />)}
     </div>
   );
 };
@@ -123,6 +127,8 @@ Header.propTypes = {
   changeLang: PropTypes.func.isRequired,
   kind: PropTypes.string.isRequired,
   isLogged: PropTypes.bool.isRequired,
+  containerWidth: PropTypes.number.isRequired,
+  containerHeight: PropTypes.number.isRequired,
 };
 
 export default Header;
