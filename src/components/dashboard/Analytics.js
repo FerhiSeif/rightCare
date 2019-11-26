@@ -15,7 +15,7 @@ const Analytics = (props) => {
   } = props;
 
   return (
-    <div>
+    <>
       <h2 className="dashboard-title">{t('dashboard.dashboard_overview')}</h2>
       <div className="columns analytics-columns">
         <Agents t={t} CalendarIcon={CalendarIcon} MoreIcon={MoreIcon} />
@@ -39,7 +39,7 @@ const Analytics = (props) => {
           <ChartDatas />
         </div>
       </div>
-    </div>
+    </>
 
   );
 };
