@@ -11,7 +11,7 @@ const SideMenu = (props) => {
   const isEmpty = false; // when not emty display all available channels
 
   return (
-    <div className="column">
+    <div className="column dashboard-side-menu">
       <aside className="menu">
         <Header />
         <div className="menu-container">
