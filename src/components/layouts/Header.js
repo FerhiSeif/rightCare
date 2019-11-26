@@ -7,6 +7,7 @@ import NotifIcon from '../../assets/images/profile/notif.svg';
 import SearchIcon from '../../assets/images/profile/search.svg';
 import DrawerIcon from '../../assets/images/dashboard/drawer.svg';
 import AnalyticsManager from '../dashboard/AnalyticsManager';
+import DrawerLayout from './DrawerLayout';
 
 const Header = (props) => {
   const {
@@ -19,6 +20,16 @@ const Header = (props) => {
     containerWidth,
     containerHeight,
   } = props;
+
+  const [state, setState] = React.useState({ left: false });
+
+  const toggleDrawer = (side, open) => (event) => {
+    if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
+      return;
+    }
+
+    setState({ ...state, [side]: open });
+  };
 
   const topNavCustomStyle = {
     navbar: {
@@ -60,7 +71,8 @@ const Header = (props) => {
   return (
     <div className={`${kind === 'dashboard' ? 'column dashboard is-four-fifths' : ''}`}>
       <nav className="navbar" role="navigation" aria-label="main navigation" style={topNavCustomStyle.navbar}>
-        { containerWidth <= 768 && <img src={DrawerIcon} className="menu-dash-icon"/>}
+        { containerWidth <= 768 && <img src={DrawerIcon} className="menu-dash-icon" onClick={toggleDrawer('left', true)}/>}
+        { containerWidth <= 768 && <DrawerLayout toggleDrawer={toggleDrawer} left={state.left} t={t} containerWidth={containerWidth} />}
         { kind !== 'dashboard'
         && (
           <div className="navbar-brand">
