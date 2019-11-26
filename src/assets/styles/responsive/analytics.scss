@@ -1,0 +1,73 @@
+.mobile-analytics-cards {
+  border-radius: 10px;
+  box-shadow: 0 3px 6px 0 rgba(163, 163, 163, 0.19);
+  border: solid 1px #c8d3d6;
+  background-color: #ffffff;
+  margin: 0 6.2rem 2rem 6.2rem !important;
+  display: flex;
+  .analytics-children {
+    padding: 2rem;
+    width: 50%;
+    text-align: center;
+    h3 {
+      font-size: 40px;
+    }
+    .status-new {
+      color: #0089e1;
+    }
+    .status-complete {
+      color: #00bd39;
+    }
+    .status-pending {
+      color: #ffc505;
+    }
+  }
+  .analytics-children.first-child {
+    border-right: 1px solid #c8d3d6;
+  }
+}
+.filter-container {
+  display: flex;
+  margin: 1rem 6.2rem 2rem 6.2rem;
+  .button {
+    width: 45%;
+    .more-icon {
+      width: 1.2rem;
+      margin-left: .5rem;
+      margin-top: .5rem;
+    }
+    .calendar {
+      width: 1.5rem;
+      margin-right: 1rem;
+    }
+  }
+  .button.first-btn {
+    color: #0089e1!important;
+    border: 1px solid #0089e1;
+    .calendar {
+      margin-right: .5rem;
+    }
+  }
+  .button.last-btn {
+    margin-left: auto;
+    color: #4c4c4c;
+    background-color: #fff;
+    border: 1px solid #c8d3d6;
+  }
+}
+
+.menu-dash-icon {
+  margin-top: .5rem;
+margin-left: 3.5rem;
+width: 2.5rem;
+}
+
+@media (max-width: 768px) {
+  .column-content .column-content-a {
+    margin-top: 2rem;
+  }
+  .navbar {
+    background-color: #fff!important;
+    min-height: 5.25rem!important;
+  }
+}
