@@ -8,7 +8,7 @@ import { options } from '../../configs/options';
 class Dashboard extends Component {
     state = {
       containerWidth: 0,
-      containerHeight: 0
+      containerHeight: 0,
     }
 
     componentDidMount() {
@@ -38,7 +38,7 @@ class Dashboard extends Component {
 
       return (
         <div className={`${kind === 'dashboard' ? 'columns' : ''}`}>
-          { kind === 'dashboard' && (<SideMenu t={t} />)}
+          { kind === 'dashboard' && (<SideMenu t={t} containerWidth={containerWidth} />)}
           <Header
             options={options}
             defaultLang={defaultLang}

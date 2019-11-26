@@ -93,7 +93,7 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: '-4rem',
   },
   button: {
-    marginRight: theme.spacing(2),
+    marginRight: theme.spacing(1.5),
     backgroundColor: '#0089e1',
     borderRadius: '10px',
     padding: '1rem 3rem',
