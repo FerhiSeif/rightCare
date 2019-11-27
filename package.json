@@ -13,6 +13,7 @@
     "eslint-config-airbnb": "^18.0.1",
     "express": "^4.17.1",
     "i18next": "^19.0.0",
+    "infinite-react-carousel": "^1.2.0",
     "node-sass": "^4.13.0",
     "prop-types": "^15.7.2",
     "react": "^16.10.2",
