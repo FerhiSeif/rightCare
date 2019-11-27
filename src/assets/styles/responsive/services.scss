@@ -14,13 +14,63 @@
   }
   .service-container .service-card span, .service-container-custom .service-card span {
     margin-top: 1rem;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
   }
+}
 
+@media (max-width: 768px) {
+  .steps-container {
+    padding-left: 5rem;
+
+    .common-medium-title {
+      font-size: 1.5rem;
+    }
+  }
+  .card-container {
+    width: initial;
+  }
+  .card, .card-container-mobile {
+    width: 100%;
+    height: 100%;
+    margin: initial;
+  }
   .steps-container>.columns>.column>img.select-image {
     display: none!important;
   }
   .next-back-container {
     text-align: center!important;
+    margin-top: 5rem;
+  }
+  .card-content {
+    padding: 1.5;
+    // padding: 2.5rem!important;
+    .add-more {
+      margin-right: 2rem;
+    }
+  }
+  p.card-header-title.agents, .card-header-icon>span, .card-content p {
+    font-size: 1.3rem!important;
+  }
+  .card-custom {
+    margin: 2rem 0;
+    width: initial!important;
+    max-width: initial!important;
+  }
+  .card-content.content.service-container .service-card, .service-container-custom .service-card {
+    width: initial;
+    height: initial;
+    max-width: initial;
+    max-height: initial;
+    min-width: initial;
+    min-height: initial;
+    padding-top: 0;
+    padding-bottom: .5rem;
+    img {
+      width: 2rem !important;
+    }
+    span {
+      margin-top: 0;
+      font-size: 1rem;
+    }
   }
 }
