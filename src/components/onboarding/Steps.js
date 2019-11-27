@@ -87,10 +87,11 @@ function ColorlibStepIcon(props) {
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    width: '25em',
-    maxWidth: '25em',
     paddingLeft: 0,
     marginLeft: '-4rem',
+  },
+  steppers: {
+    width: '28rem',
   },
   button: {
     marginRight: theme.spacing(1.5),
@@ -135,6 +136,7 @@ function getStepContent(
   checkedServices,
   activeServices,
   handleBack,
+  containerWidth,
 ) {
   switch (step) {
     case 0:
@@ -151,6 +153,7 @@ function getStepContent(
           checkedServices={checkedServices}
           activeServices={activeServices}
           handleBack={handleBack}
+          containerWidth={containerWidth}
         />
       );
     case 2:
@@ -159,6 +162,7 @@ function getStepContent(
           handleChooseService={handleChooseService}
           checkedServices={checkedServices}
           activeServices={activeServices}
+          containerWidth={containerWidth}
         />
       );
     default:
@@ -209,6 +213,7 @@ export default function Steps(props) {
     activeServices,
     handleSimulateChooseServices,
     selectServiceRef,
+    containerWidth,
   } = props;
 
   const localService = JSON.parse(localStorage.getItem('cr_services'));
@@ -246,7 +251,7 @@ export default function Steps(props) {
               <p>{t('onboard.onboarding_process')}</p>
             )}
             <div className={classes.root}>
-              <Stepper alternativeLabel activeStep={activeStep} connector={<ColorlibConnector />}>
+              <Stepper alternativeLabel activeStep={activeStep} connector={<ColorlibConnector />} className={classes.steppers}>
                 {steps.map((label) => (
                   <Step key={label}>
                     <StepLabel StepIconComponent={ColorlibStepIcon} />
@@ -263,6 +268,7 @@ export default function Steps(props) {
                         checkedServices,
                         activeServices,
                         handleBack,
+                        containerWidth,
                       )
                     }
                   </div>
