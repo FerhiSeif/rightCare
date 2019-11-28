@@ -34,7 +34,7 @@ const MobileAddAgents = (props) => {
 
   return (
     <div className="card-container-mobile">
-      <Slider dots arrows={false}>
+      <Slider adaptiveHeight={true} dots arrows={false}>
         { localService && localService.length > 0 &&
           localService.map((item, i) => (
             <div className="card-carousel">
