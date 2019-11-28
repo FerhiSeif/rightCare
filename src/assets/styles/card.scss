@@ -1,6 +1,4 @@
 .card-container {
-  width: 76rem;
-  max-width: 76rem;
   display: -ms-flexbox;
   display: flex;
   -ms-flex-wrap: wrap;
@@ -8,19 +6,21 @@
 }
 .card {
   border-radius: 10px;
-  max-width: 24.0625rem!important;
-  width: 24.0625rem;
+  flex-grow: 1;
   margin: 0 1.2rem 1.2rem 0;
+  box-shadow: 0 3px 6px 0 rgba(200, 211, 214, 0.2)!important;
+  border: solid 1px #c8d3d6;
 }
 .card-custom {
   border-radius: 10px;
-  max-width: 35.0625rem!important;
-  width: 35.0625rem;
+  max-width: 43.0625rem !important;
+  width: 42.0625rem;
   margin: 0 2.5rem 2.5rem 0;
   background-color: rgba(200, 211, 214, 0.12);
-  box-shadow: 0 0.1em 0.5em -0.125em rgba(10, 10, 10, 0.1), 0px 1px 0 1px rgba(10, 10, 10, 0.02);
+  box-shadow: 0 3px 6px 0 rgba(200, 211, 214, 0.2);;
   color: #4a4a4a;
   position: relative;
+  border: solid 1px #c8d3d6;
 }
 .card, .card-custom {
   .card-header {
@@ -95,9 +95,13 @@
       background-color: rgba(10, 10, 10, 0.3);
     }
     .modal-card {
-      width: 27.125rem;
-      height: 30rem;
+      width: 28.125rem;
+      height: 32rem;
       border-radius: 10px;
+      .modal-close-incard {
+        display: none;
+      }
+
       .modal-card-head {
         display: block;
         background-color: $white;
@@ -181,5 +185,11 @@
   margin-left: auto;
   border-style: dashed;
   cursor: pointer;
-  // margin-top: .5rem;
+}
+// .carousel-track {
+//   height: 16rem!important;
+// }
+
+.carousel-item {
+  padding: 0 5px
 }

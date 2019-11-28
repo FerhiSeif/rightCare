@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { withTranslation } from 'react-i18next';
 import Carder from '../../common/Carder';
 import FakeChannels from '../../../faker/channels';
+import MobileAddAgents from './MobileAddAgents';
 
 const AssignAgent = (props) => {
   const {
@@ -11,6 +12,7 @@ const AssignAgent = (props) => {
     handleChooseService,
     activeServices,
     handleBack,
+    containerWidth,
   } = props;
 
   const agentStyles = {
@@ -29,7 +31,7 @@ const AssignAgent = (props) => {
 
   return (
     <div className="card-container">
-      {
+     { containerWidth > 768 && (
         localService && localService.length > 0 ? (
           <>
             { localService.map((item, i) => (
@@ -93,7 +95,8 @@ const AssignAgent = (props) => {
             )}
           </>
         )
-      }
+      )}
+      {containerWidth <= 768 && <MobileAddAgents />}
     </div>
   );
 };
@@ -101,6 +104,7 @@ const AssignAgent = (props) => {
 AssignAgent.propTypes = {
   t: PropTypes.func.isRequired,
   handleBack: PropTypes.func.isRequired,
+  containerWidth: PropTypes.number.isRequired,
   handleChooseService: PropTypes.func.isRequired,
   checkedServices: PropTypes.shape({}).isRequired,
   activeServices: PropTypes.shape([]).isRequired,

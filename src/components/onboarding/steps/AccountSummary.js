@@ -6,6 +6,7 @@ import SelectedChannels from './SelectedChannels';
 import HasAgents from './HasAgents';
 import ChannelIcon from '../../../assets/images/dashboard/menu/channel.svg';
 import FakeChannels from '../../../faker/channels';
+import MobileAddAgents from './MobileAddAgents';
 
 const AccountSummary = (props) => {
   const {
@@ -13,6 +14,7 @@ const AccountSummary = (props) => {
     handleChooseService,
     checkedServices,
     activeServices,
+    containerWidth,
   } = props;
 
   const localService = JSON.parse(localStorage.getItem('cr_services'));
@@ -22,7 +24,7 @@ const AccountSummary = (props) => {
 
   return (
     <div className="card-container">
-      { activeServices && activeServices.length > 0 && (
+      { containerWidth > 768 && (activeServices && activeServices.length > 0) && (
         <>
           {
             selectedServices.length > 0 || (localService && localService.length) > 0 ? (
@@ -75,20 +77,35 @@ const AccountSummary = (props) => {
         </>
       )}
 
-      <SelectedChannels
-        kind="channel"
-        t={t}
-        title={t('onboard.steps.channel_selected')}
-        icon={ChannelIcon}
-        checkedServices={checkedServices}
-        handleChooseService={handleChooseService}
-      />
+      {containerWidth > 768 && (
+        <>
+          <SelectedChannels
+            kind="channel"
+            t={t}
+            title={t('onboard.steps.channel_selected')}
+            icon={ChannelIcon}
+            checkedServices={checkedServices}
+            handleChooseService={handleChooseService}
+          />
 
-      <HasAgents
-        kind="channel"
-        t={t}
-        title={t('onboard.steps.added_agents')}
-      />
+          <HasAgents
+            kind="channel"
+            t={t}
+            title={t('onboard.steps.added_agents')}
+          />
+
+        </>
+      )}
+
+      {containerWidth <= 768
+        && (
+          <MobileAddAgents
+            icon={ChannelIcon}
+            checkedServices={checkedServices}
+            handleChooseService={handleChooseService}
+            kinda="summary"
+          />
+        )}
     </div>
   );
 };

@@ -52,8 +52,25 @@ class App extends Component {
       isLogged: true,
       checkedServices: this.getPrevServices(),
       activeServices: [],
+      containerWidth: 0,
     };
   }
+
+  componentDidMount() {
+    this.updateWindowDimensions();
+    window.addEventListener('resize', this.updateWindowDimensions);
+    document.body.style.overflow = 'hidden';
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.updateWindowDimensions);
+    document.body.style.overflow = 'auto';
+  }
+
+  updateWindowDimensions = () => {
+    this.setState({ containerWidth: window.innerWidth });
+  }
+
 
   getPrevServices = () => {
     // get previously saved services from the localStorage
@@ -148,6 +165,7 @@ class App extends Component {
       isLogged,
       checkedServices,
       activeServices,
+      containerWidth,
     } = this.state;
     return (
       <Router>
@@ -182,6 +200,7 @@ class App extends Component {
               activeServices={activeServices}
               selectServiceRef={selectServiceRef}
               handleSimulateChooseServices={handleSimulateChooseServices}
+              containerWidth={containerWidth}
             />
           </Route>
         </Switch>

@@ -106,21 +106,25 @@ const Carder = (props) => {
   const referedModal = kind === 'agent' ? agentModal : channelModal;
 
   const handleAddRessourceModal = () => {
+    document.body.classList.add('modal-opened');
     kind === 'agent' ? agentModal.current.classList.add('is-active') : channelModal.current.classList.add('is-active');
   }
 
   const handleCloseRessourceModal = () => {
+    document.body.classList.remove('modal-opened');
     kind === 'agent' ? agentModal.current.classList.remove('is-active') : channelModal.current.classList.remove('is-active');
   }
 
   const cardStyle = {
     agentStyle: {
-      padding: channelSelected || kind === 'channel' ? 'padding: 1.3125rem' : '1.5rem',
+      padding: channelSelected || kind === 'channel' ? 'padding: 1.3125rem' : '2.5rem',
     },
     emptyChannel: {
       background: state.initialAgents && state.initialAgents.length !== 0 ? '#ffffff' : 'rgba(200, 211, 214, 0.12)',
     },
   };
+
+  console.log('listAgents', state.initAgents.length);
 
   return (
     <div className={[1, 2, 4, 5].indexOf(serviceCount) !== -1 ? 'card-custom' : 'card'} style={cardStyle.emptyChannel}>
@@ -155,6 +159,7 @@ const Carder = (props) => {
         buttonText={t('onboard.steps.continue')}
         handleChooseService={handleChooseService}
         checkedServices={checkedServices}
+        agentCount={state.initAgents.length}
       />
     </div>
   );

@@ -40,10 +40,12 @@ const SelectedChannels = (props) => {
   const addAgentsRef = React.createRef();
 
   const handleAddChannelModal = () => {
+    document.body.classList.add('modal-opened');
     selectChannel.current.classList.add('is-active');
   };
 
   const handleCloseChannelModal = () => {
+    document.body.classList.add('modal-opened');
     selectChannel.current.classList.remove('is-active');
   };
 

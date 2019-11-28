@@ -87,10 +87,15 @@ function ColorlibStepIcon(props) {
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    width: '25em',
-    maxWidth: '25em',
     paddingLeft: 0,
     marginLeft: '-4rem',
+  },
+  steppers: {
+    width: '28rem',
+    cursor: 'pointer',
+  },
+  stepLabel: {
+    cursor: 'pointer',
   },
   button: {
     marginRight: theme.spacing(1.5),
@@ -135,6 +140,7 @@ function getStepContent(
   checkedServices,
   activeServices,
   handleBack,
+  containerWidth,
 ) {
   switch (step) {
     case 0:
@@ -151,6 +157,7 @@ function getStepContent(
           checkedServices={checkedServices}
           activeServices={activeServices}
           handleBack={handleBack}
+          containerWidth={containerWidth}
         />
       );
     case 2:
@@ -159,6 +166,7 @@ function getStepContent(
           handleChooseService={handleChooseService}
           checkedServices={checkedServices}
           activeServices={activeServices}
+          containerWidth={containerWidth}
         />
       );
     default:
@@ -198,6 +206,10 @@ export default function Steps(props) {
     });
   };
 
+  const handleStep = (step) => () => {
+    setActiveStep(step);
+  };
+
   const {
     t,
     kind,
@@ -209,6 +221,7 @@ export default function Steps(props) {
     activeServices,
     handleSimulateChooseServices,
     selectServiceRef,
+    containerWidth,
   } = props;
 
   const localService = JSON.parse(localStorage.getItem('cr_services'));
@@ -246,10 +259,10 @@ export default function Steps(props) {
               <p>{t('onboard.onboarding_process')}</p>
             )}
             <div className={classes.root}>
-              <Stepper alternativeLabel activeStep={activeStep} connector={<ColorlibConnector />}>
-                {steps.map((label) => (
+              <Stepper alternativeLabel activeStep={activeStep} connector={<ColorlibConnector />} className={classes.steppers}>
+                {steps.map((label, index) => (
                   <Step key={label}>
-                    <StepLabel StepIconComponent={ColorlibStepIcon} />
+                    <StepLabel StepIconComponent={ColorlibStepIcon} onClick={handleStep(index)} />
                   </Step>
                 ))}
               </Stepper>
@@ -263,6 +276,7 @@ export default function Steps(props) {
                         checkedServices,
                         activeServices,
                         handleBack,
+                        containerWidth,
                       )
                     }
                   </div>
