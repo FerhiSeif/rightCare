@@ -98,6 +98,10 @@
       width: 28.125rem;
       height: 32rem;
       border-radius: 10px;
+      .modal-close-incard {
+        display: none;
+      }
+
       .modal-card-head {
         display: block;
         background-color: $white;
@@ -182,6 +186,10 @@
   border-style: dashed;
   cursor: pointer;
 }
-.carousel-track {
-  height: 15rem!important;
+// .carousel-track {
+//   height: 16rem!important;
+// }
+
+.carousel-item {
+  padding: 0 5px
 }

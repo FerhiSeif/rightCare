@@ -1,31 +1,50 @@
-@media (min-width: 330px)  and (max-width: 470px) {
+@media (max-width: 470px) {
   .service-container {
-    width: 22rem!important;
+    width: auto !important;
+    justify-content: flex-start;
+    margin-left: 2rem!important;
   }
-  .service-container .service-card, .service-container-custom .service-card {
+  .service-container .service-card,
+  .service-container-custom .service-card {
     cursor: pointer;
-    width: 10rem;
+    width: calc(50% - 1rem);
     max-width: 10rem;
-    height: 10rem;
-    min-height: 10rem;
+    height: auto;
+    margin-right: 1rem;
+    padding: 2rem 1rem 0.5rem;
   }
-  .service-container .service-card img, .service-container-custom .service-card img {
+  .service-container .service-card img,
+  .service-container-custom .service-card img {
     width: auto;
   }
-  .service-container .service-card span, .service-container-custom .service-card span {
+  .service-container .service-card span,
+  .service-container-custom .service-card span {
     margin-top: 1rem;
     font-size: 1.2rem;
+  }
+
+  .next-back-container {
+    text-align: left !important;
+  }
+
+  .next-back-container button {
+    padding: 0.7rem 2rem;
   }
 }
 
 @media (max-width: 768px) {
   .steps-container {
-    padding-left: 5rem;
+    padding: 2rem 3rem;
 
     .common-medium-title {
-      font-size: 1.5rem;
+      font-size: 1.95rem;
     }
   }
+
+  .card-container-mobile .card-header-title {
+    padding: 1.35rem 1rem !important;
+  }
+
   .card-container {
     width: initial;
   }
@@ -38,11 +57,11 @@
     display: none!important;
   }
   .next-back-container {
-    text-align: center!important;
+    // text-align: center!important;
     margin-top: 5rem;
   }
   .card-content {
-    padding: 1.5;
+    padding: 1.5rem !important;
     // padding: 2.5rem!important;
     .add-more {
       margin-right: 2rem;
@@ -52,11 +71,13 @@
     font-size: 1.3rem!important;
   }
   .card-custom {
-    margin: 2rem 0;
+    margin: 0rem 0;
+    // margin: 2rem 0;
     width: initial!important;
     max-width: initial!important;
   }
-  .card-content.content.service-container .service-card, .service-container-custom .service-card {
+  .card-content.content.service-container .service-card,
+  .service-container-custom .service-card {
     width: initial;
     height: initial;
     max-width: initial;
@@ -71,6 +92,87 @@
     span {
       margin-top: 0;
       font-size: 1rem;
+    }
+  }
+
+  .card .card-content {
+    padding: 1.5rem 1rem 3.5rem !important;
+
+    .add-more {
+      position: absolute;
+      bottom: 1rem;
+      right: 1rem;
+      margin-right: 0;
+      background-color: #00bd39;
+      border: 0;
+      padding: 0;
+      font-size: 1.5rem;
+      color: #fff;
+      align-items: flex-start;
+      justify-content: center;
+    }
+  }
+
+  .card-custom .card-content {
+    padding: 1.5rem 1rem 3.5rem !important;
+
+    .add-more {
+      position: absolute;
+      bottom: 1rem;
+      right: 1rem;
+      margin-right: 0;
+      // background-color: #00bd39;
+      // border: 0;
+      padding: 0;
+      font-size: 1.5rem;
+      // color: #fff;
+      align-items: flex-start;
+      justify-content: center;
+    }
+  }
+
+  .carousel-dots li.carousel-dots-active button:before {
+    opacity: .75;
+    color: #00bd39;
+  }
+
+  .carousel-dots li button:before {
+    font-size: 50px;
+  }
+
+  .card .card-content .content > .content-container .cobok:nth-child(1),
+  .card-custom .card-content .content > .content-container .cobok-channel:nth-child(1) {
+    margin-left: 0.5rem;
+  }
+
+  body.modal-opened .carousel-item.active {
+    transform: none !important;
+
+    .modal.is-active {
+      padding: 0 20px;
+
+      .modal-card {
+        width: 100%;
+
+        .modal-close-incard {
+          display: block;
+          position: absolute;
+          top: 1rem;
+          right: 1rem;
+          z-index: 999;
+          border: 2px #ccc solid;
+        }
+
+        .modal-close::before,
+        .modal-close::after {
+          background-color: #ccc;
+        }
+      }
+
+      .search-box img {
+        width: 1rem;
+        top: 0.75rem;
+      }
     }
   }
 }
