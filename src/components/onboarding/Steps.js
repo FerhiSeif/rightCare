@@ -92,6 +92,10 @@ const useStyles = makeStyles((theme) => ({
   },
   steppers: {
     width: '28rem',
+    cursor: 'pointer',
+  },
+  stepLabel: {
+    cursor: 'pointer',
   },
   button: {
     marginRight: theme.spacing(1.5),
@@ -202,6 +206,10 @@ export default function Steps(props) {
     });
   };
 
+  const handleStep = (step) => () => {
+    setActiveStep(step);
+  };
+
   const {
     t,
     kind,
@@ -252,9 +260,9 @@ export default function Steps(props) {
             )}
             <div className={classes.root}>
               <Stepper alternativeLabel activeStep={activeStep} connector={<ColorlibConnector />} className={classes.steppers}>
-                {steps.map((label) => (
+                {steps.map((label, index) => (
                   <Step key={label}>
-                    <StepLabel StepIconComponent={ColorlibStepIcon} />
+                    <StepLabel StepIconComponent={ColorlibStepIcon} onClick={handleStep(index)} />
                   </Step>
                 ))}
               </Stepper>
