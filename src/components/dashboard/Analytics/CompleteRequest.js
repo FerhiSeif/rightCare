@@ -28,7 +28,7 @@ const CompleteRequest = (props) => {
           </p>
           <button className="button is-secondary is-outlined">
             <img className="calendar-icon" src={CalendarIcon} alt='caneldar' />
-            September
+            {t('dashboard.september')}
             <img className="view-more" src={MoreIcon} alt='caneldar' />
           </button>
         </div>
