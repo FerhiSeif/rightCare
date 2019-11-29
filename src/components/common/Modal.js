@@ -32,6 +32,7 @@ const Modal = (props) => {
       <div className="modal-background" />
       <div className="modal-card">
         <button className="modal-close modal-close-incard" aria-label="close" onClick={handleContinue} />
+        <button className="modal-close is-large" aria-label="close" ref={addAgentsRef} onClick={handleCloseRessourceModal} />
         <header className="modal-card-head">
           <div className="title-container" style={modalStyle.title}>
             <h2 className="title">{title}</h2>
@@ -50,7 +51,6 @@ const Modal = (props) => {
           <button className="button is-primary" aria-label="close" onClick={handleContinue}>{buttonText}</button>
         </footer>
       </div>
-      <button className="modal-close is-large" aria-label="close" ref={addAgentsRef} onClick={handleCloseRessourceModal} />
     </div>
   );
 };
