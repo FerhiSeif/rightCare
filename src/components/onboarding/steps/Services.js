@@ -5,6 +5,7 @@ import FakeChannels from '../../../faker/channels';
 
 const Services = (props) => {
   const {
+    i18n,
     kind,
     checkedServices,
     handleChooseService,
@@ -24,6 +25,8 @@ const Services = (props) => {
     },
   };
 
+  const currLang = i18n.language;
+
   return (
     <div className="service-container" style={serviceStyle.serviceContainer}>
       { FakeChannels.map((item, i) => (
@@ -33,7 +36,7 @@ const Services = (props) => {
           key={i}
         >
           <img src={item.greenIcon} alt={i} />
-          <span>{item.name}</span>
+          <span>{currLang === 'en' ? item.name : item.name_fr}</span>
           <input
             type="checkbox"
             name={item.type}
@@ -48,6 +51,7 @@ const Services = (props) => {
 };
 
 Services.propTypes = {
+  i18n: PropTypes.shape({}).isRequired,
   kind: PropTypes.string.isRequired,
   handleChooseService: PropTypes.func.isRequired,
   checkedServices: PropTypes.shape({}).isRequired,
