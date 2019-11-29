@@ -14,7 +14,14 @@ export default class Chart extends Component {
       fill,
       steppedLine,
       stepSize,
+      i18n,
     } = this.props;
+
+    const currLang = i18n.language;
+
+    const newPendingLabel = currLang === 'en' ? 'Pending requests' : 'Demandes en attente';
+    const newCompletedLabel = currLang === 'en' ? 'Completed requests' : 'Demandes complète';
+    const newNewLabel = currLang === 'en' ? 'New requests' : 'Nouvelles demandes';
 
     // const labels = Array.from(Array(data.length), (x, i) => i + 1);
 
@@ -29,15 +36,15 @@ export default class Chart extends Component {
           backgroundColor: '#caf270',
           data: [85, 85, 85, 85, 85, 85, 85, 85, 85],
         }, {
-          label: 'Pending requests',
+          label: newPendingLabel,
           backgroundColor: '#45c490',
           data: [12, 59, 5, 56, 58, 12, 59, 80, 23],
         }, {
-          label: 'Completed requests',
+          label: newCompletedLabel,
           backgroundColor: '#00bd39',
           data: [12, 59, 5, 56, 58, 12, 59, 65, 51],
         }, {
-          label: 'New requests',
+          label: newNewLabel,
           backgroundColor: '#0089e1',
           data: [12, 59, 5, 56, 58, 12, 59, 12, 74],
         }],

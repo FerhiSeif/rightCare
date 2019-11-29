@@ -8,6 +8,7 @@ import ActiveChannelIcon from '../../assets/images/dashboard/menu/active/channel
 
 const MobileAnalytics = (props) => {
   const {
+    i18n,
     t,
     containerWidth,
   } = props;
@@ -53,7 +54,7 @@ const MobileAnalytics = (props) => {
       <div className="columns chart-columns">
         <div className="column column-chart">
           <h3>{t('dashboard.channel_chart')}</h3>
-          <ChartDatas />
+          <ChartDatas i18n={i18n} />
         </div>
         <div className="column">
           <div className="column-content column-content-a">
@@ -72,6 +73,7 @@ const MobileAnalytics = (props) => {
 
 MobileAnalytics.propTypes = {
   t: PropTypes.func.isRequired,
+  i18n: PropTypes.shape({}).isRequired,
   containerWidth: PropTypes.number.isRequired,
 };
 

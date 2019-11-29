@@ -11,6 +11,7 @@ import CalendarIcon from '../../assets/images/dashboard/calendar.svg';
 
 const Analytics = (props) => {
   const {
+    i18n,
     t,
   } = props;
 
@@ -36,7 +37,7 @@ const Analytics = (props) => {
         </div>
         <div className="column column-chart">
           <h3>{t('dashboard.channel_chart')}</h3>
-          <ChartDatas />
+          <ChartDatas i18n={i18n} />
         </div>
       </div>
     </>
@@ -45,6 +46,7 @@ const Analytics = (props) => {
 };
 
 Analytics.propTypes = {
+  i18n: PropTypes.shape({}).isRequired,
   t: PropTypes.func.isRequired,
 };
 

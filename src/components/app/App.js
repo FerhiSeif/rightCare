@@ -158,7 +158,7 @@ class App extends Component {
   };
 
   render() {
-    const { t } = this.props;
+    const { t, i18n } = this.props;
     const { changeLang, handleChooseService, handleSimulateChooseServices } = this;
     const {
       defaultLang,
@@ -186,6 +186,7 @@ class App extends Component {
               defaultLang={defaultLang}
               kind="dashboard"
               isLogged={isLogged}
+              i18n={i18n}
             />
           </Route>
           <Route path="/onboard">

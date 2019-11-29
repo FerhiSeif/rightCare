@@ -33,12 +33,13 @@ class Dashboard extends Component {
         defaultLang,
         changeLang,
         isLogged,
+        i18n,
       } = this.props;
       const { containerHeight, containerWidth } = this.state;
 
       return (
         <div className={`${kind === 'dashboard' ? 'columns' : ''}`}>
-          { kind === 'dashboard' && (<SideMenu t={t} containerWidth={containerWidth} />)}
+          { kind === 'dashboard' && (<SideMenu t={t} containerWidth={containerWidth} i18n={i18n} />)}
           <Header
             options={options}
             defaultLang={defaultLang}
@@ -48,6 +49,7 @@ class Dashboard extends Component {
             t={t}
             containerWidth={containerWidth}
             containerHeight={containerHeight}
+            i18n={i18n}
           />
         </div>
       );
@@ -55,6 +57,7 @@ class Dashboard extends Component {
 }
 
 Dashboard.propTypes = {
+  i18n: PropTypes.shape({}).isRequired,
   t: PropTypes.func.isRequired,
   kind: PropTypes.string.isRequired,
   defaultLang: PropTypes.shape({}).isRequired,

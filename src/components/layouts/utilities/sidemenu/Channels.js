@@ -6,6 +6,7 @@ import FakeChannels from '../../../../faker/channels';
 const Channels = (props) => {
   const {
     t,
+    i18n,
     isEmpty,
   } = props;
 
@@ -31,6 +32,7 @@ const Channels = (props) => {
                 agentCount={item.agentCount}
                 key={i}
                 icon={item.icon}
+                i18n={i18n}
               />
             ))}
           </div>
@@ -41,6 +43,7 @@ const Channels = (props) => {
 
 Channels.propTypes = {
   t: PropTypes.func.isRequired,
+  i18n: PropTypes.shape({}).isRequired,
   isEmpty: PropTypes.bool.isRequired,
 };
 

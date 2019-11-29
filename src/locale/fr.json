@@ -14,13 +14,13 @@
     "no_channel_added": "Aucun Canal Ajouté",
     "add_channel": "Ajouter un canal",
     "menu": "Menu",
-    "dashboard": "Dashboard",
+    "dashboard": "Tableau de bord",
     "agents": "Agents",
     "tickets": "Tickets",
     "profile": "Profile",
     "settings": "Paramètres",
     "logout": "Déconnexion",
-    "channel": "Channel",
+    "channel": "Canal",
     "agents_added": "agents ajouté"
   },
   "onboard": {
@@ -50,7 +50,8 @@
       "no_agent_has_been_assigned_to_this_channel": "Aucun agent n'a été affecté à ce canal",
       "add_available_agents": "Ajouter des agents disponibles",
       "continue": "Continuer",
-      "added_agents": "Agents assignés"
+      "added_agents": "Agents assignés",
+      "search_agent": "Rechercher agent"
     }
   },
   "dashboard": {
@@ -62,6 +63,7 @@
     "dashboard_overview": "Dashboard Global",
     "live_updates": "Mise à jour",
     "no_live_update": "Aucune mise à jour",
-    "channel_chart": "Tableau des chaînes"
+    "channel_chart": "Tableau des chaînes",
+    "september": "Septembre"
   }
 }

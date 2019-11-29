@@ -66,3 +66,14 @@
     background-color: rgba(0, 189, 57, 0.05);
   }
 }
+button.modal-close.is-large {
+  border: 1px solid #c8d3d6;
+  position: absolute;
+  z-index: 1;
+}
+.delete::before, .modal-close::before, .delete::after, .modal-close::after {
+  background-color: #c8d3d6!important;
+}
+.delete:hover, .modal-close:hover, .delete:focus, .modal-close:focus {
+  background-color: #ffffff!important;
+}
