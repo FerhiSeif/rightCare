@@ -11,6 +11,7 @@ import DrawerLayout from './DrawerLayout';
 
 const Header = (props) => {
   const {
+    i18n,
     t,
     options,
     defaultLang,
@@ -127,7 +128,7 @@ const Header = (props) => {
           </div>
         </div>
       </nav>
-      { kind === 'dashboard' && (<AnalyticsManager t={t} containerWidth={containerWidth} containerHeight={containerHeight} />)}
+      { kind === 'dashboard' && (<AnalyticsManager t={t} containerWidth={containerWidth} containerHeight={containerHeight} i18n={i18n} />)}
     </div>
   );
 };
@@ -136,6 +137,7 @@ Header.propTypes = {
   t: PropTypes.func.isRequired,
   options: PropTypes.arrayOf(PropTypes.object).isRequired,
   defaultLang: PropTypes.shape({}).isRequired,
+  i18n: PropTypes.shape({}).isRequired,
   changeLang: PropTypes.func.isRequired,
   kind: PropTypes.string.isRequired,
   isLogged: PropTypes.bool.isRequired,
