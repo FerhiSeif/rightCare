@@ -5,6 +5,7 @@ import Services from '../onboarding/steps/Services';
 
 const Modal = (props) => {
   const {
+    t,
     title,
     content,
     kind,
@@ -39,7 +40,7 @@ const Modal = (props) => {
           </div>
           { kind === 'agent' && (
             <div className="search-box">
-              <input className="input" type="text" placeholder="Search agent" onChange={handleSearchAgent} />
+              <input className="input" type="text" placeholder={t('onboard.steps.search_agent')} onChange={handleSearchAgent} />
               <img src={SearchIcon} alt="search" />
             </div>
           )}
@@ -56,6 +57,7 @@ const Modal = (props) => {
 };
 
 Modal.propTypes = {
+  t: PropTypes.func.isRequired,
   title: PropTypes.string.isRequired,
   agentCount: PropTypes.number.isRequired,
   content: PropTypes.shape({}).isRequired,
