@@ -3,11 +3,14 @@ import PropTypes from 'prop-types';
 
 const SingleChannel = (props) => {
   const {
+    i18n,
     agentCount,
     t,
     type,
     icon,
   } = props;
+
+  const currLang = i18n.language;
 
   return (
     <div className="columns">
@@ -15,11 +18,19 @@ const SingleChannel = (props) => {
         <img alt="logo icon" src={icon} />
       </div>
       <div className="column col-content">
-        <h4>
-          {type}
-          {' '}
-          {t('side_menu.channel')}
-        </h4>
+        {currLang === 'en' ? (
+          <h4>
+            {type}
+            {' '}
+            {t('side_menu.channel')}
+          </h4>
+        ) : (
+          <h4>
+            {t('side_menu.channel')}
+            {' '}
+            {type}
+          </h4>
+        )}
         <span>
           {agentCount}
           {' '}
@@ -31,6 +42,7 @@ const SingleChannel = (props) => {
 };
 
 SingleChannel.propTypes = {
+  i18n: PropTypes.shape({}).isRequired,
   t: PropTypes.func.isRequired,
   agentCount: PropTypes.number.isRequired,
   type: PropTypes.string.isRequired,
