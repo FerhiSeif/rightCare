@@ -8,7 +8,11 @@ const Header = (props) => {
     darkIcon,
     initialAgents,
     title,
+    i18n,
+    nameFr,
   } = props;
+
+  const currLang = i18n.language;
 
   return (
     <>
@@ -17,7 +21,7 @@ const Header = (props) => {
           <span className="icon">
             <img src={`${kind === 'channel' ? icon : darkIcon}`} alt="Channel Icon" />
           </span>
-          {title}
+          {currLang === 'en' ? title : nameFr}
         </p>
         <a href="/onboard" className="card-header-icon" aria-label="more options">
           { initialAgents && initialAgents.length > 0 ? (
