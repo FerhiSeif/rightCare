@@ -3,6 +3,9 @@
   display: flex;
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
+  width: 100%;
+  max-width: 100%;
+
 }
 .card {
   border-radius: 10px;
@@ -10,6 +13,9 @@
   margin: 0 1.2rem 1.2rem 0;
   box-shadow: 0 3px 6px 0 rgba(200, 211, 214, 0.2)!important;
   border: solid 1px #c8d3d6;
+  max-width: 32%!important;
+  width: 32%;
+
 }
 .card-custom {
   border-radius: 10px;
