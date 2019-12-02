@@ -15,6 +15,7 @@ const AccountSummary = (props) => {
     checkedServices,
     activeServices,
     containerWidth,
+    i18n,
   } = props;
 
   const localService = JSON.parse(localStorage.getItem('cr_services'));
@@ -46,6 +47,8 @@ const AccountSummary = (props) => {
                     handleChooseService={handleChooseService}
                     checkedServices={checkedServices}
                     assignedAgents={item.agents}
+                    i18n={i18n}
+                    nameFr={item.name_fr}
                   />
                 ))}
               </>
@@ -69,6 +72,8 @@ const AccountSummary = (props) => {
                       agentAssigned={false}
                       assignedAgents={item.agents}
                       checkedServices={checkedServices}
+                      i18n={i18n}
+                      nameFr={item.name_fr}
                     />
                   ))}
               </>
