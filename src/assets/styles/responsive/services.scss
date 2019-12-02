@@ -1,4 +1,19 @@
 @media (max-width: 470px) {
+  .button.is-large {
+        font-size: initial!important;
+  }
+  .filter-container {
+    margin: 1rem 3.2rem 2rem 4.2rem !important;
+  }
+  .chart-columns {
+    margin: 0 3.2rem 2rem 4.2rem !important;
+  }
+  .dashboard-title {
+    padding: 1.5rem 3.5rem!important;
+  }
+  .analytics-columns .column {
+    flex-basis: initial!important;
+  }
   .service-container {
     width: auto !important;
     justify-content: flex-start;
@@ -32,7 +47,24 @@
   }
 }
 
+@media (min-width: 1064px) {
+  .analytics-columns .column {
+    flex-basis: initial!important;
+  }
+}
 @media (max-width: 768px) {
+  .filter-container {
+    margin: 1rem 3.2rem 2rem 4.2rem !important;
+  }
+  .chart-columns {
+    margin: 0 3.2rem 2rem 4.2rem !important;
+  }
+  .dashboard-title {
+    padding: 1.5rem 3.5rem!important;
+  }
+  .analytics-columns .column {
+    flex-basis: initial!important;
+  }
   .steps-container {
     padding: 2rem 3rem;
 
