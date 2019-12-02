@@ -21,7 +21,7 @@ const FakeChannels = [
   {
     "id": "5b56e70ab253020033352sf2",
     "name": "Email",
-    "name_fr": "Mail",
+    "name_fr": "Canal de messagerie",
     "type": "email",
     "agentCount": 12,
     "icon": EmailIcon,
@@ -34,7 +34,7 @@ const FakeChannels = [
   {
     "id": "5b56e70ab253020033356hsy",
     "name": "Live Chat",
-    "name_fr": "Chat Live",
+    "name_fr": "Chat en direct",
     "type": "live",
     "agentCount": 7,
     "icon": LiveIcon,
@@ -47,7 +47,7 @@ const FakeChannels = [
   {
     "id": "5b56e70ab253020033388jjs",
     "name": "Phone Call",
-    "name_fr": "Appels",
+    "name_fr": "Appel téléphonique",
     "type": "phone",
     "agentCount": 8,
     "icon": PhoneIcon,
@@ -60,7 +60,7 @@ const FakeChannels = [
   {
     "id": "5b56e70ab2530200333hst58",
     "name": "Web Form",
-    "name_fr": "Form Web",
+    "name_fr": "Formulaire Web",
     "type": "web",
     "agentCount": 12,
     "icon": WebIcon,

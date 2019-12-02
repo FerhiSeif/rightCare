@@ -33,6 +33,7 @@ const Channels = (props) => {
                 key={i}
                 icon={item.icon}
                 i18n={i18n}
+                nameFr={item.name_fr}
               />
             ))}
           </div>

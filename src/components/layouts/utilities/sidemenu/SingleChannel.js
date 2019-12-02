@@ -8,6 +8,7 @@ const SingleChannel = (props) => {
     t,
     type,
     icon,
+    nameFr,
   } = props;
 
   const currLang = i18n.language;
@@ -26,9 +27,7 @@ const SingleChannel = (props) => {
           </h4>
         ) : (
           <h4>
-            {t('side_menu.channel')}
-            {' '}
-            {type}
+            {nameFr}
           </h4>
         )}
         <span>
@@ -47,6 +46,7 @@ SingleChannel.propTypes = {
   agentCount: PropTypes.number.isRequired,
   type: PropTypes.string.isRequired,
   icon: PropTypes.string.isRequired,
+  nameFr: PropTypes.string.isRequired,
 };
 
 export default SingleChannel;
