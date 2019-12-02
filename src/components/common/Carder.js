@@ -22,6 +22,8 @@ const Carder = (props) => {
     isChannelEmpty,
     channelSelected,
     assignedAgents,
+    i18n,
+    nameFr,
   } = props;
 
   const [state, setState] = useState({
@@ -124,8 +126,6 @@ const Carder = (props) => {
     },
   };
 
-  console.log('listAgents', state.initAgents.length);
-
   return (
     <div className={[1, 2, 4, 5].indexOf(serviceCount) !== -1 ? 'card-custom' : 'card'} style={cardStyle.emptyChannel}>
 
@@ -135,6 +135,8 @@ const Carder = (props) => {
         icon={icon}
         darkIcon={darkIcon}
         title={title}
+        i18n={i18n}
+        nameFr={nameFr}
       />
       <Content
         agentAssigned={agentAssigned}

@@ -13,6 +13,7 @@ const AssignAgent = (props) => {
     activeServices,
     handleBack,
     containerWidth,
+    i18n,
   } = props;
 
   const agentStyles = {
@@ -51,6 +52,8 @@ const AssignAgent = (props) => {
                 handleChooseService={handleChooseService}
                 checkedServices={checkedServices}
                 assignedAgents={item.agents}
+                i18n={i18n}
+                nameFr={item.name_fr}
               />
             ))}
           </>
@@ -66,7 +69,7 @@ const AssignAgent = (props) => {
                       darkIcon={item.darkIcon}
                       key={i}
                       t={t}
-                      title={item.type}
+                      title={ item.type}
                       content={t('onboard.steps.no_agent_has_been_added')}
                       buttonText={t('onboard.steps.add_agent')}
                       isChannelEmpty={false}
@@ -76,6 +79,8 @@ const AssignAgent = (props) => {
                       handleChooseService={handleChooseService}
                       checkedServices={checkedServices}
                       assignedAgents={item.agents}
+                      i18n={i18n}
+                      nameFr={item.name_fr}
                     />
                   ))}
               </>

@@ -15,7 +15,8 @@ const MobileAddAgents = (props) => {
     activeServices,
     handleBack,
     kinda,
-    icon
+    icon,
+    i18n,
   } = props;
 
   const agentStyles = {
@@ -54,6 +55,8 @@ const MobileAddAgents = (props) => {
                 handleChooseService={handleChooseService}
                 checkedServices={checkedServices}
                 assignedAgents={item.agents}
+                i18n={i18n}
+                nameFr={item.name_fr}
               />
             </div>
           ))}
@@ -77,6 +80,8 @@ const MobileAddAgents = (props) => {
                     handleChooseService={handleChooseService}
                     checkedServices={checkedServices}
                     assignedAgents={item.agents}
+                    i18n={i18n}
+                    nameFr={item.name_fr}
                   />
                 </div>
               ))}
