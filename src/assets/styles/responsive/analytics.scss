@@ -3,7 +3,7 @@
   box-shadow: 0 3px 6px 0 rgba(163, 163, 163, 0.19);
   border: solid 1px #c8d3d6;
   background-color: #ffffff;
-  margin: 0 6.2rem 2rem 6.2rem !important;
+  margin: 0 3.2rem 2rem 4.2rem !important;
   display: flex;
   .analytics-children {
     padding: 2rem;
@@ -58,11 +58,15 @@
 
 .menu-dash-icon {
   margin-top: .5rem;
-margin-left: 3.5rem;
-width: 2.5rem;
+  margin-left: 1.5rem;
+  width: 2.5rem;
 }
 
 @media (max-width: 768px) {
+  .chart-columns .column-chart, .chart-columns .column > .column-content {
+    margin-bottom: 2rem;
+    margin-right: 0;
+  }
   .column-content .column-content-a {
     margin-top: 2rem;
   }
