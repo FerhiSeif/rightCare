@@ -6,7 +6,7 @@
     margin: 1rem 3.2rem 2rem 4.2rem !important;
   }
   .chart-columns {
-    margin: 0 3.2rem 2rem 4.2rem !important;
+    margin: 0 2.8rem 2rem 3.5rem !important;
   }
   .dashboard-title {
     padding: 1.5rem 3.5rem!important;
@@ -47,7 +47,7 @@
   }
 }
 
-@media (min-width: 1064px) {
+@media (max-width: 1064px) {
   .analytics-columns .column {
     flex-basis: initial!important;
   }
