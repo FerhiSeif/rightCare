@@ -91,6 +91,7 @@ const AccountSummary = (props) => {
             icon={ChannelIcon}
             checkedServices={checkedServices}
             handleChooseService={handleChooseService}
+            i18n={i18n}
           />
 
           <HasAgents
