@@ -12,7 +12,10 @@ const SelectedChannels = (props) => {
     icon,
     checkedServices,
     handleChooseService,
+    i18n,
   } = props;
+
+  const currLang = i18n.language;
 
   const serviceStyle = {
     firstImage: {
@@ -79,9 +82,9 @@ const SelectedChannels = (props) => {
           <div className="service-container-custom" style={serviceStyle.serviceContainer}>
             { localServices && localServices.length > 0 && (
               <>
-                { (FakeChannels .filter((channel) => localServices.indexOf(channel.type) >= 0)
-                    && FakeChannels .filter((channel) => localServices.indexOf(channel.type) >= 0).length > 0)
-                    && FakeChannels .filter((channel) => localServices.indexOf(channel.type) >= 0).map((item, i) => ((
+                { (FakeChannels.filter((channel) => localServices.indexOf(channel.type) >= 0)
+                    && FakeChannels.filter((channel) => localServices.indexOf(channel.type) >= 0).length > 0)
+                    && FakeChannels.filter((channel) => localServices.indexOf(channel.type) >= 0).map((item, i) => ((
                   <label
                     className="service-card is-selected-case"
                     control={item.type}
@@ -89,7 +92,7 @@ const SelectedChannels = (props) => {
                     style={serviceStyle.label}
                   >
                     <img src={item.darkIcon} alt={i} />
-                    <span>{item.name}</span>
+                    <span>{currLang === 'en' ? item.name : item.name_fr}</span>
                   </label>
                 )))}
                 { !(FakeChannels .filter((channel) => localServices.indexOf(channel.type) >= 0)
