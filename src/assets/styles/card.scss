@@ -13,7 +13,7 @@
   margin: 0 1.2rem 1.2rem 0;
   box-shadow: 0 3px 6px 0 rgba(200, 211, 214, 0.2)!important;
   border: solid 1px #c8d3d6;
-  width: 29rem;
+  width: 28rem;
   max-width: 29rem !important;
 
 }
@@ -192,10 +192,10 @@
   border-style: dashed;
   cursor: pointer;
 }
-// .carousel-track {
-//   height: 16rem!important;
-// }
 
 .carousel-item {
   padding: 0 5px
+}
+.card-custom label.service-card.is-selected-case {
+  padding: 1rem!important;
 }
