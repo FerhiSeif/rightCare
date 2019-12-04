@@ -1,9 +1,16 @@
 @media (max-width: 470px) {
   .button.is-large {
-        font-size: initial!important;
+    font-size: initial!important;
+  }
+  .button.is-large.first-btn {
+    font-size: initial!important;
+    margin-right: 1rem!important;
   }
   .filter-container {
     margin: 1rem 3.2rem 2rem 4.2rem !important;
+    .button {
+      width: auto!important;
+    }
   }
   .chart-columns {
     margin: 0 2.8rem 2rem 3.5rem !important;
@@ -18,6 +25,11 @@
     width: auto !important;
     justify-content: flex-start;
     margin-left: 2rem!important;
+  }
+  .card-custom label.service-card {
+    width: calc(50% - 1rem);
+    max-width: initial;
+    min-height: 6rem;
   }
   .service-container .service-card,
   .service-container-custom .service-card {
@@ -47,12 +59,29 @@
   }
 }
 
-@media (max-width: 1064px) {
+@media (min-width: 764px) {
   .analytics-columns .column {
     flex-basis: initial!important;
   }
 }
 @media (max-width: 768px) {
+  .App-Select .css-yk16xz-control, .App-Select .css-1pahdxg-control {
+    width: 5rem!important;
+    span {
+      display: none;
+    }
+  }
+  .App-Select .css-2b097c-container {
+    >*.css-26l3qy-menu {
+      width: 0rem!important;
+    }
+  }
+  .mr-5 {
+    margin-right: 4rem;
+  }
+  button.modal-close.is-large {
+    display: none;
+  }
   .filter-container {
     margin: 1rem 3.2rem 2rem 4.2rem !important;
   }
@@ -108,16 +137,19 @@
     width: initial!important;
     max-width: initial!important;
   }
+  .card-custom label.service-card.is-selected-case {
+    padding: 0 !important
+  }
   .card-content.content.service-container .service-card,
   .service-container-custom .service-card {
-    width: initial;
-    height: initial;
-    max-width: initial;
-    max-height: initial;
-    min-width: initial;
-    min-height: initial;
-    padding-top: 0;
-    padding-bottom: .5rem;
+    // width: initial;
+    // height: initial;
+    // max-width: initial;
+    // max-height: initial;
+    // min-width: initial;
+    // min-height: initial;
+    // padding-top: 0;
+    // padding-bottom: .5rem;
     img {
       width: 2rem !important;
     }
