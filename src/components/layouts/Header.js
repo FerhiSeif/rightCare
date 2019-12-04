@@ -72,7 +72,7 @@ const Header = (props) => {
   return (
     <div className={`${kind === 'dashboard' ? 'column dashboard is-four-fifths' : ''}`}>
       <nav className="navbar" role="navigation" aria-label="main navigation" style={topNavCustomStyle.navbar}>
-        { containerWidth <= 768 && <img src={DrawerIcon} className="menu-dash-icon" onClick={toggleDrawer('left', true)}/>}
+        { (containerWidth <= 768 && kind !== 'onboard') && <img src={DrawerIcon} className="menu-dash-icon" onClick={toggleDrawer('left', true)}/>}
         { containerWidth <= 768 && <DrawerLayout toggleDrawer={toggleDrawer} left={state.left} t={t} containerWidth={containerWidth} />}
         { kind !== 'dashboard'
         && (
@@ -80,11 +80,18 @@ const Header = (props) => {
             <a className="navbar-item" href="/">
               <img alt="logo icon" src={DesktopLogo} />
             </a>
-            <a href="/" role="button" className="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-              <span aria-hidden="true" />
-              <span aria-hidden="true" />
-              <span aria-hidden="true" />
-            </a>
+            <div className="navbar-burger burger mr-5">
+              { containerWidth <= 768 && (
+                <Select
+                  options={options}
+                  value={defaultLang}
+                  onChange={changeLang}
+                  className="App-Select"
+                  isSearchable={false}
+                  style={{width: '5rem'}}
+                />
+              )}
+            </div>
           </div>
         )}
         <div id="navbarBasicExample" className="navbar-menu">
