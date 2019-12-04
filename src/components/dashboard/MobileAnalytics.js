@@ -18,8 +18,8 @@ const MobileAnalytics = (props) => {
       <h2 className="dashboard-title">{t('dashboard.dashboard_overview')}</h2>
       <div className={`${containerWidth > 768 ? 'analytics-columns' : 'mobile-analytics-columns'} columns`}>
         <div className="filter-container">
-          <button className="button is-info is-light is-large first-btn"><img src={ActiveChannelIcon} alt="Channel" className="calendar"/>All channels<img src={MoreIcon} alt="Filter" className="more-icon"/></button>
-          <button className="button is-light is-large last-btn"><img src={CalendarIcon} className="calendar"/>September<img src={MoreIcon} alt="Filter" className="more-icon"/></button>
+          <button className="button is-info is-light is-large first-btn"><img src={ActiveChannelIcon} alt="Channel" className="calendar"/>{t('dashboard.all_channels')}<img src={MoreIcon} alt="Filter" className="more-icon"/></button>
+          <button className="button is-light is-large last-btn"><img src={CalendarIcon} className="calendar"/>{t('dashboard.september')}<img src={MoreIcon} alt="Filter" className="more-icon"/></button>
         </div>
 
         <div className="mobile-analytics-cards">
