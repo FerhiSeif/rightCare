@@ -176,6 +176,7 @@ class App extends Component {
             defaultLang={defaultLang}
             kind="onboard"
             isLogged={false}
+            containerWidth={containerWidth}
           />
         </Route>
         <Switch>
