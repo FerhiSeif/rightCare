@@ -19,9 +19,21 @@ export const frLabelIcon = (
   </div>
 );
 
+export const emptyFrLabelIcon = (
+  <div style={langStyles.langContainer}>
+    <img alt="lang icon" src={LangIconFr} style={langStyles.langIcons} />
+  </div>
+);
+
 export const enLabelIcon = (
   <div style={langStyles.langContainer}>
     <img alt="lang icon" src={LangIconEn} style={langStyles.langIcons} />
     <span>English</span>
+  </div>
+);
+
+export const emptyEnLabelIcon = (
+  <div style={langStyles.langContainer}>
+    <img alt="lang icon" src={LangIconEn} style={langStyles.langIcons} />
   </div>
 );
