@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import Header from '../layouts/Header';
-import { options } from '../../configs/options';
+import { options, mobileOptions } from '../../configs/options';
 import WelcomeImg from '../../assets/images/onboard/welcome.png';
 
 const Welcome = (props) => {
@@ -12,17 +12,19 @@ const Welcome = (props) => {
     defaultLang,
     changeLang,
     isLogged,
+    containerWidth,
   } = props;
 
   return (
     <>
       <Header
-        options={options}
+        options={containerWidth <= 768 ? mobileOptions : options}
         defaultLang={defaultLang}
         changeLang={changeLang}
         kind={kind}
         isLogged={isLogged}
         t={t}
+        containerWidth={containerWidth}
       />
 
       <div className="home-container">
