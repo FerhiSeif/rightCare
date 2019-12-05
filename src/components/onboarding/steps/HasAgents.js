@@ -29,11 +29,11 @@ const HasAgents = (props) => {
           </span>
           {title}
         </p>
-        <a href="/onboard" className="card-header-icon" aria-label="more options">
+        <div className="card-header-icon" aria-label="more options">
           <span className="icon">
             {FakeAgents.length}
           </span>
-        </a>
+        </div>
       </header>
       <div className="card-content">
         <div className="content">

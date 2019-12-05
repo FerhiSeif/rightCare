@@ -23,7 +23,7 @@ const Header = (props) => {
           </span>
           {currLang === 'en' ? title : nameFr}
         </p>
-        <a href="/onboard" className="card-header-icon" aria-label="more options">
+        <div className="card-header-icon" aria-label="more options">
           { initialAgents && initialAgents.length > 0 ? (
             <span className="icon">
               {initialAgents.length}
@@ -33,7 +33,7 @@ const Header = (props) => {
               0
             </span>
           )}
-        </a>
+        </div>
       </header>
     </>
   );

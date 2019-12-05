@@ -18,7 +18,7 @@ const Welcome = (props) => {
   return (
     <>
       <Header
-        options={containerWidth <= 768 ? mobileOptions : options}
+        options={options}
         defaultLang={defaultLang}
         changeLang={changeLang}
         kind={kind}

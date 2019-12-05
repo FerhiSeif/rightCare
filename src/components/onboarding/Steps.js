@@ -198,12 +198,14 @@ export default function Steps(props) {
   };
 
   const handleSkip = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep + 2);
-    setSkipped((prevSkipped) => {
-      const newSkipped = new Set(prevSkipped.values());
-      newSkipped.add(activeStep);
-      return newSkipped;
-    });
+    if (activeStep === 0) {
+      setActiveStep((prevActiveStep) => prevActiveStep + 2);
+      setSkipped((prevSkipped) => {
+        const newSkipped = new Set(prevSkipped.values());
+        newSkipped.add(activeStep);
+        return newSkipped;
+      });
+    }
   };
 
   const handleStep = (step) => () => {
@@ -306,7 +308,7 @@ export default function Steps(props) {
                       <Button
                         variant="outlined"
                         color="primary"
-                        onClick={handleSkip}
+                        onClick={activeStep === 1 ? handleNext : handleSkip}
                         className={classes.buttonOutlined}
                       >
                         {t('onboard.skip')}

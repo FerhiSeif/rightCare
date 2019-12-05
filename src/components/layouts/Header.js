@@ -67,6 +67,9 @@ const Header = (props) => {
     search: {
       backgroundColor: kind === 'dashboard' ? '#fafbfd' : '#fff',
     },
+    select: {
+      width: '5rem',
+    },
   };
 
   return (
@@ -80,7 +83,7 @@ const Header = (props) => {
             <a className="navbar-item" href="/">
               <img alt="logo icon" src={DesktopLogo} />
             </a>
-            <div className="navbar-burger burger mr-5">
+            <div className="ml-auto">
               { containerWidth <= 768 && (
                 <Select
                   options={options}
@@ -88,7 +91,7 @@ const Header = (props) => {
                   onChange={changeLang}
                   className="App-Select"
                   isSearchable={false}
-                  style={{width: '5rem'}}
+                  style={topNavCustomStyle.select}
                 />
               )}
             </div>
