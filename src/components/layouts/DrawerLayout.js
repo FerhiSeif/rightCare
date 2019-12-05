@@ -7,7 +7,10 @@ import Header from './utilities/sidemenu/Header';
 
 const useStyles = makeStyles({
   list: {
-    width: 450,
+    width: 380,
+  },
+  mobileList: {
+    width: 300,
   },
   fullList: {
     width: 'auto',
@@ -23,9 +26,10 @@ const DrawerLayout = (props) => {
   } = props;
 
   const classes = useStyles();
+
   const sideList = (side) => (
     <div
-      className={classes.list}
+      className={containerWidth <= 400 ? classes.mobileList : classes.list}
       role="presentation"
       onClick={toggleDrawer(side, false)}
       onKeyDown={toggleDrawer(side, false)}
