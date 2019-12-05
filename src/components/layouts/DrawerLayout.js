@@ -26,7 +26,7 @@ const DrawerLayout = (props) => {
   } = props;
 
   const classes = useStyles();
-  console.log('containerWidth', containerWidth);
+
   const sideList = (side) => (
     <div
       className={containerWidth <= 400 ? classes.mobileList : classes.list}
