@@ -80,6 +80,12 @@
   }
 }
 @media (max-width: 768px) {
+  .ml-auto {
+    margin-left: auto;
+  }
+  .App-Select {
+      width: 100px;
+  }
   .App-Select .css-yk16xz-control, .App-Select .css-1pahdxg-control {
     width: 5rem!important;
     span {
