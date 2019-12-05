@@ -1,10 +1,25 @@
+@media (max-width: 300px) {
+  body {
+    overflow-x: auto!important;
+  }
+  .filter-container {
+    display: block!important;
+    text-align: center;
+    .first-btn {
+      margin: 0 0 1rem 0 !important;
+    }
+  }
+  .dashboard-title {
+    font-size: 1.5rem;
+  }
+}
 @media (max-width: 470px) {
   .button.is-large {
     font-size: initial!important;
   }
   .button.is-large.first-btn {
     font-size: initial!important;
-    margin-right: 1rem!important;
+    margin-right: 1rem;
   }
   .filter-container {
     margin: 1rem 3.2rem 2rem 4.2rem !important;
@@ -138,7 +153,7 @@
     max-width: initial!important;
   }
   .card-custom label.service-card.is-selected-case {
-    padding: 0 !important
+    // padding: 0 !important
   }
   .card-content.content.service-container .service-card,
   .service-container-custom .service-card {
