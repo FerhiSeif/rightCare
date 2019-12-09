@@ -13,6 +13,7 @@ const SelectedChannels = (props) => {
     checkedServices,
     handleChooseService,
     i18n,
+    currentStep,
   } = props;
 
   const currLang = i18n.language;
@@ -103,7 +104,7 @@ const SelectedChannels = (props) => {
                 )}
               </>
             )}
-            <div className="add-more" onClick={handleAddChannelModal} data-tooltip={t('onboard.steps.add_channel')}><span>+</span></div>
+            {currentStep !== 3 && (<div className="add-more" onClick={handleAddChannelModal} data-tooltip={t('onboard.steps.add_channel')}><span>+</span></div>)}
           </div>
         </div>
       </div>

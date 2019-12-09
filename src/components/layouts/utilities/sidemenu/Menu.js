@@ -113,7 +113,7 @@ const MenuSide = (props) => {
             {t('side_menu.dashboard')}
           </NavLink>
         </li>
-        <li>
+        {/*<li>
           <NavLink
             activeClassName="selected"
             className="sidelink"
@@ -131,14 +131,14 @@ const MenuSide = (props) => {
           <NavLink
             activeClassName="selected"
             className="sidelink"
-            to="tickets"
-            onMouseOver={() => handleMouseOver('ticket')}
-            onMouseOut={() => handleMouseOut('ticket')}
+            to="logout"
+            onMouseOver={() => handleMouseOver('logout')}
+            onMouseOut={() => handleMouseOut('logout')}
             onFocus={(e) => e}
             onBlur={(e) => e}
           >
-            <img alt="ticket icon" src={currentTicketIcon} ref={ticketLink} />
-            {t('side_menu.tickets')}
+            <img alt="log icon" src={currentLogoutIcon} ref={logoutLink} />
+            {t('side_menu.logout')}
           </NavLink>
         </li>
         <li>
@@ -169,6 +169,21 @@ const MenuSide = (props) => {
             {t('side_menu.profile')}
           </NavLink>
         </li>
+        */}
+        <li>
+          <NavLink
+            activeClassName="selected"
+            className="sidelink"
+            to="tickets"
+            onMouseOver={() => handleMouseOver('ticket')}
+            onMouseOut={() => handleMouseOut('ticket')}
+            onFocus={(e) => e}
+            onBlur={(e) => e}
+          >
+            <img alt="ticket icon" src={currentTicketIcon} ref={ticketLink} />
+            {t('side_menu.tickets')}
+          </NavLink>
+        </li>
         <li>
           <NavLink
             activeClassName="selected"
@@ -183,20 +198,7 @@ const MenuSide = (props) => {
             {t('side_menu.settings')}
           </NavLink>
         </li>
-        <li>
-          <NavLink
-            activeClassName="selected"
-            className="sidelink"
-            to="logout"
-            onMouseOver={() => handleMouseOver('logout')}
-            onMouseOut={() => handleMouseOut('logout')}
-            onFocus={(e) => e}
-            onBlur={(e) => e}
-          >
-            <img alt="log icon" src={currentLogoutIcon} ref={logoutLink} />
-            {t('side_menu.logout')}
-          </NavLink>
-        </li>
+
       </ul>
     </div>
   );

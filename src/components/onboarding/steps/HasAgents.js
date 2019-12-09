@@ -10,6 +10,7 @@ const HasAgents = (props) => {
     t,
     kind,
     title,
+    currentStep,
   } = props;
 
   const isChannelEmpty = false;
@@ -51,9 +52,9 @@ const HasAgents = (props) => {
                 <button className="button is-primary is-outlined btn-customed">{t('onboard.view_all')}</button>
               </div>
             )}
-            <div className="add-more" style={agentStyle.addMore}>
+            {currentStep !== 3 && (<div className="add-more" style={agentStyle.addMore}>
               <span>+</span>
-            </div>
+            </div>)}
           </div>
         </div>
       </div>

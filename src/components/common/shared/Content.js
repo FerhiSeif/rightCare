@@ -13,6 +13,7 @@ const Header = (props) => {
     agentAssigned,
     buttonText,
     isChannelEmpty,
+    currentStep,
   } = props;
 
   return (
@@ -30,9 +31,11 @@ const Header = (props) => {
                   </div>
                 ))
               }
-              <div className="add-more" onClick={handleAddRessourceModal}>
-                <span>+</span>
-              </div>
+              {currentStep !== 3 && (
+                <div className="add-more" onClick={handleAddRessourceModal}>
+                  <span>+</span>
+                </div>
+              )}
             </div>
           </div>
         ) : (
@@ -40,7 +43,9 @@ const Header = (props) => {
             {hasAgents ? (<HasAgents handleAddRessourceModal={handleAddRessourceModal} kind={kind} isChannelEmpty={isChannelEmpty} />) :
               (<>
               <p>{content}</p>
-              <button className="button is-success is-outlined" onClick={handleAddRessourceModal}>{buttonText}</button>
+              {currentStep !== 3 && (
+                <button className="button is-success is-outlined" onClick={handleAddRessourceModal}>{buttonText}</button>
+              )}
               </>
             )}
           </div>
