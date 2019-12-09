@@ -49,6 +49,7 @@ const AccountSummary = (props) => {
                     assignedAgents={item.agents}
                     i18n={i18n}
                     nameFr={item.name_fr}
+                    currentStep={3}
                   />
                 ))}
               </>
@@ -74,6 +75,7 @@ const AccountSummary = (props) => {
                       checkedServices={checkedServices}
                       i18n={i18n}
                       nameFr={item.name_fr}
+                      currentStep={3}
                     />
                   ))}
               </>
@@ -92,12 +94,14 @@ const AccountSummary = (props) => {
             checkedServices={checkedServices}
             handleChooseService={handleChooseService}
             i18n={i18n}
+            currentStep={3}
           />
 
           <HasAgents
             kind="channel"
             t={t}
             title={t('onboard.steps.added_agents')}
+            currentStep={3}
           />
 
         </>
@@ -110,6 +114,7 @@ const AccountSummary = (props) => {
             checkedServices={checkedServices}
             handleChooseService={handleChooseService}
             kinda="summary"
+            currentStep={3}
           />
         )}
     </div>

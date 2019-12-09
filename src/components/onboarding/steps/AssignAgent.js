@@ -54,6 +54,7 @@ const AssignAgent = (props) => {
                 assignedAgents={item.agents}
                 i18n={i18n}
                 nameFr={item.name_fr}
+                currentStep={2}
               />
             ))}
           </>
@@ -81,6 +82,7 @@ const AssignAgent = (props) => {
                       assignedAgents={item.agents}
                       i18n={i18n}
                       nameFr={item.name_fr}
+                      currentStep={2}
                     />
                   ))}
               </>

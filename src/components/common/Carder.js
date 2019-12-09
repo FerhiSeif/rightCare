@@ -24,6 +24,7 @@ const Carder = (props) => {
     assignedAgents,
     i18n,
     nameFr,
+    currentStep,
   } = props;
 
   const [state, setState] = useState({
@@ -149,6 +150,7 @@ const Carder = (props) => {
         content={content}
         buttonText={buttonText}
         cardStyle={cardStyle.agentStyle}
+        currentStep={currentStep}
       />
       <Modal
         t={t}
