@@ -30,8 +30,6 @@ const TicketsTimer = (props) => {
       fontSize: '2rem',
     },
     card: {
-      width: 'initial',
-      maxWidth: 'initial',
       marginRight: '0',
     },
     p: {
@@ -43,7 +41,7 @@ const TicketsTimer = (props) => {
   };
 
   return (
-    <div className="card" style={cardStyle.card}>
+    <div className="card customer-card" style={cardStyle.card}>
       <header className="card-header">
         <p className="card-header-title" style={cardStyle.p}>
           {t('settings.tickets_timer')}
