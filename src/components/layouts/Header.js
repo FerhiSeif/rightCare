@@ -139,7 +139,9 @@ const Header = (props) => {
           </div>
         </div>
       </nav>
+
       { kind === 'dashboard' && (<AnalyticsManager t={t} containerWidth={containerWidth} containerHeight={containerHeight} i18n={i18n} />)}
+
       { kind === 'settings' && (<SettingsManager t={t} containerWidth={containerWidth} i18n={i18n} />)}
     </div>
   );

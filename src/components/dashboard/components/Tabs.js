@@ -31,12 +31,14 @@ const Tabs = (props) => {
   return (
     <div style={cardStyle.titleContainer}>
       <h2 style={cardStyle.h2}>
-        {kind === 'dashboard' ? t('dashboard.dashboard_overview') : 'Settings'}
+        {kind === 'dashboard' ? t('dashboard.dashboard_overview') : t('settings.settings_overview')}
       </h2>
       <div className="card" style={cardStyle.card}>
         <Tabber>
           <TabList>
-            <Tab>Ticket Settings</Tab>
+            <Tab>
+              {t('settings.ticket_settings')}
+            </Tab>
           </TabList>
 
           <TabPanel>

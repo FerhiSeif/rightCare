@@ -41,7 +41,7 @@ const Carder = (props) => {
       correspondingChannel.agents.push(id);
     }
     localStorage.setItem('cr_services', JSON.stringify(localService));
-    const updatedAgents = FakeAgents.filter((agent) => correspondingChannel.agents.includes(agent.id))
+    const updatedAgents = FakeAgents.filter((agent) => correspondingChannel.agents.includes(agent.id));
     setState((prevState) => ({
       ...prevState,
       initialAgents: updatedAgents,

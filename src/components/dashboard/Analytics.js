@@ -19,7 +19,7 @@ const Analytics = (props) => {
   return (
     <>
       <h2 className="dashboard-title">
-        {kind === 'dashboard' ? t('dashboard.dashboard_overview') : 'Settings'}
+        {kind === 'dashboard' ? t('dashboard.dashboard_overview') : t('settings.settings_overview')}
       </h2>
       <div className="columns analytics-columns">
         <Agents t={t} CalendarIcon={CalendarIcon} MoreIcon={MoreIcon} />

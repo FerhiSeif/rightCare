@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import TicketsPriority from './Priorities/TicketsPriority';
 import TicketsStatus from './Statuses/TicketsStatus';
@@ -9,19 +9,29 @@ import Modal from './Modal';
 
 const Content = (props) => {
   const {
+    t,
     kind,
   } = props;
+
+  const [modalTitle, setModalTitle] = useState('');
+  const [modalContent, setModalContent] = useState('');
 
   const agentModal = React.createRef();
 
   const handleAddRessourceModal = () => {
     document.body.classList.add('modal-opened');
     agentModal.current.classList.add('is-active');
+
+    setModalTitle('');
+    setModalContent(() => {});
   };
 
   const handleCloseRessourceModal = () => {
     document.body.classList.remove('modal-opened');
     agentModal.current.classList.remove('is-active');
+
+    setModalTitle('');
+    setModalContent(() => {});
   };
 
   return (
@@ -29,21 +39,41 @@ const Content = (props) => {
       <div className="card-content">
         <div className="content">
           <div className="content-container">
-              <TicketsPriority handleCloseRessourceModal={handleCloseRessourceModal} handleAddRessourceModal={handleAddRessourceModal} />
-              <TicketsStatus handleCloseRessourceModal={handleCloseRessourceModal} handleAddRessourceModal={handleAddRessourceModal} />
-              <TicketsCategory handleCloseRessourceModal={handleCloseRessourceModal} handleAddRessourceModal={handleAddRessourceModal} />
-              <CustomerInformations handleCloseRessourceModal={handleCloseRessourceModal} handleAddRessourceModal={handleAddRessourceModal} />
-              <TicketsTimer handleCloseRessourceModal={handleCloseRessourceModal} handleAddRessourceModal={handleAddRessourceModal} />
+            <TicketsPriority
+              t={t}
+              handleCloseRessourceModal={handleCloseRessourceModal}
+              handleAddRessourceModal={handleAddRessourceModal}
+            />
+            <TicketsStatus
+              t={t}
+              handleCloseRessourceModal={handleCloseRessourceModal}
+              handleAddRessourceModal={handleAddRessourceModal}
+            />
+            <TicketsCategory
+              t={t}
+              handleCloseRessourceModal={handleCloseRessourceModal}
+              handleAddRessourceModal={handleAddRessourceModal}
+            />
+            <CustomerInformations
+              t={t}
+              handleCloseRessourceModal={handleCloseRessourceModal}
+              handleAddRessourceModal={handleAddRessourceModal}
+            />
+            <TicketsTimer
+              t={t}
+              handleCloseRessourceModal={handleCloseRessourceModal}
+              handleAddRessourceModal={handleAddRessourceModal}
+            />
           </div>
         </div>
       </div>
       <Modal
         agentModal={agentModal}
         handleCloseRessourceModal={handleCloseRessourceModal}
-        title="Modal title"
-        content="content text"
+        title={modalTitle}
+        content={modalContent}
         kind={kind}
-        buttonText="Conitnue"
+        buttonText={t('settings.conitnue')}
       />
     </>
 
@@ -51,8 +81,8 @@ const Content = (props) => {
 };
 
 Content.propTypes = {
+  t: PropTypes.func.isRequired,
   kind: PropTypes.string.isRequired,
-  initialAgents: PropTypes.shape({}).isRequired,
 };
 
 export default Content;
