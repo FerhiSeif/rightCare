@@ -12,7 +12,7 @@ const AnalyticsManager = (props) => {
 
   return (
     <>
-      { containerWidth > 768 && <Analytics t={t} i18n={i18n} /> }
+      { containerWidth > 768 && <Analytics t={t} i18n={i18n} kind="dashboard" /> }
       { containerWidth <= 768 && <MobileAnalytics t={t} containerWidth={containerWidth} i18n={i18n} /> }
     </>
 
