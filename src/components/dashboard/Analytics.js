@@ -13,11 +13,14 @@ const Analytics = (props) => {
   const {
     i18n,
     t,
+    kind,
   } = props;
 
   return (
     <>
-      <h2 className="dashboard-title">{t('dashboard.dashboard_overview')}</h2>
+      <h2 className="dashboard-title">
+        {kind === 'dashboard' ? t('dashboard.dashboard_overview') : 'Settings'}
+      </h2>
       <div className="columns analytics-columns">
         <Agents t={t} CalendarIcon={CalendarIcon} MoreIcon={MoreIcon} />
         <CompleteRequest t={t} CalendarIcon={CalendarIcon} MoreIcon={MoreIcon} />
@@ -48,6 +51,7 @@ const Analytics = (props) => {
 Analytics.propTypes = {
   i18n: PropTypes.shape({}).isRequired,
   t: PropTypes.func.isRequired,
+  kind: PropTypes.string.isRequired,
 };
 
 export default Analytics;
