@@ -31,10 +31,6 @@ const CustomerInformations = (props) => {
       padding: '1.5rem 0',
       fontSize: '2rem',
     },
-    card: {
-      width: '50%',
-      maxWidth: '50%',
-    },
     p: {
       color: '#4c4c4c',
       fontSize: '16px',
@@ -44,7 +40,7 @@ const CustomerInformations = (props) => {
   };
 
   return (
-    <div className="card" style={cardStyle.card}>
+    <div className="card customer-card">
       <header className="card-header">
         <p className="card-header-title" style={cardStyle.p}>
           {t('settings.customer_informations')}
