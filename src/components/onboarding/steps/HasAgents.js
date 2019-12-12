@@ -21,6 +21,19 @@ const HasAgents = (props) => {
     },
   };
 
+  const localService = JSON.parse(localStorage.getItem('cr_services'));
+
+  const newValues = [];
+  if (localService) {
+    for (let i = 0; i < localService.length; i++) {
+      newValues.push(...localService[i].agents);
+    }
+  }
+
+  const selectedServices = newValues.filter((v, i) => newValues.indexOf(v) === i);
+
+  const addedAgents = FakeAgents.filter((agent) => (selectedServices.indexOf(agent.id) >= 0));
+
   return (
     <div className="card-custom">
       <header className="card-header">
@@ -32,22 +45,22 @@ const HasAgents = (props) => {
         </p>
         <div className="card-header-icon" aria-label="more options">
           <span className="icon">
-            {FakeAgents.length}
+            {addedAgents.length}
           </span>
         </div>
       </header>
       <div className="card-content">
         <div className="content">
           <div className="content-container">
-            { FakeAgents.map((item, i) => (
-              <div className={`${kind === 'channel' ? 'cobok-channel' : 'cobok'}`} key={i}>
-                <div data-tooltip={item.full_name} className="tooltip-title">
-                  <img src={item.profile_image} alt={item.full_name} data-tooltip={item.full_name} />
+            { addedAgents.map((item, i) => (
+                <div className={`${kind === 'channel' ? 'cobok-channel' : 'cobok'}`} key={i}>
+                  <div data-tooltip={item.full_name} className="tooltip-title">
+                    <img src={item.profile_image} alt={item.full_name} data-tooltip={item.full_name} />
+                  </div>
                 </div>
-              </div>
             ))}
             <br />
-            { FakeAgents.length > 7 && (
+            { FakeAgents.length > 10 && (
               <div className="cobok-channel">
                 <button className="button is-primary is-outlined btn-customed">{t('onboard.view_all')}</button>
               </div>

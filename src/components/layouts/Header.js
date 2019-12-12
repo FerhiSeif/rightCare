@@ -7,6 +7,7 @@ import NotifIcon from '../../assets/images/profile/notif.svg';
 import SearchIcon from '../../assets/images/profile/search.svg';
 import DrawerIcon from '../../assets/images/dashboard/drawer.svg';
 import AnalyticsManager from '../dashboard/AnalyticsManager';
+import SettingsManager from '../dashboard/SettingsManager';
 import DrawerLayout from './DrawerLayout';
 
 const Header = (props) => {
@@ -73,11 +74,11 @@ const Header = (props) => {
   };
 
   return (
-    <div className={`${kind === 'dashboard' ? 'column dashboard is-four-fifths' : ''}`}>
+    <div className={`${(kind === 'dashboard' || kind === 'settings') ? 'column dashboard is-four-fifths' : ''}`}>
       <nav className="navbar" role="navigation" aria-label="main navigation" style={topNavCustomStyle.navbar}>
         { (containerWidth <= 768 && kind !== 'onboard') && <img src={DrawerIcon} className="menu-dash-icon" onClick={toggleDrawer('left', true)}/>}
         { containerWidth <= 768 && <DrawerLayout toggleDrawer={toggleDrawer} left={state.left} t={t} containerWidth={containerWidth} />}
-        { kind !== 'dashboard'
+        { (kind !== 'dashboard') && (kind !== 'settings')
         && (
           <div className="navbar-brand">
             <a className="navbar-item" href="/">
@@ -98,7 +99,7 @@ const Header = (props) => {
           </div>
         )}
         <div id="navbarBasicExample" className="navbar-menu">
-          { kind === 'dashboard'
+          { (kind === 'dashboard' || kind === 'settings')
             && (
               <div className="navbar-start">
                 <div className="field navbar-item">
@@ -139,6 +140,7 @@ const Header = (props) => {
         </div>
       </nav>
       { kind === 'dashboard' && (<AnalyticsManager t={t} containerWidth={containerWidth} containerHeight={containerHeight} i18n={i18n} />)}
+      { kind === 'settings' && (<SettingsManager t={t} containerWidth={containerWidth} i18n={i18n} />)}
     </div>
   );
 };

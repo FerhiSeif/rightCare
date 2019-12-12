@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Analytics from './Analytics';
+import Tabs from './components/Tabs';
 import MobileAnalytics from './MobileAnalytics';
 
-const AnalyticsManager = (props) => {
+const SettingsManager = (props) => {
   const {
     i18n,
     t,
@@ -12,17 +12,17 @@ const AnalyticsManager = (props) => {
 
   return (
     <>
-      { containerWidth > 768 && <Analytics t={t} i18n={i18n} kind="dashboard" /> }
+      { containerWidth > 768 && <Tabs t={t} i18n={i18n} /> }
       { containerWidth <= 768 && <MobileAnalytics t={t} containerWidth={containerWidth} i18n={i18n} /> }
     </>
 
   );
 };
 
-AnalyticsManager.propTypes = {
+SettingsManager.propTypes = {
   t: PropTypes.func.isRequired,
   i18n: PropTypes.shape({}).isRequired,
   containerWidth: PropTypes.number.isRequired,
 };
 
-export default AnalyticsManager;
+export default SettingsManager;
