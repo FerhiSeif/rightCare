@@ -30,8 +30,6 @@ const TicketsCategory = (props) => {
       fontSize: '2rem',
     },
     card: {
-      width: '100%',
-      maxWidth: '100%',
       marginRight: '0',
     },
     p: {
@@ -43,7 +41,7 @@ const TicketsCategory = (props) => {
   };
 
   return (
-    <div className="card" style={cardStyle.card}>
+    <div className="card tickets-card" style={cardStyle.card}>
       <header className="card-header">
         <p className="card-header-title" style={cardStyle.p}>
           {t('settings.tickets_category')}

@@ -33,7 +33,7 @@ const Tabs = (props) => {
       <h2 style={cardStyle.h2}>
         {kind === 'dashboard' ? t('dashboard.dashboard_overview') : t('settings.settings_overview')}
       </h2>
-      <div className="card" style={cardStyle.card}>
+      <div className="card tickets-card">
         <Tabber>
           <TabList>
             <Tab>
