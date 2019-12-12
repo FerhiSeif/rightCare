@@ -38,7 +38,7 @@ const CustomerInformationContent = (props) => {
             </div>
           </div>
           <div>
-            <div className="mr-0 children">
+            <div className="mr-0 children ml-0">
               <span className="label-title">
                 {t('settings.customer_informations_content.telephone')}
               </span>
