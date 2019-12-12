@@ -66,5 +66,55 @@
     "channel_chart": "Channel Chart",
     "all_channels": "All channels",
     "september": "September"
+  },
+  "settings": {
+    "settings_overview": "Settings",
+    "ticket_settings": "Ticket Settings",
+    "conitnue": "Conitnue",
+
+    "tickets_priority": "Tickets Priority",
+    "tickets_priority_content" : {
+      "hight": "Hight",
+      "very_urgent": "Very urgent",
+      "medium": "Medium",
+      "urgent": "Urgent",
+      "low": "Low",
+      "not_urgent": "Not urgent",
+      "new_priority": "New Priority"
+    },
+
+    "tickets_status": "Tickets Status",
+    "tickets_status_content" : {
+      "resolved": "Resolved",
+      "ticket_solved_close": "Ticket solved & close",
+      "pending": "Pending",
+      "on_going_ticket": "On-going ticket",
+      "new": "New",
+      "ticket_without_agent_assign": "Ticket without agent assign",
+      "new_status": "New Status"
+    },
+
+    "tickets_category": "Tickets Category",
+    "tickets_category_content" : {
+      "technical": "Technical",
+      "customer_care": "Customer Care",
+      "enquires": "Enquires",
+      "new_category": "New Category"
+    },
+
+    "customer_informations": "Customer Informations",
+    "customer_informations_content" : {
+      "first_name": "First Name",
+      "last_name": "Last Name",
+      "email": "Email",
+      "telephone": "Telephone",
+      "new_field": "New Field"
+    },
+
+    "tickets_timer": "Tickets Timer",
+    "tickets_timer_content" : {
+      "set_timer_ticket": "Set timer on ticket"
+    }
   }
+
 }

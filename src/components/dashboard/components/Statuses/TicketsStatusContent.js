@@ -3,7 +3,10 @@ import PropTypes from 'prop-types';
 
 const TicketsStatusContent = (props) => {
   const {
+    t,
     kind,
+    handleCloseRessourceModal,
+    handleAddRessourceModal,
   } = props;
 
   return (
@@ -12,29 +15,43 @@ const TicketsStatusContent = (props) => {
         <div className="ticket-priorities">
           <div>
             <div className="ml-0 children">
-              <span className="label-title">Resolved</span>
+              <span className="label-title">
+                {t('settings.tickets_status_content.resolved')}
+              </span>
               <span className="tickets-close-incard" />
             </div>
-            <div className="ticket-label ticket-solved">Ticket solved & close</div>
+            <div className="ticket-label ticket-solved">
+              {t('settings.tickets_status_content.ticket_solved_close')}
+            </div>
           </div>
           <div>
             <div className="children">
-              <span className="label-title">Pending</span>
+              <span className="label-title">
+                {t('settings.tickets_status_content.pending')}
+              </span>
               <span className="tickets-close-incard" />
             </div>
-            <div className="ticket-label ticket-urgent ml-1">On-going ticket</div>
+            <div className="ticket-label ticket-urgent ml-1">
+              {t('settings.tickets_status_content.on_going_ticket')}
+            </div>
           </div>
           <div>
             <div className="mr-0 children">
-              <span className="label-title">New</span>
+              <span className="label-title">
+                {t('settings.tickets_status_content.new')}
+              </span>
               <span className="tickets-close-incard" />
             </div>
-            <div className="ticket-label ticket-without-agent ml-1 mr-0">Ticket without agent assign</div>
+            <div className="ticket-label ticket-without-agent ml-1 mr-0">
+              {t('settings.tickets_status_content.ticket_without_agent_assign')}
+            </div>
           </div>
           <div>
-            <div className="mr-0 children dash-child">
+            <div className="mr-0 children dash-child" onClick={handleAddRessourceModal}>
               <span className="tickets-plus">+</span>
-              <span className="label-title mr-2">New Status</span>
+              <span className="label-title mr-2">
+                {t('settings.tickets_status_content.new_status')}
+              </span>
             </div>
           </div>
         </div>
@@ -44,8 +61,11 @@ const TicketsStatusContent = (props) => {
 };
 
 TicketsStatusContent.propTypes = {
+  t: PropTypes.func.isRequired,
   kind: PropTypes.string.isRequired,
   initialAgents: PropTypes.shape({}).isRequired,
+  handleCloseRessourceModal: PropTypes.func.isRequired,
+  handleAddRessourceModal: PropTypes.func.isRequired,
 };
 
 export default TicketsStatusContent;

@@ -7,6 +7,8 @@ const CustomerInformations = (props) => {
   const {
     t,
     kind,
+    handleCloseRessourceModal,
+    handleAddRessourceModal,
     i18n,
   } = props;
 
@@ -41,7 +43,7 @@ const CustomerInformations = (props) => {
     <div className="card customer-card">
       <header className="card-header">
         <p className="card-header-title" style={cardStyle.p}>
-          Customer Informations
+          {t('settings.customer_informations')}
         </p>
         <div className="card-header-icon" aria-label="more options">
           <Switch
@@ -64,7 +66,11 @@ const CustomerInformations = (props) => {
       <div className="card-content">
         <div className="content">
           <div className="content-container">
-            <CustomerInformationContent />
+            <CustomerInformationContent
+              t={t}
+              handleCloseRessourceModal={handleCloseRessourceModal}
+              handleAddRessourceModal={handleAddRessourceModal}
+            />
           </div>
         </div>
       </div>
@@ -75,6 +81,8 @@ const CustomerInformations = (props) => {
 CustomerInformations.propTypes = {
   t: PropTypes.func.isRequired,
   kind: PropTypes.string.isRequired,
+  handleCloseRessourceModal: PropTypes.func.isRequired,
+  handleAddRessourceModal: PropTypes.func.isRequired,
 };
 
 export default CustomerInformations;

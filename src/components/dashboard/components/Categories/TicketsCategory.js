@@ -4,7 +4,11 @@ import Switch from 'react-switch';
 import TicketsCategoryContent from './TicketsCategoryContent';
 
 const TicketsCategory = (props) => {
-  const { t } = props;
+  const {
+    t,
+    handleCloseRessourceModal,
+    handleAddRessourceModal,
+  } = props;
 
   const [state, setState] = useState({
     checked: false,
@@ -42,7 +46,7 @@ const TicketsCategory = (props) => {
     <div className="card" style={cardStyle.card}>
       <header className="card-header">
         <p className="card-header-title" style={cardStyle.p}>
-          Tickets Category
+          {t('settings.tickets_category')}
         </p>
         <div className="card-header-icon" aria-label="more options">
           <Switch
@@ -65,7 +69,11 @@ const TicketsCategory = (props) => {
       <div className="card-content">
         <div className="content">
           <div className="content-container">
-            <TicketsCategoryContent />
+            <TicketsCategoryContent
+              t={t}
+              handleCloseRessourceModal={handleCloseRessourceModal}
+              handleAddRessourceModal={handleAddRessourceModal}
+            />
           </div>
         </div>
       </div>
@@ -75,6 +83,8 @@ const TicketsCategory = (props) => {
 
 TicketsCategory.propTypes = {
   t: PropTypes.func.isRequired,
+  handleCloseRessourceModal: PropTypes.func.isRequired,
+  handleAddRessourceModal: PropTypes.func.isRequired,
 };
 
 export default TicketsCategory;

@@ -46,7 +46,7 @@ const TicketsTimer = (props) => {
     <div className="card" style={cardStyle.card}>
       <header className="card-header">
         <p className="card-header-title" style={cardStyle.p}>
-          Tickets Timer
+          {t('settings.tickets_timer')}
         </p>
         <div className="card-header-icon" aria-label="more options">
           <Switch
@@ -69,7 +69,7 @@ const TicketsTimer = (props) => {
       <div className='card-content'>
         <div className="content">
           <div className="content-container">
-            <TicketsTimerContent />
+            <TicketsTimerContent t={t} />
           </div>
         </div>
       </div>

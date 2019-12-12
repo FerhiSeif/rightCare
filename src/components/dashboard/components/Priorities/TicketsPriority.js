@@ -5,6 +5,7 @@ import TicketsPriorityContent from './TicketsPriorityContent';
 
 const TicketsPriority = (props) => {
   const {
+    t,
     handleCloseRessourceModal,
     handleAddRessourceModal,
   } = props;
@@ -16,7 +17,6 @@ const TicketsPriority = (props) => {
   const handleChange = (checked) => {
     setState({ checked });
   };
-
 
   const cardStyle = {
     emptyChannel: {
@@ -46,7 +46,7 @@ const TicketsPriority = (props) => {
     <div className="card" style={cardStyle.card}>
       <header className="card-header">
         <p className="card-header-title" style={cardStyle.p}>
-          Tickets Priority
+          {t('settings.tickets_priority')}
         </p>
         <div className="card-header-icon" aria-label="more options">
           <Switch
@@ -69,7 +69,11 @@ const TicketsPriority = (props) => {
       <div className="card-content">
         <div className="content">
           <div className="content-container">
-            <TicketsPriorityContent handleCloseRessourceModal={handleCloseRessourceModal} handleAddRessourceModal={handleAddRessourceModal} />
+            <TicketsPriorityContent
+              t={t}
+              handleCloseRessourceModal={handleCloseRessourceModal}
+              handleAddRessourceModal={handleAddRessourceModal}
+            />
           </div>
         </div>
       </div>
@@ -78,6 +82,7 @@ const TicketsPriority = (props) => {
 };
 
 TicketsPriority.propTypes = {
+  t: PropTypes.func.isRequired,
   handleCloseRessourceModal: PropTypes.func.isRequired,
   handleAddRessourceModal: PropTypes.func.isRequired,
 };

@@ -6,6 +6,8 @@ import TicketsStatusContent from './TicketsStatusContent';
 const TicketsStatus = (props) => {
   const {
     t,
+    handleCloseRessourceModal,
+    handleAddRessourceModal,
   } = props;
 
   const [state, setState] = useState({
@@ -44,7 +46,7 @@ const TicketsStatus = (props) => {
     <div className="card" style={cardStyle.card}>
       <header className="card-header">
         <p className="card-header-title" style={cardStyle.p}>
-          Tickets Status
+          {t('settings.tickets_status')}
         </p>
         <div className="card-header-icon" aria-label="more options">
           <Switch
@@ -67,7 +69,11 @@ const TicketsStatus = (props) => {
       <div className="card-content">
         <div className="content">
           <div className="content-container">
-            <TicketsStatusContent />
+            <TicketsStatusContent
+              t={t}
+              handleCloseRessourceModal={handleCloseRessourceModal}
+              handleAddRessourceModal={handleAddRessourceModal}
+            />
           </div>
         </div>
       </div>
@@ -77,6 +83,8 @@ const TicketsStatus = (props) => {
 
 TicketsStatus.propTypes = {
   t: PropTypes.func.isRequired,
+  handleCloseRessourceModal: PropTypes.func.isRequired,
+  handleAddRessourceModal: PropTypes.func.isRequired,
 };
 
 export default TicketsStatus;
