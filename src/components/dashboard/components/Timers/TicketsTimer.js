@@ -6,8 +6,8 @@ import TicketsTimerContent from './TicketsTimerContent';
 const TicketsTimer = (props) => {
   const {
     t,
-    kind,
-    i18n,
+    handleCloseRessourceModal,
+    handleAddRessourceModal,
   } = props;
 
   const [state, setState] = useState({
@@ -67,7 +67,11 @@ const TicketsTimer = (props) => {
       <div className="card-content">
         <div className="content">
           <div className="content-container">
-            <TicketsTimerContent t={t} />
+            <TicketsTimerContent
+              t={t}
+              handleCloseRessourceModal={handleCloseRessourceModal}
+              handleAddRessourceModal={handleAddRessourceModal}
+            />
           </div>
         </div>
       </div>
@@ -77,7 +81,8 @@ const TicketsTimer = (props) => {
 
 TicketsTimer.propTypes = {
   t: PropTypes.func.isRequired,
-  kind: PropTypes.string.isRequired,
+  handleCloseRessourceModal: PropTypes.func.isRequired,
+  handleAddRessourceModal: PropTypes.func.isRequired,
 };
 
 export default TicketsTimer;

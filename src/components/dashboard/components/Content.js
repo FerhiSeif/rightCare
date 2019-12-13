@@ -26,8 +26,6 @@ const Content = (props) => {
     setModalTitle(textTitle);
     setModalContent(detectContent);
     setModalButton(buttonText);
-
-    console.log(textTitle, ' - ', detectContent);
   };
 
   const handleCloseRessourceModal = () => {

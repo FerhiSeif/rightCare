@@ -114,7 +114,7 @@
     "tickets_timer": "Tickets Timer",
     "tickets_timer_content" : {
       "set_timer_ticket": "Set timer on ticket",
-      "button_text": "Ajouter un champ client"
+      "button_text": "Add Customer field"
     },
 
     "agent_settings": "Agent Settings",

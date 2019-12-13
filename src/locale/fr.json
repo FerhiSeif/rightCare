@@ -108,12 +108,12 @@
       "email": "Email",
       "telephone": "Téléphone",
       "new_field": "Nouveau champ",
-      "button_text": "Ajouter un champ client"
+      "button_text": "Ajouter un champ"
     },
     "tickets_timer": "Temps des Tickets",
     "tickets_timer_content" : {
       "set_timer_ticket": "Suivre le temps sur le ticket",
-      "button_text": "Ajouter un champ client"
+      "button_text": "Ajouter un champ"
     },
 
     "agent_settings": "Paramètres de l'agent",

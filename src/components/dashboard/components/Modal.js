@@ -5,6 +5,7 @@ import ContentPriority from './modals-contents/contentPriority';
 import ContentStatus from './modals-contents/contentStatus';
 import ContentCategory from './modals-contents/contentCategory';
 import ContentCustomer from './modals-contents/contentCustomer';
+import ContentTimer from './modals-contents/contentTimer';
 
 const Modal = (props) => {
   const {
@@ -70,6 +71,16 @@ const Modal = (props) => {
         )}
         {content === 'informations' && (
           <ContentCustomer
+            t={t}
+            kind={kind}
+            buttonText={buttonText}
+            handleCloseRessourceModal={handleCloseRessourceModal}
+            buttonText={buttonText}
+            handleContinue={handleContinue}
+          />
+        )}
+        {content === 'timer' && (
+          <ContentTimer
             t={t}
             kind={kind}
             buttonText={buttonText}
