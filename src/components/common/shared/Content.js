@@ -14,6 +14,7 @@ const Header = (props) => {
     buttonText,
     isChannelEmpty,
     currentStep,
+    containerWidth,
   } = props;
 
   return (
@@ -31,7 +32,7 @@ const Header = (props) => {
                   </div>
                 ))
               }
-              {currentStep !== 3 && (
+              {(currentStep !== 3 || containerWidth > 768) && (
                 <div className="add-more" onClick={handleAddRessourceModal}>
                   <span>+</span>
                 </div>
