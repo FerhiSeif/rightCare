@@ -35,7 +35,7 @@ const Modal = (props) => {
         <button className="modal-close is-large" aria-label="close" ref={addAgentsRef} onClick={handleCloseRessourceModal} />
         <header className="modal-card-head">
           <div className="title-container" style={modalStyle.title}>
-            <h2 className="title">{title}</h2>
+            <h2 className="ticket-title">{title}</h2>
           </div>
         </header>
 
@@ -45,7 +45,6 @@ const Modal = (props) => {
             kind={kind}
             buttonText={buttonText}
             handleCloseRessourceModal={handleCloseRessourceModal}
-            buttonText={buttonText}
             handleContinue={handleContinue}
           />
         )}
@@ -55,7 +54,6 @@ const Modal = (props) => {
             kind={kind}
             buttonText={buttonText}
             handleCloseRessourceModal={handleCloseRessourceModal}
-            buttonText={buttonText}
             handleContinue={handleContinue}
           />
         )}
@@ -65,7 +63,6 @@ const Modal = (props) => {
             kind={kind}
             buttonText={buttonText}
             handleCloseRessourceModal={handleCloseRessourceModal}
-            buttonText={buttonText}
             handleContinue={handleContinue}
           />
         )}
@@ -75,7 +72,6 @@ const Modal = (props) => {
             kind={kind}
             buttonText={buttonText}
             handleCloseRessourceModal={handleCloseRessourceModal}
-            buttonText={buttonText}
             handleContinue={handleContinue}
           />
         )}
@@ -85,7 +81,6 @@ const Modal = (props) => {
             kind={kind}
             buttonText={buttonText}
             handleCloseRessourceModal={handleCloseRessourceModal}
-            buttonText={buttonText}
             handleContinue={handleContinue}
           />
         )}
