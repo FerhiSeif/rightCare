@@ -20,6 +20,7 @@ const Modal = (props) => {
 
   const modalStyle = {
     title: {
+      paddingTop: 0,
       paddingBottom: kind === 'channel' ? 0 : '1.125rem',
     },
   };

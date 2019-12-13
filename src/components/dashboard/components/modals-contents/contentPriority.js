@@ -10,14 +10,10 @@ const ContentPriority = (props) => {
     handleContinue,
   } = props;
 
-  const Countries = [
-    { label: 'Albania', value: 355 },
-    { label: 'Argentina', value: 54 },
-    { label: 'Austria', value: 43 },
-    { label: 'Cocos Islands', value: 61 },
-    { label: 'Kuwait', value: 965 },
-    { label: 'Sweden', value: 46 },
-    { label: 'Venezuela', value: 58 },
+  const options = [
+    { value: 'Very Urgent', label: 'Very Urgent' },
+    { value: 'Urgent', label: 'Urgent' },
+    { value: 'Not Urgent', label: 'Not Urgent' },
   ];
 
   return (
@@ -29,14 +25,21 @@ const ContentPriority = (props) => {
         </div>
 
         <div className="select div-select">
-          <select>
-            <option className="option-text">
-              {t('settings.tickets_priority_content.ticket_priority_name')}
-            </option>
-            <option> Very Urgent </option>
-            <option> Urgent </option>
-            <option> Not urgent </option>
-          </select>
+
+          <Select
+            options={options}
+            className="App-Select-priority"
+            isSearchable={false}
+            theme={(theme) => ({
+              ...theme,
+              colors: {
+                ...theme.colors,
+                primary25: '#eee',
+                primary: '#eee',
+              },
+            })}
+          />
+
         </div>
       </section>
       <footer className="modal-card-foot">

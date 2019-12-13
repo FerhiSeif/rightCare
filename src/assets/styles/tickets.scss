@@ -193,3 +193,36 @@ width: 2px;
 .title-container {
   padding-top: 0;
 }
+
+.select:not(.is-multiple):not(.is-loading)::after {
+  border-color: #a3a3a3 !important;
+  right: 1.125em;
+  z-index: 4;
+  top: 1.5rem !important;
+}
+
+.App-Select-priority {
+
+  
+
+  .css-yk16xz-control {
+    .css-1hb7zxy-IndicatorsContainer {
+      .css-1okebmr-indicatorSeparator {
+        display: none;
+      }
+    }
+  }
+  .css-yk16xz-control, .css-1pahdxg-control {
+    border: solid 1px #e5e5e5;
+    background-color: #ffffff;
+    cursor: pointer;
+
+    border-color: #c8d3d6 !important;
+    border-radius: 0.625rem !important;
+    height: 3rem !important;
+  }
+
+  .css-26l3qy-menu {
+    width: 100% !important;
+  }
+}
