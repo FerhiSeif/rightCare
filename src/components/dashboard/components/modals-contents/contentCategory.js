@@ -17,7 +17,7 @@ const ContentCategory = (props) => {
             </div>
         </section>
         <footer className="modal-card-foot">
-            <button className="button is-primary" aria-label="close" onClick={handleContinue}>{buttonText}</button>
+            <button className="button is-primary button-round" aria-label="close" onClick={handleContinue}>{buttonText}</button>
         </footer>
     </div>
   );

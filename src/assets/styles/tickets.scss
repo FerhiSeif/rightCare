@@ -163,4 +163,27 @@ width: 2px;
 .input-section {
   padding-bottom: 2rem;
 }
+.option-text {
+  color: #657288 !important;
+}
+.div-select {
+  width: 100% !important;
+  select {
+    width: 100% !important;
+  }
+}
+.button-round {
+  border-radius: 7px !important;
+  padding: 0 4rem !important;
+  background-color: #0089e1 !important;
+}
+
+.modal-close-ticket {
+  height: 20px !important;
+  max-height: 20px !important;
+  max-width: 20px !important;
+  min-height: 21px !important;
+  min-width: 20px !important;
+  width: 20px !important;
+}
 // END

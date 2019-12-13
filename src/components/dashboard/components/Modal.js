@@ -32,7 +32,7 @@ const Modal = (props) => {
     <div className="modal" ref={agentModal}>
       <div className="modal-background" />
       <div className="modal-card">
-        <button className="modal-close is-large" aria-label="close" ref={addAgentsRef} onClick={handleCloseRessourceModal} />
+        <button className="modal-close is-large modal-close-ticket" aria-label="close" ref={addAgentsRef} onClick={handleCloseRessourceModal} />
         <header className="modal-card-head">
           <div className="title-container" style={modalStyle.title}>
             <h2 className="title">{title}</h2>
