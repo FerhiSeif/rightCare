@@ -12,9 +12,19 @@ const ContentPriority = (props) => {
   return (
     <div className="">
         <section className="modal-card-body">
-            <p>
-                Content Priority !!!
-            </p>
+            <div className="input-section">
+              <input className="input" type="text" placeholder="Enter Ticket Priority name" />
+              {/* {t('settings.tickets_priority_content.ticket_riority_name')} */}
+            </div>
+
+              <div className="select">
+                <select>
+                  <option>
+                    {t('settings.tickets_priority_content.ticket_priority_name')}
+                  </option>
+                  <option>With options</option>
+                </select>
+            </div>
         </section>
         <footer className="modal-card-foot">
             <button className="button is-primary" aria-label="close" onClick={handleContinue}>{buttonText}</button>

@@ -151,3 +151,16 @@ width: 2px;
 .img-cursor {
   cursor: pointer !important;
 }
+
+// adding style for modal content
+.input, .textarea, .select select {
+  border-radius: none !important;
+  height: 3rem !important;
+}
+.input, .textarea {
+  box-shadow: none !important;
+}
+.input-section {
+  padding-bottom: 2rem;
+}
+// END

@@ -12,9 +12,9 @@ const ContentCategory = (props) => {
   return (
     <div className="">
         <section className="modal-card-body">
-            <p>
-                Content Category !!!
-            </p>
+            <div>
+              <input className="input" type="text" placeholder={t('settings.tickets_category_content.category_name')} />
+            </div>
         </section>
         <footer className="modal-card-foot">
             <button className="button is-primary" aria-label="close" onClick={handleContinue}>{buttonText}</button>

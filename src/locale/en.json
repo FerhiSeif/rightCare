@@ -80,7 +80,9 @@
       "low": "Low",
       "not_urgent": "Not urgent",
       "new_priority": "New Priority",
-      "button_text": "Add Priority"
+      "button_text": "Add Priority",
+
+      "ticket_priority_name": "Enter Ticket Priority name"
     },
     "tickets_status": "Tickets Status",
     "tickets_status_content" : {
@@ -99,7 +101,9 @@
       "customer_care": "Customer Care",
       "enquires": "Enquires",
       "new_category": "New Category",
-      "button_text": "Add Category "
+      "button_text": "Add Category ",
+
+      "category_name": "Category name"
     },
     "customer_informations": "Customer Informations",
     "customer_informations_content" : {

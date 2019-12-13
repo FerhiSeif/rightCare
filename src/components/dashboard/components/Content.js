@@ -70,6 +70,7 @@ const Content = (props) => {
         </div>
       </div>
       <Modal
+        t={t}
         agentModal={agentModal}
         handleCloseRessourceModal={handleCloseRessourceModal}
         title={modalTitle}

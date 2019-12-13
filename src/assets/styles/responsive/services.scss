@@ -139,12 +139,10 @@
     display: none!important;
   }
   .next-back-container {
-    // text-align: center!important;
     margin-top: 5rem;
   }
   .card-content {
     padding: 1.5rem !important;
-    // padding: 2.5rem!important;
     .add-more {
       margin-right: 2rem;
     }
@@ -154,23 +152,11 @@
   }
   .card-custom {
     margin: 0rem 0;
-    // margin: 2rem 0;
     width: initial!important;
     max-width: initial!important;
   }
-  .card-custom label.service-card.is-selected-case {
-    // padding: 0 !important
-  }
   .card-content.content.service-container .service-card,
   .service-container-custom .service-card {
-    // width: initial;
-    // height: initial;
-    // max-width: initial;
-    // max-height: initial;
-    // min-width: initial;
-    // min-height: initial;
-    // padding-top: 0;
-    // padding-bottom: .5rem;
     img {
       width: 2rem !important;
     }
@@ -261,7 +247,6 @@
     }
   }
 }
-
 .card-header-icon {
   cursor: default !important;
 }

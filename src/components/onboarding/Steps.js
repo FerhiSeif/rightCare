@@ -210,6 +210,7 @@ export default function Steps(props) {
 
   const handleStep = (step) => () => {
     setActiveStep(step);
+    props.selectServiceRef.current.click();
   };
 
   const {
