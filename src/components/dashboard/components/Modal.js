@@ -1,6 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import ContentPriority from './modals-contents/contentPriority';
+import ContentStatus from './modals-contents/contentStatus';
+import ContentCategory from './modals-contents/contentCategory';
+import ContentCustomer from './modals-contents/contentCustomer';
+
 const Modal = (props) => {
   const {
     t,
@@ -32,12 +37,52 @@ const Modal = (props) => {
             <h2 className="title">{title}</h2>
           </div>
         </header>
-        <section className="modal-card-body">
-          {content}
-        </section>
-        <footer className="modal-card-foot">
-          <button className="button is-primary" aria-label="close" onClick={handleContinue}>{buttonText}</button>
-        </footer>
+
+        {content === 'priority' && (
+          <ContentPriority
+            t={t}
+            content={content}
+            kind={kind}
+            buttonText={buttonText}
+            handleCloseRessourceModal={handleCloseRessourceModal}
+            buttonText={buttonText}
+            handleContinue={handleContinue}
+          />
+        )}
+        {content === 'status' && (
+          <ContentStatus
+            t={t}
+            content={content}
+            kind={kind}
+            buttonText={buttonText}
+            handleCloseRessourceModal={handleCloseRessourceModal}
+            buttonText={buttonText}
+            handleContinue={handleContinue}
+          />
+        )}
+        {content === 'category' && (
+          <ContentCategory
+            t={t}
+            content={content}
+            kind={kind}
+            buttonText={buttonText}
+            handleCloseRessourceModal={handleCloseRessourceModal}
+            buttonText={buttonText}
+            handleContinue={handleContinue}
+          />
+        )}
+        {content === 'informations' && (
+          <ContentCustomer
+            t={t}
+            content={content}
+            kind={kind}
+            buttonText={buttonText}
+            handleCloseRessourceModal={handleCloseRessourceModal}
+            buttonText={buttonText}
+            handleContinue={handleContinue}
+          />
+        )}
+
       </div>
     </div>
   );

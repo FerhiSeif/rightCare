@@ -108,6 +108,10 @@
       }
 
       .modal-card-head {
+        // add border modal
+        border-bottom: #eee solid 2px !important;
+        padding-bottom: 5px !important;
+
         display: block;
         background-color: $white;
         border-bottom: 0;

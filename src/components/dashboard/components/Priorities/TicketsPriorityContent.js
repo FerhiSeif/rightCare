@@ -46,7 +46,7 @@ const TicketsPriorityContent = (props) => {
             </div>
           </div>
           <div>
-            <div className="mr-0 children dash-child" onClick={() => handleAddRessourceModal(t('settings.tickets_priority'))}>
+            <div className="mr-0 children dash-child" onClick={() => handleAddRessourceModal(t('settings.tickets_priority'), 'priority')}>
               <span className="tickets-plus">+</span>
               <span className="label-title mr-2">
                 {t('settings.tickets_priority_content.new_priority')}

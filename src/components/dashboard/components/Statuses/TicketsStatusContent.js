@@ -47,7 +47,7 @@ const TicketsStatusContent = (props) => {
             </div>
           </div>
           <div>
-            <div className="mr-0 children dash-child" onClick={() => handleAddRessourceModal(t('settings.tickets_status'))}>
+            <div className="mr-0 children dash-child" onClick={() => handleAddRessourceModal(t('settings.tickets_status'), 'status')}>
               <span className="tickets-plus">+</span>
               <span className="label-title mr-2">
                 {t('settings.tickets_status_content.new_status')}

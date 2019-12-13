@@ -12,9 +12,6 @@ const Tabs = (props) => {
 
 
   const cardStyle = {
-    emptyChannel: {
-      background: '#ffffff',
-    },
     titleContainer: {
       padding: '0 5rem',
     },
@@ -37,15 +34,35 @@ const Tabs = (props) => {
         <Tabber>
           <TabList>
             <Tab>
+              {t('settings.agent_settings')}
+            </Tab>
+            <Tab>
               {t('settings.ticket_settings')}
+            </Tab>
+            <Tab>
+              {t('settings.channel_settings')}
             </Tab>
           </TabList>
 
+          <TabPanel>
+            <p>
+              Contenu
+              {' '}
+              {t('settings.agent_settings')}
+            </p>
+          </TabPanel>
           <TabPanel>
             <Content
               kind={kind}
               t={t}
             />
+          </TabPanel>
+          <TabPanel>
+            <p>
+              Contenu
+              {' '}
+              {t('settings.channel_settings')}
+            </p>
           </TabPanel>
         </Tabber>
       </div>
