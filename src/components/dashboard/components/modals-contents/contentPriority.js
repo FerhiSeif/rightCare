@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import React from 'react';
 import PropTypes from 'prop-types';
 import Select from 'react-select';
@@ -20,8 +21,7 @@ const ContentPriority = (props) => {
     <div className="">
       <section className="modal-card-body">
         <div className="input-section">
-          <input className="input" type="text" placeholder="Enter Ticket Priority name" />
-          {/* {t('settings.tickets_priority_content.ticket_riority_name')} */}
+          <input className="input" type="text" placeholder={t('settings.tickets_priority_content.ticket_priority_input')} />
         </div>
 
         <div className="select div-select">
@@ -34,8 +34,8 @@ const ContentPriority = (props) => {
               ...theme,
               colors: {
                 ...theme.colors,
-                primary25: '#eee',
                 primary: '#eee',
+                primary25: '#eee',
               },
             })}
           />

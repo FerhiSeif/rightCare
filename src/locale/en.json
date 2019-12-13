@@ -82,7 +82,7 @@
       "new_priority": "New Priority",
       "button_text": "Add Priority",
 
-      "ticket_priority_name": "Enter Ticket Priority name"
+      "ticket_priority_input": "Enter Ticket Priority name"
     },
     "tickets_status": "Tickets Status",
     "tickets_status_content" : {
@@ -93,7 +93,9 @@
       "new": "New",
       "ticket_without_agent_assign": "Ticket without agent assign",
       "new_status": "New Status",
-      "button_text": "Add Status"
+      "button_text": "Add Status",
+
+      "status_input": "Enter Ticket Status name"
     },
     "tickets_category": "Tickets Category",
     "tickets_category_content" : {
@@ -103,7 +105,7 @@
       "new_category": "New Category",
       "button_text": "Add Category ",
 
-      "category_name": "Category name"
+      "category_input": "Category name"
     },
     "customer_informations": "Customer Informations",
     "customer_informations_content" : {
@@ -114,7 +116,6 @@
       "new_field": "New Field",
       "button_text": "Add Customer field"
     },
-
     "tickets_timer": "Tickets Timer",
     "tickets_timer_content" : {
       "set_timer_ticket": "Set timer on ticket",

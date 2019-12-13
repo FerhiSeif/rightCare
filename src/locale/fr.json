@@ -80,7 +80,9 @@
       "low": "Faible",
       "not_urgent": "Pas urgent",
       "new_priority": "Nouvelle priorité",
-      "button_text": "Ajouter une priorité"
+      "button_text": "Ajouter une priorité",
+
+      "ticket_priority_input": "Enter Ticket Priority name"
     },
     "tickets_status": "Statut des billets",
     "tickets_status_content" : {
@@ -91,7 +93,9 @@
       "new": "Nouveau",
       "ticket_without_agent_assign": "Ticket sans assignation d'agent",
       "new_status": "Nouveau statut",
-      "button_text": "Ajouter un statut"
+      "button_text": "Ajouter un statut",
+
+      "status_input": "Enter Ticket Status name"
     },
     "tickets_category": "Catégorie de Tickets",
     "tickets_category_content" : {
@@ -99,7 +103,9 @@
       "customer_care": "Service client",
       "enquires": "Demandes",
       "new_category": "Nouvelle catégoriey",
-      "button_text": "Ajouter une catégorie"
+      "button_text": "Ajouter une catégorie",
+
+      "category_input": "Nom de Categorie"
     },
     "customer_informations": "Informations client",
     "customer_informations_content" : {

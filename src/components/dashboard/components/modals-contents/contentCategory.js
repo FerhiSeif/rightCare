@@ -13,7 +13,7 @@ const ContentCategory = (props) => {
     <div className="">
         <section className="modal-card-body">
             <div>
-              <input className="input" type="text" placeholder={t('settings.tickets_category_content.category_name')} />
+              <input className="input" type="text" placeholder={t('settings.tickets_category_content.category_input')} />
             </div>
         </section>
         <footer className="modal-card-foot">
