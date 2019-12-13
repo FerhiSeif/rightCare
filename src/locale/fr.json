@@ -69,7 +69,6 @@
   },
   "settings": {
     "settings_overview": "Paramètres",
-    "conitnue": "Continuer",
 
     "ticket_settings": "Paramètres de ticket",
     "tickets_priority": "Priorité des Tickets",
@@ -80,7 +79,8 @@
       "urgent": "Urgente",
       "low": "Faible",
       "not_urgent": "Pas urgent",
-      "new_priority": "Nouvelle priorité"
+      "new_priority": "Nouvelle priorité",
+      "button_text": "Ajouter une priorité"
     },
     "tickets_status": "Statut des billets",
     "tickets_status_content" : {
@@ -90,14 +90,16 @@
       "on_going_ticket": "Ticket en cours",
       "new": "Nouveau",
       "ticket_without_agent_assign": "Ticket sans assignation d'agent",
-      "new_status": "Nouveau statut"
+      "new_status": "Nouveau statut",
+      "button_text": "Ajouter un statut"
     },
     "tickets_category": "Catégorie de Tickets",
     "tickets_category_content" : {
       "technical": "Technique",
       "customer_care": "Service client",
       "enquires": "Demandes",
-      "new_category": "Nouvelle catégoriey"
+      "new_category": "Nouvelle catégoriey",
+      "button_text": "Ajouter une catégorie"
     },
     "customer_informations": "Informations client",
     "customer_informations_content" : {
@@ -105,15 +107,17 @@
       "last_name": "Nom",
       "email": "Email",
       "telephone": "Téléphone",
-      "new_field": "Nouveau champ"
+      "new_field": "Nouveau champ",
+      "button_text": "Ajouter un champ client"
     },
     "tickets_timer": "Temps des Tickets",
     "tickets_timer_content" : {
-      "set_timer_ticket": "Suivre le temps sur le ticket"
+      "set_timer_ticket": "Suivre le temps sur le ticket",
+      "button_text": "Ajouter un champ client"
     },
 
     "agent_settings": "Paramètres de l'agent",
-    
+
     "channel_settings": "Paramètres des chaînes"
   }
   

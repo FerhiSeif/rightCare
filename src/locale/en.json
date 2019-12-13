@@ -69,8 +69,7 @@
   },
   "settings": {
     "settings_overview": "Settings",
-    "conitnue": "Conitnue",
-
+  
     "ticket_settings": "Ticket Settings",
     "tickets_priority": "Tickets Priority",
     "tickets_priority_content" : {
@@ -80,7 +79,8 @@
       "urgent": "Urgent",
       "low": "Low",
       "not_urgent": "Not urgent",
-      "new_priority": "New Priority"
+      "new_priority": "New Priority",
+      "button_text": "Add Priority"
     },
     "tickets_status": "Tickets Status",
     "tickets_status_content" : {
@@ -90,14 +90,16 @@
       "on_going_ticket": "On-going ticket",
       "new": "New",
       "ticket_without_agent_assign": "Ticket without agent assign",
-      "new_status": "New Status"
+      "new_status": "New Status",
+      "button_text": "Add Status"
     },
     "tickets_category": "Tickets Category",
     "tickets_category_content" : {
       "technical": "Technical",
       "customer_care": "Customer Care",
       "enquires": "Enquires",
-      "new_category": "New Category"
+      "new_category": "New Category",
+      "button_text": "Add Category "
     },
     "customer_informations": "Customer Informations",
     "customer_informations_content" : {
@@ -105,16 +107,18 @@
       "last_name": "Last Name",
       "email": "Email",
       "telephone": "Telephone",
-      "new_field": "New Field"
+      "new_field": "New Field",
+      "button_text": "Add Customer field"
     },
 
     "tickets_timer": "Tickets Timer",
     "tickets_timer_content" : {
-      "set_timer_ticket": "Set timer on ticket"
+      "set_timer_ticket": "Set timer on ticket",
+      "button_text": "Ajouter un champ client"
     },
 
     "agent_settings": "Agent Settings",
-    
+
     "channel_settings": "Channel Settings"
   }
 

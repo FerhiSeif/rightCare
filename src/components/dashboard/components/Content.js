@@ -15,15 +15,17 @@ const Content = (props) => {
 
   const [modalTitle, setModalTitle] = useState('');
   const [modalContent, setModalContent] = useState('');
+  const [modalButton, setModalButton] = useState('');
 
   const agentModal = React.createRef();
 
-  const handleAddRessourceModal = (textTitle, detectContent) => {
+  const handleAddRessourceModal = (textTitle, detectContent, buttonText) => {
     document.body.classList.add('modal-opened');
     agentModal.current.classList.add('is-active');
 
     setModalTitle(textTitle);
     setModalContent(detectContent);
+    setModalButton(buttonText);
 
     console.log(textTitle, ' - ', detectContent);
   };
@@ -75,7 +77,7 @@ const Content = (props) => {
         title={modalTitle}
         content={modalContent}
         kind={kind}
-        buttonText={t('settings.conitnue')}
+        buttonText={modalButton}
       />
     </>
 

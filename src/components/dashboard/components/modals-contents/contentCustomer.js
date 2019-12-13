@@ -4,10 +4,8 @@ import PropTypes from 'prop-types';
 const ContentCustomer = (props) => {
   const {
     t,
-    content,
     kind,
     buttonText,
-    handleCloseRessourceModal,
     handleContinue,
   } = props;
 
@@ -27,10 +25,8 @@ const ContentCustomer = (props) => {
 
 ContentCustomer.propTypes = {
   t: PropTypes.func.isRequired,
-  content: PropTypes.shape({}).isRequired,
   kind: PropTypes.string.isRequired,
   buttonText: PropTypes.string.isRequired,
-  handleCloseRessourceModal: PropTypes.func.isRequired,
   handleContinue: PropTypes.func.isRequired,
 };
 

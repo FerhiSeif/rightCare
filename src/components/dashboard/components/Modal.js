@@ -41,7 +41,6 @@ const Modal = (props) => {
         {content === 'priority' && (
           <ContentPriority
             t={t}
-            content={content}
             kind={kind}
             buttonText={buttonText}
             handleCloseRessourceModal={handleCloseRessourceModal}
@@ -52,7 +51,6 @@ const Modal = (props) => {
         {content === 'status' && (
           <ContentStatus
             t={t}
-            content={content}
             kind={kind}
             buttonText={buttonText}
             handleCloseRessourceModal={handleCloseRessourceModal}
@@ -63,7 +61,6 @@ const Modal = (props) => {
         {content === 'category' && (
           <ContentCategory
             t={t}
-            content={content}
             kind={kind}
             buttonText={buttonText}
             handleCloseRessourceModal={handleCloseRessourceModal}
@@ -74,7 +71,6 @@ const Modal = (props) => {
         {content === 'informations' && (
           <ContentCustomer
             t={t}
-            content={content}
             kind={kind}
             buttonText={buttonText}
             handleCloseRessourceModal={handleCloseRessourceModal}
