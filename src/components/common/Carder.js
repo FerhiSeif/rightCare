@@ -120,7 +120,7 @@ const Carder = (props) => {
 
   const cardStyle = {
     agentStyle: {
-      padding: channelSelected || kind === 'channel' ? 'padding: 1.3125rem' : '2.5rem',
+      padding: channelSelected || kind === 'channel' ? 'padding: 1.3125rem' : '2.5rem 1rem',
     },
     emptyChannel: {
       background: state.initialAgents && state.initialAgents.length !== 0 ? '#ffffff' : 'rgba(200, 211, 214, 0.12)',

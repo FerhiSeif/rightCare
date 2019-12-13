@@ -17,6 +17,7 @@ const MobileAddAgents = (props) => {
     kinda,
     icon,
     i18n,
+    currentStep,
   } = props;
 
   const agentStyles = {
@@ -35,7 +36,7 @@ const MobileAddAgents = (props) => {
 
   return (
     <div className="card-container-mobile">
-      <Slider adaptiveHeight={true} dots arrows={false}>
+      <Slider adaptiveHeight dots arrows={false}>
         { localService && localService.length > 0 &&
           localService.map((item, i) => (
             <div className="card-carousel">
@@ -57,7 +58,7 @@ const MobileAddAgents = (props) => {
                 assignedAgents={item.agents}
                 i18n={i18n}
                 nameFr={item.name_fr}
-                currentStep={2}
+                currentStep={currentStep}
               />
             </div>
           ))}
@@ -83,7 +84,7 @@ const MobileAddAgents = (props) => {
                     assignedAgents={item.agents}
                     i18n={i18n}
                     nameFr={item.name_fr}
-                    currentStep={2}
+                    currentStep={currentStep}
                   />
                 </div>
               ))}
