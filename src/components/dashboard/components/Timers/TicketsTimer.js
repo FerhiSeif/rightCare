@@ -64,7 +64,7 @@ const TicketsTimer = (props) => {
           />
         </div>
       </header>
-      <div className='card-content'>
+      <div className="card-content">
         <div className="content">
           <div className="content-container">
             <TicketsTimerContent t={t} />
