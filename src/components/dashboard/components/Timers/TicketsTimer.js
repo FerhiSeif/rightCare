@@ -11,7 +11,7 @@ const TicketsTimer = (props) => {
   } = props;
 
   const [state, setState] = useState({
-    checked: false,
+    checked: true,
   });
 
   const handleChange = (checked) => {

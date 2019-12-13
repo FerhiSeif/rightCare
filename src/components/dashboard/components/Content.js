@@ -18,11 +18,11 @@ const Content = (props) => {
 
   const agentModal = React.createRef();
 
-  const handleAddRessourceModal = () => {
+  const handleAddRessourceModal = (text) => {
     document.body.classList.add('modal-opened');
     agentModal.current.classList.add('is-active');
 
-    setModalTitle('');
+    setModalTitle(text);
     setModalContent(() => {});
   };
 
