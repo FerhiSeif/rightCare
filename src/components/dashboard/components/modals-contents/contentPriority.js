@@ -6,15 +6,22 @@ import Select from 'react-select';
 const ContentPriority = (props) => {
   const {
     t,
-    kind,
+    i18n,
     buttonText,
     handleContinue,
   } = props;
 
-  const options = [
+  const currLang = i18n.language;
+
+  const optionsEN = [
     { value: 'Very Urgent', label: 'Very Urgent' },
     { value: 'Urgent', label: 'Urgent' },
     { value: 'Not Urgent', label: 'Not Urgent' },
+  ];
+  const optionsFR = [
+    { value: 'Très urgent', label: 'Très urgent' },
+    { value: 'Urgent', label: 'Urgent' },
+    { value: 'Pas Urgent', label: 'Pas Urgent' },
   ];
 
   return (
@@ -27,7 +34,7 @@ const ContentPriority = (props) => {
         <div className="select div-select">
 
           <Select
-            options={options}
+            options={currLang === 'en' ? optionsEN : optionsFR}
             className="App-Select-priority"
             isSearchable={false}
             theme={(theme) => ({
@@ -53,7 +60,6 @@ const ContentPriority = (props) => {
 
 ContentPriority.propTypes = {
   t: PropTypes.func.isRequired,
-  kind: PropTypes.string.isRequired,
   buttonText: PropTypes.string.isRequired,
   handleContinue: PropTypes.func.isRequired,
 };

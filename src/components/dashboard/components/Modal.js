@@ -10,6 +10,7 @@ import ContentTimer from './modals-contents/contentTimer';
 const Modal = (props) => {
   const {
     t,
+    i18n,
     title,
     content,
     kind,
@@ -43,45 +44,37 @@ const Modal = (props) => {
         {content === 'priority' && (
           <ContentPriority
             t={t}
-            kind={kind}
             buttonText={buttonText}
-            handleCloseRessourceModal={handleCloseRessourceModal}
             handleContinue={handleContinue}
+            i18n={i18n}
           />
         )}
         {content === 'status' && (
           <ContentStatus
             t={t}
-            kind={kind}
             buttonText={buttonText}
-            handleCloseRessourceModal={handleCloseRessourceModal}
             handleContinue={handleContinue}
+            i18n={i18n}
           />
         )}
         {content === 'category' && (
           <ContentCategory
             t={t}
-            kind={kind}
             buttonText={buttonText}
-            handleCloseRessourceModal={handleCloseRessourceModal}
             handleContinue={handleContinue}
           />
         )}
         {content === 'informations' && (
           <ContentCustomer
             t={t}
-            kind={kind}
             buttonText={buttonText}
-            handleCloseRessourceModal={handleCloseRessourceModal}
             handleContinue={handleContinue}
           />
         )}
         {content === 'timer' && (
           <ContentTimer
             t={t}
-            kind={kind}
             buttonText={buttonText}
-            handleCloseRessourceModal={handleCloseRessourceModal}
             handleContinue={handleContinue}
           />
         )}

@@ -6,54 +6,58 @@ import { options } from '../../configs/options';
 
 
 class Dashboard extends Component {
-    state = {
+
+  constructor() {
+    super();
+    this.state = {
       containerWidth: 0,
       containerHeight: 0,
-    }
+    };
+  }
 
-    componentDidMount() {
-      this.updateWindowDimensions();
-      window.addEventListener('resize', this.updateWindowDimensions);
-      document.body.style.overflow = 'hidden';
-    }
+  componentDidMount() {
+    this.updateWindowDimensions();
+    window.addEventListener('resize', this.updateWindowDimensions);
+    document.body.style.overflow = 'hidden';
+  }
 
-    componentWillUnmount() {
-      window.removeEventListener('resize', this.updateWindowDimensions);
-      document.body.style.overflow = 'auto';
-    }
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.updateWindowDimensions);
+    document.body.style.overflow = 'auto';
+  }
 
-    updateWindowDimensions = () => {
-      this.setState({ containerWidth: window.innerWidth, containerHeight: window.innerHeight });
-    }
+  updateWindowDimensions = () => {
+    this.setState({ containerWidth: window.innerWidth, containerHeight: window.innerHeight });
+  }
 
-    render() {
-      const {
-        t,
-        kind,
-        defaultLang,
-        changeLang,
-        isLogged,
-        i18n,
-      } = this.props;
-      const { containerHeight, containerWidth } = this.state;
+  render() {
+    const {
+      t,
+      kind,
+      defaultLang,
+      changeLang,
+      isLogged,
+      i18n,
+    } = this.props;
+    const { containerHeight, containerWidth } = this.state;
 
-      return (
-        <div className={`${kind === 'dashboard' ? 'columns' : ''}`}>
-          { kind === 'dashboard' && (<SideMenu t={t} containerWidth={containerWidth} i18n={i18n} />)}
-          <Header
-            options={options}
-            defaultLang={defaultLang}
-            changeLang={changeLang}
-            kind={kind}
-            isLogged={isLogged}
-            t={t}
-            containerWidth={containerWidth}
-            containerHeight={containerHeight}
-            i18n={i18n}
-          />
-        </div>
-      );
-    }
+    return (
+      <div className={`${kind === 'dashboard' ? 'columns' : ''}`}>
+        { kind === 'dashboard' && (<SideMenu t={t} containerWidth={containerWidth} i18n={i18n} />)}
+        <Header
+          options={options}
+          defaultLang={defaultLang}
+          changeLang={changeLang}
+          kind={kind}
+          isLogged={isLogged}
+          t={t}
+          containerWidth={containerWidth}
+          containerHeight={containerHeight}
+          i18n={i18n}
+        />
+      </div>
+    );
+  }
 }
 
 Dashboard.propTypes = {

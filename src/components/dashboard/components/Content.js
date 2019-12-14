@@ -11,6 +11,7 @@ const Content = (props) => {
   const {
     t,
     kind,
+    i18n,
   } = props;
 
   const [modalTitle, setModalTitle] = useState('');
@@ -70,6 +71,7 @@ const Content = (props) => {
         </div>
       </div>
       <Modal
+        i18n={i18n}
         t={t}
         agentModal={agentModal}
         handleCloseRessourceModal={handleCloseRessourceModal}

@@ -18,7 +18,7 @@ const TicketsTimerContent = (props) => {
   return (
     <>
       <div className="ticket-content">
-        <img src={TimerImg} onClick={() => handleAddRessourceModal(t('settings.tickets_timer'), 'timer', t('settings.tickets_timer_content.button_text'))} className="img-cursor" />
+        <img src={TimerImg} onClick={() => handleAddRessourceModal(t('settings.tickets_timer_content.set_ticket_support_timer'), 'timer', t('settings.tickets_timer_content.button_text'))} className="img-cursor" />
         <div className="text-mueted">
           {t('settings.tickets_timer_content.set_timer_ticket')}
         </div>

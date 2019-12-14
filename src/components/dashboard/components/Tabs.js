@@ -8,8 +8,8 @@ const Tabs = (props) => {
   const {
     t,
     kind,
+    i18n,
   } = props;
-
 
   const cardStyle = {
     titleContainer: {
@@ -55,6 +55,7 @@ const Tabs = (props) => {
             <Content
               kind={kind}
               t={t}
+              i18n={i18n}
             />
           </TabPanel>
           <TabPanel>

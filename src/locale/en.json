@@ -94,7 +94,6 @@
       "ticket_without_agent_assign": "Ticket without agent assign",
       "new_status": "New Status",
       "button_text": "Add Status",
-
       "status_input": "Enter Ticket Status name"
     },
     "tickets_category": "Tickets Category",
@@ -104,7 +103,6 @@
       "enquires": "Enquires",
       "new_category": "New Category",
       "button_text": "Add Category ",
-
       "category_input": "Category name"
     },
     "customer_informations": "Customer Informations",
@@ -119,7 +117,17 @@
     "tickets_timer": "Tickets Timer",
     "tickets_timer_content" : {
       "set_timer_ticket": "Set timer on ticket",
-      "button_text": "Add Customer field"
+      "set_ticket_support_timer": "Set Ticket Support Timer",
+      "button_text": "Add Customer field",
+
+      "section_Timer": {
+        "email_channel": "Email Channel",
+        "live_chat": "Live Chat",
+        "call_centre": "Call Centre",
+        "webform": "WebForm",
+        "facebook": "Facebook",
+        "twitter": "Twitter"
+      }
     },
 
     "agent_settings": "Agent Settings",

@@ -6,15 +6,23 @@ import Select from 'react-select';
 const ContentStatus = (props) => {
   const {
     t,
-    kind,
+    i18n,
     buttonText,
     handleContinue,
   } = props;
 
-  const options = [
+  const currLang = i18n.language;
+
+  const optionsEN = [
     { value: 'Resolved Ticket', label: 'Resolved Ticket' },
     { value: 'On-going Ticket', label: 'On-going Ticket' },
     { value: 'New with assign agent', label: 'New with assign agent' },
+  ];
+
+  const optionsFR = [
+    { value: 'Resolved Ticket', label: 'Ticket résolu' },
+    { value: 'On-going Ticket', label: 'Ticket en cours' },
+    { value: 'New with assign agent', label: 'Nouveau avec assigner un agent' },
   ];
 
   return (
@@ -27,7 +35,7 @@ const ContentStatus = (props) => {
         <div className="select div-select">
 
           <Select
-            options={options}
+            options={currLang === 'en' ? optionsEN : optionsFR}
             className="App-Select-priority"
             isSearchable={false}
             theme={(theme) => ({
@@ -51,7 +59,6 @@ const ContentStatus = (props) => {
 
 ContentStatus.propTypes = {
   t: PropTypes.func.isRequired,
-  kind: PropTypes.string.isRequired,
   buttonText: PropTypes.string.isRequired,
   handleContinue: PropTypes.func.isRequired,
 };

@@ -81,8 +81,7 @@
       "not_urgent": "Pas urgent",
       "new_priority": "Nouvelle priorité",
       "button_text": "Ajouter une priorité",
-
-      "ticket_priority_input": "Enter Ticket Priority name"
+      "ticket_priority_input": "Entrez le nom de priorité du ticket"
     },
     "tickets_status": "Statut des billets",
     "tickets_status_content" : {
@@ -94,8 +93,7 @@
       "ticket_without_agent_assign": "Ticket sans assignation d'agent",
       "new_status": "Nouveau statut",
       "button_text": "Ajouter un statut",
-
-      "status_input": "Enter Ticket Status name"
+      "status_input": "Entrez le nom du statut du ticket"
     },
     "tickets_category": "Catégorie de Tickets",
     "tickets_category_content" : {
@@ -104,7 +102,6 @@
       "enquires": "Demandes",
       "new_category": "Nouvelle catégoriey",
       "button_text": "Ajouter une catégorie",
-
       "category_input": "Nom de Categorie"
     },
     "customer_informations": "Informations client",
@@ -119,7 +116,17 @@
     "tickets_timer": "Temps des Tickets",
     "tickets_timer_content" : {
       "set_timer_ticket": "Suivre le temps sur le ticket",
-      "button_text": "Ajouter un champ"
+      "button_text": "Ajouter un champ",
+
+      "set_ticket_support_timer": "Minuterie de prise en charge des tickets",
+      "section_Timer": {
+        "email_channel": "Messagerie",
+        "live_chat": "Chat en direct",
+        "call_centre": "Centre d'appel",
+        "webform": "Plate-forme web",
+        "facebook": "Facebook",
+        "twitter": "Twitter"
+      }
     },
 
     "agent_settings": "Paramètres de l'agent",
