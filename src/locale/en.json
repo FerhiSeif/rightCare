@@ -112,7 +112,9 @@
       "email": "Email",
       "telephone": "Telephone",
       "new_field": "New Field",
-      "button_text": "Add Customer field"
+      "button_text": "Add Customer field",
+      "custome_input": "Field Name",
+      "button_add": "Add more Field"
     },
     "tickets_timer": "Tickets Timer",
     "tickets_timer_content" : {

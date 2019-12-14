@@ -30,8 +30,9 @@ const ContentTimer = (props) => {
 
         <div className="timer-content">
 
-          {countElmt.map((item) => (
+          {countElmt.map((item, i) => (
             <SetTimer
+              key={i}
               t={t}
               index={item.index}
               text={t(`settings.tickets_timer_content.section_Timer.${item.index}`)}

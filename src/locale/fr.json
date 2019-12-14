@@ -111,7 +111,9 @@
       "email": "Email",
       "telephone": "Téléphone",
       "new_field": "Nouveau champ",
-      "button_text": "Ajouter un champ"
+      "button_text": "Ajouter un champ",
+      "custome_input": "Nom du champ",
+      "button_add": "Ajouter un champ"
     },
     "tickets_timer": "Temps des Tickets",
     "tickets_timer_content" : {

@@ -69,6 +69,7 @@ const Modal = (props) => {
             t={t}
             buttonText={buttonText}
             handleContinue={handleContinue}
+            i18n={i18n}
           />
         )}
         {content === 'timer' && (

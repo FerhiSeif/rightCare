@@ -1,5 +1,5 @@
 
-// start - Ticket Timer
+// Start - Ticket Timer
 .timer-content {
   width: 100% !important;
   .timer-section {
@@ -71,7 +71,49 @@
     width: 100% !important;
   }
 }
-// end - Ticket Timer
+// End - Ticket Timer
+
+// Start - Customer information
+.section-button {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  background: #f2f2f2;
+  float: right;
+  border-radius: 7px;
+  padding: 0rem 1rem;
+  cursor: pointer;
+  .section-child {
+    display: flex;
+    padding-bottom: 0.3rem;
+  }
+  .button-plus {
+    font-size: 2rem;
+    padding-right: 1rem;
+    color: #657288;
+  }
+  .button-text {
+    color: #657288;
+    padding-top: 1rem;
+  }
+}
+
+
+.button-add-field {
+  border: none !important;
+  background: #f2f2f2 !important;
+  .button-plus {
+    color: #657288 !important;
+    font-size: 2rem;
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+  }
+  .button-text {
+    color: #657288 !important;
+  }
+}
+// End - Customer information
 
 .ticket-content {
   width: 100%;
