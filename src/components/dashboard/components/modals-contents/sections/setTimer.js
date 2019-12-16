@@ -51,6 +51,7 @@ const SetTimer = (props) => {
       ...provided,
       borderBottom: 'solid 1px #eee',
       color: state.isSelected ? '#657288' : '#657288',
+      text: 'center',
     }),
     // control: () => ({
     //     // width: 200,
@@ -87,34 +88,36 @@ const SetTimer = (props) => {
           {text}
         </span>
       </div>
-      <Select
-        styles={customStyles}
-        options={dayOption}
-        className="App-Select-timer"
-        isSearchable={false}
-        theme={(theme) => ({
-          ...theme,
-          colors: {
-            ...theme.colors,
-            primary: '#eee',
-            primary25: '#eee',
-          },
-        })}
-      />
-      <Select
-        styles={customStyles}
-        options={hourOption}
-        className="App-Select-timer"
-        isSearchable={false}
-        theme={(theme) => ({
-          ...theme,
-          colors: {
-            ...theme.colors,
-            primary: '#eee',
-            primary25: '#eee',
-          },
-        })}
-      />
+      <div className="timer-child-select">
+        <Select
+          styles={customStyles}
+          options={dayOption}
+          className="App-Select-timer"
+          isSearchable={false}
+          theme={(theme) => ({
+            ...theme,
+            colors: {
+              ...theme.colors,
+              primary: '#eee',
+              primary25: '#eee',
+            },
+          })}
+        />
+        <Select
+          styles={customStyles}
+          options={hourOption}
+          className="App-Select-timer"
+          isSearchable={false}
+          theme={(theme) => ({
+            ...theme,
+            colors: {
+              ...theme.colors,
+              primary: '#eee',
+              primary25: '#eee',
+            },
+          })}
+        />
+      </div>
       <div className="timer-child-end">
         <span className="text"> MM </span>
       </div>
