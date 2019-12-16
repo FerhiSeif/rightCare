@@ -6,8 +6,8 @@ import EmailChannelImg from '../../../../../assets/images/settings/add-message.s
 import LiveChatImg from '../../../../../assets/images/settings/answer.svg';
 import CallCentreImg from '../../../../../assets/images/settings/call-back.svg';
 import WebFormImg from '../../../../../assets/images/settings/id-card-1.svg';
-import FacebookImg from '../../../../../assets/images/dashboard/channel/facebook.svg';
-import TwitterImg from '../../../../../assets/images/dashboard/channel/twitter.svg';
+import FacebookImg from '../../../../../assets/images/settings/facebook.92f23286.svg';
+import TwitterImg from '../../../../../assets/images/settings/twitter.2210c4de.svg';
 
 const SetTimer = (props) => {
     const {
@@ -42,32 +42,30 @@ const SetTimer = (props) => {
     
     return (
         <div className="timer-section">
-            <div>
-                <div className="timer-child-start">
-                    {/* <div className="icon"> */}
-                        {index === 'email_channel' && (
-                            <img src={EmailChannelImg} className="img-icon" />
-                        )}
-                        {index === 'live_chat' && (
-                            <img src={LiveChatImg} className="img-icon" />
-                        )}
-                        {index === 'call_centre' && (
-                            <img src={CallCentreImg} className="img-icon" />
-                        )}
-                        {index === 'webform' && (
-                            <img src={WebFormImg} className="img-icon" />
-                        )}
-                        {index === 'facebook' && (
-                            <img src={FacebookImg} className="img-icon" />
-                        )}
-                        {index === 'twitter' && (
-                            <img src={TwitterImg} className="img-icon" />
-                        )}
-                    {/* </div> */}
-                    <span className="text">
-                        {text}
-                    </span>
-                </div>
+            <div className="timer-child-start">
+                {/* <div className="icon"> */}
+                {index === 'email_channel' && (
+                    <img src={EmailChannelImg} className="img-icon" />
+                )}
+                {index === 'live_chat' && (
+                    <img src={LiveChatImg} className="img-icon" />
+                )}
+                {index === 'call_centre' && (
+                    <img src={CallCentreImg} className="img-icon" />
+                )}
+                {index === 'webform' && (
+                    <img src={WebFormImg} className="img-icon" />
+                )}
+                {index === 'facebook' && (
+                    <img src={FacebookImg} className="img-icon" />
+                )}
+                {index === 'twitter' && (
+                    <img src={TwitterImg} className="img-icon" />
+                )}
+                {/* </div> */}
+                <span className="text">
+                    {text}
+                </span>
             </div>
             <div>
                 <Select
@@ -99,10 +97,8 @@ const SetTimer = (props) => {
                     })}
                 />
             </div>
-            <div>
-                <div className="timer-child-end">
-                    <span className="text"> MM </span>
-                </div>
+            <div className="timer-child-end">
+                <span className="text"> MM </span>
             </div>
         </div>
     );

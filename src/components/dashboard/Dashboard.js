@@ -6,7 +6,6 @@ import { options } from '../../configs/options';
 
 
 class Dashboard extends Component {
-
   constructor() {
     super();
     this.state = {
