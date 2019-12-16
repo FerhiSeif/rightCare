@@ -17,13 +17,13 @@ const Content = (props) => {
   const [modalTitle, setModalTitle] = useState('');
   const [modalContent, setModalContent] = useState('');
   const [modalButton, setModalButton] = useState('');
+  const [customerFields, setCustomerFields] = useState(['First Name', 'Last Name', 'Email', 'Telephone']);
 
   const agentModal = React.createRef();
 
   const handleAddRessourceModal = (textTitle, detectContent, buttonText) => {
     document.body.classList.add('modal-opened');
     agentModal.current.classList.add('is-active');
-
     setModalTitle(textTitle);
     setModalContent(detectContent);
     setModalButton(buttonText);
@@ -32,9 +32,16 @@ const Content = (props) => {
   const handleCloseRessourceModal = () => {
     document.body.classList.remove('modal-opened');
     agentModal.current.classList.remove('is-active');
-
     setModalTitle('');
     setModalContent('');
+  };
+
+  const handleAddFields = (params) => {
+    console.log('state', params);
+    // setCustomerFields((prevState) => ({
+    //   ...prevState,
+    //   // customerFields: updatedFields,
+    // }));
   };
 
   return (
@@ -79,6 +86,7 @@ const Content = (props) => {
         content={modalContent}
         kind={kind}
         buttonText={modalButton}
+        handleAddFields={handleAddFields}
       />
     </>
 
