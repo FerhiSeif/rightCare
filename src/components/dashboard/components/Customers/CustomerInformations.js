@@ -10,6 +10,7 @@ const CustomerInformations = (props) => {
     handleCloseRessourceModal,
     handleAddRessourceModal,
     i18n,
+    handleAddFields,
   } = props;
 
   const [state, setState] = useState({
@@ -70,6 +71,7 @@ const CustomerInformations = (props) => {
               t={t}
               handleCloseRessourceModal={handleCloseRessourceModal}
               handleAddRessourceModal={handleAddRessourceModal}
+              handleAddFields={handleAddFields}
             />
           </div>
         </div>
