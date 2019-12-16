@@ -69,9 +69,8 @@
   },
   "settings": {
     "settings_overview": "Settings",
+  
     "ticket_settings": "Ticket Settings",
-    "conitnue": "Conitnue",
-
     "tickets_priority": "Tickets Priority",
     "tickets_priority_content" : {
       "hight": "Hight",
@@ -80,9 +79,11 @@
       "urgent": "Urgent",
       "low": "Low",
       "not_urgent": "Not urgent",
-      "new_priority": "New Priority"
-    },
+      "new_priority": "New Priority",
+      "button_text": "Add Priority",
 
+      "ticket_priority_input": "Enter Ticket Priority name"
+    },
     "tickets_status": "Tickets Status",
     "tickets_status_content" : {
       "resolved": "Resolved",
@@ -91,30 +92,49 @@
       "on_going_ticket": "On-going ticket",
       "new": "New",
       "ticket_without_agent_assign": "Ticket without agent assign",
-      "new_status": "New Status"
+      "new_status": "New Status",
+      "button_text": "Add Status",
+      "status_input": "Enter Ticket Status name"
     },
-
     "tickets_category": "Tickets Category",
     "tickets_category_content" : {
       "technical": "Technical",
       "customer_care": "Customer Care",
       "enquires": "Enquires",
-      "new_category": "New Category"
+      "new_category": "New Category",
+      "button_text": "Add Category ",
+      "category_input": "Category name"
     },
-
     "customer_informations": "Customer Informations",
     "customer_informations_content" : {
       "first_name": "First Name",
       "last_name": "Last Name",
       "email": "Email",
       "telephone": "Telephone",
-      "new_field": "New Field"
+      "new_field": "New Field",
+      "button_text": "Add Customer field",
+      "custome_input": "Field Name",
+      "button_add": "Add more Field"
     },
-
     "tickets_timer": "Tickets Timer",
     "tickets_timer_content" : {
-      "set_timer_ticket": "Set timer on ticket"
-    }
+      "set_timer_ticket": "Set timer on ticket",
+      "set_ticket_support_timer": "Set Ticket Support Timer",
+      "button_text": "Add Customer field",
+
+      "section_Timer": {
+        "email_channel": "Email Channel",
+        "live_chat": "Live Chat",
+        "call_centre": "Call Centre",
+        "webform": "WebForm",
+        "facebook": "Facebook",
+        "twitter": "Twitter"
+      }
+    },
+
+    "agent_settings": "Agent Settings",
+
+    "channel_settings": "Channel Settings"
   }
 
 }

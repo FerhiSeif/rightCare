@@ -101,13 +101,17 @@
     }
     .modal-card {
       width: 28.125rem;
-      height: 32rem;
+      // height: 32rem;
       border-radius: 10px;
       .modal-close-incard {
         display: none;
       }
 
       .modal-card-head {
+        // add border modal
+        border-bottom: #c8d3d6 solid 1.4px !important;
+        padding-bottom: 5px !important;
+
         display: block;
         background-color: $white;
         border-bottom: 0;
@@ -126,6 +130,9 @@
             top: .5rem;
           }
         }
+      }
+      .modal-card-body {
+        min-height: 17rem;
       }
       .modal-card-body>div>.menu-list {
         margin-left: 0;
@@ -169,7 +176,8 @@
         border-top: 0;
         justify-content: center;
         .button {
-          width: 11.1875rem;
+          // C$- change;
+          // width: 11.1875rem;
           font-size: 1.1rem;
         }
       }

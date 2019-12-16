@@ -69,9 +69,8 @@
   },
   "settings": {
     "settings_overview": "Paramètres",
-    "ticket_settings": "Paramètres de ticket",
-    "conitnue": "Continuer",
 
+    "ticket_settings": "Paramètres de ticket",
     "tickets_priority": "Priorité des Tickets",
     "tickets_priority_content" : {
       "hight": "Haute",
@@ -80,9 +79,10 @@
       "urgent": "Urgente",
       "low": "Faible",
       "not_urgent": "Pas urgent",
-      "new_priority": "Nouvelle priorité"
+      "new_priority": "Nouvelle priorité",
+      "button_text": "Ajouter une priorité",
+      "ticket_priority_input": "Entrez le nom de priorité du ticket"
     },
-
     "tickets_status": "Statut des billets",
     "tickets_status_content" : {
       "resolved": "Résolu",
@@ -91,30 +91,49 @@
       "on_going_ticket": "Ticket en cours",
       "new": "Nouveau",
       "ticket_without_agent_assign": "Ticket sans assignation d'agent",
-      "new_status": "Nouveau statut"
+      "new_status": "Nouveau statut",
+      "button_text": "Ajouter un statut",
+      "status_input": "Entrez le nom du statut du ticket"
     },
-
     "tickets_category": "Catégorie de Tickets",
     "tickets_category_content" : {
       "technical": "Technique",
       "customer_care": "Service client",
       "enquires": "Demandes",
-      "new_category": "Nouvelle catégoriey"
+      "new_category": "Nouvelle catégoriey",
+      "button_text": "Ajouter une catégorie",
+      "category_input": "Nom de Categorie"
     },
-
     "customer_informations": "Informations client",
     "customer_informations_content" : {
       "first_name": "Prénoms",
       "last_name": "Nom",
       "email": "Email",
       "telephone": "Téléphone",
-      "new_field": "Nouveau champ"
+      "new_field": "Nouveau champ",
+      "button_text": "Ajouter un champ",
+      "custome_input": "Nom du champ",
+      "button_add": "Ajouter un champ"
     },
-
     "tickets_timer": "Temps des Tickets",
     "tickets_timer_content" : {
-      "set_timer_ticket": "Suivre le temps sur le ticket"
-    }
+      "set_timer_ticket": "Suivre le temps sur le ticket",
+      "button_text": "Ajouter un champ",
+
+      "set_ticket_support_timer": "Minuterie de prise en charge des tickets",
+      "section_Timer": {
+        "email_channel": "Messagerie",
+        "live_chat": "Chat en direct",
+        "call_centre": "Centre d'appel",
+        "webform": "Plate-forme web",
+        "facebook": "Facebook",
+        "twitter": "Twitter"
+      }
+    },
+
+    "agent_settings": "Paramètres de l'agent",
+
+    "channel_settings": "Paramètres des chaînes"
   }
   
 }
