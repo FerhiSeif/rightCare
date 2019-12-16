@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Select from 'react-select';
-import { Formik, Form, Field } from "formik";
+import { Formik, Form, Field } from 'formik';
 
 const ContentCustomer = (props) => {
   const {
@@ -9,9 +9,10 @@ const ContentCustomer = (props) => {
     buttonText,
     handleContinue,
     i18n,
+    handleAddFields,
   } = props;
 
-  const [state, setState] = useState({ fieldType: 'text' });
+  const [state, setState] = useState({ fieldType: 'text', nameField: '' });
 
   const currLang = i18n.language;
 
@@ -41,6 +42,21 @@ const ContentCustomer = (props) => {
             error = 'Invalid email address';
           }
           break;
+        case 'text':
+          if (!/^\s*[a-zA-Z,\s]+\s*$/i.test(value)) {
+            error = 'Invalid text field';
+          }
+          break;
+        case 'number':
+          if (!/^[0-9]{1,10}$/i.test(value)) {
+            error = 'Invalid number field';
+          }
+          break;
+        case 'date':
+          if (!/^\d{1,2}\/\d{1,2}\/\d{4}$/i.test(value)) {
+            error = 'Invalid date field';
+          }
+          break;
         default:
           error = 'Field not found please select';
       }
@@ -49,11 +65,13 @@ const ContentCustomer = (props) => {
     return error;
   };
 
-  const handleAddField = () => { console.log('handleAddField !!!'); };
-
   const handleSelectChange = (event) => {
     const fieldType = event.value;
     setState({ fieldType });
+  };
+
+  const handleFieldChange = (event) => {
+    console.log('event with data', event);
   };
 
   return (
@@ -72,8 +90,9 @@ const ContentCustomer = (props) => {
               <div className="input-section">
                 <Field
                   className="input"
-                  name="email"
+                  name={state.fieldType}
                   validate={validateField}
+                  onChange={handleFieldChange}
                 />
                 <span className="alert-danger">{errors.email && touched.email && errors.email}</span>
                 <span className="alert-danger">{errors.text && touched.text && errors.text}</span>
@@ -98,26 +117,14 @@ const ContentCustomer = (props) => {
               },
             })}
           />
-
           <div className="section-button">
-            <div>
-              <div className="section-child" onClick={handleAddField} >
-                <span className="button-plus"> + </span>
-                <span className="button-text">
-                  {t('settings.customer_informations_content.button_add')}
-                </span>
-              </div>
+            <div className="section-child" onClick={handleAddFields}>
+              <span className="button-plus"> + </span>
+              <span className="button-text">
+                {t('settings.customer_informations_content.button_add')}
+              </span>
             </div>
           </div>
-
-          {/* <div style={{ paddingBottom: '6rem', paddingTop: '2rem', float: 'right' }}>
-            <button className="button button-add-field" aria-label="close" onClick={handleAddField}>
-              <span className="button-plus">+</span>
-              <span className="button-text">
-              </span>
-            </button>
-          </div> */}
-
         </div>
       </section>
       <footer className="modal-card-foot">
