@@ -3,18 +3,23 @@
 .timer-content {
   width: 100% !important;
   .timer-section {
+    padding-left: 1rem;
+    padding-right: 1rem;
+
     margin-top: 1rem;
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    justify-content: flex-start;
+    width: 100% !important;
+    flex-wrap: nowrap;
     .timer-child-start {
+      width: 45%;
+      order: 1;      
       border-top-left-radius: 7px;
       border-bottom-left-radius: 7px;
       border: solid 1px #c8d3d6;
       background-color: #ededed;
       padding: 0.55rem 0rem;
       padding-left: 1rem;
-      width: 11rem;
       .icon {
         padding-left: 1.5rem;
         padding-right: 2rem;
@@ -33,12 +38,22 @@
       }
     }
     .timer-child-select {
-      position: relative;
-      background-color: #fff;
-      padding: 0.5rem 0.5rem;
-      border: solid 1px #c8d3d6;
+      display: flex;
+      flex-wrap: nowrap;
+      order: 2;
+      width: 40%;
+
+      .day {
+        width: 20%;
+      }
+      .hour {
+        width: 20%;
+      }
     }
     .timer-child-end {
+      text-align: center;
+      width: 15%;
+      order: 3;
       position: relative;
       border-top-right-radius: 7px;
       border-bottom-right-radius: 7px;
@@ -70,6 +85,19 @@
 
   .css-26l3qy-menu {
     width: 100% !important;
+  }
+
+  .css-3bfqla-control {
+    border-color: #eee;
+    width: 5rem;
+  }
+  .css-3bfqla-control:hover {
+    border-color: #eee;
+    width: 5rem;
+  }
+  .css-3bfqla-control:focus {
+    border-color: #eee;
+    width: 5rem;
   }
 }
 
