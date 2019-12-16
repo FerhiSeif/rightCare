@@ -33,7 +33,6 @@ const ContentStatus = (props) => {
         </div>
 
         <div className="select div-select">
-
           <Select
             options={currLang === 'en' ? optionsEN : optionsFR}
             className="App-Select-priority"
