@@ -1,7 +1,7 @@
-/* eslint-disable import/no-extraneous-dependencies */
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Select from 'react-select';
+import { Formik, Form, Field } from "formik";
 
 const ContentCustomer = (props) => {
   const {
@@ -11,35 +11,84 @@ const ContentCustomer = (props) => {
     i18n,
   } = props;
 
+  const [state, setState] = useState({ fieldType: 'text' });
+
   const currLang = i18n.language;
 
   const optionsEN = [
-    { value: 'Text', label: 'Text' },
-    { value: 'Number', label: 'Number' },
-    { value: 'Date', label: 'Date' },
+    { value: 'text', label: 'Text' },
+    { value: 'number', label: 'Number' },
+    { value: 'date', label: 'Date' },
+    { value: 'email', label: 'Email' },
   ];
 
   const optionsFR = [
-    { value: 'Text', label: 'Text' },
-    { value: 'Nombre', label: 'Nombre' },
-    { value: 'Date', label: 'Date' },
+    { value: 'text', label: 'Text' },
+    { value: 'number', label: 'Nombre' },
+    { value: 'date', label: 'Date' },
+    { value: 'email', label: 'Email' },
   ];
 
+  const validateField = (value) => {
+    const { fieldType } = state;
+    let error;
+    if (!value) {
+      error = 'This field is required';
+    } else {
+      switch (fieldType) {
+        case 'email':
+          if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value)) {
+            error = 'Invalid email address';
+          }
+          break;
+        default:
+          error = 'Field not found please select';
+      }
+    }
+
+    return error;
+  };
+
   const handleAddField = () => { console.log('handleAddField !!!'); };
+
+  const handleSelectChange = (event) => {
+    const fieldType = event.value;
+    setState({ fieldType });
+  };
 
   return (
     <div className="">
       <section className="modal-card-body">
-        <div className="input-section">
-          <input className="input" type="text" placeholder={t('settings.customer_informations_content.custome_input')} />
-        </div>
+        <Formik
+          initialValues={{
+            email: '',
+            text: '',
+            number: '',
+            date: '',
+          }}
+        >
+          {({ errors, touched }) => (
+            <Form>
+              <div className="input-section">
+                <Field
+                  className="input"
+                  name="email"
+                  validate={validateField}
+                />
+                <span className="alert-danger">{errors.email && touched.email && errors.email}</span>
+                <span className="alert-danger">{errors.text && touched.text && errors.text}</span>
+                <span className="alert-danger">{errors.number && touched.number && errors.number}</span>
+                <span className="alert-danger">{errors.date && touched.date && errors.date}</span>
+              </div>
+            </Form>
+          )}
+        </Formik>
 
         <div className="select div-select">
-
           <Select
             options={currLang === 'en' ? optionsEN : optionsFR}
             className="App-Select-priority"
-            isSearchable={false}
+            onChange={handleSelectChange}
             theme={(theme) => ({
               ...theme,
               colors: {
@@ -65,7 +114,6 @@ const ContentCustomer = (props) => {
             <button className="button button-add-field" aria-label="close" onClick={handleAddField}>
               <span className="button-plus">+</span>
               <span className="button-text">
-                
               </span>
             </button>
           </div> */}
