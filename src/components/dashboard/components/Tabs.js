@@ -45,11 +45,9 @@ const Tabs = (props) => {
           </TabList>
 
           <TabPanel>
-            <p>
-              Contenu
-              {' '}
+            <div className="card-content">
               {t('settings.agent_settings')}
-            </p>
+            </div>
           </TabPanel>
           <TabPanel>
             <Content
@@ -59,11 +57,9 @@ const Tabs = (props) => {
             />
           </TabPanel>
           <TabPanel>
-            <p>
-              Contenu
-              {' '}
+            <div className="card-content">
               {t('settings.channel_settings')}
-            </p>
+            </div>
           </TabPanel>
         </Tabber>
       </div>

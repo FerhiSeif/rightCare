@@ -2,10 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const CustomerInformationContent = (props) => {
-
   const {
     t,
-    handleCloseRessourceModal,
     handleAddRessourceModal,
   } = props;
 
@@ -61,7 +59,6 @@ const CustomerInformationContent = (props) => {
 
 CustomerInformationContent.propTypes = {
   t: PropTypes.func.isRequired,
-  handleCloseRessourceModal: PropTypes.func.isRequired,
   handleAddRessourceModal: PropTypes.func.isRequired,
 };
 
