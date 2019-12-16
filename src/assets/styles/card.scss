@@ -131,6 +131,9 @@
           }
         }
       }
+      .modal-card-body {
+        min-height: 17rem;
+      }
       .modal-card-body>div>.menu-list {
         margin-left: 0;
         li {
@@ -173,7 +176,7 @@
         border-top: 0;
         justify-content: center;
         .button {
-          // C$- change; 
+          // C$- change;
           // width: 11.1875rem;
           font-size: 1.1rem;
         }
