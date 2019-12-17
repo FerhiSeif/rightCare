@@ -17,7 +17,16 @@ const Content = (props) => {
   const [modalTitle, setModalTitle] = useState('');
   const [modalContent, setModalContent] = useState('');
   const [modalButton, setModalButton] = useState('');
-  const [customerFields, setCustomerFields] = useState(['First Name', 'Last Name', 'Email', 'Telephone']);
+  const [customerFields, setCustomerFields] = useState([
+    // { elt: 'First Name', value: '' },
+    // { elt: 'Last Name', value: '' },
+    // { elt: 'Email', value: '' },
+    // { elt: 'Telephone', value: '' },
+    { elt: t('settings.customer_informations_content.first_name'), value: 'NDri' },
+    { elt: t('settings.customer_informations_content.last_name'), value: 'Jordy' },
+    { elt: t('settings.customer_informations_content.email'), value: 'jordy@g.com' },
+    { elt: t('settings.customer_informations_content.telephone'), value: '00010001' },
+  ]);
 
   const agentModal = React.createRef();
 
@@ -36,12 +45,15 @@ const Content = (props) => {
     setModalContent('');
   };
 
-  const handleAddFields = (params) => {
-    console.log('state', params);
-    // setCustomerFields((prevState) => ({
-    //   ...prevState,
-    //   // customerFields: updatedFields,
-    // }));
+  const handleAddFields = (elt, params) => {
+    const { fieldType, fieldValue } = params;
+    const objValue = { elt: fieldType, value: fieldValue };
+    if (elt === 'customer') {
+      setCustomerFields([
+        ...customerFields,
+        objValue,
+      ]);
+    }
   };
 
   return (
@@ -68,6 +80,7 @@ const Content = (props) => {
               t={t}
               handleCloseRessourceModal={handleCloseRessourceModal}
               handleAddRessourceModal={handleAddRessourceModal}
+              customerFields={customerFields}
             />
             <TicketsTimer
               t={t}

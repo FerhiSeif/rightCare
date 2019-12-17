@@ -17,6 +17,7 @@ const Modal = (props) => {
     buttonText,
     agentModal,
     handleCloseRessourceModal,
+    handleAddFields,
   } = props;
 
   const modalStyle = {
@@ -47,6 +48,7 @@ const Modal = (props) => {
             buttonText={buttonText}
             handleContinue={handleContinue}
             i18n={i18n}
+            handleAddFields={handleAddFields}
           />
         )}
         {content === 'status' && (
@@ -55,6 +57,7 @@ const Modal = (props) => {
             buttonText={buttonText}
             handleContinue={handleContinue}
             i18n={i18n}
+            handleAddFields={handleAddFields}
           />
         )}
         {content === 'category' && (
@@ -62,6 +65,7 @@ const Modal = (props) => {
             t={t}
             buttonText={buttonText}
             handleContinue={handleContinue}
+            handleAddFields={handleAddFields}
           />
         )}
         {content === 'informations' && (
@@ -70,6 +74,7 @@ const Modal = (props) => {
             buttonText={buttonText}
             handleContinue={handleContinue}
             i18n={i18n}
+            handleAddFields={handleAddFields}
           />
         )}
         {content === 'timer' && (
@@ -92,8 +97,9 @@ Modal.propTypes = {
   kind: PropTypes.string.isRequired,
   buttonText: PropTypes.string.isRequired,
   agentModal: PropTypes.shape({}).isRequired,
-  handleCloseRessourceModal: PropTypes.func.isRequired,
   checkedServices: PropTypes.shape({}).isRequired,
+  handleCloseRessourceModal: PropTypes.func.isRequired,
+  handleAddFields: PropTypes.func.isRequired,
 };
 
 export default Modal;

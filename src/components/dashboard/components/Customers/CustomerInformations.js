@@ -9,8 +9,8 @@ const CustomerInformations = (props) => {
     kind,
     handleCloseRessourceModal,
     handleAddRessourceModal,
+    customerFields,
     i18n,
-    handleAddFields,
   } = props;
 
   const [state, setState] = useState({
@@ -71,7 +71,7 @@ const CustomerInformations = (props) => {
               t={t}
               handleCloseRessourceModal={handleCloseRessourceModal}
               handleAddRessourceModal={handleAddRessourceModal}
-              handleAddFields={handleAddFields}
+              customerFields={customerFields}
             />
           </div>
         </div>
@@ -85,6 +85,7 @@ CustomerInformations.propTypes = {
   kind: PropTypes.string.isRequired,
   handleCloseRessourceModal: PropTypes.func.isRequired,
   handleAddRessourceModal: PropTypes.func.isRequired,
+  customerFields: PropTypes.arrayOf.isRequired,
 };
 
 export default CustomerInformations;
