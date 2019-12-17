@@ -18,14 +18,10 @@ const Content = (props) => {
   const [modalContent, setModalContent] = useState('');
   const [modalButton, setModalButton] = useState('');
   const [customerFields, setCustomerFields] = useState([
-    // { elt: 'First Name', value: '' },
-    // { elt: 'Last Name', value: '' },
-    // { elt: 'Email', value: '' },
-    // { elt: 'Telephone', value: '' },
-    { elt: t('settings.customer_informations_content.first_name'), value: 'NDri' },
-    { elt: t('settings.customer_informations_content.last_name'), value: 'Jordy' },
-    { elt: t('settings.customer_informations_content.email'), value: 'jordy@g.com' },
-    { elt: t('settings.customer_informations_content.telephone'), value: '00010001' },
+    { label: t('settings.customer_informations_content.first_name'), type: 'text' },
+    { label: t('settings.customer_informations_content.last_name'), type: 'text' },
+    { label: t('settings.customer_informations_content.email'), type: 'email' },
+    { label: t('settings.customer_informations_content.telephone'), type: 'number' },
   ]);
 
   const agentModal = React.createRef();
@@ -46,13 +42,29 @@ const Content = (props) => {
   };
 
   const handleAddFields = (elt, params) => {
-    const { fieldType, fieldValue } = params;
-    const objValue = { elt: fieldType, value: fieldValue };
+    const { fieldType, fieldLabel } = params;
+    const objValue = { label: fieldLabel, type: fieldType };
     if (elt === 'customer') {
       setCustomerFields([
         ...customerFields,
         objValue,
       ]);
+
+      console.log('1 : ', customerFields);
+
+      // const unique = [...new Set(customerFields)];
+      // setCustomerFields([
+      //   ...unique,
+      // ]);
+
+      const func = (names) => customerFields.filter((v, i) => {
+        console.log('func : ', v, i);
+
+        // return names.indexOf(v) === i;
+      });
+      func(customerFields);
+
+      console.log('2 : ', customerFields);
     }
   };
 

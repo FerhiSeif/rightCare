@@ -12,22 +12,22 @@ const ContentCustomer = (props) => {
     i18n,
   } = props;
 
-  const [state, setState] = useState({ fieldType: 'text', fieldValue: '' });
+  const [state, setState] = useState({ fieldType: 'text', fieldLabel: '' });
 
   const currLang = i18n.language;
 
   const optionsEN = [
-    { value: 'text', label: 'Text' },
-    { value: 'number', label: 'Number' },
-    { value: 'date', label: 'Date' },
-    { value: 'email', label: 'Email' },
+    { type: 'text', label: 'Text' },
+    { type: 'number', label: 'Number' },
+    { type: 'date', label: 'Date' },
+    { type: 'email', label: 'Email' },
   ];
 
   const optionsFR = [
-    { value: 'text', label: 'Text' },
-    { value: 'nombre', label: 'Nombre' },
-    { value: 'date', label: 'Date' },
-    { value: 'email', label: 'Email' },
+    { type: 'text', label: 'Text' },
+    { type: 'nombre', label: 'Nombre' },
+    { type: 'date', label: 'Date' },
+    { type: 'email', label: 'Email' },
   ];
 
   const customStyles = {
@@ -39,12 +39,14 @@ const ContentCustomer = (props) => {
   };
 
   const validateField = (value) => {
-    const { fieldType, fieldValue } = state;
-    
+    // const { fieldLabel, fieldType } = state;
+    console.log(value);
+
     let error;
     if (!value) {
       error = 'This field is required';
     } else {
+      /*
       switch (fieldType) {
         case 'email':
           if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value)) {
@@ -74,19 +76,32 @@ const ContentCustomer = (props) => {
         default:
           error = 'Field not found please select';
       }
+      */
     }
 
     return error;
   };
 
+  const handleAddFieldsClone = (id, datas) => {
+    console.log('datas : ', datas);
+
+    handleAddFields(id, datas);
+    setState({ fieldLabel: '', fieldType: '' });
+  };
+
   const handleSelectChange = (event) => {
-    const fieldType = event.value;
-    setState({ fieldType, fieldValue: '' });
+    console.log(event);
+    
+    const fieldType = event.type;
+
+    console.log(fieldType);
+    
+    setState({ fieldLabel: '', fieldType });
   };
 
   const handleFieldChange = (event) => {
     const { value } = event.currentTarget;
-    setState({ fieldType: state.fieldType, fieldValue: value });
+    setState({ fieldLabel: value, fieldType: state.fieldType });
   };
 
   return (
@@ -102,47 +117,50 @@ const ContentCustomer = (props) => {
         >
           {({ errors, touched }) => (
             <Form>
+              <div className="select div-select">
+                <Select
+                  styles={customStyles}
+                  options={currLang === 'en' ? optionsEN : optionsFR}
+                  className="App-Select-priority"
+                  onChange={handleSelectChange}
+                  theme={(theme) => ({
+                    ...theme,
+                    colors: {
+                      ...theme.colors,
+                      primary: '#eee',
+                      primary25: '#eee',
+                    },
+                  })}
+                />
+              </div>
+
               <div className="input-section">
                 <Field
                   className="input"
                   name={state.fieldType}
                   validate={() => validateField(state.fieldType)}
                   onChange={(e) => handleFieldChange(e)}
-                  value={state.fieldValue}
+                  value={state.fieldLabel}
                 />
+              {/*
                 <span className="alert-danger">{errors.email && touched.email && errors.email}</span>
                 <span className="alert-danger">{errors.text && touched.text && errors.text}</span>
                 <span className="alert-danger">{errors.number && touched.number && errors.number}</span>
                 <span className="alert-danger">{errors.date && touched.date && errors.date}</span>
+              */}
+              </div>
+
+              <div className="section-button">
+                <div className="section-child" onClick={() => handleAddFieldsClone('customer', state)}>
+                  <span className="button-plus"> + </span>
+                  <span className="button-text">
+                    {t('settings.customer_informations_content.button_add')}
+                  </span>
+                </div>
               </div>
             </Form>
           )}
         </Formik>
-
-        <div className="select div-select">
-          <Select
-            styles={customStyles}
-            options={currLang === 'en' ? optionsEN : optionsFR}
-            className="App-Select-priority"
-            onChange={handleSelectChange}
-            theme={(theme) => ({
-              ...theme,
-              colors: {
-                ...theme.colors,
-                primary: '#eee',
-                primary25: '#eee',
-              },
-            })}
-          />
-          <div className="section-button">
-            <div className="section-child" onClick={() => handleAddFields('customer', state)}>
-              <span className="button-plus"> + </span>
-              <span className="button-text">
-                {t('settings.customer_informations_content.button_add')}
-              </span>
-            </div>
-          </div>
-        </div>
       </section>
       <footer className="modal-card-foot">
         <button className="button is-primary button-round" aria-label="close" onClick={handleContinue}>{buttonText}</button>

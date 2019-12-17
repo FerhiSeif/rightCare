@@ -119,8 +119,6 @@
 .section-button {
   display: flex;
   flex-wrap: wrap;
-  margin-top: 2rem;
-  margin-bottom: 2rem;
   background: #f2f2f2;
   float: right;
   border-radius: 7px;
@@ -327,6 +325,8 @@ width: 2px;
   color: #657288 !important;
 }
 .div-select {
+  display: block !important;
+  margin-bottom: 2rem;
   width: 100% !important;
   select {
     width: 100% !important;
