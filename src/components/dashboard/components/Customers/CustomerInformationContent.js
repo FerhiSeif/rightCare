@@ -11,14 +11,13 @@ const CustomerInformationContent = (props) => {
   return (
     <>
       <div className="ticket-content">
-        <div className="ticket-priorities">
+        <div className="ticket-priorities customer-tickets-priorities">
 
           {customerFields.map((item, i) => (
             <div className="children" key={i}>
               <span className="label-title">
                 {item.label}
               </span>
-              <span className="tickets-close-incard" />
             </div>
           ))}
 
