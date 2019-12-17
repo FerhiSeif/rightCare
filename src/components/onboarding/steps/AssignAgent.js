@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withTranslation } from 'react-i18next';
 import Carder from '../../common/Carder';
-import FakeChannels from '../../../faker/channels';
 import MobileAddAgents from './MobileAddAgents';
 
 const AssignAgent = (props) => {
@@ -10,8 +9,6 @@ const AssignAgent = (props) => {
     t,
     checkedServices,
     handleChooseService,
-    activeServices,
-    handleBack,
     containerWidth,
     i18n,
   } = props;
@@ -33,75 +30,28 @@ const AssignAgent = (props) => {
   return (
     <div className="card-container">
      { containerWidth > 768 && (
-        localService && localService.length > 0 ? (
-          <>
-            { localService.map((item, i) => (
-              <Carder
-                kind="agent"
-                icon={item.icon}
-                darkIcon={item.darkIcon}
-                key={i}
-                t={t}
-                title={item.type}
-                content={t('onboard.steps.no_agent_has_been_added')}
-                buttonText={t('onboard.steps.add_agent')}
-                isChannelEmpty={false}
-                channelSelected={false}
-                serviceCount={6}
-                agentAssigned={false}
-                handleChooseService={handleChooseService}
-                checkedServices={checkedServices}
-                assignedAgents={item.agents}
-                i18n={i18n}
-                nameFr={item.name_fr}
-                currentStep={2}
-              />
-            ))}
-          </>
-        ) : (
-          <>
-            { activeServices && activeServices.length > 0 ? (
-              <>
-                { FakeChannels.filter((channel) => activeServices.indexOf(channel.type) >= 0)
-                  .map((item, i) => (
-                    <Carder
-                      kind="agent"
-                      icon={item.icon}
-                      darkIcon={item.darkIcon}
-                      key={i}
-                      t={t}
-                      title={ item.type}
-                      content={t('onboard.steps.no_agent_has_been_added')}
-                      buttonText={t('onboard.steps.add_agent')}
-                      isChannelEmpty={false}
-                      channelSelected={false}
-                      serviceCount={6}
-                      agentAssigned={false}
-                      handleChooseService={handleChooseService}
-                      checkedServices={checkedServices}
-                      assignedAgents={item.agents}
-                      i18n={i18n}
-                      nameFr={item.name_fr}
-                      currentStep={2}
-                    />
-                  ))}
-              </>
-            ) : (
-              <>
-                { (!localService || localService.length === 0) && (
-                  <div style={agentStyles.empty}>
-                    {t('onboard.steps.you_have_no_selected_channels_click')}
-                    <span
-                      style={agentStyles.here}
-                      className="select-channel-first"
-                      onClick={handleBack}> {t('onboard.steps.here')}
-                    </span> {t('onboard.steps.to_choose_channel(s)')}.
-                  </div>
-                )}
-              </>
-            )}
-          </>
-        )
+       localService.map((item, i) => (
+         <Carder
+           kind="agent"
+           icon={item.icon}
+           darkIcon={item.darkIcon}
+           key={i}
+           t={t}
+           title={item.type}
+           content={t('onboard.steps.no_agent_has_been_added')}
+           buttonText={t('onboard.steps.add_agent')}
+           isChannelEmpty={false}
+           channelSelected={false}
+           serviceCount={6}
+           agentAssigned={false}
+           handleChooseService={handleChooseService}
+           checkedServices={checkedServices}
+           assignedAgents={item.agents}
+           i18n={i18n}
+           nameFr={item.name_fr}
+           currentStep={2}
+         />
+       ))
       )}
       {containerWidth <= 768 && <MobileAddAgents />}
     </div>
