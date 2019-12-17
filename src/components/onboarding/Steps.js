@@ -178,8 +178,8 @@ export default function Steps(props) {
       <div className="steps-container">
         <div className="columns">
           <div className={`${(activeStep === 0 || (activeStep === 1 && (localService && localService.length === 1))) ? 'column is-three-fifths steps-column' : 'column is-full steps-column'}`}>
-            <h2 className="common-medium-title">{t('onboard.get_started')}</h2>
-            <p>{t('onboard.onboarding_process')}</p>
+            <h2 className="common-medium-title">{t('onboard.add_agent')}</h2>
+            <p>{t('onboard.add_agent_to_your_platform')}</p>
             <div className={classes.root}>
               <div>
                 <div className="content-selector">
