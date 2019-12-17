@@ -13,7 +13,7 @@
     flex-wrap: nowrap;
     .timer-child-start {
       width: 45%;
-      order: 1;      
+      order: 1;
       border-top-left-radius: 7px;
       border-bottom-left-radius: 7px;
       border: solid 1px #c8d3d6;
@@ -101,20 +101,6 @@
   }
 }
 
-// .css-tlfecz-indicatorContainer {
-//   color: #fff !important;
-// }
-// .css-tlfecz-indicatorContainer {
-//   color: #fff !important;
-// }
-// .css-1gtu0rj-indicatorContainer {
-//   color: #fff !important;
-// }
-// .css-1gtu0rj-indicatorContainer:hover {
-//   color: #fff !important;
-// }
-// End - Ticket Timer
-
 // Start - Customer information
 .section-button {
   display: flex;
@@ -160,18 +146,22 @@
   .text-mueted {
     color: #c8d3d6;
   }
+  .customer-tickets-priorities {
+    flex-wrap: wrap;
+    .children {
+      display: flex;
+    }
+  }
   .ticket-priorities {
     display: flex;
-    flex-wrap: wrap;
     .children {
       position: relative;
       border-radius: 7px;
       border: solid 1px #c8d3d6;
-      margin: 1rem;
+      margin: .5rem;
       margin-top: 0;
       padding: .5rem 1rem .5rem 1rem;
       color: #657288;
-      display: flex;
       .label-title {
         margin-right: .5rem;
         text-transform: capitalize;
@@ -183,7 +173,6 @@
       padding: 0;
       align-items: center;
       cursor: pointer;
-      margin-left: 3rem;
       .tickets-plus {
         font-size: 1.8rem;
         border-right: 1px solid #c8d3d6;
