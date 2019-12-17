@@ -41,7 +41,7 @@ const TicketsStatus = (props) => {
   };
 
   return (
-    <div className="card tickets-card" style={cardStyle.card}>
+    <div className="card customer-card" style={cardStyle.card}>
       <header className="card-header">
         <p className="card-header-title" style={cardStyle.p}>
           {t('settings.tickets_status')}
