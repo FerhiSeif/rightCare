@@ -42,28 +42,18 @@ const Content = (props) => {
 
   const handleAddFields = (elt, params) => {
     const { fieldType, fieldLabel } = params;
-    const objValue = { label: fieldLabel, type: fieldType };
+    const newObject = { label: fieldLabel, type: fieldType };
+
+    const detect = customerFields.findIndex((item) => item.label === newObject.label && item.type === newObject.type);
+
     if (elt === 'customer') {
+      if (detect > 0) {
+        customerFields.splice(customerFields.findIndex((item) => (item.label === newObject.label && item.type === newObject.type)), 1);
+      }
       setCustomerFields([
         ...customerFields,
-        objValue,
+        newObject,
       ]);
-
-      console.log('1 : ', customerFields);
-
-      // const unique = [...new Set(customerFields)];
-      // setCustomerFields([
-      //   ...unique,
-      // ]);
-
-      const func = (names) => customerFields.filter((v, i) => {
-        console.log('func : ', v, i);
-
-        // return names.indexOf(v) === i;
-      });
-      func(customerFields);
-
-      console.log('2 : ', customerFields);
     }
   };
 
