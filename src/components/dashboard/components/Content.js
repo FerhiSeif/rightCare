@@ -4,7 +4,6 @@ import TicketsPriority from './Priorities/TicketsPriority';
 import TicketsStatus from './Statuses/TicketsStatus';
 import TicketsCategory from './Categories/TicketsCategory';
 import CustomerInformations from './Customers/CustomerInformations';
-import TicketsTimer from './Timers/TicketsTimer';
 import Modal from './Modal';
 
 const Content = (props) => {
@@ -93,11 +92,6 @@ const Content = (props) => {
               handleCloseRessourceModal={handleCloseRessourceModal}
               handleAddRessourceModal={handleAddRessourceModal}
               customerFields={customerFields}
-            />
-            <TicketsTimer
-              t={t}
-              handleCloseRessourceModal={handleCloseRessourceModal}
-              handleAddRessourceModal={handleAddRessourceModal}
             />
           </div>
         </div>
