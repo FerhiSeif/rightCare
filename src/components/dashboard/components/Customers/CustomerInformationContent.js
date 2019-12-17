@@ -14,7 +14,7 @@ const CustomerInformationContent = (props) => {
         <div className="ticket-priorities">
 
           {customerFields.map((item, i) => (
-            <div className="children" key={i}>
+            <div className="children" key={i} data-tooltip={item.value}>
               <span className="label-title">
                 {item.elt}
               </span>
