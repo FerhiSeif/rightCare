@@ -13,18 +13,6 @@ const AssignAgent = (props) => {
     i18n,
   } = props;
 
-  const agentStyles = {
-    empty: {
-      marginBottom: '1rem',
-      fontSize: '1.5rem',
-    },
-    here: {
-      cursor: 'pointer',
-      textDecoration: 'underline',
-      color: '#00bd39',
-    },
-  };
-
   const localService = JSON.parse(localStorage.getItem('cr_services'));
 
   return (
