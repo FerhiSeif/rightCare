@@ -17,17 +17,17 @@ const ContentCustomer = (props) => {
   const currLang = i18n.language;
 
   const optionsEN = [
-    { type: 'text', label: 'Text' },
-    { type: 'number', label: 'Number' },
-    { type: 'date', label: 'Date' },
-    { type: 'email', label: 'Email' },
+    { value: 'text', label: 'Text' },
+    { value: 'number', label: 'Number' },
+    { value: 'date', label: 'Date' },
+    { value: 'email', label: 'Email' },
   ];
 
   const optionsFR = [
-    { type: 'text', label: 'Text' },
-    { type: 'nombre', label: 'Nombre' },
-    { type: 'date', label: 'Date' },
-    { type: 'email', label: 'Email' },
+    { value: 'text', label: 'Text' },
+    { value: 'nombre', label: 'Nombre' },
+    { value: 'date', label: 'Date' },
+    { value: 'email', label: 'Email' },
   ];
 
   const customStyles = {
@@ -83,19 +83,12 @@ const ContentCustomer = (props) => {
   };
 
   const handleAddFieldsClone = (id, datas) => {
-    console.log('datas : ', datas);
-
     handleAddFields(id, datas);
-    setState({ fieldLabel: '', fieldType: '' });
+    setState({ fieldLabel: '', fieldType: 'text' });
   };
 
   const handleSelectChange = (event) => {
-    console.log(event);
-    
-    const fieldType = event.type;
-
-    console.log(fieldType);
-    
+    const fieldType = event.value;
     setState({ fieldLabel: '', fieldType });
   };
 
