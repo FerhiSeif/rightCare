@@ -42,13 +42,19 @@ const Content = (props) => {
 
   const handleAddFields = (elt, params) => {
     const { fieldType, fieldLabel } = params;
-    const newObject = { label: fieldLabel, type: fieldType };
+    const newObject = { label: fieldLabel.toLowerCase(), type: fieldType.toLowerCase() };
 
-    const detect = customerFields.findIndex((item) => item.label === newObject.label && item.type === newObject.type);
+    console.log(newObject);
+    
+
+    const detect = customerFields.findIndex((item) => item.label.toLowerCase() === newObject.label && item.type.toLowerCase() === newObject.type);
+
+    console.log(detect);
+    
 
     if (elt === 'customer') {
-      if (detect > 0) {
-        customerFields.splice(customerFields.findIndex((item) => (item.label === newObject.label && item.type === newObject.type)), 1);
+      if (detect >= 0) {
+        customerFields.splice(customerFields.findIndex((item) => (item.label.toLowerCase() === newObject.label && item.type.toLowerCase() === newObject.type)), 1);
       }
       setCustomerFields([
         ...customerFields,

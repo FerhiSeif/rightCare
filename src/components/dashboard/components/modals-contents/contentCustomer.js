@@ -83,8 +83,10 @@ const ContentCustomer = (props) => {
   };
 
   const handleAddFieldsClone = (id, datas) => {
-    handleAddFields(id, datas);
-    setState({ fieldLabel: '', fieldType: 'text' });
+    if (datas.fieldType !== '' && datas.fieldLabel !== '') {
+      handleAddFields(id, datas);
+      setState({ fieldLabel: '', fieldType: 'text' });
+    }
   };
 
   const handleSelectChange = (event) => {
@@ -94,7 +96,7 @@ const ContentCustomer = (props) => {
 
   const handleFieldChange = (event) => {
     const { value } = event.currentTarget;
-    setState({ fieldLabel: value, fieldType: state.fieldType });
+    setState({ fieldLabel: value.toLowerCase(), fieldType: state.fieldType });
   };
 
   return (
