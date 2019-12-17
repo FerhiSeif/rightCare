@@ -25,6 +25,7 @@
   },
   "onboard": {
     "select_available_channel": "Select Available Channel",
+    "get_started": "Get started",
     "add_agent": "Add Agent",
     "assign_agent_to_channel": "Assign Agent to Channel",
     "account_setup_summary": "Account setup, Summary",
