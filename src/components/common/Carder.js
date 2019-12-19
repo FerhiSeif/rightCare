@@ -9,10 +9,12 @@ import Content from './shared/Content';
 const Carder = (props) => {
   const {
     t,
+    kind,
     icon,
     darkIcon,
-    kind,
-    title,
+    name,
+    nameFr,
+    type,
     content,
     buttonText,
     serviceCount,
@@ -23,10 +25,10 @@ const Carder = (props) => {
     channelSelected,
     assignedAgents,
     i18n,
-    nameFr,
     currentStep,
   } = props;
 
+  // chargement de la liste des agents
   const [state, setState] = useState({
     initialAgents: assignedAgents && FakeAgents.filter((agent) => assignedAgents.includes(agent.id)),
     initAgents: FakeAgents,
@@ -35,7 +37,7 @@ const Carder = (props) => {
   const handleAddAgent = (e, id) => {
     const localService = JSON.parse(localStorage.getItem('cr_services'));
     const correspondingChannel = localService.find(
-      (option) => option.type.toLowerCase().includes((title).toLowerCase()),
+      (option) => option.type.toLowerCase().includes((type).toLowerCase()),
     );
     if (!correspondingChannel.agents.includes(id)) {
       correspondingChannel.agents.push(id);
@@ -50,7 +52,7 @@ const Carder = (props) => {
 
   const handleRemoveAgent = (e, id) => {
     const localService = JSON.parse(localStorage.getItem('cr_services'));
-    const { agents } = localService.find((option) => option.type.toLowerCase().includes((title).toLowerCase()));
+    const { agents } = localService.find((option) => option.type.toLowerCase().includes((type).toLowerCase()));
     if (agents.includes(id)) {
       const index = agents.indexOf(id);
       if (index > -1) { agents.splice(index, 1); }
@@ -66,7 +68,7 @@ const Carder = (props) => {
   const fetchDatas = (id) => JSON
     .parse(localStorage.getItem('cr_services'))
     .find((option) => option.type.toLowerCase()
-      .includes((title)
+      .includes((type)
         .toLowerCase()))
     .agents.includes(id);
 
@@ -123,7 +125,7 @@ const Carder = (props) => {
       padding: channelSelected || kind === 'channel' ? 'padding: 1.3125rem' : '2.5rem 1rem',
     },
     emptyChannel: {
-      background: state.initialAgents && state.initialAgents.length !== 0 ? '#ffffff' : 'rgba(200, 211, 214, 0.12)',
+      background: state.initialAgents && state.initialAgents.length !== 0 ? '#fff' : '#fff',
     },
   };
 
@@ -135,9 +137,11 @@ const Carder = (props) => {
         initialAgents={state.initialAgents}
         icon={icon}
         darkIcon={darkIcon}
-        title={title}
-        i18n={i18n}
+
+        name={name}
         nameFr={nameFr}
+
+        i18n={i18n}
       />
       <Content
         agentAssigned={agentAssigned}
@@ -157,7 +161,7 @@ const Carder = (props) => {
         agentModal={referedModal}
         handleSearchAgent={handleSearchAgent}
         handleCloseRessourceModal={handleCloseRessourceModal}
-        title={kind === 'agent' ? t('onboard.steps.add_available_agents') : t('onboard.steps.add_channel')}
+        type={kind === 'agents' ? t('onboard.steps.add_agents') : t('onboard.steps.add_channel')}
         content={listAgents}
         kind={kind}
         buttonText={t('onboard.steps.continue')}
@@ -173,7 +177,9 @@ Carder.propTypes = {
   t: PropTypes.func.isRequired,
   icon: PropTypes.string.isRequired,
   kind: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  nameFr: PropTypes.string.isRequired,
+  type: PropTypes.string.isRequired,
   content: PropTypes.string.isRequired,
   handleChooseService: PropTypes.func.isRequired,
   buttonText: PropTypes.string.isRequired,

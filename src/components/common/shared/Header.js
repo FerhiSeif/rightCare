@@ -7,9 +7,9 @@ const Header = (props) => {
     icon,
     darkIcon,
     initialAgents,
-    title,
-    i18n,
+    name,
     nameFr,
+    i18n,
   } = props;
 
   const currLang = i18n.language;
@@ -21,7 +21,7 @@ const Header = (props) => {
           <span className="icon">
             <img src={`${kind === 'channel' ? icon : darkIcon}`} alt="Channel Icon" />
           </span>
-          {currLang === 'en' ? title : nameFr}
+          {currLang === 'en' ? name : nameFr}
         </p>
         <div className="card-header-icon" aria-label="more options">
           { initialAgents && initialAgents.length > 0 ? (
@@ -43,7 +43,8 @@ Header.propTypes = {
   kind: PropTypes.string.isRequired,
   icon: PropTypes.string.isRequired,
   darkIcon: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  nameFr: PropTypes.string.isRequired,
   initialAgents: PropTypes.shape({}).isRequired,
 };
 

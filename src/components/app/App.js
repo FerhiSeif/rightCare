@@ -50,7 +50,7 @@ class App extends Component {
         label: this.props.i18n.language === 'en' ? enLabelIcon : frLabelIcon,
         value: this.props.i18n.language === 'en' ? 'English' : 'Français',
       },
-      isLogged: true,
+      isLogged: false, // true , false
       checkedServices: this.getPrevServices(),
       activeServices: [],
       containerWidth: 0,
@@ -72,10 +72,29 @@ class App extends Component {
     this.setState({ containerWidth: window.innerWidth });
   }
 
-
   getPrevServices = () => {
     // get previously saved services from the localStorage
     // the update the global state.
+
+    /*
+      Ajout automatique des données dans le localStorage
+    */
+    localStorage.setItem('cr_services', JSON.stringify([
+      {
+        id: '5b56e70ab253020033362gs8',
+        name: 'Agents',
+        name_fr: 'Agents',
+        type: 'facebook',
+        agentCount: 12,
+        icon: '/static/media/facebook.5974443e.svg',
+        darkIcon: '/static/media/facebook.92f23286.svg',
+        greenIcon: '/static/media/facebook.38429045.svg',
+        status: 'new',
+        agents: [],
+        is_active: false,
+      },
+    ]));
+
     const prevServices = JSON.parse(localStorage.getItem('cr_actservices'));
     const newValues = {};
     if (prevServices) {
@@ -103,6 +122,7 @@ class App extends Component {
     const setActiveServices = [];
     const stateServices = Object.keys(checkedServices).length;
     if (stateServices > 0) {
+      // eslint-disable-next-line no-restricted-syntax
       for (let prop in checkedServices) {
         if (checkedServices[prop]) {
           setActiveServices.push(prop);
@@ -117,6 +137,9 @@ class App extends Component {
     }
   }
 
+  /*
+    Ajout automatique des données dans le localStorage
+  */
   updateServicesLocally = (setActiveServices, activeServices) => {
     // before we update everything locally,
     // we make sure we check if the previous channels

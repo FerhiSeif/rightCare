@@ -132,7 +132,8 @@
         }
       }
       .modal-card-body {
-        min-height: 17rem;
+        // min-height: 17rem;
+        min-height: auto !important;
       }
       .modal-card-body>div>.menu-list {
         margin-left: 0;

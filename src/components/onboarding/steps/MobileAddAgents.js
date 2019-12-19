@@ -48,7 +48,7 @@ const MobileAddAgents = (props) => {
                 t={t}
                 title={item.type}
                 content={t('onboard.steps.no_agent_has_been_added')}
-                buttonText={t('onboard.steps.add_agent')}
+                buttonText={t('onboard.steps.add_agent_btn')}
                 isChannelEmpty={false}
                 channelSelected={false}
                 serviceCount={6}
@@ -74,7 +74,7 @@ const MobileAddAgents = (props) => {
                     t={t}
                     title={item.type}
                     content={t('onboard.steps.no_agent_has_been_added')}
-                    buttonText={t('onboard.steps.add_agent')}
+                    buttonText={t('onboard.steps.add_agent_btn')}
                     isChannelEmpty={false}
                     channelSelected={false}
                     serviceCount={6}
