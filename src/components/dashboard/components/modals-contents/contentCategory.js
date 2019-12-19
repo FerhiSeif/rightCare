@@ -6,6 +6,7 @@ const ContentCategory = (props) => {
     t,
     buttonText,
     handleContinue,
+    handleAddFields,
   } = props;
 
   return (
@@ -26,6 +27,7 @@ ContentCategory.propTypes = {
   t: PropTypes.func.isRequired,
   buttonText: PropTypes.string.isRequired,
   handleContinue: PropTypes.func.isRequired,
+  handleAddFields: PropTypes.func.isRequired,
 };
 
 export default ContentCategory;

@@ -4,7 +4,6 @@ import TicketsPriority from './Priorities/TicketsPriority';
 import TicketsStatus from './Statuses/TicketsStatus';
 import TicketsCategory from './Categories/TicketsCategory';
 import CustomerInformations from './Customers/CustomerInformations';
-import TicketsTimer from './Timers/TicketsTimer';
 import Modal from './Modal';
 
 const Content = (props) => {
@@ -17,7 +16,12 @@ const Content = (props) => {
   const [modalTitle, setModalTitle] = useState('');
   const [modalContent, setModalContent] = useState('');
   const [modalButton, setModalButton] = useState('');
-  const [customerFields, setCustomerFields] = useState(['First Name', 'Last Name', 'Email', 'Telephone']);
+  const [customerFields, setCustomerFields] = useState([
+    { label: t('settings.customer_informations_content.first_name'), type: 'text' },
+    { label: t('settings.customer_informations_content.last_name'), type: 'text' },
+    { label: t('settings.customer_informations_content.email'), type: 'email' },
+    { label: t('settings.customer_informations_content.telephone'), type: 'number' },
+  ]);
 
   const agentModal = React.createRef();
 
@@ -36,12 +40,27 @@ const Content = (props) => {
     setModalContent('');
   };
 
-  const handleAddFields = (params) => {
-    console.log('state', params);
-    // setCustomerFields((prevState) => ({
-    //   ...prevState,
-    //   // customerFields: updatedFields,
-    // }));
+  const handleAddFields = (elt, params) => {
+    const { fieldType, fieldLabel } = params;
+    const newObject = { label: fieldLabel.toLowerCase(), type: fieldType.toLowerCase() };
+
+    console.log(newObject);
+    
+
+    const detect = customerFields.findIndex((item) => item.label.toLowerCase() === newObject.label && item.type.toLowerCase() === newObject.type);
+
+    console.log(detect);
+    
+
+    if (elt === 'customer') {
+      if (detect >= 0) {
+        customerFields.splice(customerFields.findIndex((item) => (item.label.toLowerCase() === newObject.label && item.type.toLowerCase() === newObject.type)), 1);
+      }
+      setCustomerFields([
+        ...customerFields,
+        newObject,
+      ]);
+    }
   };
 
   return (
@@ -68,11 +87,7 @@ const Content = (props) => {
               t={t}
               handleCloseRessourceModal={handleCloseRessourceModal}
               handleAddRessourceModal={handleAddRessourceModal}
-            />
-            <TicketsTimer
-              t={t}
-              handleCloseRessourceModal={handleCloseRessourceModal}
-              handleAddRessourceModal={handleAddRessourceModal}
+              customerFields={customerFields}
             />
           </div>
         </div>
