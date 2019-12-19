@@ -1,0 +1,128 @@
+.ticketnalytics-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 1rem 7.2rem 1rem -0.2rem;
+}
+
+.header-indicator {
+  display: flex;
+  align-items: center;
+  margin: 2.2rem 6rem;
+}
+
+.searchBar {
+  display: flex;
+  width: 50%;
+  margin: auto;
+  margin-bottom: 60px;
+}
+
+.create_ticketbtn {
+  color: #0089e1;
+  background-color: #0089e14a;
+  border: none;
+  font-size: 1rem;
+  height: 3rem;
+  border-radius: 7px;
+}
+
+.input-createTicket {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.createTicket {
+  width: 45% !important;
+  margin-bottom: 30px;
+}
+.section1 {
+  display: flex;
+  flex-direction: column;
+  flex: 2;
+  margin: 0;
+  border-bottom: 1px solid #c8d3d6;
+  border-right: 1px solid #c8d3d6;
+}
+.customer-text {
+  margin-bottom: 30px;
+  margin-left: 30px;
+  color: #0089e1;
+}
+
+.section2 {
+  display: flex;
+  flex-direction: column !important;
+  flex: 1;
+  margin: 0;
+  align-items: center;
+  padding: 30px;
+}
+
+.upload-file-container {
+  width: 347px;
+  height: 186px;
+  background: #ffffff 0% 0% no-repeat padding-box;
+  border: 1px solid #c8d3d6;
+  border-radius: 9px;
+  opacity: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.createTicket-conaitner {
+  height: 1140px;
+  border: 1px solid #c8d3d6;
+}
+
+.firstInput-container {
+  border-bottom: 1px solid #c8d3d6;
+  height: 300px;
+  padding-top: 30px;
+}
+.secontInput-container {
+  padding: 30px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.textInputcontainer {
+  margin-bottom: 30px;
+}
+
+//text editor height
+
+.quill {
+  height: 277px;
+}
+
+.Submit-ticketbtn {
+  color: white;
+  background: #0089e1;
+  border: none;
+  border-radius: 10px;
+  padding: 16px;
+  margin-top: 100px;
+}
+.buttonserch {
+  height: 42px;
+}
+
+.buttonserch {
+  background-color: #ffffff;
+  border-color: #dbdbdb;
+  border-width: 1px;
+  color: #363636;
+  cursor: pointer;
+  justify-content: center;
+  padding-bottom: calc(0.5em - 1px);
+  padding-left: 1em;
+  padding-right: 1em;
+  padding-top: calc(0.5em - 1px);
+  text-align: center;
+  white-space: nowrap;
+}
