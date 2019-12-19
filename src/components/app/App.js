@@ -10,6 +10,7 @@ import Welcome from '../onboarding/Welcome';
 import Steps from '../onboarding/Steps';
 import Dashboard from '../dashboard/Dashboard';
 import Settings from '../dashboard/Settings';
+import Tickets from "../dashboard/Tickets"
 import BrowserLanguage from '../../utils/BrowserLanguage';
 import LangIconEn from '../../assets/images/locale/uk.png';
 import LangIconFr from '../../assets/images/locale/fr.png';
@@ -197,6 +198,16 @@ class App extends Component {
               changeLang={changeLang}
               defaultLang={defaultLang}
               kind="settings"
+              isLogged={isLogged}
+              i18n={i18n}
+            />
+          </Route>
+          <Route path="/tickets">
+            <Tickets
+              t={t}
+              changeLang={changeLang}
+              defaultLang={defaultLang}
+              kind="tickets"
               isLogged={isLogged}
               i18n={i18n}
             />

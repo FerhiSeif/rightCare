@@ -1,11 +1,14 @@
-a.navbar-item, .navbar-link:hover {
-  background-color: transparent!important;
+a.navbar-item,
+.navbar-link:hover {
+  background-color: transparent !important;
 }
 .columns {
   .column {
     padding-right: 0;
+    flex: 1;
   }
-  .dashboard.is-four-fifths, .dashboard.is-four-fifths-tablet {
+  .dashboard.is-four-fifths,
+  .dashboard.is-four-fifths-tablet {
     padding-left: 0;
     background-color: rgb(250, 251, 253);
   }
@@ -29,8 +32,8 @@ a.navbar-item, .navbar-link:hover {
       border-style: dashed;
       margin-left: auto;
       height: 1.5rem;
-      padding-top: .1rem;
-      padding-left: .1rem;
+      padding-top: 0.1rem;
+      padding-left: 0.1rem;
       cursor: pointer;
       &:hover {
         background-color: $secondary-light;
@@ -50,7 +53,7 @@ a.navbar-item, .navbar-link:hover {
     padding: 0 0 3rem 0;
     .columns {
       margin-top: 1rem;
-      padding-left: .8rem;
+      padding-left: 0.8rem;
       .email-icon {
         background-color: $primary;
       }
@@ -69,7 +72,12 @@ a.navbar-item, .navbar-link:hover {
       .twitter-icon {
         background-color: $twitter;
       }
-      .email-icon, .live-icon, .phone-icon, .web-icon, .facebook-icon, .twitter-icon {
+      .email-icon,
+      .live-icon,
+      .phone-icon,
+      .web-icon,
+      .facebook-icon,
+      .twitter-icon {
         text-align: center;
         padding-left: 0;
         border-radius: 0.3125rem;
@@ -87,16 +95,16 @@ a.navbar-item, .navbar-link:hover {
         }
         span {
           color: #9eaaad;
-          font-size: .8rem;
+          font-size: 0.8rem;
         }
       }
     }
   }
   .menu-list {
-    li>a {
+    li > a {
       display: flex;
       color: #4c4c4c;
-      padding: .7rem 0;
+      padding: 0.7rem 0;
       align-items: center;
       img {
         margin-right: 1.5rem;
@@ -105,7 +113,7 @@ a.navbar-item, .navbar-link:hover {
         max-width: 1.5rem;
       }
     }
-    li>a:hover {
+    li > a:hover {
       background-color: transparent;
       color: $primary;
       img {
@@ -116,7 +124,7 @@ a.navbar-item, .navbar-link:hover {
         max-width: 1.5rem;
       }
     }
-    li>a.selected {
+    li > a.selected {
       background-color: transparent;
       color: $primary;
     }

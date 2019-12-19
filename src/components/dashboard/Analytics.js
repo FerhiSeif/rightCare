@@ -28,7 +28,7 @@ const Analytics = (props) => {
         <NewRequest t={t} CalendarIcon={CalendarIcon} MoreIcon={MoreIcon} />
       </div>
       <div className="columns chart-columns">
-        <div className="column">
+         <div className="column">
           <div className="column-content column-content-a">
             <h2>{t('dashboard.live_updates')}</h2>
             <img src={MoreIcon} alt="Filter" />

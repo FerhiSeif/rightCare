@@ -1,5 +1,5 @@
 {
-  "home" : {
+  "home": {
     "welcome_to": "Bienvenue à",
     "customer_engagement_on_one_plateform": "d'Engagement clientèle sur une plate-forme",
     "get_started": "Commencer",
@@ -72,7 +72,7 @@
 
     "ticket_settings": "Paramètres de ticket",
     "tickets_priority": "Priorité des Tickets",
-    "tickets_priority_content" : {
+    "tickets_priority_content": {
       "hight": "Haute",
       "very_urgent": "Très urgent",
       "medium": "Moyenne",
@@ -84,7 +84,7 @@
       "ticket_priority_input": "Entrez le nom de priorité du ticket"
     },
     "tickets_status": "Statut des billets",
-    "tickets_status_content" : {
+    "tickets_status_content": {
       "resolved": "Résolu",
       "ticket_solved_close": "Ticket résolu et fermé",
       "pending": "en attente",
@@ -96,7 +96,7 @@
       "status_input": "Entrez le nom du statut du ticket"
     },
     "tickets_category": "Catégorie de Tickets",
-    "tickets_category_content" : {
+    "tickets_category_content": {
       "technical": "Technique",
       "customer_care": "Service client",
       "enquires": "Demandes",
@@ -105,7 +105,7 @@
       "category_input": "Nom de Categorie"
     },
     "customer_informations": "Informations client",
-    "customer_informations_content" : {
+    "customer_informations_content": {
       "first_name": "Prénoms",
       "last_name": "Nom",
       "email": "Email",
@@ -116,7 +116,7 @@
       "button_add": "Ajouter un champ"
     },
     "tickets_timer": "Temps des Tickets",
-    "tickets_timer_content" : {
+    "tickets_timer_content": {
       "set_timer_ticket": "Suivre le temps sur le ticket",
       "button_text": "Ajouter un champ",
 
@@ -134,6 +134,14 @@
     "agent_settings": "Paramètres de l'agent",
 
     "channel_settings": "Paramètres des chaînes"
+  },
+  "tickets": {
+    "tickets_overview": "Tickets",
+    "Tickets_creation": "Créer un Ticket",
+    "resolve_ticket" : "Resolve Ticket",
+    "pending_ticket" : "Ticket En Attente",
+    "new_ticket": "Nouveau Ticket",
+    "total_ticket" : "Total Ticket",
+    "today" : "Aujourd'hui"
   }
-  
 }

@@ -29,6 +29,7 @@ SideMenu.propTypes = {
   i18n: PropTypes.shape({}).isRequired,
   t: PropTypes.func.isRequired,
   containerWidth: PropTypes.number.isRequired,
+  kind:PropTypes.string.isRequired,
 };
 
 export default SideMenu;
