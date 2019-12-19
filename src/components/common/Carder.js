@@ -181,6 +181,7 @@ const Carder = (props) => {
     <div className={[1, 2, 4, 5].indexOf(serviceCount) !== -1 ? 'card-custom' : 'card'} style={cardStyle.emptyChannel}>
 
       <Header
+        t={t}
         kind={kind}
         addAgentsChannel={state.addAgentsChannel}
 

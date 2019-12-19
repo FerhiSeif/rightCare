@@ -1,3 +1,4 @@
+/* eslint-disable react/button-has-type */
 import React from 'react';
 import PropTypes from 'prop-types';
 import HasAgents from '../../onboarding/steps/HasAgents';
@@ -42,13 +43,16 @@ const Header = (props) => {
         ) : (
           <div className="content">
             {hasAgents ? (<HasAgents handleAddRessourceModal={handleAddRessourceModal} kind={kind} isChannelEmpty={isChannelEmpty} />) :
-              (<>
-              <p>{content}</p>
-              {currentStep !== 3 && (
-                <button className="button is-success is-outlined" onClick={handleAddRessourceModal}>{buttonText}</button>
+              (
+                <>
+                  <p>{content}</p>
+                  {currentStep !== 3 && (
+                    <button className="button is-success is-outlined" onClick={handleAddRessourceModal}>
+                      {buttonText}
+                    </button>
+                  )}
+                </>
               )}
-              </>
-            )}
           </div>
         )}
       </div>

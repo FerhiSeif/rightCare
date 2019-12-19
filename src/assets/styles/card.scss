@@ -202,19 +202,19 @@
   }
 }
 .add-more {
-  color: #c8d3d6;
+  color: #fff;
   width: 2.5rem;
-  border: 2px solid #c8d3d6;
+  border: 2px solid #00BD39;
   height: 2.5rem;
   display: flex;
   z-index: 1;
   align-items: center;
   border-radius: 50%;
   justify-content: center;
-  background-color: #fff;
+  background-color: #00BD39;
   margin-left: auto;
-  border-style: dashed;
   cursor: pointer;
+  font-size: 1.5rem;
 }
 
 .carousel-item {

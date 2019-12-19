@@ -4,6 +4,7 @@ import ImgUser from '../../../assets/images/onboard/channels/dark/user.svg';
 
 const Header = (props) => {
   const {
+    t,
     kind,
     addAgentsChannel,
     name,
@@ -21,7 +22,15 @@ const Header = (props) => {
             <img src={ImgUser} alt="Channel Icon" />
           </span>
           <span className="text">
-            {currLang === 'en' ? name : nameFr}
+            { addAgentsChannel && addAgentsChannel.length > 0 ? (
+              <span>
+                { t('onboard.steps.agents_added') }
+              </span>
+            ) : (
+              <span>
+                { currLang === 'en' ? name : nameFr }
+              </span>
+            )}
           </span>
         </p>
         <div className="card-header-icon" aria-label="more options">
@@ -41,6 +50,7 @@ const Header = (props) => {
 };
 
 Header.propTypes = {
+  t: PropTypes.func.isRequired,
   kind: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   nameFr: PropTypes.string.isRequired,
