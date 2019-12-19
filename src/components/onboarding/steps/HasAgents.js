@@ -65,7 +65,7 @@ const HasAgents = (props) => {
                 <button className="button is-primary is-outlined btn-customed">{t('onboard.view_all')}</button>
               </div>
             )}
-            {currentStep !== 3 && (<div className="add-more" style={agentStyle.addMore}>
+            {currentStep !== 2 && (<div className="add-more" style={agentStyle.addMore}>
               <span>+</span>
             </div>)}
           </div>
@@ -79,6 +79,7 @@ HasAgents.propTypes = {
   t: PropTypes.func.isRequired,
   kind: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
+  currentStep: PropTypes.number.isRequired,
 };
 
 export default withTranslation()(HasAgents);

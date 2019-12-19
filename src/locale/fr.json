@@ -42,12 +42,14 @@
     "finish": "Finir",
     "continue": "Continuer",
     "skip": "Passer",
+    "back": "Retour",
     "steps": {
       "add_agent_btn": "Ajouter des agents",
       "add_channel": "Ajouter canal",
       "add_agents": "Ajouter des agnets",
       "select_all_agent": "Sélectionnez tous les agents",
       "agents_added": "Agents ajoutés",
+      "unknown_step": "Step introuvable",
 
 
       "": "",

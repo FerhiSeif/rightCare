@@ -10,8 +10,6 @@ const Carder = (props) => {
   const {
     t,
     kind,
-    icon,
-    darkIcon,
     name,
     nameFr,
     type,
@@ -223,7 +221,6 @@ const Carder = (props) => {
 
 Carder.propTypes = {
   t: PropTypes.func.isRequired,
-  icon: PropTypes.string.isRequired,
   kind: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   nameFr: PropTypes.string.isRequired,
@@ -237,7 +234,7 @@ Carder.propTypes = {
   channelSelected: PropTypes.bool,
   checkedServices: PropTypes.shape({}).isRequired,
   assignedAgents: PropTypes.shape({}).isRequired,
-  darkIcon: PropTypes.string.isRequired,
+  currentStep: PropTypes.number.isRequired,
 };
 
 export default Carder;
