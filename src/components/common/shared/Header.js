@@ -1,11 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import ImgUser from '../../../assets/images/onboard/channels/dark/user.svg';
 
 const Header = (props) => {
   const {
     kind,
-    icon,
-    darkIcon,
     initialAgents,
     name,
     nameFr,
@@ -19,9 +18,11 @@ const Header = (props) => {
       <header className="card-header">
         <p className={`${kind === 'channel' ? 'card-header-title' : 'card-header-title agents'}`}>
           <span className="icon">
-            <img src={`${kind === 'channel' ? icon : darkIcon}`} alt="Channel Icon" />
+            <img src={ImgUser} alt="Channel Icon" />
           </span>
-          {currLang === 'en' ? name : nameFr}
+          <span className="text">
+            {currLang === 'en' ? name : nameFr}
+          </span>
         </p>
         <div className="card-header-icon" aria-label="more options">
           { initialAgents && initialAgents.length > 0 ? (
@@ -41,8 +42,6 @@ const Header = (props) => {
 
 Header.propTypes = {
   kind: PropTypes.string.isRequired,
-  icon: PropTypes.string.isRequired,
-  darkIcon: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   nameFr: PropTypes.string.isRequired,
   initialAgents: PropTypes.shape({}).isRequired,

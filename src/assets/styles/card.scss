@@ -32,6 +32,10 @@
     border-top-right-radius: 10px;
     box-shadow: none;
     border-bottom: 1px solid rgba(10, 10, 10, 0.1);
+    .text {
+      color: #0089e1;
+      padding-left: 1rem;
+    }
     p {
       font-weight: normal;
       text-transform: capitalize;
@@ -128,6 +132,18 @@
             position: absolute;
             left: 1rem;
             top: .5rem;
+          }
+        }
+
+        .search-select {
+          padding-top: 2rem;
+          padding-bottom: 0.5rem;
+          .search-select-text {
+            float: left;
+          }
+          .search-select-check {
+            float: right;
+            padding-right: 0.5rem;
           }
         }
       }

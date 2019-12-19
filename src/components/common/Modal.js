@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import SearchIcon from '../../assets/images/onboard/search.svg';
 import Services from '../onboarding/steps/Services';
@@ -28,6 +28,24 @@ const Modal = (props) => {
 
   const handleContinue = () => { addAgentsRef.current.click(); };
 
+  const [selectAll, setSelecteAll] = useState(false);
+  const handleSelectAll = () => {
+    setSelecteAll(!selectAll);
+
+    if (selectAll) {
+      /*
+        action de cocher tous les agents disponible
+      */
+    }
+    if (!selectAll) {
+      /*
+        action de décocher tous les agents disponible
+      */
+    }
+
+    console.log('handleSelectAll');
+  };
+
   return (
     <div className="modal" ref={agentModal}>
       <div className="modal-background" />
@@ -44,6 +62,15 @@ const Modal = (props) => {
               <img src={SearchIcon} alt="search" />
             </div>
           )}
+
+          <div className="search-select">
+            <span classNam="search-select-text">
+              { t('onboard.steps.select_all_agent') }
+            </span>
+            <span className="search-select-check">
+              <input type="checkbox" onClick={handleSelectAll} />
+            </span>
+          </div>
         </header>
         <section className="modal-card-body">
           { kind === 'agent' ? (<div>{agentCount === 0 &&<span>This agent can not be found in the list.</span>}{content}</div>) : <Services kind={kind} handleChooseService={handleChooseService} checkedServices={checkedServices} /> }

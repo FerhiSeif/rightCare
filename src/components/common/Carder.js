@@ -135,8 +135,6 @@ const Carder = (props) => {
       <Header
         kind={kind}
         initialAgents={state.initialAgents}
-        icon={icon}
-        darkIcon={darkIcon}
 
         name={name}
         nameFr={nameFr}
@@ -158,16 +156,16 @@ const Carder = (props) => {
       />
       <Modal
         t={t}
-        agentModal={referedModal}
-        handleSearchAgent={handleSearchAgent}
-        handleCloseRessourceModal={handleCloseRessourceModal}
-        type={kind === 'agents' ? t('onboard.steps.add_agents') : t('onboard.steps.add_channel')}
         content={listAgents}
         kind={kind}
         buttonText={t('onboard.steps.continue')}
+        agentModal={referedModal}
+        agentCount={state.initAgents.length}
         handleChooseService={handleChooseService}
         checkedServices={checkedServices}
-        agentCount={state.initAgents.length}
+        handleCloseRessourceModal={handleCloseRessourceModal}
+        handleSearchAgent={handleSearchAgent}
+        title={kind === 'agent' ? t('onboard.steps.add_agents') : t('onboard.steps.add_channel')}
       />
     </div>
   );
