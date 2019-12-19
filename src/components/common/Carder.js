@@ -30,9 +30,54 @@ const Carder = (props) => {
 
   // chargement de la liste des agents
   const [state, setState] = useState({
-    initialAgents: assignedAgents && FakeAgents.filter((agent) => assignedAgents.includes(agent.id)),
+    addAgentsChannel: assignedAgents && FakeAgents.filter((agent) => assignedAgents.includes(agent.id)),
     initAgents: FakeAgents,
   });
+
+  const handleSelectAll = (status) => {
+    if (status) {
+      /*
+        action de cocher tous les agents disponible
+      */
+      // eslint-disable-next-line no-restricted-syntax
+      for (const item of state.initAgents) {
+        const localService = JSON.parse(localStorage.getItem('cr_services'));
+        const correspondingChannel = localService.find(
+          (option) => option.type.toLowerCase().includes((type).toLowerCase()),
+        );
+        if (!correspondingChannel.agents.includes(item.id)) {
+          correspondingChannel.agents.push(item.id);
+        }
+        localStorage.setItem('cr_services', JSON.stringify(localService));
+        const updatedAgents = FakeAgents.filter((agent) => correspondingChannel.agents.includes(agent.id));
+        setState((prevState) => ({
+          ...prevState,
+          addAgentsChannel: updatedAgents,
+        }));
+      }
+    }
+
+    if (!status) {
+      /*
+        action de décocher tous les agents disponible
+      */
+      // eslint-disable-next-line no-restricted-syntax
+      for (const item of state.initAgents) {
+        const localService = JSON.parse(localStorage.getItem('cr_services'));
+        const { agents } = localService.find((option) => option.type.toLowerCase().includes((type).toLowerCase()));
+        if (agents.includes(item.id)) {
+          const index = agents.indexOf(item.id);
+          if (index > -1) { agents.splice(index, 1); }
+          localStorage.setItem('cr_services', JSON.stringify(localService));
+          const updatedAgents = FakeAgents.filter((agent) => agents.includes(agent.id));
+          setState((prevState) => ({
+            ...prevState,
+            addAgentsChannel: updatedAgents,
+          }));
+        }
+      }
+    }
+  };
 
   const handleAddAgent = (e, id) => {
     const localService = JSON.parse(localStorage.getItem('cr_services'));
@@ -46,7 +91,7 @@ const Carder = (props) => {
     const updatedAgents = FakeAgents.filter((agent) => correspondingChannel.agents.includes(agent.id));
     setState((prevState) => ({
       ...prevState,
-      initialAgents: updatedAgents,
+      addAgentsChannel: updatedAgents,
     }));
   };
 
@@ -60,10 +105,10 @@ const Carder = (props) => {
       const updatedAgents = FakeAgents.filter((agent) => agents.includes(agent.id));
       setState((prevState) => ({
         ...prevState,
-        initialAgents: updatedAgents,
+        addAgentsChannel: updatedAgents,
       }));
     }
-  }
+  };
 
   const fetchDatas = (id) => JSON
     .parse(localStorage.getItem('cr_services'))
@@ -79,9 +124,12 @@ const Carder = (props) => {
           <img src={item.profile_image} alt="portrait" />
           <span className="user-name">{item.full_name}</span>
           {
-            fetchDatas(item.id) ? (<span className="remove-user" onClick={(e) => handleRemoveAgent(e, item.id)}>-</span>)
-            :
-            (<span className="add-user" onClick={(e) => handleAddAgent(e, item.id)}>+</span>)
+            fetchDatas(item.id) ? (
+              <span className="remove-user" onClick={(e) => handleRemoveAgent(e, item.id)}> - </span>
+            )
+            : (
+              <span className="add-user" onClick={(e) => handleAddAgent(e, item.id)}> + </span>
+            )
           }
         </li>
       ))}
@@ -125,7 +173,7 @@ const Carder = (props) => {
       padding: channelSelected || kind === 'channel' ? 'padding: 1.3125rem' : '2.5rem 1rem',
     },
     emptyChannel: {
-      background: state.initialAgents && state.initialAgents.length !== 0 ? '#fff' : '#fff',
+      background: state.addAgentsChannel && state.addAgentsChannel.length !== 0 ? '#fff' : '#fff',
     },
   };
 
@@ -134,7 +182,7 @@ const Carder = (props) => {
 
       <Header
         kind={kind}
-        initialAgents={state.initialAgents}
+        addAgentsChannel={state.addAgentsChannel}
 
         name={name}
         nameFr={nameFr}
@@ -143,7 +191,7 @@ const Carder = (props) => {
       />
       <Content
         agentAssigned={agentAssigned}
-        initialAgents={state.initialAgents}
+        addAgentsChannel={state.addAgentsChannel}
         handleAddRessourceModal={handleAddRessourceModal}
         channelSelected={channelSelected}
         kind={kind}
@@ -166,6 +214,7 @@ const Carder = (props) => {
         handleCloseRessourceModal={handleCloseRessourceModal}
         handleSearchAgent={handleSearchAgent}
         title={kind === 'agent' ? t('onboard.steps.add_agents') : t('onboard.steps.add_channel')}
+        handleSelectAll={handleSelectAll}
       />
     </div>
   );

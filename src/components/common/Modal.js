@@ -16,6 +16,7 @@ const Modal = (props) => {
     checkedServices,
     handleCloseRessourceModal,
     handleSearchAgent,
+    handleSelectAll,
   } = props;
 
   const modalStyle = {
@@ -29,21 +30,10 @@ const Modal = (props) => {
   const handleContinue = () => { addAgentsRef.current.click(); };
 
   const [selectAll, setSelecteAll] = useState(false);
-  const handleSelectAll = () => {
-    setSelecteAll(!selectAll);
-
-    if (selectAll) {
-      /*
-        action de cocher tous les agents disponible
-      */
-    }
-    if (!selectAll) {
-      /*
-        action de décocher tous les agents disponible
-      */
-    }
-
-    console.log('handleSelectAll');
+  const handleSelectAllAgents = (select) => {
+    const status = !select;
+    setSelecteAll(status);
+    handleSelectAll(status);
   };
 
   return (
@@ -62,18 +52,22 @@ const Modal = (props) => {
               <img src={SearchIcon} alt="search" />
             </div>
           )}
-
           <div className="search-select">
             <span classNam="search-select-text">
               { t('onboard.steps.select_all_agent') }
             </span>
             <span className="search-select-check">
-              <input type="checkbox" onClick={handleSelectAll} />
+              <input type="checkbox" onClick={() => handleSelectAllAgents(selectAll)} />
             </span>
           </div>
         </header>
         <section className="modal-card-body">
-          { kind === 'agent' ? (<div>{agentCount === 0 &&<span>This agent can not be found in the list.</span>}{content}</div>) : <Services kind={kind} handleChooseService={handleChooseService} checkedServices={checkedServices} /> }
+          { kind === 'agent' ? (
+            <div>
+              {agentCount === 0 && <span>This agent can not be found in the list.</span>}
+              {content}
+            </div>
+          ) : <Services kind={kind} handleChooseService={handleChooseService} checkedServices={checkedServices} />}
         </section>
         <footer className="modal-card-foot">
           <button className="button is-primary" aria-label="close" onClick={handleContinue}>{buttonText}</button>
@@ -95,6 +89,7 @@ Modal.propTypes = {
   handleSearchAgent: PropTypes.func.isRequired,
   handleChooseService: PropTypes.func.isRequired,
   checkedServices: PropTypes.shape({}).isRequired,
+  handleSelectAll: PropTypes.func.isRequired,
 };
 
 export default Modal;

@@ -84,7 +84,7 @@ class App extends Component {
         id: '5b56e70ab253020033362gs8',
         name: 'Agents',
         name_fr: 'Agents',
-        type: 'facebook',
+        type: 'agent',
         agentCount: 12,
         icon: '/static/media/facebook.5974443e.svg',
         darkIcon: '/static/media/facebook.92f23286.svg',

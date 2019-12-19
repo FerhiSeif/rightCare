@@ -5,7 +5,7 @@ import ImgUser from '../../../assets/images/onboard/channels/dark/user.svg';
 const Header = (props) => {
   const {
     kind,
-    initialAgents,
+    addAgentsChannel,
     name,
     nameFr,
     i18n,
@@ -25,9 +25,9 @@ const Header = (props) => {
           </span>
         </p>
         <div className="card-header-icon" aria-label="more options">
-          { initialAgents && initialAgents.length > 0 ? (
+          { addAgentsChannel && addAgentsChannel.length > 0 ? (
             <span className="icon">
-              {initialAgents.length}
+              {addAgentsChannel.length}
             </span>
           ) : (
             <span className="icon">
@@ -44,7 +44,7 @@ Header.propTypes = {
   kind: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   nameFr: PropTypes.string.isRequired,
-  initialAgents: PropTypes.shape({}).isRequired,
+  addAgentsChannel: PropTypes.shape({}).isRequired,
 };
 
 export default Header;

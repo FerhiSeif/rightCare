@@ -5,7 +5,7 @@ import HasAgents from '../../onboarding/steps/HasAgents';
 const Header = (props) => {
   const {
     kind,
-    initialAgents,
+    addAgentsChannel,
     cardStyle,
     hasAgents,
     content,
@@ -20,11 +20,11 @@ const Header = (props) => {
   return (
     <>
       <div className={`${agentAssigned ? 'sleep-padding' : 'card-content'}`} style={cardStyle}>
-        { initialAgents && initialAgents.length > 0 ? (
+        { addAgentsChannel && addAgentsChannel.length > 0 ? (
           <div className="content">
             <div className="content-container">
               {
-                initialAgents.map((item, i) => (
+                addAgentsChannel.map((item, i) => (
                   <div className="cobok" key={i}>
                     <div data-tooltip={item.full_name} className="tooltip-title">
                       <img src={item.profile_image} alt={item.full_name} data-tooltip={item.full_name} />
@@ -65,7 +65,7 @@ Header.propTypes = {
   agentAssigned: PropTypes.shape({}).isRequired,
   content: PropTypes.string.isRequired,
   handleAddRessourceModal: PropTypes.func.isRequired,
-  initialAgents: PropTypes.shape({}).isRequired,
+  addAgentsChannel: PropTypes.shape({}).isRequired,
 };
 
 export default Header;
