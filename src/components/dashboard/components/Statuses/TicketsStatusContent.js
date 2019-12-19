@@ -18,7 +18,6 @@ const TicketsStatusContent = (props) => {
               <span className="label-title">
                 {t('settings.tickets_status_content.resolved')}
               </span>
-              <span className="tickets-close-incard" />
             </div>
             <div className="ticket-label ticket-solved">
               {t('settings.tickets_status_content.ticket_solved_close')}
@@ -29,7 +28,6 @@ const TicketsStatusContent = (props) => {
               <span className="label-title">
                 {t('settings.tickets_status_content.pending')}
               </span>
-              <span className="tickets-close-incard" />
             </div>
             <div className="ticket-label ticket-urgent ml-1">
               {t('settings.tickets_status_content.on_going_ticket')}
@@ -40,18 +38,9 @@ const TicketsStatusContent = (props) => {
               <span className="label-title">
                 {t('settings.tickets_status_content.new')}
               </span>
-              <span className="tickets-close-incard" />
             </div>
             <div className="ticket-label ticket-without-agent ml-1 mr-0">
               {t('settings.tickets_status_content.ticket_without_agent_assign')}
-            </div>
-          </div>
-          <div>
-            <div className="mr-0 children dash-child" onClick={() => handleAddRessourceModal(t('settings.tickets_status'), 'status', t('settings.tickets_status_content.button_text'))}>
-              <span className="tickets-plus">+</span>
-              <span className="label-title mr-2">
-                {t('settings.tickets_status_content.new_status')}
-              </span>
             </div>
           </div>
         </div>

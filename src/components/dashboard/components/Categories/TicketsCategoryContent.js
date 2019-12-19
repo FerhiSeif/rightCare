@@ -17,7 +17,6 @@ const TicketsCategoryContent = (props) => {
               <span className="label-title">
                 {t('settings.tickets_category_content.technical')}
               </span>
-              <span className="tickets-close-incard" />
             </div>
           </div>
           <div>
@@ -25,22 +24,12 @@ const TicketsCategoryContent = (props) => {
               <span className="label-title">
                 {t('settings.tickets_category_content.customer_care')}
               </span>
-              <span className="tickets-close-incard" />
             </div>
           </div>
           <div>
             <div className="mr-0 children">
               <span className="label-title">
                 {t('settings.tickets_category_content.enquires')}
-              </span>
-              <span className="tickets-close-incard" />
-            </div>
-          </div>
-          <div>
-            <div className="mr-0 children dash-child" onClick={() => handleAddRessourceModal(t('settings.tickets_category'), 'category', t('settings.tickets_category_content.button_text'))}>
-              <span className="tickets-plus">+</span>
-              <span className="label-title mr-2">
-                {t('settings.tickets_category_content.new_category')}
               </span>
             </div>
           </div>

@@ -17,7 +17,7 @@ const SideMenu = (props) => {
       <aside className="menu">
         <Header containerWidth={containerWidth} />
         <div className="menu-container">
-          <Channels t={t} isEmpty={isEmpty} i18n={i18n} />
+          {/*<Channels t={t} isEmpty={isEmpty} i18n={i18n} />*/}
           <MenuSide t={t} />
         </div>
       </aside>

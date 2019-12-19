@@ -9,6 +9,7 @@ const ContentStatus = (props) => {
     i18n,
     buttonText,
     handleContinue,
+    handleAddFields,
   } = props;
 
   const currLang = i18n.language;
@@ -60,6 +61,7 @@ ContentStatus.propTypes = {
   t: PropTypes.func.isRequired,
   buttonText: PropTypes.string.isRequired,
   handleContinue: PropTypes.func.isRequired,
+  handleAddFields: PropTypes.func.isRequired,
 };
 
 export default ContentStatus;

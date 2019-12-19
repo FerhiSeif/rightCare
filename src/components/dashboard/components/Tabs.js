@@ -34,32 +34,32 @@ const Tabs = (props) => {
         <Tabber>
           <TabList>
             <Tab>
+              {t('settings.ticket_settings')}
+            </Tab>
+            {/*<Tab>
               {t('settings.agent_settings')}
             </Tab>
             <Tab>
-              {t('settings.ticket_settings')}
-            </Tab>
-            <Tab>
               {t('settings.channel_settings')}
-            </Tab>
+            </Tab>*/}
           </TabList>
 
-          <TabPanel>
+          {/*<TabPanel>
             <div className="card-content">
               {t('settings.agent_settings')}
             </div>
           </TabPanel>
+          <TabPanel>
+            <div className="card-content">
+              {t('settings.channel_settings')}
+            </div>
+          </TabPanel>*/}
           <TabPanel>
             <Content
               kind={kind}
               t={t}
               i18n={i18n}
             />
-          </TabPanel>
-          <TabPanel>
-            <div className="card-content">
-              {t('settings.channel_settings')}
-            </div>
           </TabPanel>
         </Tabber>
       </div>

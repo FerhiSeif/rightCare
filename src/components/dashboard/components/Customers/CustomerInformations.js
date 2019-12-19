@@ -9,8 +9,8 @@ const CustomerInformations = (props) => {
     kind,
     handleCloseRessourceModal,
     handleAddRessourceModal,
+    customerFields,
     i18n,
-    handleAddFields,
   } = props;
 
   const [state, setState] = useState({
@@ -32,6 +32,9 @@ const CustomerInformations = (props) => {
       padding: '1.5rem 0',
       fontSize: '2rem',
     },
+    card: {
+      marginRight: '0',
+    },
     p: {
       color: '#4c4c4c',
       fontSize: '16px',
@@ -41,7 +44,7 @@ const CustomerInformations = (props) => {
   };
 
   return (
-    <div className="card customer-card">
+    <div className="card customer-card" style={cardStyle.card}>
       <header className="card-header">
         <p className="card-header-title" style={cardStyle.p}>
           {t('settings.customer_informations')}
@@ -71,7 +74,7 @@ const CustomerInformations = (props) => {
               t={t}
               handleCloseRessourceModal={handleCloseRessourceModal}
               handleAddRessourceModal={handleAddRessourceModal}
-              handleAddFields={handleAddFields}
+              customerFields={customerFields}
             />
           </div>
         </div>
@@ -85,6 +88,7 @@ CustomerInformations.propTypes = {
   kind: PropTypes.string.isRequired,
   handleCloseRessourceModal: PropTypes.func.isRequired,
   handleAddRessourceModal: PropTypes.func.isRequired,
+  customerFields: PropTypes.arrayOf.isRequired,
 };
 
 export default CustomerInformations;
