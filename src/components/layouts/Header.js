@@ -122,10 +122,15 @@ const Header = (props) => {
                   </a>
                 )}
               { isLogged
-                && (
+                ? (
                   <>
                     <img alt="notif icon" src={NotifIcon} />
                     <span style={topNavCustomStyle.userName}>Mashkour Abdel Aziz</span>
+                    <img alt="profil icon" src={ProfileIcon} style={topNavCustomStyle.profile} />
+                  </>
+                )
+                : (
+                  <>
                     <img alt="profil icon" src={ProfileIcon} style={topNavCustomStyle.profile} />
                   </>
                 )}

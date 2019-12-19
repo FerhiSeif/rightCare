@@ -9,10 +9,12 @@ import Content from './shared/Content';
 const Carder = (props) => {
   const {
     t,
+    kind,
     icon,
     darkIcon,
-    kind,
-    title,
+    name,
+    nameFr,
+    type,
     content,
     buttonText,
     serviceCount,
@@ -23,19 +25,64 @@ const Carder = (props) => {
     channelSelected,
     assignedAgents,
     i18n,
-    nameFr,
     currentStep,
   } = props;
 
+  // chargement de la liste des agents
   const [state, setState] = useState({
-    initialAgents: assignedAgents && FakeAgents.filter((agent) => assignedAgents.includes(agent.id)),
+    addAgentsChannel: assignedAgents && FakeAgents.filter((agent) => assignedAgents.includes(agent.id)),
     initAgents: FakeAgents,
   });
+
+  const handleSelectAll = (status) => {
+    if (status) {
+      /*
+        action de cocher tous les agents disponible
+      */
+      // eslint-disable-next-line no-restricted-syntax
+      for (const item of state.initAgents) {
+        const localService = JSON.parse(localStorage.getItem('cr_services'));
+        const correspondingChannel = localService.find(
+          (option) => option.type.toLowerCase().includes((type).toLowerCase()),
+        );
+        if (!correspondingChannel.agents.includes(item.id)) {
+          correspondingChannel.agents.push(item.id);
+        }
+        localStorage.setItem('cr_services', JSON.stringify(localService));
+        const updatedAgents = FakeAgents.filter((agent) => correspondingChannel.agents.includes(agent.id));
+        setState((prevState) => ({
+          ...prevState,
+          addAgentsChannel: updatedAgents,
+        }));
+      }
+    }
+
+    if (!status) {
+      /*
+        action de décocher tous les agents disponible
+      */
+      // eslint-disable-next-line no-restricted-syntax
+      for (const item of state.initAgents) {
+        const localService = JSON.parse(localStorage.getItem('cr_services'));
+        const { agents } = localService.find((option) => option.type.toLowerCase().includes((type).toLowerCase()));
+        if (agents.includes(item.id)) {
+          const index = agents.indexOf(item.id);
+          if (index > -1) { agents.splice(index, 1); }
+          localStorage.setItem('cr_services', JSON.stringify(localService));
+          const updatedAgents = FakeAgents.filter((agent) => agents.includes(agent.id));
+          setState((prevState) => ({
+            ...prevState,
+            addAgentsChannel: updatedAgents,
+          }));
+        }
+      }
+    }
+  };
 
   const handleAddAgent = (e, id) => {
     const localService = JSON.parse(localStorage.getItem('cr_services'));
     const correspondingChannel = localService.find(
-      (option) => option.type.toLowerCase().includes((title).toLowerCase()),
+      (option) => option.type.toLowerCase().includes((type).toLowerCase()),
     );
     if (!correspondingChannel.agents.includes(id)) {
       correspondingChannel.agents.push(id);
@@ -44,13 +91,13 @@ const Carder = (props) => {
     const updatedAgents = FakeAgents.filter((agent) => correspondingChannel.agents.includes(agent.id));
     setState((prevState) => ({
       ...prevState,
-      initialAgents: updatedAgents,
+      addAgentsChannel: updatedAgents,
     }));
   };
 
   const handleRemoveAgent = (e, id) => {
     const localService = JSON.parse(localStorage.getItem('cr_services'));
-    const { agents } = localService.find((option) => option.type.toLowerCase().includes((title).toLowerCase()));
+    const { agents } = localService.find((option) => option.type.toLowerCase().includes((type).toLowerCase()));
     if (agents.includes(id)) {
       const index = agents.indexOf(id);
       if (index > -1) { agents.splice(index, 1); }
@@ -58,15 +105,15 @@ const Carder = (props) => {
       const updatedAgents = FakeAgents.filter((agent) => agents.includes(agent.id));
       setState((prevState) => ({
         ...prevState,
-        initialAgents: updatedAgents,
+        addAgentsChannel: updatedAgents,
       }));
     }
-  }
+  };
 
   const fetchDatas = (id) => JSON
     .parse(localStorage.getItem('cr_services'))
     .find((option) => option.type.toLowerCase()
-      .includes((title)
+      .includes((type)
         .toLowerCase()))
     .agents.includes(id);
 
@@ -77,9 +124,12 @@ const Carder = (props) => {
           <img src={item.profile_image} alt="portrait" />
           <span className="user-name">{item.full_name}</span>
           {
-            fetchDatas(item.id) ? (<span className="remove-user" onClick={(e) => handleRemoveAgent(e, item.id)}>-</span>)
-            :
-            (<span className="add-user" onClick={(e) => handleAddAgent(e, item.id)}>+</span>)
+            fetchDatas(item.id) ? (
+              <span className="remove-user" onClick={(e) => handleRemoveAgent(e, item.id)}> - </span>
+            )
+            : (
+              <span className="add-user" onClick={(e) => handleAddAgent(e, item.id)}> + </span>
+            )
           }
         </li>
       ))}
@@ -123,7 +173,7 @@ const Carder = (props) => {
       padding: channelSelected || kind === 'channel' ? 'padding: 1.3125rem' : '2.5rem 1rem',
     },
     emptyChannel: {
-      background: state.initialAgents && state.initialAgents.length !== 0 ? '#ffffff' : 'rgba(200, 211, 214, 0.12)',
+      background: state.addAgentsChannel && state.addAgentsChannel.length !== 0 ? '#fff' : '#fff',
     },
   };
 
@@ -131,17 +181,18 @@ const Carder = (props) => {
     <div className={[1, 2, 4, 5].indexOf(serviceCount) !== -1 ? 'card-custom' : 'card'} style={cardStyle.emptyChannel}>
 
       <Header
+        t={t}
         kind={kind}
-        initialAgents={state.initialAgents}
-        icon={icon}
-        darkIcon={darkIcon}
-        title={title}
-        i18n={i18n}
+        addAgentsChannel={state.addAgentsChannel}
+
+        name={name}
         nameFr={nameFr}
+
+        i18n={i18n}
       />
       <Content
         agentAssigned={agentAssigned}
-        initialAgents={state.initialAgents}
+        addAgentsChannel={state.addAgentsChannel}
         handleAddRessourceModal={handleAddRessourceModal}
         channelSelected={channelSelected}
         kind={kind}
@@ -154,16 +205,17 @@ const Carder = (props) => {
       />
       <Modal
         t={t}
-        agentModal={referedModal}
-        handleSearchAgent={handleSearchAgent}
-        handleCloseRessourceModal={handleCloseRessourceModal}
-        title={kind === 'agent' ? t('onboard.steps.add_available_agents') : t('onboard.steps.add_channel')}
         content={listAgents}
         kind={kind}
         buttonText={t('onboard.steps.continue')}
+        agentModal={referedModal}
+        agentCount={state.initAgents.length}
         handleChooseService={handleChooseService}
         checkedServices={checkedServices}
-        agentCount={state.initAgents.length}
+        handleCloseRessourceModal={handleCloseRessourceModal}
+        handleSearchAgent={handleSearchAgent}
+        title={kind === 'agent' ? t('onboard.steps.add_agents') : t('onboard.steps.add_channel')}
+        handleSelectAll={handleSelectAll}
       />
     </div>
   );
@@ -173,7 +225,9 @@ Carder.propTypes = {
   t: PropTypes.func.isRequired,
   icon: PropTypes.string.isRequired,
   kind: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  nameFr: PropTypes.string.isRequired,
+  type: PropTypes.string.isRequired,
   content: PropTypes.string.isRequired,
   handleChooseService: PropTypes.func.isRequired,
   buttonText: PropTypes.string.isRequired,

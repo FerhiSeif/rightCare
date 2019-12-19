@@ -1,15 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import ImgUser from '../../../assets/images/onboard/channels/dark/user.svg';
 
 const Header = (props) => {
   const {
+    t,
     kind,
-    icon,
-    darkIcon,
-    initialAgents,
-    title,
-    i18n,
+    addAgentsChannel,
+    name,
     nameFr,
+    i18n,
   } = props;
 
   const currLang = i18n.language;
@@ -19,14 +19,24 @@ const Header = (props) => {
       <header className="card-header">
         <p className={`${kind === 'channel' ? 'card-header-title' : 'card-header-title agents'}`}>
           <span className="icon">
-            <img src={`${kind === 'channel' ? icon : darkIcon}`} alt="Channel Icon" />
+            <img src={ImgUser} alt="Channel Icon" />
           </span>
-          {currLang === 'en' ? title : nameFr}
+          <span className="text">
+            { addAgentsChannel && addAgentsChannel.length > 0 ? (
+              <span>
+                { t('onboard.steps.agents_added') }
+              </span>
+            ) : (
+              <span>
+                { currLang === 'en' ? name : nameFr }
+              </span>
+            )}
+          </span>
         </p>
         <div className="card-header-icon" aria-label="more options">
-          { initialAgents && initialAgents.length > 0 ? (
+          { addAgentsChannel && addAgentsChannel.length > 0 ? (
             <span className="icon">
-              {initialAgents.length}
+              {addAgentsChannel.length}
             </span>
           ) : (
             <span className="icon">
@@ -40,11 +50,11 @@ const Header = (props) => {
 };
 
 Header.propTypes = {
+  t: PropTypes.func.isRequired,
   kind: PropTypes.string.isRequired,
-  icon: PropTypes.string.isRequired,
-  darkIcon: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
-  initialAgents: PropTypes.shape({}).isRequired,
+  name: PropTypes.string.isRequired,
+  nameFr: PropTypes.string.isRequired,
+  addAgentsChannel: PropTypes.shape({}).isRequired,
 };
 
 export default Header;
