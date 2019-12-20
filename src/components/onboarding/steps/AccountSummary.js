@@ -88,7 +88,7 @@ const AccountSummary = (props) => {
         <HasAgents
           kind="channel"
           t={t}
-          title={t('onboard.steps.added_agents')}
+          title={t('onboard.steps.agents_added')}
           currentStep={2}
         />
       )}
