@@ -15,6 +15,7 @@ import SearchIcon from "../../assets/images/profile/search.svg";
 import TicketsList from "./ticketAnalytics/TicketsList";
 import TicketDashboard from "./tickets/TicketDashboard";
 import CreateTicket from "./tickets/CreateTicket";
+import MessageTicket from "./tickets/MessageTicket";
 import { render } from "enzyme";
 
 class TicketAnalytics extends Component {
@@ -28,15 +29,27 @@ class TicketAnalytics extends Component {
   };
 
   getStepContent = step => {
-    const { i18n, t} = this.props;
+    const { i18n, t } = this.props;
     switch (step) {
       case 0:
-        return <TicketDashboard t={t} i18n={i18n} kind="tickets" createTicket={()=>this.setState({status:1})}/>;
+        return (
+          <TicketDashboard
+            t={t}
+            i18n={i18n}
+            kind="tickets"
+            createTicket={() => this.setState({ status: 1 })}
+          />
+        );
       case 1:
         return <CreateTicket t={t} i18n={i18n} kind="tickets" />;
       case 2:
         return (
-          <h1></h1>
+          <MessageTicket
+            t={t}
+            i18n={i18n}
+            kind="tickets"
+            createTicket={() => this.setState({ status: 1 })}
+          />
         );
       default:
         return "Unknown step";

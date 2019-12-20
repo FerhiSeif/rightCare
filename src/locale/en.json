@@ -144,6 +144,7 @@
     "pending_ticket": "Pending Ticket",
     "new_ticket": "New Ticket",
     "total_ticket": "Total Ticket",
-    "today": "Today"
+    "today": "Today",
+    "tickets_message" : "Ticket Message"
   }
 }

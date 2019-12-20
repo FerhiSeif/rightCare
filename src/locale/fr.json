@@ -138,10 +138,11 @@
   "tickets": {
     "tickets_overview": "Tickets",
     "Tickets_creation": "Créer un Ticket",
-    "resolve_ticket" : "Resolve Ticket",
-    "pending_ticket" : "Ticket En Attente",
+    "resolve_ticket": "Resolve Ticket",
+    "pending_ticket": "Ticket En Attente",
     "new_ticket": "Nouveau Ticket",
-    "total_ticket" : "Total Ticket",
-    "today" : "Aujourd'hui"
+    "total_ticket": "Total Ticket",
+    "today": "Aujourd'hui",
+    "tickets_message": "Ticket Message"
   }
 }
