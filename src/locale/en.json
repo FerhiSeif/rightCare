@@ -1,5 +1,10 @@
 {
-  "home" : {
+  "notification": {
+    "title": "Ticket status",
+    "msg": "have been update successfully"
+  },
+
+  "home": {
     "welcome_to": "Welcome to",
     "customer_engagement_on_one_plateform": "Customer engagement on One Platform",
     "get_started": "Get started",

@@ -1,4 +1,9 @@
 {
+  "notification": {
+    "title": "Le statut du ticket",
+    "msg": "a été modifié avec succès"
+  },
+
   "home" : {
     "welcome_to": "Bienvenue à",
     "customer_engagement_on_one_plateform": "d'Engagement clientèle sur une plate-forme",

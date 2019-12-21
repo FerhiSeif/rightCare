@@ -9,6 +9,7 @@ import AccountSummary from './steps/AccountSummary';
 import { options } from '../../configs/options';
 import SelectAgent from '../../assets/images/onboard/get-started/select-agent.png';
 import SingleService from '../../assets/images/onboard/group.png';
+import WelcomeImg from '../../assets/images/onboard/welcomeImg.png';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -253,12 +254,12 @@ export default function Steps(props) {
           {/* Affichage dynamique des images de droite */}
           { activeStep === 0 && (
             <div className="column">
-              <img src={SelectAgent} alt="select agent" className="select-image" />
+              <img src={WelcomeImg} alt="select agent" className="select-image" />
             </div>
           )}
           { (activeStep === 1) && (
             <div className="column column-image-container">
-              <img src={SingleService} alt="select service" className="select-image" />
+              <img src={WelcomeImg} alt="select service" className="select-image" />
             </div>
           )}
         </div>
