@@ -33,7 +33,7 @@ const Header = (props) => {
                   </div>
                 ))
               }
-              {(currentStep !== 3 || containerWidth > 768) && (
+              {(currentStep !== 1 || containerWidth > 768) && (
                 <div className="add-more" onClick={handleAddRessourceModal}>
                   <span>+</span>
                 </div>
@@ -46,7 +46,7 @@ const Header = (props) => {
               (
                 <>
                   <p>{content}</p>
-                  {currentStep !== 3 && (
+                  {currentStep !== 1 && (
                     <button className="button is-success is-outlined" onClick={handleAddRessourceModal}>
                       {buttonText}
                     </button>
@@ -70,6 +70,7 @@ Header.propTypes = {
   content: PropTypes.string.isRequired,
   handleAddRessourceModal: PropTypes.func.isRequired,
   addAgentsChannel: PropTypes.shape({}).isRequired,
+  currentStep: PropTypes.number.isRequired,
 };
 
 export default Header;

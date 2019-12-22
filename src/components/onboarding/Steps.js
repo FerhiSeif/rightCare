@@ -7,8 +7,9 @@ import Header from '../layouts/Header';
 import AssignAgent from './steps/AssignAgent';
 import AccountSummary from './steps/AccountSummary';
 import { options } from '../../configs/options';
-import SelectAgent from '../../assets/images/onboard/get-started/select-agent.png';
-import SingleService from '../../assets/images/onboard/group.png';
+// import SelectAgent from '../../assets/images/onboard/get-started/select-agent.png';
+// import SingleService from '../../assets/images/onboard/group.png';
+import WelcomeImg from '../../assets/images/onboard/welcomeImg.png';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -50,6 +51,21 @@ const useStyles = makeStyles((theme) => ({
       borderColor: '#0089e1',
     },
   },
+  buttonOutlined2: {
+    backgroundColor: 'transparent',
+    color: '#0089e1',
+    borderColor: '#0089e1',
+    borderRadius: '10px',
+    padding: '1rem 3rem',
+    marginRight: '1rem',
+    textTransform: 'capitalize',
+    fontSize: '1rem',
+    '&:hover': {
+      backgroundColor: '#0089e1',
+      color: '#ffffff',
+      borderColor: '#0089e1',
+    },
+  },
   instructions: {
     marginTop: '1rem',
     marginBottom: '2rem',
@@ -57,10 +73,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function getSteps() {
-  return ['Select campaign settings', 'Create an ad group', 'Create an ad'];
+  return ['Add agents', 'Account config summary'];
 }
 
 function getStepContent(
+  t,
   step,
   checkedServices,
   activeServices,
@@ -86,7 +103,7 @@ function getStepContent(
         />
       );
     default:
-      return 'Unknown step';
+      return t('onboard.steps.unknown_step');
   }
 }
 
@@ -95,7 +112,6 @@ export default function Steps(props) {
   const [skipped, setSkipped] = React.useState(new Set());
   const steps = getSteps();
   const classes = useStyles();
-
   const isStepSkipped = (step) => skipped.has(step);
 
   const handleBack = () => {
@@ -115,7 +131,7 @@ export default function Steps(props) {
 
   const handleSkip = () => {
     if (activeStep === 0) {
-      setActiveStep((prevActiveStep) => prevActiveStep + 2);
+      setActiveStep((prevActiveStep) => prevActiveStep + 1);
       setSkipped((prevSkipped) => {
         const newSkipped = new Set(prevSkipped.values());
         newSkipped.add(activeStep);
@@ -178,6 +194,7 @@ export default function Steps(props) {
                   <div className={classes.instructions}>
                     {
                       getStepContent(
+                        t,
                         activeStep,
                         checkedServices,
                         activeServices,
@@ -189,15 +206,25 @@ export default function Steps(props) {
                   <div className="next-back-container">
                     <Button onClick={handleSimulateChooseServices} ref={selectServiceRef} style={{ display: 'none' }}>Simulate</Button>
                     { activeStep === steps.length - 1 ? (
-                      <Link to="/dashboard" style={{ color: '#ffffff' }}>
+                      <>
                         <Button
-                          variant="contained"
+                          variant="outlined"
                           color="primary"
-                          className={classes.button}
+                          onClick={handleBack}
+                          className={classes.buttonOutlined2}
                         >
-                          {t('onboard.finish')}
+                          {t('onboard.back')}
                         </Button>
-                      </Link>
+                        <Link to="/dashboard" style={{ color: '#ffffff' }}>
+                          <Button
+                            variant="contained"
+                            color="primary"
+                            className={classes.button}
+                          >
+                            {t('onboard.finish')}
+                          </Button>
+                        </Link>
+                      </>
                     ) : (
                       <Button
                         variant="contained"
@@ -223,14 +250,16 @@ export default function Steps(props) {
               </div>
             </div>
           </div>
+
+          {/* Affichage dynamique des images de droite */}
           { activeStep === 0 && (
             <div className="column">
-              <img src={SelectAgent} alt="select agent" className="select-image" />
+              <img src={WelcomeImg} alt="select agent" className="select-image" />
             </div>
           )}
           { (activeStep === 1) && (
             <div className="column column-image-container">
-              <img src={SingleService} alt="select service" className="select-image" />
+              <img src={WelcomeImg} alt="select service" className="select-image" />
             </div>
           )}
         </div>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Agents from './Analytics/Agents';
 import ChartDatas from './canvas/ChartDatas';
@@ -6,8 +6,10 @@ import NewRequest from './Analytics/NewRequest';
 import PendingRequest from './Analytics/PendingRequest';
 import CompleteRequest from './Analytics/CompleteRequest';
 import MoreIcon from '../../assets/images/dashboard/more.svg';
-import AntennaIcon from '../../assets/images/dashboard/antenna.svg';
+import UserImg from '../../assets/images/dashboard/user.svg';
 import CalendarIcon from '../../assets/images/dashboard/calendar.svg';
+import AntennaIcon from '../../assets/images/dashboard/antenna.svg';
+import LiveActivity from './Analytics/LiveActivity';
 
 const Analytics = (props) => {
   const {
@@ -15,6 +17,34 @@ const Analytics = (props) => {
     t,
     kind,
   } = props;
+
+  const [liveActivity, setLiveActivity] = useState([
+    {
+      img: UserImg,
+      title: 'New Ticket #4424211 Open',
+      time: '1 min ago',
+      status: 'Ticket',
+    },
+    {
+      img: UserImg,
+      title: 'Response to ticket #3432131',
+      time: '6 min ago',
+      status: 'Ticket',
+    },
+    {
+      img: UserImg,
+      title: 'New Ticket #44211 Open',
+      time: '23 min ago',
+      status: 'Ticket',
+    },
+    {
+      img: UserImg,
+      title: 'Response to chat ticket #3432131',
+      time: '1 day ago',
+      status: 'Ticket',
+    },
+  ]);
+
 
   return (
     <>
@@ -29,15 +59,34 @@ const Analytics = (props) => {
       </div>
       <div className="columns chart-columns">
         <div className="column">
+
           <div className="column-content column-content-a">
             <h2>{t('dashboard.live_updates')}</h2>
             <img src={MoreIcon} alt="Filter" />
           </div>
-          <div className="column-content column-content-o">
-            <img src={AntennaIcon} alt="Antenna" className="antenna" />
-            <p>{t('dashboard.no_live_update')}</p>
-          </div>
+
+          {/*  */}
+          {liveActivity.length === 0 ? (
+            <div className="column-content column-content-no">
+              <img src={AntennaIcon} alt="Antenna" className="antenna" />
+              <p>{t('dashboard.no_live_update')}</p>
+            </div>
+          ) : (
+            liveActivity.map((item, i) => (
+              <LiveActivity
+                t={t}
+                key={i}
+                img={item.img}
+                title={item.title}
+                time={item.time}
+                status={item.status}
+              />
+            ))
+          )}
+
+          {/*  */}
         </div>
+
         <div className="column column-chart">
           <h3>{t('dashboard.channel_chart')}</h3>
           <ChartDatas i18n={i18n} />

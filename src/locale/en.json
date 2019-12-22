@@ -1,5 +1,10 @@
 {
-  "home" : {
+  "notification": {
+    "title": "Ticket status",
+    "msg": "have been update successfully"
+  },
+
+  "home": {
     "welcome_to": "Welcome to",
     "customer_engagement_on_one_plateform": "Customer engagement on One Platform",
     "get_started": "Get started",
@@ -42,12 +47,14 @@
     "finish": "Finish",
     "continue": "Continue",
     "skip": "Skip",
+    "back": "Back",
     "steps": {
       "add_agent_btn": "Add Agent",
       "add_channel": "Add channel",
       "add_agents": "Add Agents",
       "select_all_agent": "Select all agent(s)",
       "agents_added": "Agents added",
+      "unknown_step": "Unknown step",
 
 
       "": "",
@@ -65,7 +72,6 @@
       "no_agent_has_been_assigned_to_this_channel": "No agent have been assigned to this channel",
       "add_available_agents": "Add available agents",
       "continue": "Continue",
-      "added_agents": "Added agents",
       "search_agent": "Search agent"
     }
   },
@@ -76,7 +82,7 @@
     "complete_request": "Complete Request",
     "add_agent": "Add agent",
     "dashboard_overview": "Dashboard overview",
-    "live_updates": "Live Updates",
+    "live_updates": "Live Activities",
     "no_live_update": "No Live update",
     "channel_chart": "Channel Chart",
     "all_channels": "All channels",

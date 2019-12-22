@@ -1,5 +1,5 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Select from 'react-select';
 import DesktopLogo from '../../assets/images/logo/medium.png';
@@ -10,6 +10,7 @@ import DrawerIcon from '../../assets/images/dashboard/drawer.svg';
 import AnalyticsManager from '../dashboard/AnalyticsManager';
 import SettingsManager from '../dashboard/SettingsManager';
 import DrawerLayout from './DrawerLayout';
+import Notification from './utilities/Notification';
 
 const Header = (props) => {
   const {
@@ -74,6 +75,33 @@ const Header = (props) => {
     },
   };
 
+  // const [contentNotification, setContentNotification] = useState({ title: '', msg: '' });
+  const [activeNotification, setActiveNotification] = useState(true); // false , true
+  const [statusNotification, setStatusNotification] = useState('success'); // '' , success , danger
+
+  // // // // // // // // //
+  const [contentNotification, setContentNotification] = useState({ title: t('notification.title'), msg: t('notification.msg') });
+  // // // // // // // // //
+
+  // useEffect(() => {
+  //   setContentNotification({ title: 'Ticket status', msg: 'have been update successfully' });
+  //   setStatusNotification('success'); // success , danger
+  //   setActiveNotification(true); // false , true
+  // });
+
+  const handleAddNotification = (status = 'success', active = true, content = {}) => {
+    setContentNotification({ title: 'Ticket status', msg: 'have been update successfully' });
+    // setContentNotification(content); // content = objet
+    setStatusNotification(status); // success , danger
+    setActiveNotification(active); // false , true
+  };
+
+  const handleCloseNotifification = () => {
+    setStatusNotification('');
+    setContentNotification({ title: '', msg: '' });
+    setActiveNotification(false); // false , true
+  };
+
   return (
     <div className={`${(kind === 'dashboard' || kind === 'settings') ? 'column dashboard is-four-fifths' : ''}`}>
       <nav className="navbar" role="navigation" aria-label="main navigation" style={topNavCustomStyle.navbar}>
@@ -131,7 +159,8 @@ const Header = (props) => {
                 )
                 : (
                   <>
-                    <img alt="profil icon" src={ProfileIcon} style={topNavCustomStyle.profile} />
+                    <img alt="profil icon" src={ProfileIcon} style={topNavCustomStyle.profile}
+                    onClick={() => handleAddNotification()} />
                   </>
                 )}
               <Select
@@ -145,6 +174,16 @@ const Header = (props) => {
           </div>
         </div>
       </nav>
+
+      {activeNotification === true && (
+        <Notification
+          t={t}
+          handleCloseNotifification={handleCloseNotifification}
+          statusNotification={statusNotification}
+          contentNotification={contentNotification}
+          i18n={i18n}
+        />
+      )}
 
       { kind === 'dashboard' && (<AnalyticsManager t={t} containerWidth={containerWidth} containerHeight={containerHeight} i18n={i18n} />)}
 

@@ -122,6 +122,7 @@ MobileAddAgents.propTypes = {
   handleChooseService: PropTypes.func.isRequired,
   checkedServices: PropTypes.shape({}).isRequired,
   activeServices: PropTypes.shape([]).isRequired,
+  currentStep: PropTypes.number.isRequired,
 };
 
 export default withTranslation()(MobileAddAgents);
