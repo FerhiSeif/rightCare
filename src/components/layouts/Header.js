@@ -76,21 +76,15 @@ const Header = (props) => {
   };
 
   // const [contentNotification, setContentNotification] = useState({ title: '', msg: '' });
-  const [activeNotification, setActiveNotification] = useState(true); // false , true
-  const [statusNotification, setStatusNotification] = useState('success'); // '' , success , danger
+  const [activeNotification, setActiveNotification] = useState(false); // false , true
+  const [statusNotification, setStatusNotification] = useState(''); // '' , success , danger
 
   // // // // // // // // //
-  const [contentNotification, setContentNotification] = useState({ title: t('notification.title'), msg: t('notification.msg') });
+  const [contentNotification, setContentNotification] = useState({ title: '', msg: '' });
   // // // // // // // // //
-
-  // useEffect(() => {
-  //   setContentNotification({ title: 'Ticket status', msg: 'have been update successfully' });
-  //   setStatusNotification('success'); // success , danger
-  //   setActiveNotification(true); // false , true
-  // });
 
   const handleAddNotification = (status = 'success', active = true, content = {}) => {
-    setContentNotification({ title: 'Ticket status', msg: 'have been update successfully' });
+    setContentNotification({ title: t('notification.title'), msg: t('notification.msg') });
     // setContentNotification(content); // content = objet
     setStatusNotification(status); // success , danger
     setActiveNotification(active); // false , true
@@ -101,6 +95,13 @@ const Header = (props) => {
     setContentNotification({ title: '', msg: '' });
     setActiveNotification(false); // false , true
   };
+
+  useEffect(() => {
+    handleAddNotification();
+    return () => {
+      handleCloseNotifification();
+    };
+  }, []);
 
   return (
     <div className={`${(kind === 'dashboard' || kind === 'settings') ? 'column dashboard is-four-fifths' : ''}`}>

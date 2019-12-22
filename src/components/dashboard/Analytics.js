@@ -76,6 +76,7 @@ const Analytics = (props) => {
               <LiveActivity
                 t={t}
                 key={i}
+                index={i}
                 img={item.img}
                 title={item.title}
                 time={item.time}
@@ -83,7 +84,6 @@ const Analytics = (props) => {
               />
             ))
           )}
-
           {/*  */}
         </div>
 
