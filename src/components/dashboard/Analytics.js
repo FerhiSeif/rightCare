@@ -8,7 +8,8 @@ import CompleteRequest from './Analytics/CompleteRequest';
 import MoreIcon from '../../assets/images/dashboard/more.svg';
 import UserImg from '../../assets/images/dashboard/user.svg';
 import CalendarIcon from '../../assets/images/dashboard/calendar.svg';
-import LiveActivity from './Analytics/LiveActivity'
+import AntennaIcon from '../../assets/images/dashboard/antenna.svg';
+import LiveActivity from './Analytics/LiveActivity';
 
 const Analytics = (props) => {
   const {
@@ -58,22 +59,31 @@ const Analytics = (props) => {
       </div>
       <div className="columns chart-columns">
         <div className="column">
+
           <div className="column-content column-content-a">
             <h2>{t('dashboard.live_updates')}</h2>
             <img src={MoreIcon} alt="Filter" />
           </div>
 
           {/*  */}
-          {liveActivity.map((item, i) => (
-            <LiveActivity
-              t={t}
-              key={i}
-              img={item.img}
-              title={item.title}
-              time={item.time}
-              status={item.status}
-            />
-          ))}
+          {liveActivity.length === 0 ? (
+            <div className="column-content column-content-no">
+              <img src={AntennaIcon} alt="Antenna" className="antenna" />
+              <p>{t('dashboard.no_live_update')}</p>
+            </div>
+          ) : (
+            liveActivity.map((item, i) => (
+              <LiveActivity
+                t={t}
+                key={i}
+                img={item.img}
+                title={item.title}
+                time={item.time}
+                status={item.status}
+              />
+            ))
+          )}
+
           {/*  */}
         </div>
 

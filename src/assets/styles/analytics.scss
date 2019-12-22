@@ -48,6 +48,28 @@
         color: $light-secondary;
       }
     }
+    .column-content-no {
+      // padding: 1rem;
+      // margin: 0 1rem;
+      // text-align: center;
+      // margin-left: 0;
+      // min-height: 22rem;
+     
+      display: flex;
+      flex-direction: column;
+      height: 28.5rem;
+      max-height: 33.3rem;
+      vertical-align: middle;
+      width: auto;
+      img {
+        width: auto;
+        margin: 0 auto;
+      }
+      p {
+        width: auto;
+        text-align: center;
+      }
+    }
     .column-content-o {
       padding: 2rem 1rem;
       margin: 0 1rem;
