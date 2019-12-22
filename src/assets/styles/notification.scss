@@ -1,0 +1,87 @@
+.notification {
+  width: 65% !important;
+  position: absolute !important;
+  top: 20% !important;
+  z-index: 99 !important;
+  margin-left: 7rem !important;
+  // margin-right: 10rem !important;
+  background-color: #F7FFF9 !important;
+  color: #4C4C4C !important;
+  font-size: 1.2rem !important;
+  border-radius: 10px !important;
+  border: solid 1px #00BD39 !important;
+
+  .delete-btn {
+    background-color: #F7FFF9;
+  }
+}
+
+// notification success
+.notification-card-success {
+  width: 65% !important;
+  position: absolute !important;
+  top: 15% !important;
+  z-index: 99 !important;
+  margin-left: 7% !important;
+  // margin-right: 10rem !important;
+  padding: 1.5rem 2rem 1.5rem 4rem;
+  background: #F7FFF9 0% 0% no-repeat padding-box;
+  box-shadow: 0px 3px 6px #7E7E7E29;
+  border: 1px solid #00BD39;
+  border-radius: 10px;
+  opacity: 1;
+
+  .close-notif-success {
+    border: solid 1px #00BD39 !important;
+    color: #00BD39 !important;
+  }
+  .notification-msg {
+    color: #4C4C4C !important;
+    font-size: 1.2rem !important;
+  }
+}
+.delete::before, .close-notif-success::before, .delete::after, .close-notif-success::after {
+  background-color: #00BD39 !important;
+  content: "";
+  display: block;
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translateX(-50%) translateY(-50%) rotate(45deg);
+  transform-origin: center center;
+}
+
+// notification danger
+.notification-card-danger {
+  width: 65% !important;
+  position: absolute !important;
+  top: 15% !important;
+  z-index: 99 !important;
+  margin-left: 7% !important;
+  // margin-right: 10rem !important;
+  padding: 1.5rem 2rem 1.5rem 4rem;
+  background: rgb(255, 228, 228) 0% 0% no-repeat padding-box;
+  box-shadow: 0px 3px 6px #7E7E7E29;
+  border: 1px solid rgb(255, 120, 120);
+  border-radius: 10px;
+  opacity: 1;
+
+  .close-notif-danger {
+    border: solid 1px rgb(255, 120, 120) !important;
+    color: #00BD39 !important;
+  }
+  .notification-msg {
+    color: #4C4C4C !important;
+    font-size: 1.2rem !important;
+  }
+}
+.delete::before, .close-notif-danger::before, .delete::after, .close-notif-danger::after {
+  background-color: rgb(255, 120, 120) !important;
+  content: "";
+  display: block;
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translateX(-50%) translateY(-50%) rotate(45deg);
+  transform-origin: center center;
+}

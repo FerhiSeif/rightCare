@@ -8,7 +8,6 @@ const AssignAgent = (props) => {
   const {
     t,
     checkedServices,
-    handleChooseService,
     containerWidth,
     i18n,
   } = props;
@@ -17,29 +16,31 @@ const AssignAgent = (props) => {
 
   return (
     <div className="card-container">
-     { containerWidth > 768 && (
-       localService.map((item, i) => (
-         <Carder
-           kind="agent"
-           icon={item.icon}
-           darkIcon={item.darkIcon}
-           key={i}
-           t={t}
-           title={item.type}
-           content={t('onboard.steps.no_agent_has_been_added')}
-           buttonText={t('onboard.steps.add_agent')}
-           isChannelEmpty={false}
-           channelSelected={false}
-           serviceCount={6}
-           agentAssigned={false}
-           handleChooseService={handleChooseService}
-           checkedServices={checkedServices}
-           assignedAgents={item.agents}
-           i18n={i18n}
-           nameFr={item.name_fr}
-           currentStep={2}
-         />
-       ))
+      { containerWidth > 768 && (
+        localService.map((item, i) => (
+          <Carder
+            key={i}
+            kind="agent"
+            t={t}
+            icon={item.icon}
+            darkIcon={item.darkIcon}
+
+            name={item.name}
+            nameFr={item.name_fr}
+            type={item.type}
+
+            assignedAgents={item.agents}
+            content={t('onboard.steps.no_agent_has_been_added')}
+            buttonText={t('onboard.steps.add_agent_btn')}
+            isChannelEmpty={false}
+            channelSelected={false}
+            serviceCount={6}
+            agentAssigned={false}
+            checkedServices={checkedServices}
+            currentStep={2}
+            i18n={i18n}
+          />
+        ))
       )}
       {containerWidth <= 768 && <MobileAddAgents />}
     </div>
@@ -48,11 +49,8 @@ const AssignAgent = (props) => {
 
 AssignAgent.propTypes = {
   t: PropTypes.func.isRequired,
-  handleBack: PropTypes.func.isRequired,
   containerWidth: PropTypes.number.isRequired,
-  handleChooseService: PropTypes.func.isRequired,
   checkedServices: PropTypes.shape({}).isRequired,
-  activeServices: PropTypes.shape([]).isRequired,
 };
 
 export default withTranslation()(AssignAgent);

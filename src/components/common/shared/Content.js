@@ -1,3 +1,4 @@
+/* eslint-disable react/button-has-type */
 import React from 'react';
 import PropTypes from 'prop-types';
 import HasAgents from '../../onboarding/steps/HasAgents';
@@ -5,7 +6,7 @@ import HasAgents from '../../onboarding/steps/HasAgents';
 const Header = (props) => {
   const {
     kind,
-    initialAgents,
+    addAgentsChannel,
     cardStyle,
     hasAgents,
     content,
@@ -20,11 +21,11 @@ const Header = (props) => {
   return (
     <>
       <div className={`${agentAssigned ? 'sleep-padding' : 'card-content'}`} style={cardStyle}>
-        { initialAgents && initialAgents.length > 0 ? (
+        { addAgentsChannel && addAgentsChannel.length > 0 ? (
           <div className="content">
             <div className="content-container">
               {
-                initialAgents.map((item, i) => (
+                addAgentsChannel.map((item, i) => (
                   <div className="cobok" key={i}>
                     <div data-tooltip={item.full_name} className="tooltip-title">
                       <img src={item.profile_image} alt={item.full_name} data-tooltip={item.full_name} />
@@ -32,7 +33,7 @@ const Header = (props) => {
                   </div>
                 ))
               }
-              {(currentStep !== 3 || containerWidth > 768) && (
+              {(currentStep !== 1 || containerWidth > 768) && (
                 <div className="add-more" onClick={handleAddRessourceModal}>
                   <span>+</span>
                 </div>
@@ -42,13 +43,16 @@ const Header = (props) => {
         ) : (
           <div className="content">
             {hasAgents ? (<HasAgents handleAddRessourceModal={handleAddRessourceModal} kind={kind} isChannelEmpty={isChannelEmpty} />) :
-              (<>
-              <p>{content}</p>
-              {currentStep !== 3 && (
-                <button className="button is-success is-outlined" onClick={handleAddRessourceModal}>{buttonText}</button>
+              (
+                <>
+                  <p>{content}</p>
+                  {currentStep !== 1 && (
+                    <button className="button is-success is-outlined" onClick={handleAddRessourceModal}>
+                      {buttonText}
+                    </button>
+                  )}
+                </>
               )}
-              </>
-            )}
           </div>
         )}
       </div>
@@ -65,7 +69,8 @@ Header.propTypes = {
   agentAssigned: PropTypes.shape({}).isRequired,
   content: PropTypes.string.isRequired,
   handleAddRessourceModal: PropTypes.func.isRequired,
-  initialAgents: PropTypes.shape({}).isRequired,
+  addAgentsChannel: PropTypes.shape({}).isRequired,
+  currentStep: PropTypes.number.isRequired,
 };
 
 export default Header;

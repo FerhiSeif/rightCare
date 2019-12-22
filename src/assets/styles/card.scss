@@ -12,15 +12,15 @@
   margin: 0 1.2rem 1.2rem 0;
   box-shadow: 0 3px 6px 0 rgba(200, 211, 214, 0.2)!important;
   border: solid 1px #c8d3d6;
-  width: 28rem;
-  max-width: 29rem !important;
+  width: 30rem;
+  max-width: 35rem !important;
 }
 .card-custom {
   border-radius: 10px;
   max-width: 43.0625rem !important;
-  width: 42.0625rem;
+  width: 40rem;
   margin: 0 2.5rem 2.5rem 0;
-  background-color: rgba(200, 211, 214, 0.12);
+  background-color: #fff;
   box-shadow: 0 3px 6px 0 rgba(200, 211, 214, 0.2);;
   color: #4a4a4a;
   position: relative;
@@ -32,6 +32,10 @@
     border-top-right-radius: 10px;
     box-shadow: none;
     border-bottom: 1px solid rgba(10, 10, 10, 0.1);
+    .text {
+      color: #0089e1;
+      padding-left: 1rem;
+    }
     p {
       font-weight: normal;
       text-transform: capitalize;
@@ -130,9 +134,22 @@
             top: .5rem;
           }
         }
+
+        .search-select {
+          padding-top: 2rem;
+          padding-bottom: 0.5rem;
+          .search-select-text {
+            float: left;
+          }
+          .search-select-check {
+            float: right;
+            padding-right: 0.5rem;
+          }
+        }
       }
       .modal-card-body {
-        min-height: 17rem;
+        // min-height: 17rem;
+        min-height: auto !important;
       }
       .modal-card-body>div>.menu-list {
         margin-left: 0;
@@ -185,19 +202,19 @@
   }
 }
 .add-more {
-  color: #c8d3d6;
+  color: #fff;
   width: 2.5rem;
-  border: 2px solid #c8d3d6;
+  border: 2px solid #00BD39;
   height: 2.5rem;
   display: flex;
   z-index: 1;
   align-items: center;
   border-radius: 50%;
   justify-content: center;
-  background-color: #fff;
+  background-color: #00BD39;
   margin-left: auto;
-  border-style: dashed;
   cursor: pointer;
+  font-size: 1.5rem;
 }
 
 .carousel-item {

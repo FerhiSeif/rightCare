@@ -30,13 +30,13 @@ const Services = (props) => {
   return (
     <div className="service-container" style={serviceStyle.serviceContainer}>
       { FakeChannels.map((item, i) => (
+        // eslint-disable-next-line jsx-a11y/label-has-associated-control
         <label
           className={`${checkedServices[item.type] ? 'service-card is-selected-case' : 'service-card'}`}
           control={item.type}
           key={i}
         >
-          <img src={item.greenIcon} alt={i} />
-          <span>{currLang === 'en' ? item.name : item.name_fr}</span>
+
           <input
             type="checkbox"
             name={item.type}

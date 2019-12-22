@@ -11,15 +11,17 @@
 @import "./common.scss";
 @import "./card.scss";
 @import "./home.scss";
-@import "./responsive/home.scss";
 @import "./services.scss";
 @import "./tickets.scss";
+@import "./tooltip.scss";
+@import "./dashboard.scss";
+@import "./notification.scss";
+
+@import "./responsive/home.scss";
 @import "./responsive/services.scss";
 @import "./responsive/side_menu.scss";
 @import "./responsive/analytics.scss";
 @import "./responsive/card.scss";
 
-@import "./tooltip.scss";
-@import "./dashboard.scss";
 @import "../../../node_modules/bulma/bulma.sass";
 @import '../../../node_modules/bulma-tooltip/src/sass/index.sass';

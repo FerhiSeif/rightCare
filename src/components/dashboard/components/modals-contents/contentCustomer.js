@@ -40,7 +40,6 @@ const ContentCustomer = (props) => {
 
   const validateField = (value) => {
     // const { fieldLabel, fieldType } = state;
-    console.log(value);
 
     let error;
     if (!value) {

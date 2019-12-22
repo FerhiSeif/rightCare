@@ -50,10 +50,26 @@ class App extends Component {
         label: this.props.i18n.language === 'en' ? enLabelIcon : frLabelIcon,
         value: this.props.i18n.language === 'en' ? 'English' : 'Français',
       },
-      isLogged: true,
+      isLogged: false, // true , false
       checkedServices: this.getPrevServices(),
       activeServices: [],
       containerWidth: 0,
+      // eslint-disable-next-line react/no-unused-state
+      chanelAgent: [
+        {
+          id: '5b56e70ab253020033362gs8',
+          name: 'Agents',
+          name_fr: 'Agents',
+          type: 'agent',
+          agentCount: 12,
+          icon: '/static/media/facebook.5974443e.svg',
+          darkIcon: '/static/media/facebook.92f23286.svg',
+          greenIcon: '/static/media/facebook.38429045.svg',
+          status: 'new',
+          agents: [],
+          is_active: false,
+        },
+      ],
     };
   }
 
@@ -61,6 +77,15 @@ class App extends Component {
     this.updateWindowDimensions();
     window.addEventListener('resize', this.updateWindowDimensions);
     document.body.style.overflow = 'hidden';
+
+    const datasStorag = JSON.parse(localStorage.getItem('cr_services'));
+    if (!datasStorag) {
+      /*
+        Ajout automatique des données dans le localStorage
+      */
+      // eslint-disable-next-line react/destructuring-assignment
+      localStorage.setItem('cr_services', JSON.stringify(this.state.chanelAgent));
+    }
   }
 
   componentWillUnmount() {
@@ -71,7 +96,6 @@ class App extends Component {
   updateWindowDimensions = () => {
     this.setState({ containerWidth: window.innerWidth });
   }
-
 
   getPrevServices = () => {
     // get previously saved services from the localStorage
@@ -103,7 +127,7 @@ class App extends Component {
     const setActiveServices = [];
     const stateServices = Object.keys(checkedServices).length;
     if (stateServices > 0) {
-      for (let prop in checkedServices) {
+      for (const prop in checkedServices) {
         if (checkedServices[prop]) {
           setActiveServices.push(prop);
           this.setState({ activeServices: setActiveServices });
@@ -117,6 +141,9 @@ class App extends Component {
     }
   }
 
+  /*
+    Ajout automatique des données dans le localStorage
+  */
   updateServicesLocally = (setActiveServices, activeServices) => {
     // before we update everything locally,
     // we make sure we check if the previous channels
@@ -125,6 +152,9 @@ class App extends Component {
     localStorage.setItem('cr_actservices', JSON.stringify(setActiveServices));
     const selectedServices = FakeChannels.filter((channel) => setActiveServices.indexOf(channel.type) >= 0);
     const prevServices = JSON.parse(localStorage.getItem('cr_services'));
+
+    console.log('prevServices : ', prevServices);
+
     if (prevServices && prevServices.length > 0) {
       for (let i = 0; i < prevServices.length; i++) {
         const currentChannel = prevServices[i];
