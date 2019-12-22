@@ -1,5 +1,5 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Select from 'react-select';
 import DesktopLogo from '../../assets/images/logo/medium.png';
@@ -83,22 +83,23 @@ const Header = (props) => {
   const [contentNotification, setContentNotification] = useState({ title: t('notification.title'), msg: t('notification.msg') });
   // // // // // // // // //
 
-  const handleAddNotification = () => {
+  // useEffect(() => {
+  //   setContentNotification({ title: 'Ticket status', msg: 'have been update successfully' });
+  //   setStatusNotification('success'); // success , danger
+  //   setActiveNotification(true); // false , true
+  // });
+
+  const handleAddNotification = (status = 'success', active = true, content = {}) => {
     setContentNotification({ title: 'Ticket status', msg: 'have been update successfully' });
-    // setContentNotification(content); // content est un objet
-
-    setStatusNotification('success'); // success , danger
-    setActiveNotification(true); // false , true
-
-    console.log('handleAddNotification');
+    // setContentNotification(content); // content = objet
+    setStatusNotification(status); // success , danger
+    setActiveNotification(active); // false , true
   };
 
   const handleCloseNotifification = () => {
     setStatusNotification('');
     setContentNotification({ title: '', msg: '' });
     setActiveNotification(false); // false , true
-
-    console.log('handleCloseNotifification');
   };
 
   return (

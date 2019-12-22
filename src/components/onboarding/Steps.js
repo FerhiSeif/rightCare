@@ -7,8 +7,8 @@ import Header from '../layouts/Header';
 import AssignAgent from './steps/AssignAgent';
 import AccountSummary from './steps/AccountSummary';
 import { options } from '../../configs/options';
-import SelectAgent from '../../assets/images/onboard/get-started/select-agent.png';
-import SingleService from '../../assets/images/onboard/group.png';
+// import SelectAgent from '../../assets/images/onboard/get-started/select-agent.png';
+// import SingleService from '../../assets/images/onboard/group.png';
 import WelcomeImg from '../../assets/images/onboard/welcomeImg.png';
 
 const useStyles = makeStyles((theme) => ({
