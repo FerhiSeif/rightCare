@@ -78,7 +78,7 @@ const Header = (props) => {
   // const [contentNotification, setContentNotification] = useState({ title: '', msg: '' });
   const [activeNotification, setActiveNotification] = useState(true); // false , true
   const [statusNotification, setStatusNotification] = useState('danger'); // '' , success , danger
-  const [contentNotification, setContentNotification] = useState({ title: '', msg: '' });
+  const [contentNotification, setContentNotification] = useState({ title: t('notification.title'), msg: t('notification.msg') });
 
   const handleAddNotification = (status = 'success', active = true, content = {}) => {
     setContentNotification({ title: t('notification.title'), msg: t('notification.msg') });
@@ -93,12 +93,12 @@ const Header = (props) => {
     setActiveNotification(false); // false , true
   };
 
-  useEffect(() => {
-    handleAddNotification();
-    return () => {
-      handleCloseNotification();
-    };
-  }, []);
+  // useEffect(() => {
+  //   handleAddNotification();
+  //   return () => {
+  //     handleCloseNotification();
+  //   };
+  // }, []);
 
   return (
     <div className={`${(kind === 'dashboard' || kind === 'settings') ? 'column dashboard is-four-fifths' : ''}`}>
@@ -157,7 +157,8 @@ const Header = (props) => {
                 )
                 : (
                   <>
-                    <img alt="profil icon" src={ProfileIcon} style={topNavCustomStyle.profile} />
+                    <img alt="profil icon" src={ProfileIcon} style={topNavCustomStyle.profile}
+                    onClick={() => handleAddNotification()} />
                   </>
                 )}
               <Select
@@ -172,7 +173,7 @@ const Header = (props) => {
         </div>
       </nav>
 
-      { (kind === 'dashboard' || kind === 'tickets' || kind === 'settings')
+      { (kind === 'dashboard')
         && activeNotification === true && (
           <Notification
             t={t}
