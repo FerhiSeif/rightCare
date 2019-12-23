@@ -76,9 +76,12 @@ const Header = (props) => {
   };
 
   // const [contentNotification, setContentNotification] = useState({ title: '', msg: '' });
-  const [activeNotification, setActiveNotification] = useState(true); // false , true
-  const [statusNotification, setStatusNotification] = useState('danger'); // '' , success , danger
+  const [activeNotification, setActiveNotification] = useState(false); // false , true
+  const [statusNotification, setStatusNotification] = useState(''); // '' , success , danger
+
+  // // // // // // // // //
   const [contentNotification, setContentNotification] = useState({ title: '', msg: '' });
+  // // // // // // // // //
 
   const handleAddNotification = (status = 'success', active = true, content = {}) => {
     setContentNotification({ title: t('notification.title'), msg: t('notification.msg') });
@@ -87,7 +90,7 @@ const Header = (props) => {
     setActiveNotification(active); // false , true
   };
 
-  const handleCloseNotification = () => {
+  const handleCloseNotifification = () => {
     setStatusNotification('');
     setContentNotification({ title: '', msg: '' });
     setActiveNotification(false); // false , true
@@ -96,7 +99,7 @@ const Header = (props) => {
   useEffect(() => {
     handleAddNotification();
     return () => {
-      handleCloseNotification();
+      handleCloseNotifification();
     };
   }, []);
 
@@ -157,7 +160,8 @@ const Header = (props) => {
                 )
                 : (
                   <>
-                    <img alt="profil icon" src={ProfileIcon} style={topNavCustomStyle.profile} />
+                    <img alt="profil icon" src={ProfileIcon} style={topNavCustomStyle.profile}
+                    onClick={() => handleAddNotification()} />
                   </>
                 )}
               <Select
@@ -172,15 +176,14 @@ const Header = (props) => {
         </div>
       </nav>
 
-      { (kind === 'dashboard' || kind === 'tickets' || kind === 'settings')
-        && activeNotification === true && (
-          <Notification
-            t={t}
-            handleCloseNotification={handleCloseNotification}
-            statusNotification={statusNotification}
-            contentNotification={contentNotification}
-            i18n={i18n}
-          />
+      {activeNotification === true && (
+        <Notification
+          t={t}
+          handleCloseNotifification={handleCloseNotifification}
+          statusNotification={statusNotification}
+          contentNotification={contentNotification}
+          i18n={i18n}
+        />
       )}
 
       { kind === 'dashboard' && (<AnalyticsManager t={t} containerWidth={containerWidth} containerHeight={containerHeight} i18n={i18n} />)}

@@ -157,7 +157,8 @@ const Header = (props) => {
                 )
                 : (
                   <>
-                    <img alt="profil icon" src={ProfileIcon} style={topNavCustomStyle.profile} />
+                    <img alt="profil icon" src={ProfileIcon} style={topNavCustomStyle.profile}
+                    onClick={() => handleAddNotification()} />
                   </>
                 )}
               <Select
