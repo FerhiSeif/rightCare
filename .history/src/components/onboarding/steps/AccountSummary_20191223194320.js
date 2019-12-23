@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withTranslation } from 'react-i18next';
 import Carder from '../../common/Carder';
+import SelectedChannels from './SelectedChannels';
 import HasAgents from './HasAgents';
 import ChannelIcon from '../../../assets/images/dashboard/menu/channel.svg';
 import FakeChannels from '../../../faker/channels';
@@ -10,6 +11,7 @@ import MobileAddAgents from './MobileAddAgents';
 const AccountSummary = (props) => {
   const {
     t,
+    handleChooseService,
     checkedServices,
     activeServices,
     containerWidth,
@@ -21,11 +23,14 @@ const AccountSummary = (props) => {
   const selectedServices = FakeChannels
     .filter((channel) => activeServices.indexOf(channel.type) >= 0);
 
+  console.log(handleChooseService);
+  console.log(checkedServices);
+  console.log(activeServices);
+  console.log(localService);
+  console.log(selectedServices);
+
   return (
     <div className="card-container">
-
-      {/* Ancienne customisation pour le système par défaut */}
-
       { containerWidth > 768 && (activeServices && activeServices.length > 0) && (
         <>
           {
@@ -45,6 +50,7 @@ const AccountSummary = (props) => {
                     channelSelected={false}
                     serviceCount={5}
                     agentAssigned={false}
+                    handleChooseService={handleChooseService}
                     checkedServices={checkedServices}
                     assignedAgents={item.agents}
                     i18n={i18n}
@@ -84,15 +90,12 @@ const AccountSummary = (props) => {
         </>
       )}
 
-      {/* Nouvelles customisation pour le MVP */}
-
       {containerWidth > 768 && (
         <HasAgents
           kind="channel"
           t={t}
           title={t('onboard.steps.agents_added')}
           currentStep={2}
-          countAgentAdd={localService[0].agents.length}
         />
       )}
 
@@ -101,6 +104,7 @@ const AccountSummary = (props) => {
           <MobileAddAgents
             icon={ChannelIcon}
             checkedServices={checkedServices}
+            handleChooseService={handleChooseService}
             kinda="summary"
             currentStep={2}
           />
@@ -111,9 +115,9 @@ const AccountSummary = (props) => {
 
 AccountSummary.propTypes = {
   t: PropTypes.func.isRequired,
+  handleChooseService: PropTypes.func.isRequired,
   checkedServices: PropTypes.shape({}).isRequired,
   activeServices: PropTypes.shape([]).isRequired,
-  containerWidth: PropTypes.number.isRequired,
 };
 
 export default withTranslation()(AccountSummary);

@@ -111,7 +111,7 @@
     "tickets_status_content" : {
       "resolved": "Résolu",
       "ticket_solved_close": "Ticket résolu et fermé",
-      "pending": " attente",
+      "pending": "en attente",
       "on_going_ticket": "Ticket en cours",
       "new": "Nouveau",
       "ticket_without_agent_assign": "Ticket sans assignation d'agent",

@@ -155,6 +155,8 @@ export default function Steps(props) {
     containerWidth,
   } = props;
 
+  const countStorageAgent = JSON.parse(localStorage.getItem('cr_services'));
+
   return (
     <>
       <Header
@@ -230,7 +232,7 @@ export default function Steps(props) {
                         {t('onboard.continue')}
                       </Button>
                     )}
-                    {activeStep !== steps.length - 1 && (
+                    { (activeStep !== steps.length - 1 && countStorageAgent !== 0) && (
                       <Link to="/dashboard" style={{ color: '#ffffff' }}>
                         <Button
                           variant="outlined"

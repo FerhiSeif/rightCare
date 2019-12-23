@@ -155,6 +155,18 @@ export default function Steps(props) {
     containerWidth,
   } = props;
 
+  const localService = JSON.parse(localStorage.getItem('cr_services'));
+
+  console.log(defaultLang);
+  console.log(changeLang);
+  console.log(isLogged);
+  console.log(checkedServices);
+  console.log(activeServices);
+  console.log(handleSimulateChooseServices);
+  console.log(selectServiceRef);
+  console.log(containerWidth);
+  console.log(localService[0].agents);
+
   return (
     <>
       <Header

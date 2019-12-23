@@ -21,15 +21,18 @@ const AccountSummary = (props) => {
   const selectedServices = FakeChannels
     .filter((channel) => activeServices.indexOf(channel.type) >= 0);
 
+  console.log(checkedServices);
+  console.log(activeServices);
+  console.log(localService);
+  console.log(selectedServices);
+  console.log(containerWidth);
+
   return (
     <div className="card-container">
-
-      {/* Ancienne customisation pour le système par défaut */}
-
       { containerWidth > 768 && (activeServices && activeServices.length > 0) && (
         <>
           {
-            selectedServices.length > 0 || (localService && localService.length) > 0 ? (
+            selectedServices.length > 0 || (localService && localService[0].agents.length) > 0 ? (
               <>
                 { localService.map((item, i) => (
                   <Carder
@@ -55,36 +58,12 @@ const AccountSummary = (props) => {
               </>
             ) : (
               <>
-                { FakeChannels.filter((channel) => activeServices.indexOf(channel.type) >= 0)
-                  .map((item, i) => (
-                    <Carder
-                      kind="channel"
-                      icon={item.darkIcon}
-                      darkIcon={item.darkIcon}
-                      key={i}
-                      t={t}
-                      title={`${item.type} channel`}
-                      content={t('onboard.steps.no_agent_has_been_assigned_to_this_channel')}
-                      buttonText={t('onboard.steps.assign_agent')}
-                      hasAgents={false}
-                      isChannelEmpty={false}
-                      channelSelected={false}
-                      serviceCount={4}
-                      agentAssigned={false}
-                      assignedAgents={item.agents}
-                      checkedServices={checkedServices}
-                      i18n={i18n}
-                      nameFr={item.name_fr}
-                      currentStep={2}
-                    />
-                  ))}
+                
               </>
             )
           }
         </>
       )}
-
-      {/* Nouvelles customisation pour le MVP */}
 
       {containerWidth > 768 && (
         <HasAgents
@@ -92,7 +71,6 @@ const AccountSummary = (props) => {
           t={t}
           title={t('onboard.steps.agents_added')}
           currentStep={2}
-          countAgentAdd={localService[0].agents.length}
         />
       )}
 

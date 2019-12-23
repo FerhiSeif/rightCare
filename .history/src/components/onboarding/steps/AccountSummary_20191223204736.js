@@ -87,6 +87,9 @@ const AccountSummary = (props) => {
       {/* Nouvelles customisation pour le MVP */}
 
       {containerWidth > 768 && (
+        (localService && localService[0].agents.length) > 0 && (
+          <h4 className="title-no-agent">{t('onboard.steps.no_agent_has_been_assigned')}</h4>
+        )
         <HasAgents
           kind="channel"
           t={t}
@@ -98,12 +101,18 @@ const AccountSummary = (props) => {
 
       {containerWidth <= 768
         && (
-          <MobileAddAgents
-            icon={ChannelIcon}
-            checkedServices={checkedServices}
-            kinda="summary"
-            currentStep={2}
-          />
+          (localService && localService[0].agents.length) > 0 ? (
+            <MobileAddAgents
+              icon={ChannelIcon}
+              checkedServices={checkedServices}
+              kinda="summary"
+              currentStep={2}
+            />
+          ) : (
+            <>
+              <h4 className="title-no-agent">{t('onboard.steps.no_agent_has_been_assigned')}</h4>
+            </>
+          )
         )}
     </div>
   );

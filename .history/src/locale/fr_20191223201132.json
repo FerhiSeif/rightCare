@@ -8,7 +8,7 @@
     "welcome_to": "Bienvenue à",
     "customer_engagement_on_one_plateform": "d'Engagement clientèle sur une plate-forme",
     "get_started": "Commencer",
-    "resolve_your_customer": "Résolvez votre problème client en temps réel avec le moins de chiffre d'affaires possible."
+    "resolve_your_customer": "Résolvez votre problème client en temps réel avec le moins de tourbillons possible."
   },
   "header": {
     "get_started": "Commencer",
@@ -111,7 +111,7 @@
     "tickets_status_content" : {
       "resolved": "Résolu",
       "ticket_solved_close": "Ticket résolu et fermé",
-      "pending": " attente",
+      "pending": "en attente",
       "on_going_ticket": "Ticket en cours",
       "new": "Nouveau",
       "ticket_without_agent_assign": "Ticket sans assignation d'agent",
