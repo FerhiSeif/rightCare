@@ -157,7 +157,8 @@ const Header = (props) => {
                 )
                 : (
                   <>
-                    <img alt="profil icon" src={ProfileIcon} style={topNavCustomStyle.profile} />
+                    <img alt="profil icon" src={ProfileIcon} style={topNavCustomStyle.profile}
+                    onClick={() => handleAddNotification()} />
                   </>
                 )}
               <Select
@@ -172,7 +173,7 @@ const Header = (props) => {
         </div>
       </nav>
 
-      { (kind === 'dashboard' || kind === 'tickets' || kind === 'settings')
+      { (kind === 'dashboard')
         && activeNotification === true && (
           <Notification
             t={t}
