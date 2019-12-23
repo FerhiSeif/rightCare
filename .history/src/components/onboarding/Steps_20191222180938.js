@@ -129,7 +129,6 @@ export default function Steps(props) {
     setSkipped(newSkipped);
   };
 
-  /*
   const handleSkip = () => {
     if (activeStep === 0) {
       setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -140,7 +139,6 @@ export default function Steps(props) {
       });
     }
   };
-  */
 
   const {
     t,
@@ -154,6 +152,13 @@ export default function Steps(props) {
     selectServiceRef,
     containerWidth,
   } = props;
+
+  /*
+  // detect user
+  const [detectIslogged, setDetectIslogged] = useState(isLogged);
+  // deconnexion forcer du user
+  setDetectIslogged(false);
+  */
 
   return (
     <>
@@ -231,15 +236,14 @@ export default function Steps(props) {
                       </Button>
                     )}
                     {activeStep !== steps.length - 1 && (
-                      <Link to="/dashboard" style={{ color: '#ffffff' }}>
-                        <Button
-                          variant="outlined"
-                          color="primary"
-                          className={classes.buttonOutlined}
-                        >
-                          {t('onboard.skip')}
-                        </Button>
-                      </Link>
+                      <Button
+                        variant="outlined"
+                        color="primary"
+                        onClick={activeStep === 1 ? handleNext : handleSkip}
+                        className={classes.buttonOutlined}
+                      >
+                        {t('onboard.skip')}
+                      </Button>
                     )}
                   </div>
                 </div>

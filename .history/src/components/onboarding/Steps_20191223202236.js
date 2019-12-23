@@ -155,6 +155,15 @@ export default function Steps(props) {
     containerWidth,
   } = props;
 
+  console.log(defaultLang);
+  console.log(changeLang);
+  console.log(isLogged);
+  console.log(checkedServices);
+  console.log(activeServices);
+  console.log(handleSimulateChooseServices);
+  console.log(selectServiceRef);
+  console.log(containerWidth);
+
   return (
     <>
       <Header

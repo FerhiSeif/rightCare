@@ -11,15 +11,13 @@ const HasAgents = (props) => {
     kind,
     title,
     currentStep,
-    countAgentAdd,
   } = props;
 
-  console.log(countAgentAdd);
-  
+  const isChannelEmpty = false;
 
   const agentStyle = {
     addMore: {
-      background: countAgentAdd !== 0 ? '#ffffff' : 'rgba(200, 211, 214, 0.12)',
+      background: !isChannelEmpty ? '#ffffff' : 'rgba(200, 211, 214, 0.12)',
     },
   };
 
@@ -37,7 +35,7 @@ const HasAgents = (props) => {
   const addedAgents = FakeAgents.filter((agent) => (selectedServices.indexOf(agent.id) >= 0));
 
   return (
-    <div className="card-custom" style={agentStyle.addMore}>
+    <div className="card-custom">
       <header className="card-header">
         <p className="card-header-title">
           <span className="icon">
@@ -54,13 +52,6 @@ const HasAgents = (props) => {
       <div className="card-content">
         <div className="content">
           <div className="content-container">
-
-            {countAgentAdd === 0 && (
-              <div className="text-center-card">
-                { t('onboard.steps.no_agent_has_been_assigned') }
-              </div>
-            )}
-
             { addedAgents.map((item, i) => (
                 <div className={`${kind === 'channel' ? 'cobok-channel' : 'cobok'}`} key={i}>
                   <div data-tooltip={item.full_name} className="tooltip-title">
@@ -89,7 +80,6 @@ HasAgents.propTypes = {
   kind: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   currentStep: PropTypes.number.isRequired,
-  countAgentAdd: PropTypes.number.isRequired,
 };
 
 export default withTranslation()(HasAgents);

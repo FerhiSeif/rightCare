@@ -21,6 +21,12 @@ const AccountSummary = (props) => {
   const selectedServices = FakeChannels
     .filter((channel) => activeServices.indexOf(channel.type) >= 0);
 
+  console.log(checkedServices);
+  console.log(activeServices);
+  console.log(localService);
+  console.log(selectedServices);
+  console.log(containerWidth);
+
   return (
     <div className="card-container">
 
@@ -87,23 +93,34 @@ const AccountSummary = (props) => {
       {/* Nouvelles customisation pour le MVP */}
 
       {containerWidth > 768 && (
-        <HasAgents
-          kind="channel"
-          t={t}
-          title={t('onboard.steps.agents_added')}
-          currentStep={2}
-          countAgentAdd={localService[0].agents.length}
-        />
+        (localService && localService[0].agents.length) > 0 ? (
+          <HasAgents
+            kind="channel"
+            t={t}
+            title={t('onboard.steps.agents_added')}
+            currentStep={2}
+          />
+        ) : (
+          <>
+          ss
+          </>
+        )
       )}
 
       {containerWidth <= 768
         && (
-          <MobileAddAgents
-            icon={ChannelIcon}
-            checkedServices={checkedServices}
-            kinda="summary"
-            currentStep={2}
-          />
+          (localService && localService[0].agents.length) > 0 ? (
+            <MobileAddAgents
+              icon={ChannelIcon}
+              checkedServices={checkedServices}
+              kinda="summary"
+              currentStep={2}
+            />
+          ) : (
+            <>
+            mm
+            </>
+          )
         )}
     </div>
   );

@@ -155,6 +155,18 @@ export default function Steps(props) {
     containerWidth,
   } = props;
 
+  const countStorageAgent = JSON.parse(localStorage.getItem('cr_services'));
+
+  console.log(defaultLang);
+  console.log(changeLang);
+  console.log(isLogged);
+  console.log(checkedServices);
+  console.log(activeServices);
+  console.log(handleSimulateChooseServices);
+  console.log(selectServiceRef);
+  console.log(containerWidth);
+  console.log(countStorageAgent[0].agents.length);
+
   return (
     <>
       <Header
@@ -210,15 +222,8 @@ export default function Steps(props) {
                         >
                           {t('onboard.back')}
                         </Button>
-                        <Link to="/dashboard" style={{ color: '#ffffff' }}>
-                          <Button
-                            variant="contained"
-                            color="primary"
-                            className={classes.button}
-                          >
-                            {t('onboard.finish')}
-                          </Button>
-                        </Link>
+
+                       
                       </>
                     ) : (
                       <Button

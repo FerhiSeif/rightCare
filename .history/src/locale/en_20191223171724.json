@@ -8,7 +8,7 @@
     "welcome_to": "Welcome to",
     "customer_engagement_on_one_plateform": "Customer engagement on One Platform",
     "get_started": "Get started",
-    "resolve_your_customer": "Resolve your customer issue in real time with as little turnover as possible."
+    "resolve_your_customer": "Resolve your customer issue in real time with as little turnovers possible."
   },
   "header": {
     "get_started": "Get started",
@@ -55,7 +55,6 @@
       "select_all_agent": "Select all agent(s)",
       "agents_added": "Agents added",
       "unknown_step": "Unknown step",
-      "no_agent_has_been_assigned": "No agent have been assigned",
 
 
       "": "",
