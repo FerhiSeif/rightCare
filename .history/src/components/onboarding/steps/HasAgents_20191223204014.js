@@ -19,7 +19,7 @@ const HasAgents = (props) => {
 
   const agentStyle = {
     addMore: {
-      background: countAgentAdd !== 0 ? '#ffffff' : 'rgba(200, 211, 214, 0.12)',
+      background: countAgentAdd === 0 ? '#ffffff' : 'rgba(200, 211, 214, 0.12)',
     },
   };
 
@@ -54,13 +54,6 @@ const HasAgents = (props) => {
       <div className="card-content">
         <div className="content">
           <div className="content-container">
-
-            {countAgentAdd === 0 && (
-              <div className="text-center-card">
-                { t('onboard.steps.no_agent_has_been_assigned') }
-              </div>
-            )}
-
             { addedAgents.map((item, i) => (
                 <div className={`${kind === 'channel' ? 'cobok-channel' : 'cobok'}`} key={i}>
                   <div data-tooltip={item.full_name} className="tooltip-title">

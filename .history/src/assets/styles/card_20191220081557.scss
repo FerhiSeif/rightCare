@@ -20,7 +20,7 @@
   max-width: 43.0625rem !important;
   width: 40rem;
   margin: 0 2.5rem 2.5rem 0;
-  // background-color: #fff;
+  background-color: #fff;
   box-shadow: 0 3px 6px 0 rgba(200, 211, 214, 0.2);;
   color: #4a4a4a;
   position: relative;
@@ -83,7 +83,6 @@
       display: flex;
       -webkit-flex-wrap: wrap;
       flex-wrap: wrap;
-      justify-content: center;
       .cobok, .cobok-channel {
         width: 2.6774rem;
         height: 2.5rem;
