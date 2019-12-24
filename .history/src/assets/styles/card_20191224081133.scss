@@ -98,7 +98,10 @@
         margin-right: 0;
       }
       .text-center-card {
-        margin: 0 auto;
+        display: flex;
+        -webkit-flex-wrap: wrap;
+        flex-wrap: wrap;
+        justify-content: center;
       }
     }
   }
