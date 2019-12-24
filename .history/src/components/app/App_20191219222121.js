@@ -1,5 +1,3 @@
-/* eslint-disable guard-for-in */
-/* eslint-disable no-restricted-syntax */
 import React, { Component } from 'react';
 import { withTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
@@ -8,10 +6,6 @@ import {
   Switch,
   Route,
 } from 'react-router-dom';
-
-// Use Socket io - import
-import io from 'socket.io-client';
-
 import Welcome from '../onboarding/Welcome';
 import Steps from '../onboarding/Steps';
 import Dashboard from '../dashboard/Dashboard';
@@ -21,15 +15,6 @@ import LangIconEn from '../../assets/images/locale/uk.png';
 import LangIconFr from '../../assets/images/locale/fr.png';
 import '../../assets/styles/bluma.scss';
 import FakeChannels from '../../faker/channels';
-
-/* START $$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
-
-// import constants
-import { SOCKET } from '../../constants/Constants';
-
-const socket = io(SOCKET.BASE_URL);
-
-/* END $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
 
 const appStyles = {
   langIcons: {
@@ -85,26 +70,10 @@ class App extends Component {
           is_active: false,
         },
       ],
-      // Use Socket io - Init state
-      socketConnected: false,
     };
   }
 
   componentDidMount() {
-    /*
-    SocketService.socketConnect();
-    SocketService.socketDisconnect();
-    */
-    // Use Socket io - connect Socket
-    socket.on('connect', () => {
-      console.log('Connected socket');
-      this.setState({ socketConnected: true });
-    });
-    socket.on('disconnect', () => {
-      console.log('Disconnected socket');
-      this.setState({ socketConnected: false });
-    });
-
     this.updateWindowDimensions();
     window.addEventListener('resize', this.updateWindowDimensions);
     document.body.style.overflow = 'hidden';

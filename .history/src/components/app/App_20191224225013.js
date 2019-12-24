@@ -24,8 +24,10 @@ import FakeChannels from '../../faker/channels';
 
 /* START $$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
 
+// Use Socket io - Init Socket & include service
+import { SocketService, TicketSettingsHttpService } from '../../services/HttpService';
 // import constants
-import { SOCKET } from '../../constants/Constants';
+import { SOCKET, SIO_TICKET_SETTINGS } from '../../constants/Constants';
 
 const socket = io(SOCKET.BASE_URL);
 
@@ -95,6 +97,7 @@ class App extends Component {
     SocketService.socketConnect();
     SocketService.socketDisconnect();
     */
+
     // Use Socket io - connect Socket
     socket.on('connect', () => {
       console.log('Connected socket');
@@ -104,6 +107,16 @@ class App extends Component {
       console.log('Disconnected socket');
       this.setState({ socketConnected: false });
     });
+
+    /* START $$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
+    TicketSettingsHttpService.getDatasTicketSettings().then((response) => {
+      console.log('getDatasTicketSettings : ', response);
+
+      if ((response.status === 200 || response.status === 202)) {
+        this.initSocketTicketSettings();
+      }
+    });
+    /* END $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
 
     this.updateWindowDimensions();
     window.addEventListener('resize', this.updateWindowDimensions);
@@ -123,6 +136,34 @@ class App extends Component {
     window.removeEventListener('resize', this.updateWindowDimensions);
     document.body.style.overflow = 'auto';
   }
+
+  /* START $$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
+
+  // eslint-disable-next-line consistent-return
+  onSocketGetTicketSettings = (response) => {
+    if (response && (response.status === 200 || response.status === 202)) {
+      console.log('onSocketGetTicketSettings : ', response.data);
+    }
+  }
+
+  onSocketConnected(params) {
+    // eslint-disable-next-line react/destructuring-assignment
+    if (this.state.socketConnected) {
+      this.setState({ socketConnected: true });
+      if (params === 'ticket-setting') {
+        this.saveAsDraftNow();
+      } else {
+        this.fetchPublishLink();
+      }
+    }
+  }
+
+  initSocketTicketSettings = () => {
+    socket.on(SIO_TICKET_SETTINGS, (response) => this.onSocketGetTicketSettings(response));
+    // this.onSocketConnected('ticket-setting');
+  }
+
+  /* END $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
 
   updateWindowDimensions = () => {
     this.setState({ containerWidth: window.innerWidth });

@@ -1,9 +1,5 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-
-// Use Socket io - import
-import io from 'socket.io-client';
-
 import 'react-tabs/style/react-tabs.css';
 import { Tab, Tabs as Tabber, TabList, TabPanel } from 'react-tabs';
 import Content from './Content';
@@ -11,9 +7,9 @@ import Content from './Content';
 /* START $$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
 
 // Use Socket io - Init Socket & include service
-import { TicketSettingsHttpService } from '../../../services/HttpService';
+import { TicketSettingsHttpService } from '../../services/HttpService';
 // import constants
-import { SOCKET, SIO_TICKET_SETTINGS } from '../../../constants/Constants';
+import { SOCKET, SIO_TICKET_SETTINGS } from '../../constants/Constants';
 
 const socket = io(SOCKET.BASE_URL);
 
@@ -40,31 +36,44 @@ const Tabs = (props) => {
     },
   };
 
-  /* START $$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
-  const onSocketGetTicketSettings = (response) => {
-    if (response && (response.status === 200 || response.status === 202)) {
-      console.log('onSocketGetTicketSettings : ', response.data);
-    }
-  };
-
-  const initSocketTicketSettings = () => {
-    socket.on(SIO_TICKET_SETTINGS, (response) => onSocketGetTicketSettings(response));
-    // this.onSocketConnected('ticket-setting');
-  };
-  /* END $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
-
   useEffect(() => {
     TicketSettingsHttpService.getDatasTicketSettings().then((response) => {
       console.log('getDatasTicketSettings : ', response);
 
       if ((response.status === 200 || response.status === 202)) {
-        initSocketTicketSettings();
+        this.initSocketTicketSettings();
       }
     });
     return () => {
       // cleanup
     };
   }, []);
+
+
+  /* START $$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
+  const onSocketGetTicketSettings = (response) => {
+    if (response && (response.status === 200 || response.status === 202)) {
+      console.log('onSocketGetTicketSettings : ', response.data);
+    }
+  }
+
+  // onSocketConnected (params) {
+  //   // eslint-disable-next-line react/destructuring-assignment
+  //   if (this.state.socketConnected) {
+  //     this.setState({ socketConnected: true });
+  //     if (params === 'ticket-setting') {
+  //       this.saveAsDraftNow();
+  //     } else {
+  //       this.fetchPublishLink();
+  //     }
+  //   }
+  // }
+
+  const initSocketTicketSettings = () => {
+    socket.on(SIO_TICKET_SETTINGS, (response) => this.onSocketGetTicketSettings(response));
+    // this.onSocketConnected('ticket-setting');
+  }
+  /* END $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
 
   return (
     <div style={cardStyle.titleContainer}>

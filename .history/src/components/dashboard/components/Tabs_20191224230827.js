@@ -1,9 +1,5 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
-
-// Use Socket io - import
-import io from 'socket.io-client';
-
 import 'react-tabs/style/react-tabs.css';
 import { Tab, Tabs as Tabber, TabList, TabPanel } from 'react-tabs';
 import Content from './Content';
@@ -46,6 +42,20 @@ const Tabs = (props) => {
       console.log('onSocketGetTicketSettings : ', response.data);
     }
   };
+
+  /*
+  const onSocketConnected = (params) => {
+    // eslint-disable-next-line react/destructuring-assignment
+    if (this.state.socketConnected) {
+      this.setState({ socketConnected: true });
+      if (params === 'ticket-setting') {
+        this.saveAsDraftNow();
+      } else {
+        this.fetchPublishLink();
+      }
+    }
+  }
+  */
 
   const initSocketTicketSettings = () => {
     socket.on(SIO_TICKET_SETTINGS, (response) => onSocketGetTicketSettings(response));

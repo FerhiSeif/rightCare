@@ -47,6 +47,20 @@ const Tabs = (props) => {
     }
   };
 
+  /*
+  const onSocketConnected = (params) => {
+    // eslint-disable-next-line react/destructuring-assignment
+    if (this.state.socketConnected) {
+      this.setState({ socketConnected: true });
+      if (params === 'ticket-setting') {
+        this.saveAsDraftNow();
+      } else {
+        this.fetchPublishLink();
+      }
+    }
+  }
+  */
+
   const initSocketTicketSettings = () => {
     socket.on(SIO_TICKET_SETTINGS, (response) => onSocketGetTicketSettings(response));
     // this.onSocketConnected('ticket-setting');

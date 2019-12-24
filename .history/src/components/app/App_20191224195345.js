@@ -1,17 +1,15 @@
-/* eslint-disable guard-for-in */
-/* eslint-disable no-restricted-syntax */
 import React, { Component } from 'react';
 import { withTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
+
+// Use Socket io - import
+import io from 'socket.io-client';
+
 import {
   BrowserRouter as Router,
   Switch,
   Route,
 } from 'react-router-dom';
-
-// Use Socket io - import
-import io from 'socket.io-client';
-
 import Welcome from '../onboarding/Welcome';
 import Steps from '../onboarding/Steps';
 import Dashboard from '../dashboard/Dashboard';
@@ -22,14 +20,12 @@ import LangIconFr from '../../assets/images/locale/fr.png';
 import '../../assets/styles/bluma.scss';
 import FakeChannels from '../../faker/channels';
 
-/* START $$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
+// Use Socket io - Init Socket & include service
+import HttpService from '../../services/HttpService';
+import { SOCKET, sioTicketSetting } from '../../constants/Constants';
 
 // import constants
-import { SOCKET } from '../../constants/Constants';
-
 const socket = io(SOCKET.BASE_URL);
-
-/* END $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
 
 const appStyles = {
   langIcons: {
@@ -91,10 +87,11 @@ class App extends Component {
   }
 
   componentDidMount() {
-    /*
-    SocketService.socketConnect();
-    SocketService.socketDisconnect();
-    */
+    /* $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
+    HttpService.getDatasTicketSettings(sioTicketSetting).then((response) => {
+      console.log(response);
+    });
+
     // Use Socket io - connect Socket
     socket.on('connect', () => {
       console.log('Connected socket');
@@ -104,6 +101,9 @@ class App extends Component {
       console.log('Disconnected socket');
       this.setState({ socketConnected: false });
     });
+
+    this.initSocketDraftSurvey();
+    /* $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
 
     this.updateWindowDimensions();
     window.addEventListener('resize', this.updateWindowDimensions);
@@ -123,6 +123,32 @@ class App extends Component {
     window.removeEventListener('resize', this.updateWindowDimensions);
     document.body.style.overflow = 'auto';
   }
+  
+  /* $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
+  initSocketDraftSurvey = () => {
+		socket.on(sio_ticket_setting, (response) => this.onSocketGetDraftSurveys(response));
+		// this.onSocketConnected('ticket-setting');
+  }
+  
+  onSocketGetDraftSurveys(response) {
+		if (response && response.status === 200) {
+      console.log(response);
+    };
+  }
+  
+  onSocketConnected(params) {
+		// eslint-disable-next-line react/destructuring-assignment
+		if (this.state.socketConnected) {
+			this.setState({ socketConnected: true });
+			if (params === 'ticket-setting') {
+				this.saveAsDraftNow();
+			} else {
+				this.fetchPublishLink();
+			}
+		}
+  }
+  /* $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
+
 
   updateWindowDimensions = () => {
     this.setState({ containerWidth: window.innerWidth });

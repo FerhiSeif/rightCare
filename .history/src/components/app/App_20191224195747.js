@@ -1,17 +1,15 @@
-/* eslint-disable guard-for-in */
-/* eslint-disable no-restricted-syntax */
 import React, { Component } from 'react';
 import { withTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
+// Utilisation de Socket io - import
+import io from 'socket.io-client';
+import uuid1 from 'uuid/v1';
+
 import {
   BrowserRouter as Router,
   Switch,
   Route,
 } from 'react-router-dom';
-
-// Use Socket io - import
-import io from 'socket.io-client';
-
 import Welcome from '../onboarding/Welcome';
 import Steps from '../onboarding/Steps';
 import Dashboard from '../dashboard/Dashboard';
@@ -22,14 +20,12 @@ import LangIconFr from '../../assets/images/locale/fr.png';
 import '../../assets/styles/bluma.scss';
 import FakeChannels from '../../faker/channels';
 
-/* START $$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
+import HttpService from '../../services/HttpService';
 
-// import constants
+// Utilisation de Socket io - Init Socket
 import { SOCKET } from '../../constants/Constants';
-
-const socket = io(SOCKET.BASE_URL);
-
-/* END $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
+const socket = io('http://10.10.14.116:714/myrc');
+const sio_ticket_setting = 'ticket_setting_' + uuid1();
 
 const appStyles = {
   langIcons: {
@@ -85,25 +81,30 @@ class App extends Component {
           is_active: false,
         },
       ],
-      // Use Socket io - Init state
+      // Utilisation de Socket io - Init state
       socketConnected: false,
     };
   }
 
   componentDidMount() {
-    /*
-    SocketService.socketConnect();
-    SocketService.socketDisconnect();
-    */
-    // Use Socket io - connect Socket
+    /* $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
+    HttpService.getListPopularSurvey(sio_ticket_setting).then((response) => {
+      console.log(response);
+    });
+
+    // Utilisation de Socket io - connect Socket
     socket.on('connect', () => {
-      console.log('Connected socket');
+      console.log('Connected');
       this.setState({ socketConnected: true });
     });
+
     socket.on('disconnect', () => {
-      console.log('Disconnected socket');
+      console.log('Disconnected');
       this.setState({ socketConnected: false });
     });
+
+    this.initSocketDraftSurvey();
+    /* $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
 
     this.updateWindowDimensions();
     window.addEventListener('resize', this.updateWindowDimensions);
@@ -123,6 +124,32 @@ class App extends Component {
     window.removeEventListener('resize', this.updateWindowDimensions);
     document.body.style.overflow = 'auto';
   }
+  
+  /* $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
+  initSocketDraftSurvey = () => {
+		socket.on(sio_ticket_setting, (response) => this.onSocketGetDraftSurveys(response));
+		// this.onSocketConnected('ticket-setting');
+  }
+  
+  onSocketGetDraftSurveys(response) {
+		if (response && response.status === 200) {
+      console.log(response);
+    };
+  }
+  
+  onSocketConnected(params) {
+		// eslint-disable-next-line react/destructuring-assignment
+		if (this.state.socketConnected) {
+			this.setState({ socketConnected: true });
+			if (params === 'ticket-setting') {
+				this.saveAsDraftNow();
+			} else {
+				this.fetchPublishLink();
+			}
+		}
+  }
+  /* $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
+
 
   updateWindowDimensions = () => {
     this.setState({ containerWidth: window.innerWidth });

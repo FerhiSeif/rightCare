@@ -8,10 +8,6 @@ import {
   Switch,
   Route,
 } from 'react-router-dom';
-
-// Use Socket io - import
-import io from 'socket.io-client';
-
 import Welcome from '../onboarding/Welcome';
 import Steps from '../onboarding/Steps';
 import Dashboard from '../dashboard/Dashboard';
@@ -21,15 +17,6 @@ import LangIconEn from '../../assets/images/locale/uk.png';
 import LangIconFr from '../../assets/images/locale/fr.png';
 import '../../assets/styles/bluma.scss';
 import FakeChannels from '../../faker/channels';
-
-/* START $$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
-
-// import constants
-import { SOCKET } from '../../constants/Constants';
-
-const socket = io(SOCKET.BASE_URL);
-
-/* END $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
 
 const appStyles = {
   langIcons: {
@@ -91,19 +78,16 @@ class App extends Component {
   }
 
   componentDidMount() {
-    /*
-    SocketService.socketConnect();
-    SocketService.socketDisconnect();
-    */
-    // Use Socket io - connect Socket
-    socket.on('connect', () => {
-      console.log('Connected socket');
-      this.setState({ socketConnected: true });
+    console.log(SocketService.socketConnect());
+    console.log(SocketService.socketDisconnect());
+
+    /* START $$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
+    TicketSettingsHttpService.getDatasTicketSettings().then((response) => {
+      console.log('getDatasTicketSettings : ', response);
+
+      TicketSettingsHttpService.initSocketTicketSettings();
     });
-    socket.on('disconnect', () => {
-      console.log('Disconnected socket');
-      this.setState({ socketConnected: false });
-    });
+    /* END $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
 
     this.updateWindowDimensions();
     window.addEventListener('resize', this.updateWindowDimensions);
