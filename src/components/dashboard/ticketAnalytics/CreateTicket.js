@@ -10,7 +10,7 @@ const CreateTicket = props => {
     <div className="card analytics-card-parent analytics-card-parent-agent">
       <div className="card-content analytics-card">
         <p className="subtitle">
-          {t('tickets.tickets_creation')}
+          {t('tickets.new_ticket')}
         </p>
         <p className="title">
           {23}

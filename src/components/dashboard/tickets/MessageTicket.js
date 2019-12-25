@@ -1,24 +1,23 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import Editor from "../components/Editor";
 import MoreIcon from "../../../assets/images/dashboard/more.svg";
 import User from "../../../assets/images/tickets/user.svg";
 import Envelope from "../../../assets/images/tickets/envelope.svg";
-import ProfileIcon from '../../../assets/images/profile/idpic.jpg';
+import ProfileIcon from "../../../assets/images/profile/idpic.jpg";
 import Phone from "../../../assets/images/tickets/phone-call.svg";
-import ArrowDown from "../../../assets/images/tickets/arrow-down.svg";
+import ArrowDown from "../../../assets/images/tickets/full-down-arrow.svg";
 // import { render } from "enzyme";
 
 const ticketsLog = [
-  { agent: "agent1", activity: "change ticket proprity", date: "1 min ago" },
-  { agent: "agent2", activity: "Change Ticket Status", date: "1 min ago" },
+  { agent: ProfileIcon, activity: "change ticket proprity", date: "1 min ago" },
+  { agent: ProfileIcon, activity: "Change Ticket Status", date: "1 min ago" },
   {
-    agent: "agent3",
+    agent: ProfileIcon,
     activity: "Tag Jean-Julian & Venance to ticket",
     date: "1 min ago"
   },
-  { agent: "agent4", activity: "Assign himself to ticket", date: "1 min ago" },
-  { agent: "agent5", activity: "Create Ticket #34421231", date: "1 min ago" }
+  { agent: ProfileIcon, activity: "Assign himself to ticket", date: "1 min ago" },
+  { agent: ProfileIcon, activity: "Create Ticket #34421231", date: "1 min ago" }
 ];
 class MessageTicket extends Component {
   state = {
@@ -39,10 +38,10 @@ class MessageTicket extends Component {
             + {t("tickets.tickets_creation").toUpperCase()}
           </button>
         </div>
-        <div className="columns analytics-columns createTicket-conaitner">
+        <div className="columns analytics-columns MessageTicket-conaitner">
           <div className="section1 tecket-detail">
             <div className="profilePicture-contain">
-            <img src={ProfileIcon} className="profilepicture"/> 
+              <img src={ProfileIcon} className="profilepicture" />
             </div>
             <div className="profil-contain">
               <h3 className="profil-name">Cara Doe</h3>
@@ -90,18 +89,20 @@ class MessageTicket extends Component {
                     height: "1px"
                   }}
                 />
-                <img
-                  src={ArrowDown}
-                  style={{
-                    border: "1px solid",
-                    padding: "3px",
-                    borderRadius: "33443px",
-                    cursor: "pointer"
-                  }}
-                  onClick={() =>
-                    this.setState({ displayMessage: !displayMessage })
-                  }
-                />
+                <span
+                className="messagedisplay-btn"
+                >
+                  <img
+                    src={ArrowDown}
+                    style={{
+                      height: "10px",
+                      width: "19px"
+                    }}
+                    onClick={() =>
+                      this.setState({ displayMessage: !displayMessage })
+                    }
+                  />
+                </span>
                 <div
                   style={{
                     borderTop: "1px dashed #c8d3d6",
@@ -132,12 +133,22 @@ class MessageTicket extends Component {
             </div>
             <div className="ticketAgent-container">
               <span className="ticketkeys">Created :</span>{" "}
-              <p className="ticketinfos displayInput"> <img src={ProfileIcon} className="profilepicture-Created"/> Adisa Kola</p>
+              <p className="ticketinfos displayInput">
+                {" "}
+                <img
+                  src={ProfileIcon}
+                  className="profilepicture-Created"
+                />{" "}
+                Adisa Kola
+              </p>
             </div>
             <div className="ticketAgent-container">
               <span className="ticketkeys ">Assignee :</span>{" "}
-              <p className="ticketinfos display-user-assegne"><img src={ProfileIcon} className="profilepicture-assignee"/>Adisa Kola</p>{" "}
-              <p style={{ color: "#0089E1", marginLeft: "10px" }}>Reassign</p>
+              <p className="ticketinfos display-user-assegne">
+                <img src={ProfileIcon} className="profilepicture-assignee" />
+                Adisa Kola
+              </p>{" "}
+              <p style={{ color: "#0089E1", marginLeft: "10px",textDecoration:"underline" }}>Reassign</p>
             </div>
             <div className="ticketAgent-container">
               <span className="ticketkeys">Priority :</span>{" "}
@@ -155,20 +166,11 @@ class MessageTicket extends Component {
               {/* <p className="ticketinfos">Adisa Kola</p> */}
             </div>
             <div className="ticketAgent-container">
-              <span className="ticketkeys">status :</span>{" "}
+              <span className="ticketkeys">Status :</span>{" "}
               <select className="ticketinfos selectstatus">
-                <option>
-                  Pending{" "}
-                
-                </option>
-                <option>
-                  Resolved{" "}
-                  
-                </option>
-                <option>
-                  New{" "}
-          
-                </option>
+                <option>Pending </option>
+                <option>Resolved </option>
+                <option>New </option>
               </select>
             </div>
             <div className="ticket-log-container">
@@ -181,7 +183,7 @@ class MessageTicket extends Component {
                     }`}
                   >
                     {/* <img src={} alt="profile picture"/> */}
-                    <span className="ticket-log-profile">{ticket.agent}</span>
+                    <img src={ticket.agent} className="profilepicture-log" />
                     <div className="ticket-activities">
                       <p className="activity">{ticket.activity}</p>
                       <p className="activity-date ">{ticket.date}</p>
@@ -191,7 +193,7 @@ class MessageTicket extends Component {
               })}
             </div>
             <button className="clode_ticketbtn" onClick={() => createTicket()}>
-              Close Ticket
+              Close ticket
             </button>
           </div>
         </div>

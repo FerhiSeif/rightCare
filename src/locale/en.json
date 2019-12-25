@@ -138,7 +138,7 @@
     "channel_settings": "Channel Settings"
   },
   "tickets": {
-    "tickets_overview": "Tickets",
+    "tickets_overview": "Ticket",
     "tickets_creation": "Create Ticket",
     "resolve_ticket": "Resolve Ticket",
     "pending_ticket": "Pending Ticket",

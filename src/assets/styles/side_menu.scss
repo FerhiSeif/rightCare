@@ -1,3 +1,6 @@
+.dashboard-side-menu {
+  position: relative;
+}
 a.navbar-item,
 .navbar-link:hover {
   background-color: transparent !important;
@@ -128,5 +131,14 @@ a.navbar-item,
       background-color: transparent;
       color: $primary;
     }
+  }
+  .logo-container {
+    display: flex;
+    position: absolute;
+    bottom: 48px;
+    left: 20%;
+    width: 37%;
+    flex-direction: column;
+
   }
 }

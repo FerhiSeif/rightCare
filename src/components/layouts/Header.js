@@ -74,7 +74,7 @@ const Header = (props) => {
       width: '5rem',
     },
   };
-
+console.log("this.props.options",props.options)
   return (
     <div className={`${(kind === 'dashboard' || kind === 'settings'|| kind === 'tickets') ? 'column dashboard is-four-fifths' : ''}`}>
       <nav className="navbar" role="navigation" aria-label="main navigation" style={topNavCustomStyle.navbar}>
@@ -101,7 +101,7 @@ const Header = (props) => {
           </div>
         )}
         <div id="navbarBasicExample" className="navbar-menu">
-          { (kind === 'dashboard' || kind === 'settings'|| kind === 'tickets')
+          { (kind === 'dashboard' || kind === 'settings')
             && (
               <div className="navbar-start">
                 <div className="field navbar-item">
