@@ -45,6 +45,8 @@ const Content = (props) => {
   };
 
   const handleAddFields = (elt, params) => {
+    setCustomerFields(customerInformation);
+
     console.log('elt : ', elt);
     console.log('params : ', params);
     console.log('customerFields : ', customerFields);
@@ -53,13 +55,13 @@ const Content = (props) => {
     const { fieldType, fieldLabel } = params;
     const newObject = { label: fieldLabel.toLowerCase(), type: fieldType.toLowerCase() };
 
-    const detect = customerFields.items.findIndex((item) => item.label.toLowerCase() === newObject.label && item.type.toLowerCase() === newObject.type);
+    const detect = customerInformation.items.findIndex((item) => item.label.toLowerCase() === newObject.label && item.type.toLowerCase() === newObject.type);
 
     if (elt === 'customer') {
       if (detect >= 0) {
-        customerFields.items.splice(customerFields.items.findIndex((item) => (item.label.toLowerCase() === newObject.label && item.type.toLowerCase() === newObject.type)), 1);
+        customerInformation.items.splice(customerInformation.items.findIndex((item) => (item.label.toLowerCase() === newObject.label && item.type.toLowerCase() === newObject.type)), 1);
       }
-      const constructData = customerFields;
+      const constructData = customerInformation;
       constructData.items.push(newObject);
       setCustomerFields(constructData);
     }
@@ -71,7 +73,7 @@ const Content = (props) => {
   useEffect(() => {
     setCustomerFields(customerInformation);
     return () => {};
-  }, [priority, status, category, customerInformation, customerFields]);
+  }, [priority, status, category, customerInformation]);
 
   console.log('customerFields : ', customerFields);
   console.log('customerInformation : ', customerInformation);

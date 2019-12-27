@@ -45,6 +45,9 @@ const Content = (props) => {
   };
 
   const handleAddFields = (elt, params) => {
+
+    setCustomerFields({ ...customerInformation });
+
     console.log('elt : ', elt);
     console.log('params : ', params);
     console.log('customerFields : ', customerFields);

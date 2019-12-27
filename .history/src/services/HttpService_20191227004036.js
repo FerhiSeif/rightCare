@@ -41,10 +41,10 @@ export const TicketSettingsHttpService = {
   activeTicketSettings(data) {
     // return axios.post(API.BASE_URL + ACTIVE_TICKET_SETTING);
 
-    // socket.post(ACTIVE_TICKET_SETTING, data, (resData, jwRes) => {
-    //   console.log(resData); // => 200
-    //   console.log(jwRes); // => 200 .statusCode
-    // });
+    socket.post(ACTIVE_TICKET_SETTING, data, (resData, jwRes) => {
+      console.log(resData); // => 200
+      console.log(jwRes); // => 200 .statusCode
+    });
   },
 
 };

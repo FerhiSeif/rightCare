@@ -45,6 +45,9 @@ const Content = (props) => {
   };
 
   const handleAddFields = (elt, params) => {
+
+    setCustomerFields(customerInformation);
+
     console.log('elt : ', elt);
     console.log('params : ', params);
     console.log('customerFields : ', customerFields);
@@ -69,7 +72,7 @@ const Content = (props) => {
   //   [priority, status, category, customerInformation]);
 
   useEffect(() => {
-    setCustomerFields(customerInformation);
+    // setCustomerFields(customerInformation);
     return () => {};
   }, [priority, status, category, customerInformation, customerFields]);
 
@@ -107,7 +110,7 @@ const Content = (props) => {
               handleCloseRessourceModal={handleCloseRessourceModal}
               handleAddRessourceModal={handleAddRessourceModal}
 
-              customerFields={customerFields}
+              customerFields={customerInformation}
             />
           </div>
         </div>

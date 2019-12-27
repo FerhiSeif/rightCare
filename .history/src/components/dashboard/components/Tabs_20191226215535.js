@@ -55,7 +55,10 @@ const Tabs = (props) => {
   } = ticketSettings;
 
   const initSocketTicketSettings = () => {
-    socket.on(SIO_TICKET_SETTINGS, (response) => new Promise((resolve) => resolve(onSocketGetTicketSettings(response))));
+    // eslint-disable-next-line no-new
+    new Promise((resolve) => resolve(
+      socket.on(SIO_TICKET_SETTINGS, (response) => onSocketGetTicketSettings(response)),
+    ));
   };
   /* END $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
 

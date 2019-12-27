@@ -67,6 +67,20 @@ const Tabs = (props) => {
         initSocketTicketSettings();
       }
     });
+
+    TicketSettingsHttpService.activeTicketSettings({
+      sio_channel: 'ticket_setting_',
+      settings: {
+        active: true,
+        label: 'priority',
+      },
+    }).then((response) => {
+      console.log('activeTicketSettings : ', response);
+
+      // if ((response.status === 200 || response.status === 202)) {
+      //   initSocketTicketSettings();
+      // }
+    });
     return () => {
       // cleanup
     };

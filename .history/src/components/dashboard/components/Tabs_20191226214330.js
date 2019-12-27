@@ -55,7 +55,7 @@ const Tabs = (props) => {
   } = ticketSettings;
 
   const initSocketTicketSettings = () => {
-    socket.on(SIO_TICKET_SETTINGS, (response) => new Promise((resolve) => resolve(onSocketGetTicketSettings(response))));
+    socket.on(SIO_TICKET_SETTINGS, (response) => new Promise((resolve) => resolve(response)));
   };
   /* END $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
 
@@ -64,7 +64,7 @@ const Tabs = (props) => {
       console.log('getDatasTicketSettings : ', response);
 
       if ((response.status === 200 || response.status === 202)) {
-        initSocketTicketSettings();
+        initSocketTicketSettings().then((res) => setTicketSettings(res.data[0]));
       }
     });
     return () => {

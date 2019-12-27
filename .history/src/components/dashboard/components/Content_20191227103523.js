@@ -69,7 +69,7 @@ const Content = (props) => {
   //   [priority, status, category, customerInformation]);
 
   useEffect(() => {
-    setCustomerFields(customerInformation);
+    setCustomerFields({...customerInformation});
     return () => {};
   }, [priority, status, category, customerInformation, customerFields]);
 

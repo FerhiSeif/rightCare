@@ -25,7 +25,7 @@ const Content = (props) => {
   const [modalTitle, setModalTitle] = useState('');
   const [modalContent, setModalContent] = useState('');
   const [modalButton, setModalButton] = useState('');
-  const [customerFields, setCustomerFields] = useState({});
+  const [customerFields, setCustomerFields] = useState(customerInformation);
 
   const agentModal = React.createRef();
 
@@ -45,36 +45,34 @@ const Content = (props) => {
   };
 
   const handleAddFields = (elt, params) => {
+
     console.log('elt : ', elt);
     console.log('params : ', params);
     console.log('customerFields : ', customerFields);
     console.log('customerInformation : ', customerInformation);
     
-    const { fieldType, fieldLabel } = params;
-    const newObject = { label: fieldLabel.toLowerCase(), type: fieldType.toLowerCase() };
+    // const { fieldType, fieldLabel } = params;
+    // const newObject = { label: fieldLabel.toLowerCase(), type: fieldType.toLowerCase() };
 
-    const detect = customerFields.items.findIndex((item) => item.label.toLowerCase() === newObject.label && item.type.toLowerCase() === newObject.type);
+    // const detect = customerFields.items.findIndex((item) => item.label.toLowerCase() === newObject.label && item.type.toLowerCase() === newObject.type);
 
-    if (elt === 'customer') {
-      if (detect >= 0) {
-        customerFields.items.splice(customerFields.items.findIndex((item) => (item.label.toLowerCase() === newObject.label && item.type.toLowerCase() === newObject.type)), 1);
-      }
-      const constructData = customerFields;
-      constructData.items.push(newObject);
-      setCustomerFields(constructData);
-    }
+    // if (elt === 'customer') {
+    //   if (detect >= 0) {
+    //     customerFields.items.splice(customerFields.items.findIndex((item) => (item.label.toLowerCase() === newObject.label && item.type.toLowerCase() === newObject.type)), 1);
+    //   }
+    //   const constructData = customerFields.items;
+    //   constructData.push(newObject);
+    //   setCustomerFields({
+    //     items: constructData,
+    //   });
+    // }
   };
 
-  // useEffect(() => () => {},
-  //   [priority, status, category, customerInformation]);
+  useEffect(() => () => {},
+    [priority, status, category, customerInformation]);
 
-  useEffect(() => {
-    setCustomerFields(customerInformation);
-    return () => {};
-  }, [priority, status, category, customerInformation, customerFields]);
-
-  console.log('customerFields : ', customerFields);
-  console.log('customerInformation : ', customerInformation);
+  // console.log('customerFields : ', customerFields);
+  // console.log('customerInformation : ', customerInformation);
 
   return (
     <>
@@ -107,7 +105,7 @@ const Content = (props) => {
               handleCloseRessourceModal={handleCloseRessourceModal}
               handleAddRessourceModal={handleAddRessourceModal}
 
-              customerFields={customerFields}
+              customerFields={customerInformation}
             />
           </div>
         </div>

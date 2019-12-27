@@ -67,6 +67,13 @@ const Tabs = (props) => {
         initSocketTicketSettings();
       }
     });
+    TicketSettingsHttpService.activeTicketSettings().then((response) => {
+      console.log('activeTicketSettings : ', response);
+
+      // if ((response.status === 200 || response.status === 202)) {
+      //   initSocketTicketSettings();
+      // }
+    });
     return () => {
       // cleanup
     };

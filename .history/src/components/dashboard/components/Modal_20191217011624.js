@@ -68,7 +68,7 @@ const Modal = (props) => {
             handleAddFields={handleAddFields}
           />
         )}
-        {content === 'customer' && (
+        {content === 'informations' && (
           <ContentCustomer
             t={t}
             buttonText={buttonText}

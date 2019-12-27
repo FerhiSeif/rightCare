@@ -55,7 +55,7 @@ const Tabs = (props) => {
   } = ticketSettings;
 
   const initSocketTicketSettings = () => {
-    socket.on(SIO_TICKET_SETTINGS, (response) => new Promise((resolve) => resolve(onSocketGetTicketSettings(response))));
+    socket.on(SIO_TICKET_SETTINGS, (response) => new Promise((resolve, reject) => resolve(onSocketGetTicketSettings(response), reject())));
   };
   /* END $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
 
