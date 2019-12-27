@@ -10,7 +10,7 @@ import Modal from './Modal';
 
 /* START $$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
 import { TicketSettingsHttpService } from '../../../services/HttpService';
-import { SOCKET, SIO_CREATE_CUSTOMER_TICKET_SETTINGS } from '../../../constants/Constants';
+import { SOCKET, SIO_CREATE_CUSTOMER_TICKET_SETTINGS, SIO_UPDATE_SWITCH_TICKET_SETTINGS } from '../../../constants/Constants';
 
 const socket = io(SOCKET.BASE_URL);
 /* END $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
@@ -53,10 +53,8 @@ const Content = (props) => {
     setModalContent('');
   };
 
+  /** Start - send customerFiled */
   const buildCreateCustomerFiled = (newObjectFiled) => {
-
-    console.log('buildCreateCustomerFiled : ', newObjectFiled);
-
     const createFiled = {
       sio_channel: SIO_CREATE_CUSTOMER_TICKET_SETTINGS,
       customer_information: newObjectFiled,
@@ -77,7 +75,7 @@ const Content = (props) => {
           const construct = customerFields;
           construct.items.push(createCustomerFiled.customer_information);
           setCustomerFields(construct);
-          // localStorage.removeItem('sv_tmp_create_field');
+          localStorage.removeItem('sv_tmp_create_field');
 
           // toast(
           //   <Notification
@@ -104,27 +102,17 @@ const Content = (props) => {
   };
 
   const onSocketCreateCustomerFiled = (response) => {
-    console.log('onSocketCreateCustomerFiled : ', response);
-
     if (response && response.status === 200) {
-      // handleCreateCustomerFiled();
+      // console.log('onSocketCreateCustomerFiled : ', response);
     }
   };
 
   const initSocketCreateCustomerFiled = () => {
-
-    console.log('initSocketCreateCustomerFiled');
-
     socket.on(SIO_CREATE_CUSTOMER_TICKET_SETTINGS, (response) => onSocketCreateCustomerFiled(response));
     handleCreateCustomerFiled();
   };
 
   const handleAddFields = (elt, params) => {
-    console.log('elt : ', elt);
-    console.log('params : ', params);
-    console.log('customerFields : ', customerFields);
-    console.log('customerInformation : ', customerInformation);
-
     const { fieldType, fieldLabel } = params;
     const newObjectFiled = { name: fieldLabel.toLowerCase(), type: fieldType.toLowerCase() };
 
@@ -136,21 +124,73 @@ const Content = (props) => {
 
         return;
       }
-
-      console.log('hjqkgkjqsgkjqsdjksqhdgqsjk');
-
       buildCreateCustomerFiled(newObjectFiled);
       initSocketCreateCustomerFiled();
     }
   };
+  /** End - send customerFiled */
+
+  /** Start - Update Switch */
+  const handleUpdateSwitch = (updateSwitch) => {
+    TicketSettingsHttpService.updateSwitchTicketSettings(updateSwitch)
+      .then((response) => {
+        if (response && response.data && response.data.status === 202) {
+          console.log(';jhebliqh qgqkhsqjdgsqjgdkq');
+
+          console.log('customerFields : ', customerFields);
+          
+
+          // toast(
+          //   <Notification
+          //     content={this.props.t("create_survey.new.created_successfully")}
+          //     icon="success"
+          //     reply={false}
+          //   />, {
+          //     type: toast.TYPE.SUCCESS,
+          // });
+        } else {
+          // toast(
+          //   <Notification
+          //     content={this.props.t("create_survey.new.created_failed")}
+          //     icon="danger"
+          //     reply={false}
+          //   />, {
+          //     type: toast.TYPE.ERROR,
+          // });
+        }
+      })
+      .catch((error) => {
+        console.log('**** print error ****', error);
+      });
+  };
+
+  const onSocketUpdateSwitch = (response) => {
+    if (response && response.status === 200) {
+      // console.log('onSocketUpdateSwitch : ', response);
+    }
+  };
+
+  const initSocketUpdateSwitch = (updateSwitch) => {
+    socket.on(SIO_UPDATE_SWITCH_TICKET_SETTINGS, (response) => onSocketUpdateSwitch(response));
+    handleUpdateSwitch(updateSwitch);
+  };
+
+  const handleSwitchTicketSetting = (active, label) => {
+    const updateSwitch = {
+      sio_channel: SIO_UPDATE_SWITCH_TICKET_SETTINGS,
+      settings: {
+        active,
+        label,
+      },
+    };
+    initSocketUpdateSwitch(updateSwitch);
+  };
+  /** End - Update Switch */
 
   useEffect(() => {
     setCustomerFields(customerInformation);
     return () => {};
-  }, [priority, status, category, customerInformation, customerFields]);
-
-  console.log('customerFields : ', customerFields);
-  console.log('customerInformation : ', customerInformation);
+  }, [priority, status, category, customerInformation]);
 
   return (
     <>
@@ -163,6 +203,7 @@ const Content = (props) => {
               handleAddRessourceModal={handleAddRessourceModal}
 
               priority={priority}
+              handleSwitchTicketSetting={handleSwitchTicketSetting}
             />
             <TicketsStatus
               t={t}
@@ -170,6 +211,7 @@ const Content = (props) => {
               handleAddRessourceModal={handleAddRessourceModal}
 
               status={status}
+              handleSwitchTicketSetting={handleSwitchTicketSetting}
             />
             <TicketsCategory
               t={t}
@@ -177,6 +219,7 @@ const Content = (props) => {
               handleAddRessourceModal={handleAddRessourceModal}
 
               category={category}
+              handleSwitchTicketSetting={handleSwitchTicketSetting}
             />
             <CustomerInformations
               t={t}
@@ -184,6 +227,7 @@ const Content = (props) => {
               handleAddRessourceModal={handleAddRessourceModal}
 
               customerFields={customerFields}
+              handleSwitchTicketSetting={handleSwitchTicketSetting}
             />
           </div>
         </div>

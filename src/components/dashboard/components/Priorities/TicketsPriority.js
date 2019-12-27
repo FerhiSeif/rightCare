@@ -9,6 +9,7 @@ const TicketsPriority = (props) => {
     handleCloseRessourceModal,
     handleAddRessourceModal,
     priority,
+    handleSwitchTicketSetting,
   } = props;
 
   const [state, setState] = useState({
@@ -18,6 +19,7 @@ const TicketsPriority = (props) => {
 
   const handleChange = () => {
     setState({ checked: !state.checked });
+    handleSwitchTicketSetting(!state.checked, 'priority');
   };
 
   useEffect(() => {
@@ -92,6 +94,7 @@ TicketsPriority.propTypes = {
   handleCloseRessourceModal: PropTypes.func.isRequired,
   handleAddRessourceModal: PropTypes.func.isRequired,
   priority: PropTypes.objectOf.isRequired,
+  handleSwitchTicketSetting: PropTypes.func.isRequired,
 };
 
 export default TicketsPriority;

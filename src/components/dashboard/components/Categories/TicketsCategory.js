@@ -9,6 +9,7 @@ const TicketsCategory = (props) => {
     handleCloseRessourceModal,
     handleAddRessourceModal,
     category,
+    handleSwitchTicketSetting,
   } = props;
 
   const [state, setState] = useState({
@@ -18,6 +19,7 @@ const TicketsCategory = (props) => {
 
   const handleChange = () => {
     setState({ checked: !state.checked });
+    handleSwitchTicketSetting(!state.checked, 'category');
   };
 
   useEffect(() => {
@@ -92,6 +94,7 @@ TicketsCategory.propTypes = {
   handleCloseRessourceModal: PropTypes.func.isRequired,
   handleAddRessourceModal: PropTypes.func.isRequired,
   category: PropTypes.objectOf.isRequired,
+  handleSwitchTicketSetting: PropTypes.func.isRequired,
 };
 
 export default TicketsCategory;

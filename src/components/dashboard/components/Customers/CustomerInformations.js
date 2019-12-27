@@ -11,6 +11,7 @@ const CustomerInformations = (props) => {
     handleAddRessourceModal,
     i18n,
     customerFields,
+    handleSwitchTicketSetting,
   } = props;
 
   const [state, setState] = useState({
@@ -20,6 +21,7 @@ const CustomerInformations = (props) => {
 
   const handleChange = () => {
     setState({ checked: !state.checked });
+    handleSwitchTicketSetting(!state.checked, 'customer_information');
   };
 
   useEffect(() => {
@@ -98,6 +100,7 @@ CustomerInformations.propTypes = {
   handleCloseRessourceModal: PropTypes.func.isRequired,
   handleAddRessourceModal: PropTypes.func.isRequired,
   customerFields: PropTypes.objectOf.isRequired,
+  handleSwitchTicketSetting: PropTypes.func.isRequired,
 };
 
 export default CustomerInformations;
