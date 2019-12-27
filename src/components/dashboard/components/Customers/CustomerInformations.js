@@ -14,7 +14,7 @@ const CustomerInformations = (props) => {
   } = props;
 
   const [state, setState] = useState({
-    checked: customerFields?.active,
+    checked: false,
   });
 
   const handleChange = () => {

@@ -12,7 +12,7 @@ const TicketsCategory = (props) => {
   } = props;
 
   const [state, setState] = useState({
-    checked: category?.active,
+    checked: false,
   });
 
   const handleChange = () => {
