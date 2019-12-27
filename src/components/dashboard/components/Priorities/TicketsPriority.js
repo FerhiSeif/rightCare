@@ -11,10 +11,9 @@ const TicketsPriority = (props) => {
     priority,
   } = props;
 
-  console.log('priority?.active : ', priority?.active);
-
   const [state, setState] = useState({
     checked: false,
+    priorityItems: [],
   });
 
   const handleChange = () => {
@@ -22,7 +21,9 @@ const TicketsPriority = (props) => {
   };
 
   useEffect(() => {
-    setState({ checked: priority?.active });
+    if (priority) {
+      setState({ checked: priority.active, priorityItems: priority.items });
+    }
     return () => {};
   }, [priority]);
 
@@ -77,7 +78,7 @@ const TicketsPriority = (props) => {
               handleCloseRessourceModal={handleCloseRessourceModal}
               handleAddRessourceModal={handleAddRessourceModal}
 
-              priority={priority}
+              priorityItems={state.priorityItems}
             />
           </div>
         </div>

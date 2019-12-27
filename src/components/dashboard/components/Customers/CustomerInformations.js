@@ -15,6 +15,7 @@ const CustomerInformations = (props) => {
 
   const [state, setState] = useState({
     checked: false,
+    customerFieldsItems: [],
   });
 
   const handleChange = () => {
@@ -22,7 +23,9 @@ const CustomerInformations = (props) => {
   };
 
   useEffect(() => {
-    setState({ checked: customerFields?.active });
+    if (customerFields) {
+      setState({ checked: customerFields.active, customerFieldsItems: customerFields.items });
+    }
     return () => {};
   }, [customerFields]);
 
@@ -80,7 +83,7 @@ const CustomerInformations = (props) => {
               handleCloseRessourceModal={handleCloseRessourceModal}
               handleAddRessourceModal={handleAddRessourceModal}
 
-              customerFields={customerFields}
+              customerFieldsItems={state.customerFieldsItems}
             />
           </div>
         </div>

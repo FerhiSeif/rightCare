@@ -13,6 +13,7 @@ const TicketsStatus = (props) => {
 
   const [state, setState] = useState({
     checked: false,
+    statusItems: [],
   });
 
   const handleChange = () => {
@@ -20,7 +21,9 @@ const TicketsStatus = (props) => {
   };
 
   useEffect(() => {
-    setState({ checked: status?.active });
+    if (status) {
+      setState({ checked: status.active, statusItems: status.items });
+    }
     return () => {};
   }, [status]);
 
@@ -78,7 +81,7 @@ const TicketsStatus = (props) => {
               handleCloseRessourceModal={handleCloseRessourceModal}
               handleAddRessourceModal={handleAddRessourceModal}
 
-              status={status}
+              statusItems={state.statusItems}
             />
           </div>
         </div>

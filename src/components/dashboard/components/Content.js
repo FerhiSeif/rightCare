@@ -73,10 +73,11 @@ const Content = (props) => {
     TicketSettingsHttpService.createCustomerFiledTicketSettings(createCustomerFiled)
       .then((response) => {
         if (response && response.data && response.data.status === 202) {
+
           const construct = customerFields;
           construct.items.push(createCustomerFiled.customer_information);
           setCustomerFields(construct);
-          localStorage.removeItem('sv_tmp_create_field');
+          // localStorage.removeItem('sv_tmp_create_field');
 
           // toast(
           //   <Notification
@@ -104,9 +105,9 @@ const Content = (props) => {
 
   const onSocketCreateCustomerFiled = (response) => {
     console.log('onSocketCreateCustomerFiled : ', response);
-    
+
     if (response && response.status === 200) {
-      handleCreateCustomerFiled();
+      // handleCreateCustomerFiled();
     }
   };
 
@@ -115,6 +116,7 @@ const Content = (props) => {
     console.log('initSocketCreateCustomerFiled');
 
     socket.on(SIO_CREATE_CUSTOMER_TICKET_SETTINGS, (response) => onSocketCreateCustomerFiled(response));
+    handleCreateCustomerFiled();
   };
 
   const handleAddFields = (elt, params) => {

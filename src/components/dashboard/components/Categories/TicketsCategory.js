@@ -13,6 +13,7 @@ const TicketsCategory = (props) => {
 
   const [state, setState] = useState({
     checked: false,
+    categoryItems: [],
   });
 
   const handleChange = () => {
@@ -20,7 +21,9 @@ const TicketsCategory = (props) => {
   };
 
   useEffect(() => {
-    setState({ checked: category?.active });
+    if (category) {
+      setState({ checked: category.active, categoryItems: category.items });
+    }
     return () => {};
   }, [category]);
 
@@ -75,7 +78,7 @@ const TicketsCategory = (props) => {
               handleCloseRessourceModal={handleCloseRessourceModal}
               handleAddRessourceModal={handleAddRessourceModal}
 
-              category={category}
+              categoryItems={state.categoryItems}
             />
           </div>
         </div>
