@@ -18,7 +18,7 @@ class CreateTicket extends Component {
     assegneeModalOpen: false,
     initAgents: FakeAgents,
     multiValue: "",
-    multiValuecat:"",
+    multiValuecat: "",
     priority: [
       { value: "High", label: "High" },
       { value: "Medium", label: "Medium" },
@@ -77,13 +77,13 @@ class CreateTicket extends Component {
     </ul>
   );
   //change ticket priotity
-  handleOnChangePrio = value=> {
+  handleOnChangePrio = value => {
     this.setState({ multiValue: value });
-  }
+  };
 
-  handleOnChangeCat = value=> {
+  handleOnChangeCat = value => {
     this.setState({ multiValuecat: value });
-  }
+  };
 
   render() {
     const { i18n, t, kind, createTicket } = this.props;
@@ -93,11 +93,15 @@ class CreateTicket extends Component {
         paddingBottom: kind === "channel" ? 0 : "1.125rem"
       }
     };
+    // options: ['inline', 'blockType', 'fontSize', 'fontFamily', 'list', 'textAlign', 'colorPicker', 'link', 'embedded', 'emoji', 'image', 'remove', 'history']
     return (
       <>
         <div className="header-indicator">
-          <h3 className="header-indic-title1">Ticket Table </h3> > 
-          <p className="header-indic-title2"> {t("tickets.tickets_creation")}</p>
+          <h3 className="header-indic-title1">Ticket Table </h3> >
+          <p className="header-indic-title2">
+            {" "}
+            {t("tickets.tickets_creation")}
+          </p>
         </div>
         <div className="ticketnalytics-header">
           <h2 className="dashboard-title">
@@ -112,10 +116,7 @@ class CreateTicket extends Component {
           <div className="section1 ">
             <div className="firstInput-container">
               <div className="input-createTicket">
-                <div
-                  className="createTicket-div"
-
-                >
+                <div className="createTicket-div">
                   <img
                     src={ProfileIcon}
                     className="profilepicture-assignee"
@@ -123,10 +124,11 @@ class CreateTicket extends Component {
                   />
                   <span className="createTicket-div-text">AdisaKola </span>
                 </div>
-                <div
-                  className="createTicket-div"
-                >
-                 <span className="createTicket-div-text"> AdisaKola@gmail.com</span>
+                <div className="createTicket-div">
+                  <span className="createTicket-div-text">
+                    {" "}
+                    AdisaKola@gmail.com
+                  </span>
                 </div>
               </div>
               <h3 className="customer-text">CUSTOMER'S DETAILS</h3>
@@ -169,7 +171,6 @@ class CreateTicket extends Component {
                   isSearchable={false}
                   className="ticket-Select"
                   placeholder="Select Ticket Priority"
-
                 />
               </div>
               <h3 className="textInputcontainer">Ticket Category</h3>
@@ -184,11 +185,26 @@ class CreateTicket extends Component {
               </div>
               <h3 className="textInputcontainer">Ticket Massage</h3>
               <Editor
-              // toolbarHidden
-                 toolbar={{
-
-           textAlign: { inDropdown: true },
-         }}
+                // toolbarHidden
+                toolbar={{
+                  fontSize: { className: "fontSizetoolbar" },
+                  fontFamily: { className: "fontFamilytoolbar" },
+                  textAlign: { inDropdown: true },
+                  link: { className: "linktoolbar" },
+                  emoji: { className: "emojitoolbar" },
+                  image: { className: "imagetoolbar" },
+                  remove: { className: "removetoolbar" },
+                  blockType: { className: "blockTypetoolbar" },
+                  embedded: { className: "embeddedtoolbar" },
+                  inline:{
+                    strikethrough: {className: "strikethroughtoolbar" },
+                  monospace: {className: "monospacetoolbar" }
+                  },
+                  list:{indent: {className: "indenttoolbar" },
+                  outdent : {className: "outdenttoolbar" }
+                }
+                  
+                }}
               />
               <div>
                 <button

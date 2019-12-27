@@ -24,6 +24,34 @@
 .container-dashboard-ticket {
   position: relative !important;
 }
+.dashbordticket-column{
+  width: 25%;
+}
+
+.createTicketCalender{
+  width: 120px;
+  display: flex;
+  justify-content: space-evenly;
+}
+.calendar-icon{
+  margin-left: 5px !important;
+}
+
+  .uptriangle{
+    width         : 0;
+    height        : 0;
+    border-left   : 5px solid transparent;
+    border-right  : 6px solid transparent;  
+   
+}
+.arrawbtn{
+  width: 21px;
+  height: 20px;
+  border-radius: 20px;
+  border:none;
+  display: flex;
+  justify-content: center;
+}
 
 .searchBar {
   display: flex;
@@ -116,7 +144,7 @@ input::placeholder {
 }
 
 .createTicket-conaitner {
-  height: 1140px;
+  height: 936px;
   border: 1px solid #c8d3d6;
 }
 
@@ -167,6 +195,7 @@ input::placeholder {
   border-radius: 7px;
   padding: 16px;
   margin-top: 100px;
+  width:200px;
 }
 .buttonserch {
   height: 42px;
@@ -239,8 +268,8 @@ input.display {
   color: #4c4c4c !important;
   font-weight: 300;
 }
-.page-item.active .page-link{
-  background:#E5E5E5 !important ;
+.page-item.active .page-link {
+  background: #e5e5e5 !important ;
   border: none;
 }
 .ticket-log-title {
@@ -357,6 +386,15 @@ input.display {
   margin-top: 20px;
   margin-bottom: 10px;
 }
+.title-manageticket{
+  display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.statistic-ticket{
+  font-size: 3.12rem;
+  margin-right:5px
+}
 
 .dashet-line {
   border-top: 1px dashed #c8d3d6;
@@ -446,6 +484,18 @@ input.display {
   height: 21px;
   width: 39px;
 }
+.clear-Filter {
+  color: #eb5923;
+  cursor: pointer;
+}
+//toolbar option
+.fontSizetoolbar,.indenttoolbar,.outdenttoolbar,.linktoolbar,.strikethroughtoolbar,.monospacetoolbar ,.fontFamilytoolbar,.emojitoolbar,.imagetoolbar,.removetoolbar,.embeddedtoolbar,.blockTypetoolbar {
+  display: none;
+}
+.DraftEditor-content {
+  height: 100px !important;
+}
+
 .ticket-log-profile {
 }
 
@@ -568,4 +618,8 @@ input.display {
 .assign-modal-footer {
   width: 50%;
   margin-top: 10px;
+}
+
+.css-1okebmr-indicatorSeparator {
+  display: none !important;
 }

@@ -35,9 +35,31 @@ class TicketDashboard extends Component {
     };
   }
   handleChange = event => {
-    this.setState({ [event.target.name]: !event.target.checked }, () => {
-      console.log(...this.state);
+    this.setState({ [event.target.value]: event.target.checked });
+  };
+
+  clearfilter = () => {
+    this.setState({
+      allPriority: false,
+      high: false,
+      medium: false,
+      low: false,
+      allStatus: false,
+      resolve: false,
+      pending: false,
+      new: false,
+      allCategory: false,
+      technical: false,
+      support: false,
+      enquires: false
     });
+  };
+
+  closeFilter = () => {
+    this.setState({
+      isOpen: false
+    });
+    this.clearfilter();
   };
 
   render() {
@@ -85,11 +107,12 @@ class TicketDashboard extends Component {
 
               <button
                 className="button buttonFilter"
-                onClick={() =>
+                onClick={() => {
                   this.setState({
                     isOpen: !isOpen
-                  })
-                }
+                  });
+                  this.clearfilter();
+                }}
               >
                 <img className="view-more" src={SortBtn} alt="Sort Button" />
                 Filtrer
@@ -200,8 +223,10 @@ class TicketDashboard extends Component {
                   />
                 </FormGroup>
               </div>
-              <div className="CategorieContainer"> <span className="text-filter">Category</span>
-              <FormGroup row>
+              <div className="CategorieContainer">
+                {" "}
+                <span className="text-filter">Category</span>
+                <FormGroup row>
                   <FormControlLabel
                     control={
                       <Checkbox
@@ -235,7 +260,7 @@ class TicketDashboard extends Component {
                     }
                     label="Support"
                   />
-                           <FormControlLabel
+                  <FormControlLabel
                     control={
                       <Checkbox
                         checked={this.state.enquires}
@@ -247,14 +272,26 @@ class TicketDashboard extends Component {
                     label="Enquires"
                   />
                 </FormGroup>
-               </div>
+              </div>
               <div className="modalSerachSetting">
-                <p style={{ color: "#EB5923" }}> clear all filters</p>
+                <p className="clear-Filter" onClick={this.clearfilter}>
+                  {" "}
+                  clear all filters
+                </p>
                 <p>
-                  <span style={{ color: "#94A4BE", marginRight: "32px" }}>
+                  <span
+                    style={{
+                      color: "#94A4BE",
+                      marginRight: "32px",
+                      cursor: "pointer"
+                    }}
+                    onClick={this.closeFilter}
+                  >
                     Cancel
                   </span>
-                  <span style={{ color: "##0089E1" }}>Apply</span>
+                  <span style={{ color: "##0089E1", cursor: "pointer" }}>
+                    Apply
+                  </span>
                 </p>
               </div>
             </div>

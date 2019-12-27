@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import Select from "react-select";
 import MoreIcon from "../../../assets/images/dashboard/more.svg";
 import User from "../../../assets/images/tickets/user.svg";
 import Envelope from "../../../assets/images/tickets/envelope.svg";
@@ -21,16 +22,60 @@ const ticketsLog = [
 ];
 class MessageTicket extends Component {
   state = {
-    displayMessage: false
+    displayMessage: false,
+    multiValue: "High",
+    multiValuestat:"Pending",
+    priority: [
+      { value: "High", label: "High" },
+      { value: "Medium", label: "Medium" },
+      { value: "Low", label: "Low" }
+    ],
+    status: [
+      { value: "Pending", label: "Pending" },
+      { value: "Resolved", label: "Resolved" },
+      { value: "New", label: "New" }
+    ]
   };
+  //change ticket priotity
+  handleOnChangePrio = value=> {
+    this.setState({ multiValue: value });
+  }
+
+  handleOnChangeStat = value=> {
+    this.setState({ multiValuestat: value });
+  }
+
+ 
+  
   render() {
     const { i18n, t, kind, createTicket } = this.props;
-    const { displayMessage } = this.state;
+    const { displayMessage,status,priority } = this.state;
+    const statusView= status.map((elm,i)=>{
+      return {
+        ...elm,
+        label:<>
+        <button className="list-ticket-btn"
+        style={{background:`${elm.label=="Pending" ? "#FF9B21" : elm.label=="New" ? "#0089E1" : "#00BD39"  }`}}
+        ></button>{elm.label}
+      </>
+      }
+    })
+    const priorutyView= priority.map((elm,i)=>{
+      return {
+        ...elm,
+        label:<p className="list-ticket-textpriority" 
+        style={{background:`${elm.label=="High" ? "#eb592321" : elm.label=="Low" ? "#6572884a" : "#ff9b214d"  }`,
+        color:`${elm.label=="High" ? "#EB5923" : elm.label=="Low" ? "#657288" : "#FF9B21"  }`
+      }}
+        
+        >{elm.label}</p>
+      }
+    })
     return (
       <>
         <div className="header-indicator">
-          <h3 style={{ fontWeight: "bold" }}>Ticket Table > </h3>
-          <p> {t("tickets.tickets_message")}</p>
+        <h3 className="header-indic-title1">Ticket Table  </h3> >
+        <p className="header-indic-title2"> {t("tickets.tickets_message")}</p>
         </div>
         <div className="ticketnalytics-header">
           <h2 className="dashboard-title">Ticket No. #34421231</h2>
@@ -152,26 +197,27 @@ class MessageTicket extends Component {
             </div>
             <div className="ticketAgent-container">
               <span className="ticketkeys">Priority :</span>{" "}
-              <select className="ticketinfos selectPriority">
-                <option style={{ color: "#eb5923", background: "#fad5c8" }}>
-                  Hight
-                </option>
-                <option style={{ color: "#ff9b21", background: "#fad5c8" }}>
-                  Medium
-                </option>
-                <option style={{ color: "#657288", background: "#d4d8de" }}>
-                  Low
-                </option>
-              </select>
+             
+                <Select
+                  options={priorutyView}
+                  onChange={this.handleOnChangePrio}
+                  value={this.state.multiValue}
+                  isSearchable={false}
+                  className="ticket-Select"
+                  placeholder=""
+                />
+           
               {/* <p className="ticketinfos">Adisa Kola</p> */}
             </div>
             <div className="ticketAgent-container">
               <span className="ticketkeys">Status :</span>{" "}
-              <select className="ticketinfos selectstatus">
-                <option>Pending </option>
-                <option>Resolved </option>
-                <option>New </option>
-              </select>
+              <Select
+                  options={statusView}
+                  onChange={this.handleOnChangeStat}
+                  value={this.state.multiValuestat}
+                  isSearchable={false}
+                  placeholder=""
+                />
             </div>
             <div className="ticket-log-container">
               <div className="ticket-log-title">Ticket Log Activities</div>
