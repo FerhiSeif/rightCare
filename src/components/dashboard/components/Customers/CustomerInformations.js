@@ -11,18 +11,23 @@ const CustomerInformations = (props) => {
     handleAddRessourceModal,
     i18n,
     customerFields,
+    handleSwitchTicketSetting,
   } = props;
 
   const [state, setState] = useState({
     checked: false,
+    customerFieldsItems: [],
   });
 
   const handleChange = () => {
     setState({ checked: !state.checked });
+    handleSwitchTicketSetting(!state.checked, 'customer_information');
   };
 
   useEffect(() => {
-    setState({ checked: customerFields?.active });
+    if (customerFields) {
+      setState({ checked: customerFields.active, customerFieldsItems: customerFields.items });
+    }
     return () => {};
   }, [customerFields]);
 
@@ -80,7 +85,7 @@ const CustomerInformations = (props) => {
               handleCloseRessourceModal={handleCloseRessourceModal}
               handleAddRessourceModal={handleAddRessourceModal}
 
-              customerFields={customerFields}
+              customerFieldsItems={state.customerFieldsItems}
             />
           </div>
         </div>
@@ -95,6 +100,7 @@ CustomerInformations.propTypes = {
   handleCloseRessourceModal: PropTypes.func.isRequired,
   handleAddRessourceModal: PropTypes.func.isRequired,
   customerFields: PropTypes.objectOf.isRequired,
+  handleSwitchTicketSetting: PropTypes.func.isRequired,
 };
 
 export default CustomerInformations;

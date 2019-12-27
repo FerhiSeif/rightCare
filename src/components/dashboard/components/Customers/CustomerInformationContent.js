@@ -5,7 +5,7 @@ const CustomerInformationContent = (props) => {
   const {
     t,
     handleAddRessourceModal,
-    customerFields,
+    customerFieldsItems,
   } = props;
 
   return (
@@ -13,8 +13,8 @@ const CustomerInformationContent = (props) => {
       <div className="ticket-content">
         <div className="ticket-priorities customer-tickets-priorities">
 
-          {customerFields?.items?.map((item, i) => (
-            <div className="children" key={i}>
+          {customerFieldsItems && customerFieldsItems.map((item, index) => (
+            <div className="children" key={index}>
               <span className="label-title">
                 {item.name}
               </span>
@@ -36,7 +36,7 @@ const CustomerInformationContent = (props) => {
 CustomerInformationContent.propTypes = {
   t: PropTypes.func.isRequired,
   handleAddRessourceModal: PropTypes.func.isRequired,
-  customerFields: PropTypes.objectOf.isRequired,
+  customerFieldsItems: PropTypes.arrayOf.isRequired,
 };
 
 export default CustomerInformationContent;

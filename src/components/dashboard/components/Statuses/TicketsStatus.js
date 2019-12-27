@@ -9,18 +9,23 @@ const TicketsStatus = (props) => {
     handleCloseRessourceModal,
     handleAddRessourceModal,
     status,
+    handleSwitchTicketSetting,
   } = props;
 
   const [state, setState] = useState({
     checked: false,
+    statusItems: [],
   });
 
   const handleChange = () => {
     setState({ checked: !state.checked });
+    handleSwitchTicketSetting(!state.checked, 'status');
   };
 
   useEffect(() => {
-    setState({ checked: status?.active });
+    if (status) {
+      setState({ checked: status.active, statusItems: status.items });
+    }
     return () => {};
   }, [status]);
 
@@ -78,7 +83,7 @@ const TicketsStatus = (props) => {
               handleCloseRessourceModal={handleCloseRessourceModal}
               handleAddRessourceModal={handleAddRessourceModal}
 
-              status={status}
+              statusItems={state.statusItems}
             />
           </div>
         </div>
@@ -92,6 +97,7 @@ TicketsStatus.propTypes = {
   handleCloseRessourceModal: PropTypes.func.isRequired,
   handleAddRessourceModal: PropTypes.func.isRequired,
   status: PropTypes.objectOf.isRequired,
+  handleSwitchTicketSetting: PropTypes.func.isRequired,
 };
 
 export default TicketsStatus;

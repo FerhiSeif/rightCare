@@ -7,7 +7,7 @@ const TicketsStatusContent = (props) => {
     kind,
     handleCloseRessourceModal,
     handleAddRessourceModal,
-    status,
+    statusItems,
   } = props;
 
   return (
@@ -15,7 +15,7 @@ const TicketsStatusContent = (props) => {
       <div className="ticket-content">
         <div className="ticket-priorities">
 
-          {status?.items.map((item, index) => (
+          {statusItems && statusItems.map((item, index) => (
             <div key={index}>
               <div className="children">
                 <span className="label-title">
@@ -40,7 +40,7 @@ TicketsStatusContent.propTypes = {
   initialAgents: PropTypes.shape({}).isRequired,
   handleCloseRessourceModal: PropTypes.func.isRequired,
   handleAddRessourceModal: PropTypes.func.isRequired,
-  status: PropTypes.objectOf.isRequired,
+  statusItems: PropTypes.arrayOf.isRequired,
 };
 
 export default TicketsStatusContent;

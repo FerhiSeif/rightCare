@@ -9,18 +9,23 @@ const TicketsCategory = (props) => {
     handleCloseRessourceModal,
     handleAddRessourceModal,
     category,
+    handleSwitchTicketSetting,
   } = props;
 
   const [state, setState] = useState({
     checked: false,
+    categoryItems: [],
   });
 
   const handleChange = () => {
     setState({ checked: !state.checked });
+    handleSwitchTicketSetting(!state.checked, 'category');
   };
 
   useEffect(() => {
-    setState({ checked: category?.active });
+    if (category) {
+      setState({ checked: category.active, categoryItems: category.items });
+    }
     return () => {};
   }, [category]);
 
@@ -75,7 +80,7 @@ const TicketsCategory = (props) => {
               handleCloseRessourceModal={handleCloseRessourceModal}
               handleAddRessourceModal={handleAddRessourceModal}
 
-              category={category}
+              categoryItems={state.categoryItems}
             />
           </div>
         </div>
@@ -89,6 +94,7 @@ TicketsCategory.propTypes = {
   handleCloseRessourceModal: PropTypes.func.isRequired,
   handleAddRessourceModal: PropTypes.func.isRequired,
   category: PropTypes.objectOf.isRequired,
+  handleSwitchTicketSetting: PropTypes.func.isRequired,
 };
 
 export default TicketsCategory;
