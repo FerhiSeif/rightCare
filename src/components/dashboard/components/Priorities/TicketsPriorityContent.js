@@ -6,7 +6,7 @@ const TicketsPriorityContent = (props) => {
     t,
     handleAddRessourceModal,
     handleCloseRessourceModal,
-    priority,
+    priorityItems,
   } = props;
 
   return (
@@ -14,7 +14,7 @@ const TicketsPriorityContent = (props) => {
       <div className="ticket-content">
         <div className="ticket-priorities">
 
-          {priority?.items.map((item, index) => (
+          {priorityItems && priorityItems.map((item, index) => (
             <div key={index}>
               <div className="children">
                 <span className="label-title">
@@ -46,7 +46,7 @@ TicketsPriorityContent.propTypes = {
   t: PropTypes.func.isRequired,
   handleAddRessourceModal: PropTypes.func.isRequired,
   handleCloseRessourceModal: PropTypes.func.isRequired,
-  priority: PropTypes.objectOf.isRequired,
+  priorityItems: PropTypes.arrayOf.isRequired,
 };
 
 export default TicketsPriorityContent;
