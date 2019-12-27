@@ -83,8 +83,8 @@ const ContentCustomer = (props) => {
 
   const handleAddFieldsClone = (id, datas) => {
     if (datas.fieldType !== '' && datas.fieldLabel !== '') {
-      handleAddFields(id, datas);
       setState({ fieldLabel: '', fieldType: 'text' });
+      handleAddFields(id, datas);
     }
   };
 

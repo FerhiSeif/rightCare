@@ -10,8 +10,8 @@ const axios = require('axios');
 
 const socket = io(SOCKET.BASE_URL);
 
-// const BASE_URL = 'http://10.10.14.116:715/api/v1/ticketsettings?sio_channel=';
 const GET_TICKET_SETTING = '/ticketsettings?sio_channel=';
+const CREATE_CUTOMERFILED_TICKET_SETTING = '/ticketsettings/add-customer-info';
 const ACTIVE_TICKET_SETTING = '/ticketsettings';
 
 // const { sharedData, setSharedData } = useContext(SharedDataContext);
@@ -38,13 +38,13 @@ export const TicketSettingsHttpService = {
     return axios.get(API.BASE_URL + GET_TICKET_SETTING + SIO_TICKET_SETTINGS);
   },
 
-  activeTicketSettings(data) {
-    // return axios.post(API.BASE_URL + ACTIVE_TICKET_SETTING);
-
-    // socket.post(ACTIVE_TICKET_SETTING, data, (resData, jwRes) => {
-    //   console.log(resData); // => 200
-    //   console.log(jwRes); // => 200 .statusCode
-    // });
+  createCustomerFiledTicketSettings(params) {
+    const queryQarams = {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    };
+    return axios.post(API.BASE_URL + CREATE_CUTOMERFILED_TICKET_SETTING, params, queryQarams);
   },
 
 };
