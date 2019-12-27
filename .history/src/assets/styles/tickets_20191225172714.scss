@@ -1,0 +1,389 @@
+
+// Start - Ticket Timer
+.timer-content {
+  width: 100% !important;
+  .timer-section {
+    padding-left: 1rem;
+    padding-right: 1rem;
+
+    margin-top: 1rem;
+    display: flex;
+    justify-content: flex-start;
+    width: 100% !important;
+    flex-wrap: nowrap;
+    .timer-child-start {
+      width: 45%;
+      order: 1;
+      border-top-left-radius: 7px;
+      border-bottom-left-radius: 7px;
+      border: solid 1px #c8d3d6;
+      background-color: #ededed;
+      padding: 0.55rem 0rem;
+      padding-left: 1rem;
+      .icon {
+        padding-left: 1.5rem;
+        padding-right: 2rem;
+        justify-content: center;
+        vertical-align: middle;
+      }
+      .text {
+        color: #657288;
+        padding-right: 0.5rem;
+        padding-left: 1rem;
+      }
+      .img-icon {
+        height: 1rem;
+        width: 1rem;
+        color: #657288 !important;
+      }
+    }
+    .timer-child-select {
+      display: flex;
+      flex-wrap: nowrap;
+      order: 2;
+      width: 40%;
+
+      .day {
+        width: 20%;
+      }
+      .hour {
+        width: 20%;
+      }
+    }
+    .timer-child-end {
+      text-align: center;
+      width: 15%;
+      order: 3;
+      position: relative;
+      border-top-right-radius: 7px;
+      border-bottom-right-radius: 7px;
+      background-color: #fff;
+      padding: 0.55rem 0.5rem;
+      border: solid 1px #c8d3d6;
+      .text {
+        color: #c8d3d6;
+        padding-right: 0.5rem;
+      }
+    }
+  }
+}
+
+.App-Select-timer {
+  .css-yk16xz-control {
+    .css-1hb7zxy-IndicatorsContainer {
+      .css-1okebmr-indicatorSeparator {
+        display: none;
+      }
+    }
+  }
+  .css-yk16xz-control, .css-1pahdxg-control {
+    background-color: #ffffff;
+    cursor: pointer;
+    width: 5rem;
+    border-radius: 0 !important;
+  }
+
+  .css-26l3qy-menu {
+    width: 100% !important;
+  }
+
+  .css-3bfqla-control {
+    border-color: #eee;
+    width: 5rem;
+  }
+  .css-3bfqla-control:hover {
+    border-color: #eee;
+    width: 5rem;
+  }
+  .css-3bfqla-control:focus {
+    border-color: #eee;
+    width: 5rem;
+  }
+}
+
+// Start - Customer information
+.section-button {
+  display: flex;
+  flex-wrap: wrap;
+  background: #f2f2f2;
+  float: right;
+  border-radius: 7px;
+  padding: 0rem 1rem;
+  cursor: pointer;
+  .section-child {
+    display: flex;
+    padding-bottom: 0.3rem;
+  }
+  .button-plus {
+    font-size: 2rem;
+    padding-right: 1rem;
+    color: #657288;
+  }
+  .button-text {
+    color: #657288;
+    padding-top: 1rem;
+  }
+}
+
+
+.button-add-field {
+  border: none !important;
+  background: #f2f2f2 !important;
+  .button-plus {
+    color: #657288 !important;
+    font-size: 2rem;
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+  }
+  .button-text {
+    color: #657288 !important;
+  }
+}
+// End - Customer information
+
+.ticket-content {
+  width: 100%;
+  .text-mueted {
+    color: #c8d3d6;
+  }
+  .customer-tickets-priorities {
+    flex-wrap: wrap;
+    .children {
+      display: flex;
+      margin: 0 auto;
+    }
+  }
+  .ticket-priorities {
+    display: flex;
+    .children {
+      position: relative;
+      border-radius: 7px;
+      border: solid 1px #c8d3d6;
+      margin: .5rem;
+      margin-top: 0;
+      padding: .5rem 1rem .5rem 1rem;
+      color: #657288;
+      .label-title {
+        margin-right: .5rem;
+        text-transform: capitalize;
+      }
+    }
+    .dash-child {
+      background-color: #f2f2f2;
+      border-style: dashed;
+      padding: 0;
+      align-items: center;
+      cursor: pointer;
+      .tickets-plus {
+        font-size: 1.8rem;
+        border-right: 1px solid #c8d3d6;
+        padding: 0 .8rem;
+      }
+      .label-title {
+        margin-left: .5rem;
+      }
+    }
+  }
+  .ticket-labels {
+    display: flex;
+  }
+}
+.ml-0 {
+  margin-left: 0!important;
+}
+.mr-0 {
+  margin-right: 0!important;
+}
+.tickets-close-incard {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  background-color: #ffffff;
+  border-radius: 50%;
+  border: 1px solid #c8d3d6;
+  cursor: pointer;
+  pointer-events: auto;
+  display: inline-block;
+  flex-grow: 0;
+  flex-shrink: 0;
+  font-size: 0;
+  height: 20px;
+  max-height: 20px;
+  max-width: 20px;
+  min-height: 20px;
+  min-width: 20px;
+  outline: none;
+  position: relative;
+  vertical-align: top;
+  width: 20px;
+  margin-left: auto;
+  margin-top: .1rem;
+}
+.tickets-close-incard::before, .tickets-close-incard::after {
+    content: "";
+    display: block;
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%) rotate(45deg);
+    transform-origin: center center;
+    background-color: #c8d3d6 !important;
+  }
+.tickets-close-incard::before {
+  height: 2px;
+width: 50%;
+}
+.tickets-close-incard::after {
+  height: 50%;
+  width: 2px;
+  margin: 0 auto;
+}
+.ticket-label {
+  margin-top: 1rem;
+  margin-right: 1rem;
+  font-size: 1rem;
+  padding: 0 .5rem;
+  border-radius: 4px;
+}
+.ticket-very-urgent {
+  color: #eb5923;
+  background-color: #eb592340;
+}
+.ticket-urgent {
+  color: #ff9b21;
+  background-color: #ff9b2126;
+}
+.ticket-not-urgent {
+  color: #657288;
+  background-color: #65728847;
+}
+.ticket-without-agent {
+  color: #0089e1;
+  background-color: #0089e14a;
+}
+.ticket-solved {
+  color: #00bd39;
+  background-color: #00bd3940;
+}
+.ml-1 {
+  margin-left: 1rem;
+}
+.mr-0 {
+  margin-right: 0;
+}
+.mr-2 {
+  margin-right: 2rem!important;
+}
+.react-tabs__tab--selected {
+  border: 0;
+  border-bottom: 3px solid #0089e1;
+  color: #0089e1;
+  padding: 1rem;
+  padding-bottom: 1.5rem;
+  padding-left: 2rem;
+  padding-rigt: 2rem;
+}
+.react-tabs__tab-list {
+  border-bottom: 2px solid rgba(10, 10, 10, 0.1);
+  padding: 1rem;
+  padding-bottom: 0;
+  padding-left: 0;
+}
+.customer-card {
+  width: 49%!important;
+  max-width: 49%!important;
+}
+.tickets-card {
+  width: 100%!important;
+  max-width: 100%!important;
+}
+
+.img-cursor {
+  cursor: pointer !important;
+}
+
+// adding style for modal content
+.input, .textarea, .select select {
+  border-radius: none !important;
+  height: 3rem !important;
+}
+.input, .textarea {
+  box-shadow: none !important;
+}
+.input-section {
+  padding-bottom: 1rem;
+}
+.option-text {
+  color: #657288 !important;
+}
+.div-select {
+  display: block !important;
+  margin-bottom: 2rem;
+  width: 100% !important;
+  select {
+    width: 100% !important;
+  }
+}
+.button-round {
+  border-radius: 7px !important;
+  padding: 0 4rem !important;
+  background-color: #0089e1 !important;
+}
+
+.modal-close-ticket {
+  height: 20px !important;
+  max-height: 20px !important;
+  max-width: 20px !important;
+  min-height: 21px !important;
+  min-width: 20px !important;
+  width: 20px !important;
+}
+// END
+.ticket-title {
+  font-size: 1.5rem;
+}
+.title-container {
+  padding-top: 0;
+}
+
+.select:not(.is-multiple):not(.is-loading)::after {
+  border-color: #a3a3a3 !important;
+  right: 1.125em;
+  z-index: 4;
+  top: 1.5rem !important;
+}
+
+.App-Select-priority {
+  .css-yk16xz-control {
+    .css-1hb7zxy-IndicatorsContainer {
+      .css-1okebmr-indicatorSeparator {
+        display: none;
+      }
+    }
+  }
+  .css-yk16xz-control, .css-1pahdxg-control {
+    border: solid 1px #e5e5e5;
+    background-color: #ffffff;
+    cursor: pointer;
+
+    border-color: #c8d3d6 !important;
+    border-radius: 0.625rem !important;
+    height: 3rem !important;
+  }
+
+  .css-26l3qy-menu {
+    width: 100% !important;
+  }
+
+  .css-tlfecz-indicatorContainer {
+    color: #fff !important;
+  }
+  .css-tlfecz-indicatorContainer {
+    color: #fff !important;
+  }
+  .css-1gtu0rj-indicatorContainer {
+    color: #fff !important;
+  }
+  .css-1gtu0rj-indicatorContainer:hover {
+    color: #fff !important;
+  }
+}
