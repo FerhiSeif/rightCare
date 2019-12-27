@@ -67,3 +67,4 @@ export const SOCKET = {
 };
 
 export const SIO_TICKET_SETTINGS = `ticket_setting_${uuid1()}`;
+export const SIO_CREATE_CUSTOMER_TICKET_SETTINGS = `create_customer_ticket_setting_${uuid1()}`;

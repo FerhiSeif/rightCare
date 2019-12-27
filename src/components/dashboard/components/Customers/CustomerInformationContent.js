@@ -16,7 +16,7 @@ const CustomerInformationContent = (props) => {
           {customerFields?.items?.map((item, i) => (
             <div className="children" key={i}>
               <span className="label-title">
-                {item.label}
+                {item.name}
               </span>
             </div>
           ))}

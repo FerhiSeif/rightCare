@@ -11,9 +11,7 @@ import {
 import Content from './Content';
 
 /* START $$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
-// Use Socket io - Init Socket & include service
 import { TicketSettingsHttpService } from '../../../services/HttpService';
-// import constants
 import { SOCKET, SIO_TICKET_SETTINGS } from '../../../constants/Constants';
 
 const socket = io(SOCKET.BASE_URL);
@@ -45,7 +43,6 @@ const Tabs = (props) => {
   /* START $$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
   const onSocketGetTicketSettings = (response) => {
     if (response && (response.status === 200 || response.status === 202)) {
-      console.log('onSocketGetTicketSettings : ', response.data[0]);
       setTicketSettings(response.data[0]);
     }
   };
@@ -55,7 +52,7 @@ const Tabs = (props) => {
   } = ticketSettings;
 
   const initSocketTicketSettings = () => {
-    socket.on(SIO_TICKET_SETTINGS, (response) => new Promise((resolve) => resolve(onSocketGetTicketSettings(response))));
+    socket.on(SIO_TICKET_SETTINGS, (response) => onSocketGetTicketSettings(response));
   };
   /* END $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
 
