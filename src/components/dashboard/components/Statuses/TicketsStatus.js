@@ -12,7 +12,7 @@ const TicketsStatus = (props) => {
   } = props;
 
   const [state, setState] = useState({
-    checked: status?.active,
+    checked: false,
   });
 
   const handleChange = () => {
