@@ -268,10 +268,43 @@ input.display {
   color: #4c4c4c !important;
   font-weight: 300;
 }
+.page-item{
+  padding: 8px ;
+    border: 1px solid #e5e5e5;
+}
 .page-item.active .page-link {
   background: #e5e5e5 !important ;
-  border: none;
+ // border: none;
 }
+.page-item.active{
+  background: #e5e5e5 !important ;
+}
+.pagination {
+  margin-top:20px !important;
+}
+
+.table-bordered{
+  width: 100%;
+  thead{
+    border-top: 1px solid #e5e5e5 !important ;
+    border-left: 1px solid #e5e5e5 !important ;
+    border-right: 1px solid #e5e5e5 !important ;
+    th {
+      padding: 20px 0 20px 10px;
+    }
+  }
+  tbody{
+    tr{
+      td{
+        border-left: 1px solid #e5e5e5 !important ;
+        border-bottom: 1px solid #e5e5e5 !important ;
+        border-right: 1px solid #e5e5e5 !important ;
+      }
+    }
+  }
+}
+
+
 .ticket-log-title {
   height: 20%;
   color: #0089e1;
