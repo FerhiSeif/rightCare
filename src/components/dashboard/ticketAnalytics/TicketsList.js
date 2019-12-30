@@ -3,7 +3,7 @@ import BootstrapTable from "react-bootstrap-table-next";
 import paginationFactory from "react-bootstrap-table2-paginator";
 //import "bootstrap/dist/css/bootstrap.min.css";
 import ProfileIcon from "../../../assets/images/profile/idpic.jpg";
-import "react-bootstrap-table-next/dist/react-bootstrap-table2.min.css";
+//import "react-bootstrap-table-next/dist/react-bootstrap-table2.min.css";
 //import "./styles.css";
 
 class TicketsList extends Component {
