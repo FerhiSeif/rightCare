@@ -44,6 +44,7 @@ const Tabs = (props) => {
   const onSocketGetTicketSettings = (response) => {
     if (response && (response.status === 200 || response.status === 202)) {
       setTicketSettings(response.data[0]);
+      console.log('onSocketGetTicketSettings : ', response.data[0]);
     }
   };
 
@@ -52,18 +53,28 @@ const Tabs = (props) => {
   } = ticketSettings;
 
   const initSocketTicketSettings = () => {
-    socket.on(SIO_TICKET_SETTINGS, (response) => onSocketGetTicketSettings(response));
-  };
-  /* END $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
+    console.log('initSocketTicketSettings : **** ');
 
-  useEffect(() => {
+    socket.on(SIO_TICKET_SETTINGS, (response) => {
+      console.log('initSocketTicketSettings : ', response);
+      onSocketGetTicketSettings(response);
+    });
+
     TicketSettingsHttpService.getDatasTicketSettings().then((response) => {
       console.log('getDatasTicketSettings : ', response);
 
       if ((response.status === 200 || response.status === 202)) {
-        initSocketTicketSettings();
+        console.log('test success : ', response);
+      } else {
+        console.log('test error : ', response);
       }
     });
+  };
+  /* END $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
+
+  useEffect(() => {
+    initSocketTicketSettings();
+
     return () => {
       // cleanup
     };

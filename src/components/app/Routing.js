@@ -9,6 +9,7 @@ import Welcome from '../onboarding/Welcome';
 import Steps from '../onboarding/Steps';
 import Dashboard from '../dashboard/Dashboard';
 import Settings from '../dashboard/Settings';
+import Tickets from '../dashboard/Tickets';
 
 import { SharedDataContext } from './UseContext';
 
@@ -53,6 +54,16 @@ const Routing = (props) => {
               changeLang={changeLang}
               defaultLang={defaultLang}
               kind="dashboard"
+              isLogged={isLogged}
+              i18n={i18n}
+            />
+          </Route>
+          <Route path="/tickets">
+            <Tickets
+              t={t}
+              changeLang={changeLang}
+              defaultLang={defaultLang}
+              kind="tickets"
               isLogged={isLogged}
               i18n={i18n}
             />

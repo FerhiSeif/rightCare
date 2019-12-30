@@ -1,7 +1,8 @@
 @charset "utf-8";
 // Import a Google Font
-@import url('https://fonts.googleapis.com/css?family=Nunito:400,700');
+@import url("https://fonts.googleapis.com/css?family=Nunito:400,700");
 @import "./fonts.scss";
+@import "./modal.scss";
 @import "./variables.scss";
 @import "./alert.scss";
 @import "./app.scss";
@@ -22,6 +23,9 @@
 @import "./responsive/side_menu.scss";
 @import "./responsive/analytics.scss";
 @import "./responsive/card.scss";
-
+@import "./tableticket.scss";
+@import "./ticketanalyticks.scss";
+@import "./tooltip.scss";
+@import "./dashboard.scss";
 @import "../../../node_modules/bulma/bulma.sass";
-@import '../../../node_modules/bulma-tooltip/src/sass/index.sass';
+@import "../../../node_modules/bulma-tooltip/src/sass/index.sass";
