@@ -94,7 +94,7 @@
 
     "ticket_settings": "Ticket Settings",
     "tickets_priority": "Tickets Priority",
-    "tickets_priority_content" : {
+    "tickets_priority_content": {
       "hight": "Hight",
       "very_urgent": "Very urgent",
       "medium": "Medium",
@@ -107,7 +107,7 @@
       "ticket_priority_input": "Enter Ticket Priority name"
     },
     "tickets_status": "Tickets Status",
-    "tickets_status_content" : {
+    "tickets_status_content": {
       "resolved": "Resolved",
       "ticket_solved_close": "Ticket solved & close",
       "pending": "Pending",
@@ -119,7 +119,7 @@
       "status_input": "Enter Ticket Status name"
     },
     "tickets_category": "Tickets Category",
-    "tickets_category_content" : {
+    "tickets_category_content": {
       "technical": "Technical",
       "customer_care": "Customer Care",
       "enquires": "Enquires",
@@ -128,7 +128,7 @@
       "category_input": "Category name"
     },
     "customer_informations": "Customer Informations",
-    "customer_informations_content" : {
+    "customer_informations_content": {
       "first_name": "First Name",
       "last_name": "Last Name",
       "email": "Email",
@@ -139,7 +139,7 @@
       "button_add": "Add more Field"
     },
     "tickets_timer": "Tickets Timer",
-    "tickets_timer_content" : {
+    "tickets_timer_content": {
       "set_timer_ticket": "Set timer on ticket",
       "set_ticket_support_timer": "Set Ticket Support Timer",
       "button_text": "Add Customer field",
@@ -157,6 +157,15 @@
     "agent_settings": "Agent Settings",
 
     "channel_settings": "Channel Settings"
+  },
+  "tickets": {
+    "tickets_overview": "Ticket",
+    "tickets_creation": "Create Ticket",
+    "resolve_ticket": "Resolve Ticket",
+    "pending_ticket": "Pending Ticket",
+    "new_ticket": "New Ticket",
+    "total_ticket": "Total Ticket",
+    "today": "Today",
+    "tickets_message" : "Ticket Message"
   }
-
 }
