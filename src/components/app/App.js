@@ -11,7 +11,7 @@ import Routing from './Routing';
 import BrowserLanguage from '../../utils/BrowserLanguage';
 // import LangIconEn from '../../assets/images/locale/uk.png';
 // import LangIconFr from '../../assets/images/locale/fr.png';
-// import '../../assets/styles/bluma.scss';
+import '../../assets/styles/bluma.scss';
 import FakeChannels from '../../faker/channels';
 import { options as optionsLang } from '../../configs/options';
 
