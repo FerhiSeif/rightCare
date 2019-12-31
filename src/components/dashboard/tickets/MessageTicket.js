@@ -2,8 +2,10 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import Select from "react-select";
 import MoreIcon from "../../../assets/images/dashboard/more.svg";
+import FakeAgents from "../../../faker/agents";
 import User from "../../../assets/images/tickets/user.svg";
 import Envelope from "../../../assets/images/tickets/envelope.svg";
+import SearchIcon from "../../../assets/images/profile/search.svg";
 import ProfileIcon from "../../../assets/images/profile/idpic.jpg";
 import Phone from "../../../assets/images/tickets/phone-call.svg";
 import ArrowDown from "../../../assets/images/tickets/full-down-arrow.svg";
@@ -23,6 +25,8 @@ const ticketsLog = [
 class MessageTicket extends Component {
   state = {
     displayMessage: false,
+    assegneeModalOpen: false,
+    initAgents: FakeAgents,
     multiValue: "High",
     multiValuestat:"Pending",
     priority: [
@@ -36,6 +40,30 @@ class MessageTicket extends Component {
       { value: "New", label: "New" }
     ]
   };
+
+  listAgents = (
+    <ul className=" menu-list menu-list-ticket">
+      {this.state.initAgents &&
+        this.state.initAgents.map((item, i) => (
+          <li key={i}>
+            <img src={item.profile_image} alt="portrait" />
+            <span className="user-name">{item.full_name}</span>
+            {
+              // fetchDatas(item.id) ? (<span className="remove-user" onClick={()=>console.log('hii')/*(e) => handleRemoveAgent(e, item.id)*/}>-</span>)
+              // :
+              <span
+                className="add-user"
+                onClick={
+                  () => console.log("hii") /*(e) => handleAddAgent(e, item.id)*/
+                }
+              >
+                +
+              </span>
+            }
+          </li>
+        ))}
+    </ul>
+  );
   //change ticket priotity
   handleOnChangePrio = value=> {
     this.setState({ multiValue: value });
@@ -49,7 +77,7 @@ class MessageTicket extends Component {
   
   render() {
     const { i18n, t, kind, createTicket } = this.props;
-    const { displayMessage,status,priority } = this.state;
+    const { displayMessage,status,priority,assegneeModalOpen } = this.state;
     const statusView= status.map((elm,i)=>{
       return {
         ...elm,
@@ -101,7 +129,7 @@ class MessageTicket extends Component {
                     className="massageticket-log"
                     alt="icon user"
                   />
-                  Martins JoeCole
+                 <span className="custumers-detail">Martins JoeCole</span> 
                 </div>
                 <div className="display-user-info">
                   <img
@@ -109,7 +137,7 @@ class MessageTicket extends Component {
                     className="massageticket-log"
                     alt="icon mail"
                   />{" "}
-                  Martins.JoeCole@yahoo.com
+                  <span className="custumers-detail"> Martins.JoeCole@yahoo.com</span> 
                 </div>
                 <div className="display-user-info">
                   <img
@@ -117,7 +145,7 @@ class MessageTicket extends Component {
                     className="massageticket-log"
                     alt="icon phone"
                   />{" "}
-                  +221-121-11-123"
+                  <span className="custumers-detail">+221-121-11-123</span>
                 </div>
               </div>
               <div
@@ -191,9 +219,79 @@ class MessageTicket extends Component {
               <span className="ticketkeys ">Assignee :</span>{" "}
               <p className="ticketinfos display-user-assegne">
                 <img src={ProfileIcon} className="profilepicture-assignee" />
-                Adisa Kola
+                <span className="custumers-detail"> Adisa Kola</span> 
               </p>{" "}
-              <p style={{ color: "#0089E1", marginLeft: "10px",textDecoration:"underline" }}>Reassign</p>
+            
+              <div className="assign-agent-Container">
+              <p className="resseign-messageTick"
+              onClick={() =>
+                this.setState({
+                  assegneeModalOpen: !this.state.assegneeModalOpen
+                })
+              }>
+                Reassign
+              
+              </p>
+                  <div
+                    className="assign-text-modal"
+                    style={{
+                      display: `${assegneeModalOpen ? "flex" : "none"}`,
+                      left: "-179px"
+                    }}
+                  >
+                    <h2 className="title assign-modal-title">
+                      Assign Agent to Ticket
+                    </h2>
+                    <ul className="menu-list menu-list-ticket">
+                      {" "}
+                      <li className="assign-self">
+                        <img src={ProfileIcon} alt="portrait" />
+                        <span className="user-name">
+                          Assign ticket to myself
+                        </span>
+                        {
+                          // fetchDatas(item.id) ? (<span className="remove-user" onClick={()=>console.log('hii')/*(e) => handleRemoveAgent(e, item.id)*/}>-</span>)
+                          // :
+                          <span
+                            className="add-user"
+                            onClick={
+                              () =>
+                                console.log(
+                                  "hii"
+                                ) /*(e) => handleAddAgent(e, item.id)*/
+                            }
+                          >
+                            +
+                          </span>
+                        }
+                      </li>
+                    </ul>
+                    <div className="search-box assign-search">
+                      <input
+                        className="input"
+                        type="text"
+                        placeholder={t("onboard.steps.search_agent")}
+                      />
+                      <img src={SearchIcon} alt="search" />
+                    </div>
+                    <section
+                      className="modal-card-body"
+                      style={{ width: "100%" }}
+                    >
+                      {this.listAgents}
+                      {/* { kind === 'agent' ? (<div>{agentCount === 0 &&<span>This agent can not be found in the list.</span>}{content}</div>) : <Services kind={kind} handleChooseService={handleChooseService} checkedServices={checkedServices} /> } */}
+                    </section>
+                    <footer className="assign-modal-footer">
+                      <button
+                        className="button is-primary"
+                        aria-label="close"
+                        style={{ width: "100%" }}
+                      >
+                        Assign
+                      </button>
+                    </footer>
+                  </div>
+                </div>
             </div>
             <div className="ticketAgent-container">
               <span className="ticketkeys">Priority :</span>{" "}
