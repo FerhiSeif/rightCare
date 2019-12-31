@@ -24,31 +24,30 @@
 .container-dashboard-ticket {
   position: relative !important;
 }
-.dashbordticket-column{
+.dashbordticket-column {
   width: 25%;
 }
 
-.createTicketCalender{
+.createTicketCalender {
   width: 120px;
   display: flex;
   justify-content: space-evenly;
 }
-.calendar-icon{
+.calendar-icon {
   margin-left: 5px !important;
 }
 
-  .uptriangle{
-    width         : 0;
-    height        : 0;
-    border-left   : 5px solid transparent;
-    border-right  : 6px solid transparent;  
-   
+.uptriangle {
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 6px solid transparent;
 }
-.arrawbtn{
+.arrawbtn {
   width: 21px;
   height: 20px;
   border-radius: 20px;
-  border:none;
+  border: none;
   display: flex;
   justify-content: center;
 }
@@ -195,7 +194,7 @@ input::placeholder {
   border-radius: 7px;
   padding: 16px;
   margin-top: 100px;
-  width:200px;
+  width: 200px;
 }
 .buttonserch {
   height: 42px;
@@ -268,24 +267,24 @@ input.display {
   color: #4c4c4c !important;
   font-weight: 300;
 }
-.page-item{
-  padding: 8px ;
-    border: 1px solid #e5e5e5;
+.page-item {
+  padding: 8px;
+  border: 1px solid #e5e5e5;
 }
 .page-item.active .page-link {
   background: #e5e5e5 !important ;
- // border: none;
+  // border: none;
 }
-.page-item.active{
+.page-item.active {
   background: #e5e5e5 !important ;
 }
 .pagination {
-  margin-top:20px !important;
+  margin-top: 20px !important;
 }
 
-.table-bordered{
+.table-bordered {
   width: 100%;
-  thead{
+  thead {
     border-top: 1px solid #e5e5e5 !important ;
     border-left: 1px solid #e5e5e5 !important ;
     border-right: 1px solid #e5e5e5 !important ;
@@ -293,9 +292,9 @@ input.display {
       padding: 20px 0 20px 10px;
     }
   }
-  tbody{
-    tr{
-      td{
+  tbody {
+    tr {
+      td {
         border-left: 1px solid #e5e5e5 !important ;
         border-bottom: 1px solid #e5e5e5 !important ;
         border-right: 1px solid #e5e5e5 !important ;
@@ -303,7 +302,6 @@ input.display {
     }
   }
 }
-
 
 .ticket-log-title {
   height: 20%;
@@ -419,14 +417,14 @@ input.display {
   margin-top: 20px;
   margin-bottom: 10px;
 }
-.title-manageticket{
+.title-manageticket {
   display: flex;
-    justify-content: center;
-    align-items: center;
+  justify-content: center;
+  align-items: center;
 }
-.statistic-ticket{
+.statistic-ticket {
   font-size: 3.12rem;
-  margin-right:5px
+  margin-right: 5px;
 }
 
 .dashet-line {
@@ -522,7 +520,18 @@ input.display {
   cursor: pointer;
 }
 //toolbar option
-.fontSizetoolbar,.indenttoolbar,.outdenttoolbar,.linktoolbar,.strikethroughtoolbar,.monospacetoolbar ,.fontFamilytoolbar,.emojitoolbar,.imagetoolbar,.removetoolbar,.embeddedtoolbar,.blockTypetoolbar {
+.fontSizetoolbar,
+.indenttoolbar,
+.outdenttoolbar,
+.linktoolbar,
+.strikethroughtoolbar,
+.monospacetoolbar,
+.fontFamilytoolbar,
+.emojitoolbar,
+.imagetoolbar,
+.removetoolbar,
+.embeddedtoolbar,
+.blockTypetoolbar {
   display: none;
 }
 .DraftEditor-content {
@@ -586,7 +595,7 @@ input.display {
   align-items: center;
   cursor: pointer;
 }
-.ticket-menu-list {
+.menu-list-ticket {
   margin-left: 0;
   li {
     list-style-type: none;
