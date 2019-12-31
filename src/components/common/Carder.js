@@ -158,8 +158,8 @@ const Carder = (props) => {
     </ul>
   );
 
-  const handleSearchAgent = (event) => {
-    const newFilter = event.target.value;
+  const handleSearchAgent = (content) => {
+    const newFilter = content;
     if (newFilter !== '') {
       setState((prevState) => ({
         ...prevState,

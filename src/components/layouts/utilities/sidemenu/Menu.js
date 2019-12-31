@@ -30,10 +30,10 @@ const MenuSide = (props) => {
   const logoutLink = React.createRef();
 
   const currentDashboardIcon = path === '/dashboard' ? ActiveDashboardIcon : DashboardIcon;
-  const currentAgentIcon = path === '/agents' ? ActiveAgentIcon : AgentIcon;
+  // const currentAgentIcon = path === '/agents' ? ActiveAgentIcon : AgentIcon;
   const currentTicketIcon = path === '/tickets' ? ActiveTicketIcon : TicketIcon;
-  const currentChannelIcon = path === '/channels' ? ActiveChannelIcon : ChannelIcon;
-  const currentProfileIcon = path === '/profile' ? ActiveProfileIcon : ProfileIcon;
+  // const currentChannelIcon = path === '/channels' ? ActiveChannelIcon : ChannelIcon;
+  // const currentProfileIcon = path === '/profile' ? ActiveProfileIcon : ProfileIcon;
   const currentSettingIcon = path === '/settings' ? ActiveSettingIcon : SettingIcon;
   const currentLogoutIcon = path === '/logout' ? ActiveLogoutIcon : LogoutIcon;
 
@@ -99,6 +99,7 @@ const MenuSide = (props) => {
         {t('side_menu.menu')}
       </p>
       <ul className="menu-list">
+
         <li>
           <NavLink
             activeClassName="selected"
@@ -113,7 +114,7 @@ const MenuSide = (props) => {
             {t('side_menu.dashboard')}
           </NavLink>
         </li>
-        {/*<li>
+        {/* <li>
           <NavLink
             activeClassName="selected"
             className="sidelink"
@@ -125,20 +126,6 @@ const MenuSide = (props) => {
           >
             <img alt="agent icon" src={currentAgentIcon} ref={agentLink} />
             {t('side_menu.agents')}
-          </NavLink>
-        </li>
-        <li>
-          <NavLink
-            activeClassName="selected"
-            className="sidelink"
-            to="logout"
-            onMouseOver={() => handleMouseOver('logout')}
-            onMouseOut={() => handleMouseOut('logout')}
-            onFocus={(e) => e}
-            onBlur={(e) => e}
-          >
-            <img alt="log icon" src={currentLogoutIcon} ref={logoutLink} />
-            {t('side_menu.logout')}
           </NavLink>
         </li>
         <li>
@@ -168,8 +155,7 @@ const MenuSide = (props) => {
             <img alt="pro icon" src={currentProfileIcon} ref={profileLink} />
             {t('side_menu.profile')}
           </NavLink>
-        </li>
-        */}
+        </li> */}
         <li>
           <NavLink
             activeClassName="selected"
@@ -196,6 +182,20 @@ const MenuSide = (props) => {
           >
             <img alt="set icon" src={currentSettingIcon} ref={settingLink} />
             {t('side_menu.settings')}
+          </NavLink>
+        </li>
+        <li>
+          <NavLink
+            activeClassName="selected"
+            className="sidelink"
+            to="logout"
+            onMouseOver={() => handleMouseOver('logout')}
+            onMouseOut={() => handleMouseOut('logout')}
+            onFocus={(e) => e}
+            onBlur={(e) => e}
+          >
+            <img alt="log icon" src={currentLogoutIcon} ref={logoutLink} />
+            {t('side_menu.logout')}
           </NavLink>
         </li>
 

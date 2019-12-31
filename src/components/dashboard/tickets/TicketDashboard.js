@@ -63,7 +63,7 @@ class TicketDashboard extends Component {
   };
 
   render() {
-    const { i18n, t, kind, createTicket } = this.props;
+    const { i18n, t, kind, createTicket,messageTicket } = this.props;
     const { isOpen } = this.state;
     return (
       <>
@@ -295,7 +295,7 @@ class TicketDashboard extends Component {
                 </p>
               </div>
             </div>
-            <TicketsList />
+            <TicketsList messageTicket={()=>messageTicket()}/>
           </div>
         </div>
       </>

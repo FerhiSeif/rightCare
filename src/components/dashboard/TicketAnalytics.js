@@ -8,7 +8,7 @@ import MessageTicket from './tickets/MessageTicket';
 class TicketAnalytics extends Component {
   constructor(props) {
     super(props);
-    this.state = { isOpen: false, status: 2 };
+    this.state = { isOpen: false, status: 0 };
   }
 
   handleOpenModal = () => {
@@ -25,6 +25,7 @@ class TicketAnalytics extends Component {
             i18n={i18n}
             kind="tickets"
             createTicket={() => this.setState({ status: 1 })}
+            messageTicket={() => this.setState({ status: 2 })}
           />
         );
       case 1:

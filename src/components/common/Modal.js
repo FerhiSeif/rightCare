@@ -26,23 +26,48 @@ const Modal = (props) => {
     },
   };
 
+  const [state, setState] = useState({ input: '' });
+
   const addAgentsRef = React.createRef();
 
-  const handleContinue = () => { addAgentsRef.current.click(); };
+  const handleContinue = () => {
+    addAgentsRef.current.click();
+    setState({ input: '' });
+    handleSearchAgent('');
+  };
+
+  const handleCloseModal = () => {
+    setState({ input: '' });
+    handleCloseRessourceModal();
+    handleSearchAgent('');
+  };
+
+  const handleInputChange = (event) => {
+    const { value } = event.currentTarget;
+    setState({ input: value });
+    handleSearchAgent(value);
+  };
 
   return (
     <div className="modal" ref={agentModal}>
       <div className="modal-background" />
       <div className="modal-card">
         <button className="modal-close modal-close-incard" aria-label="close" onClick={handleContinue} />
-        <button className="modal-close is-large" aria-label="close" ref={addAgentsRef} onClick={handleCloseRessourceModal} />
+        <button className="modal-close is-large" aria-label="close" ref={addAgentsRef} onClick={handleCloseModal} />
         <header className="modal-card-head">
           <div className="title-container" style={modalStyle.title}>
             <h2 className="title">{title}</h2>
           </div>
           { kind === 'agent' && (
             <div className="search-box">
-              <input className="input" type="text" placeholder={t('onboard.steps.search_agent')} onChange={handleSearchAgent} />
+              <input
+                className="input"
+                type="text"
+                placeholder={t('onboard.steps.search_agent')}
+                // onChange={handleSearchAgent}
+                value={state.input}
+                onChange={(e) => handleInputChange(e)}
+              />
               <img src={SearchIcon} alt="search" />
             </div>
           )}
