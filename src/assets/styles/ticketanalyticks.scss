@@ -239,6 +239,8 @@ input.display {
   border-radius: 20px;
   padding: 10px;
   width: auto !important;
+  display: flex;
+  align-items: center;
 }
 .massageticket-container {
   margin-top: 30px;
@@ -664,4 +666,28 @@ input.display {
 
 .css-1okebmr-indicatorSeparator {
   display: none !important;
+}
+.resseign-messageTick{
+  color: #0089E1;
+  margin-left: 10px;
+  text-decoration:underline;
+  cursor:pointer
+}
+
+@media only screen and (max-width: 1280px) {
+  .css-2b097c-container {
+    width: 50%;
+  }
+  .display-user-info {
+    padding: 3px;
+  }
+  .custumers-detail{
+    font-size: 0.8rem;
+  }
+  .tecket-detail {
+    padding: 23px;
+}
+.display-user-assegne {
+  padding: 5px;
+}
 }
