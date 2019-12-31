@@ -41,11 +41,7 @@ class TicketsList extends Component {
         priority: "High",
         created: ProfileIcon,
         status: "New",
-        action: (
-          <button className="button" onClick={() => alert("hei")}>
-            view
-          </button>
-        )
+        action:''
       },
       {
         id: "#429411",
@@ -53,11 +49,7 @@ class TicketsList extends Component {
         priority: "High",
         created: ProfileIcon,
         status: "New",
-        action: (
-          <button className="button" onClick={() => alert("hei")}>
-            view
-          </button>
-        )
+        action: ''
       },
       {
         id: "#424311",
@@ -65,11 +57,8 @@ class TicketsList extends Component {
         priority: "Low",
         created: ProfileIcon,
         status: "Resolved",
-        action: (
-          <button className="button" onClick={() => alert("hei")}>
-            view
-          </button>
-        )
+        action: ''
+        
       },
       {
         id: "#1254311",
@@ -77,11 +66,7 @@ class TicketsList extends Component {
         priority: "Medium",
         created: ProfileIcon,
         status: "Progress",
-        action: (
-          <button className="button" onClick={() => alert("hei")}>
-            view
-          </button>
-        )
+        action:''
       },
       {
         id: "#1254311",
@@ -89,11 +74,7 @@ class TicketsList extends Component {
         priority: "Medium",
         created: ProfileIcon,
         status: "Progress",
-        action: (
-          <button className="button" onClick={() => alert("hei")}>
-            view
-          </button>
-        )
+        action:''
       },
       {
         id: "#444411",
@@ -113,15 +94,12 @@ class TicketsList extends Component {
         priority: "Medium",
         created: ProfileIcon,
         status: "New",
-        action: (
-          <button className="button" onClick={() => alert("hei")}>
-            view
-          </button>
-        )
+        action:''
       }
     ]
   };
   render() {
+    const {messageTicket} = this.props
     const selectRow = {
       mode: "checkbox",
       clickToSelect: true
@@ -187,7 +165,7 @@ class TicketsList extends Component {
           </>
         ),
         action: (
-          <button className="button" onClick={() => alert("hei")}>
+          <button className="button" onClick={() => messageTicket()}>
             view
           </button>
         )

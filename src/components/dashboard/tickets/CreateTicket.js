@@ -54,7 +54,7 @@ class CreateTicket extends Component {
   //liste agents
 
   listAgents = (
-    <ul className="menu-list">
+    <ul className=" menu-list menu-list-ticket">
       {this.state.initAgents &&
         this.state.initAgents.map((item, i) => (
           <li key={i}>
@@ -272,7 +272,7 @@ class CreateTicket extends Component {
                     <h2 className="title assign-modal-title">
                       Assign Agent to Ticket
                     </h2>
-                    <ul className="menu-list">
+                    <ul className="menu-list menu-list-ticket">
                       {" "}
                       <li className="assign-self">
                         <img src={ProfileIcon} alt="portrait" />
