@@ -124,6 +124,8 @@ const Content = (props) => {
 
         return;
       }
+
+      // build & save in dataBase
       buildCreateCustomerFiled(newObjectFiled);
       initSocketCreateCustomerFiled();
     }

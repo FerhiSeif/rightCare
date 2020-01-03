@@ -89,7 +89,7 @@ const Header = (props) => {
   const [statusNotification, setStatusNotification] = useState(''); // '' , success , danger
   const [contentNotification, setContentNotification] = useState({ title: '', msg: '' });
 
-  const handleAddNotification = (status = 'success', active = true, content = {}) => {
+  const handleAddNotification = (status = 'success', active = false, content = {}) => {
     setContentNotification({ title: t('notification.title'), msg: t('notification.msg') });
     // setContentNotification(content); // content = objet
     setStatusNotification(status); // success , danger

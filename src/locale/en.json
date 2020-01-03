@@ -160,12 +160,54 @@
   },
   "tickets": {
     "tickets_overview": "Ticket",
-    "tickets_creation": "Create Ticket",
+    "new_ticket": "New Ticket",
     "resolve_ticket": "Resolve Ticket",
     "pending_ticket": "Pending Ticket",
-    "new_ticket": "New Ticket",
     "total_ticket": "Total Ticket",
     "today": "Today",
-    "tickets_message" : "Ticket Message"
+    "ticket_btn_create": "Create Ticket",
+    "tickets_message" : "Ticket Message",
+    "search_placeholder": "Search",
+    "search_filtrer": "Filtrer",
+
+    "search_filtrer_content": {
+      "priority": "priority",
+      "priority_filter": {
+        "all": "All",
+        "high": "High",
+        "medium": "Medium",
+        "Low": "Low"
+      },
+      "status": "Status",
+      "status_filter": {
+        "all": "All",
+        "new": "New",
+        "pending": "Pending",
+        "resolve": "Resolve"
+      },
+      "category": "Category",
+      "category_filter": {
+        "all": "All",
+        "technical": "Technical",
+        "support": "Support",
+        "enquires": "Enquires"
+      },
+      "clear_all_filters": "clear all filters",
+      "cancel": "Cancel",
+      "apply": "Apply"
+    },
+    "table_list": {
+      "ticket_id": "TICKET ID",
+      "ticket_title": "TICKET TITLE",
+      "ticket_priority": "TICKET PRIORITY",
+      "created": "CREATED",
+      "status": "STATUS",
+      "action": "ACTION",
+      "btn_view": "view",
+      "nextPage": "Next",
+      "prePage": "Prev"
+    }
+
   }
+
 }

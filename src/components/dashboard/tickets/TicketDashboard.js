@@ -1,18 +1,17 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import FormGroup from "@material-ui/core/FormGroup";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Checkbox from "@material-ui/core/Checkbox";
-import CreateTicket from "../ticketAnalytics/CreateTicket";
-import ResolveTicket from "../ticketAnalytics/ResolveTicket";
-import PendingTicket from "../ticketAnalytics/PendingTicket";
-import TotalTicket from "../ticketAnalytics/TotalTicket";
-import MoreIcon from "../../../assets/images/dashboard/more.svg";
-import CalendarIcon from "../../../assets/images/dashboard/calendar.svg";
-import SearchIcon from "../../../assets/images/profile/search.svg";
-import TicketsList from "../ticketAnalytics/TicketsList"; // SortBtn
-import SortBtn from "../../../assets/images/tickets/sortBtn.svg";
-// import { render } from "enzyme";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import FormGroup from '@material-ui/core/FormGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
+import CreateTicket from '../ticketAnalytics/CreateTicket';
+import ResolveTicket from '../ticketAnalytics/ResolveTicket';
+import PendingTicket from '../ticketAnalytics/PendingTicket';
+import TotalTicket from '../ticketAnalytics/TotalTicket';
+import MoreIcon from '../../../assets/images/dashboard/more.svg';
+import CalendarIcon from '../../../assets/images/dashboard/calendar.svg';
+import SearchIcon from '../../../assets/images/profile/search.svg';
+import TicketsList from '../ticketAnalytics/TicketsList'; // SortBtn
+import SortBtn from '../../../assets/images/tickets/sortBtn.svg';
 
 class TicketDashboard extends Component {
   constructor(props) {
@@ -31,9 +30,10 @@ class TicketDashboard extends Component {
       allCategory: false,
       technical: false,
       support: false,
-      enquires: false
+      enquires: false,
     };
   }
+
   handleChange = event => {
     this.setState({ [event.target.value]: event.target.checked });
   };
@@ -57,7 +57,7 @@ class TicketDashboard extends Component {
 
   closeFilter = () => {
     this.setState({
-      isOpen: false
+      isOpen: false,
     });
     this.clearfilter();
   };
@@ -69,29 +69,42 @@ class TicketDashboard extends Component {
       <>
         <div className="ticketnalytics-header">
           <h2 className="dashboard-title titledashboard">
-            {kind === "tickets"
-              ? t("tickets.tickets_overview")
-              : kind === "dashboard"
-              ? t("dashboard.dashboard_overview")
-              : t("settings.settings_overview")}
+            {kind === 'tickets'
+              ? t('tickets.tickets_overview')
+              : kind === 'dashboard'
+              ? t('dashboard.dashboard_overview')
+              : t('settings.settings_overview')}
           </h2>
           <button className="create_ticketbtn" onClick={() => createTicket()}>
-            + {t("tickets.tickets_creation").toUpperCase()}
+            + {t('tickets.ticket_btn_create').toUpperCase()}
           </button>
         </div>
         <div className="columns analytics-columns">
-          <CreateTicket t={t} CalendarIcon={CalendarIcon} MoreIcon={MoreIcon} />
+
+          <CreateTicket
+            t={t}
+            CalendarIcon={CalendarIcon}
+            MoreIcon={MoreIcon}
+          />
+
           <ResolveTicket
             t={t}
             CalendarIcon={CalendarIcon}
             MoreIcon={MoreIcon}
           />
+
           <PendingTicket
             t={t}
             CalendarIcon={CalendarIcon}
             MoreIcon={MoreIcon}
           />
-          <TotalTicket t={t} CalendarIcon={CalendarIcon} MoreIcon={MoreIcon} />
+
+          <TotalTicket
+            t={t}
+            CalendarIcon={CalendarIcon}
+            MoreIcon={MoreIcon}
+          />
+
         </div>
         <div className="columns chart-columns ">
           <div className="column column-chart ticketContainer container-dashboard-ticket ">
@@ -99,10 +112,11 @@ class TicketDashboard extends Component {
               <button className="buttonserch">
                 <img className="view-more" src={SearchIcon} alt="SearchIcon" />
               </button>
+
               <input
                 className="input input-search"
                 type="text"
-                placeholder="Search"
+                placeholder={t('tickets.search_placeholder')}
               />
 
               <button
@@ -115,17 +129,17 @@ class TicketDashboard extends Component {
                 }}
               >
                 <img className="view-more" src={SortBtn} alt="Sort Button" />
-                Filtrer
+                {t('tickets.search_filtrer')}
                 <img className="view-more" src={MoreIcon} alt="caneldar" />
               </button>
             </div>
             <div
               className="modalSerach"
-              style={{ display: `${isOpen ? "flex" : "none"}` }}
+              style={{ display: `${isOpen ? 'flex' : 'none'}` }}
             >
               <div className="priorityContainer">
-                {" "}
-                <span className="text-filter">Priority</span>
+                {' '}
+                <span className="text-filter"> {t('tickets.search_filtrer_content.priority')} </span>
                 <FormGroup row>
                   <FormControlLabel
                     control={
@@ -136,7 +150,7 @@ class TicketDashboard extends Component {
                         color="primary"
                       />
                     }
-                    label="All"
+                    label={t('tickets.search_filtrer_content.priority_filter.all')}
                   />
                   <FormControlLabel
                     control={
@@ -147,7 +161,7 @@ class TicketDashboard extends Component {
                         color="primary"
                       />
                     }
-                    label="High"
+                    label={t('tickets.search_filtrer_content.priority_filter.high')}
                   />
                   <FormControlLabel
                     control={
@@ -158,7 +172,7 @@ class TicketDashboard extends Component {
                         color="primary"
                       />
                     }
-                    label="Medium"
+                    label={t('tickets.search_filtrer_content.priority_filter.medium')}
                   />
                   <FormControlLabel
                     control={
@@ -169,13 +183,13 @@ class TicketDashboard extends Component {
                         color="primary"
                       />
                     }
-                    label="Low"
+                    label={t('tickets.search_filtrer_content.priority_filter.low')}
                   />
                 </FormGroup>
               </div>
               <div className="statusContainer">
-                {" "}
-                <span className="text-filter">Status</span>
+                {' '}
+                <span className="text-filter"> {t('tickets.search_filtrer_content.status')} </span>
                 <FormGroup row>
                   <FormControlLabel
                     control={
@@ -186,7 +200,7 @@ class TicketDashboard extends Component {
                         color="primary"
                       />
                     }
-                    label="All"
+                    label={t('tickets.search_filtrer_content.status_filter.all')}
                   />
                   <FormControlLabel
                     control={
@@ -197,7 +211,7 @@ class TicketDashboard extends Component {
                         color="primary"
                       />
                     }
-                    label="New"
+                    label={t('tickets.search_filtrer_content.status_filter.new')}
                   />
                   <FormControlLabel
                     control={
@@ -208,7 +222,7 @@ class TicketDashboard extends Component {
                         color="primary"
                       />
                     }
-                    label="Pending"
+                    label={t('tickets.search_filtrer_content.status_filter.pending')}
                   />
                   <FormControlLabel
                     control={
@@ -219,13 +233,13 @@ class TicketDashboard extends Component {
                         color="primary"
                       />
                     }
-                    label="Resolve"
+                    label={t('tickets.search_filtrer_content.status_filter.resolve')}
                   />
                 </FormGroup>
               </div>
               <div className="CategorieContainer">
-                {" "}
-                <span className="text-filter">Category</span>
+                {' '}
+                <span className="text-filter"> {t('tickets.search_filtrer_content.category')} </span>
                 <FormGroup row>
                   <FormControlLabel
                     control={
@@ -236,7 +250,7 @@ class TicketDashboard extends Component {
                         color="primary"
                       />
                     }
-                    label="All"
+                    label={t('tickets.search_filtrer_content.category_filter.all')}
                   />
                   <FormControlLabel
                     control={
@@ -247,7 +261,7 @@ class TicketDashboard extends Component {
                         color="primary"
                       />
                     }
-                    label="Technical"
+                    label={t('tickets.search_filtrer_content.category_filter.technical')}
                   />
                   <FormControlLabel
                     control={
@@ -258,7 +272,7 @@ class TicketDashboard extends Component {
                         color="primary"
                       />
                     }
-                    label="Support"
+                    label={t('tickets.search_filtrer_content.category_filter.support')}
                   />
                   <FormControlLabel
                     control={
@@ -269,33 +283,37 @@ class TicketDashboard extends Component {
                         color="primary"
                       />
                     }
-                    label="Enquires"
+                    label={t('tickets.search_filtrer_content.category_filter.enquires')}
                   />
                 </FormGroup>
               </div>
               <div className="modalSerachSetting">
                 <p className="clear-Filter" onClick={this.clearfilter}>
-                  {" "}
-                  clear all filters
+                  {t('tickets.search_filtrer_content.clear_all_filters')}
                 </p>
                 <p>
                   <span
                     style={{
-                      color: "#94A4BE",
-                      marginRight: "32px",
-                      cursor: "pointer"
+                      color: '#94A4BE',
+                      marginRight: '32px',
+                      cursor: 'pointer'
                     }}
                     onClick={this.closeFilter}
                   >
-                    Cancel
+                    {t('tickets.search_filtrer_content.cancel')}
                   </span>
-                  <span style={{ color: "##0089E1", cursor: "pointer" }}>
-                    Apply
+                  <span style={{ color: '##0089E1', cursor: 'pointer' }}>
+                    {t('tickets.search_filtrer_content.apply')}
                   </span>
                 </p>
               </div>
             </div>
-            <TicketsList messageTicket={()=>messageTicket()}/>
+
+            <TicketsList
+              t={t}
+              messageTicket={() => messageTicket()}
+            />
+
           </div>
         </div>
       </>
@@ -306,7 +324,7 @@ class TicketDashboard extends Component {
 TicketDashboard.propTypes = {
   i18n: PropTypes.shape({}).isRequired,
   t: PropTypes.func.isRequired,
-  kind: PropTypes.string.isRequired
+  kind: PropTypes.string.isRequired,
 };
 
 export default TicketDashboard;
