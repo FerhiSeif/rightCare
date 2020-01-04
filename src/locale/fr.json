@@ -201,7 +201,7 @@
       "ticket_id": "ID TICKET",
       "ticket_title": "TITRE TICKET",
       "ticket_priority": "PRIORITÉ TICKET",
-      "created": "CRÉÉ",
+      "created": "CRÉÉ PAR",
       "status": "STATUT",
       "action": "ACTION",
       "btn_view": "voir",

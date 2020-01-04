@@ -51,7 +51,7 @@ class TicketDashboard extends Component {
       allCategory: false,
       technical: false,
       support: false,
-      enquires: false
+      enquires: false,
     });
   };
 
@@ -63,7 +63,7 @@ class TicketDashboard extends Component {
   };
 
   render() {
-    const { i18n, t, kind, createTicket,messageTicket } = this.props;
+    const { i18n, t, kind, createTicket, messageTicket } = this.props;
     const { isOpen } = this.state;
     return (
       <>
@@ -325,6 +325,8 @@ TicketDashboard.propTypes = {
   i18n: PropTypes.shape({}).isRequired,
   t: PropTypes.func.isRequired,
   kind: PropTypes.string.isRequired,
+  createTicket: PropTypes.func.isRequired,
+  messageTicket: PropTypes.func.isRequired,
 };
 
 export default TicketDashboard;

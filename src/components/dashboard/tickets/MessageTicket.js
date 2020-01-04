@@ -108,7 +108,7 @@ class MessageTicket extends Component {
         <div className="ticketnalytics-header">
           <h2 className="dashboard-title">Ticket No. #34421231</h2>
           <button className="create_ticketbtn" onClick={() => createTicket()}>
-            + {t("tickets.tickets_creation").toUpperCase()}
+            + {t("tickets.ticket_btn_create").toUpperCase()}
           </button>
         </div>
         <div className="columns analytics-columns MessageTicket-conaitner">

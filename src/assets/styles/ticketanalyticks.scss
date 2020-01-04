@@ -669,7 +669,7 @@ input.display {
 }
 .resseign-messageTick{
   color: #0089E1;
-  margin-left: 10px;
+  margin-left: 10pxπ;
   text-decoration:underline;
   cursor:pointer
 }
@@ -690,4 +690,28 @@ input.display {
 .display-user-assegne {
   padding: 5px;
 }
+}
+
+// design BootstrapTable : pagination
+.react-bootstrap-table-page-btns-ul {
+  li {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  li:first-child {
+    border-top-left-radius: 10px !important;
+    border-bottom-left-radius: 10px !important;
+  }
+  li:last-child {
+    border-top-right-radius: 10px !important;
+    border-bottom-right-radius: 10px !important;
+  }
+}
+
+.button-trash-table {
+  cursor: pointer;
+  margin-left: 1rem;
+}
+.img-trash {
+  cursor: pointer;
 }

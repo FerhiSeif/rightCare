@@ -176,7 +176,7 @@
         "all": "All",
         "high": "High",
         "medium": "Medium",
-        "Low": "Low"
+        "low": "Low"
       },
       "status": "Status",
       "status_filter": {

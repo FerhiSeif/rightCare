@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import BootstrapTable from 'react-bootstrap-table-next';
 import paginationFactory from 'react-bootstrap-table2-paginator';
 import ProfileIcon from '../../../assets/images/profile/idpic.jpg';
+import trashIcon from '../../../assets/images/tickets/table-list/trash.svg';
 
 class TicketsList extends Component {
   constructor(props) {
@@ -72,7 +73,7 @@ class TicketsList extends Component {
           action: '',
         },
         {
-          id: '#1254311',
+          id: '#1254319',
           title: 'issues 3',
           priority: 'Medium',
           created: ProfileIcon,
@@ -103,6 +104,11 @@ class TicketsList extends Component {
     };
   }
 
+  deleteTicket = (elmt, index) => {
+    console.log(elmt);
+    console.log(index);
+  }
+
   render() {
     const { t, messageTicket } = this.props;
     const selectRow = {
@@ -118,35 +124,35 @@ class TicketsList extends Component {
       prePageText: t('tickets.table_list.prePage'),
     };
 
-    const productView = this.state.products.map((elm, i) => ({
-      id: elm.id,
-      title: <p style={{ textDecoration: 'underline' }}>{elm.title}</p>,
+    const productView = this.state.products.map((elmt, index) => ({
+      id: elmt.id,
+      title: <p style={{ textDecoration: 'underline' }}>{elmt.title}</p>,
       priority: (
         <p
           className="list-ticket-textpriority"
           style={{
             background: `${
-              elm.priority === 'High'
+              elmt.priority === 'High'
                 ? '#eb592321'
-                : elm.priority === 'Low'
+                : elmt.priority === 'Low'
                   ? '#6572884a'
                   : '#ff9b214d'
             }`,
             color: `${
-              elm.priority === 'High'
+              elmt.priority === 'High'
                 ? '#EB5923'
-                : elm.priority === 'Low'
+                : elmt.priority === 'Low'
                   ? '#657288'
                   : '#FF9B21'
             }`,
           }}
         >
-          {elm.priority}
+          {elmt.priority}
         </p>
       ),
       created: (
         <img
-          src={elm.created}
+          src={elmt.created}
           alt="profile picture"
           className="profilepicture-assignee"
         />
@@ -157,21 +163,30 @@ class TicketsList extends Component {
             className="list-ticket-btn"
             style={{
               background: `${
-                elm.status === 'Progress'
+                elmt.status === 'Progress'
                   ? '#FF9B21'
-                  : elm.status === 'New'
+                  : elmt.status === 'New'
                     ? '#0089E1'
                     : '#00BD39'
               }`,
             }}
           />
-          {elm.status}
+          {elmt.status}
         </>
       ),
       action: (
-        <button className="button" onClick={() => messageTicket()}>
+        // le bouton voir qui s'affiche dans le tableau
+        <>
+          <button className="button" onClick={() => messageTicket()}>
             {t('tickets.table_list.btn_view')}
-        </button>
+          </button>
+
+          <button className="button button-trash-table" onClick={() => this.deleteTicket(elmt, index)}>
+            {/* <object type="image/svg+xml" data={trashIcon} className="img-trash" onClick={() => this.deleteTicket(elmt, index)}>
+            </object> */}
+            <img src={trashIcon} alt="img trash" className="img-trash" width="15" />
+          </button>
+        </>
       ),
     }));
     return (
