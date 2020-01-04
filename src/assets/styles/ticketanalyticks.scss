@@ -382,18 +382,16 @@ input.display {
   margin-right: 10px;
 }
 .list-ticket-textpriority {
-  color: #eb5923;
-  width: 82px;
-  height: 33px;
-  background: #eb592321;
+  width: 100px;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 64px;
   font-weight: 500;
 }
 .ticketinfos {
-  margin-left: 5%;
+  // margin-left: 5%;
+  margin-right: 0.5rem;
   width: 55%;
 }
 .ticketkeys {
@@ -435,7 +433,7 @@ input.display {
   height: 1px;
   margin-bottom: 10px;
 }
-.textblue {
+.text-blue {
   margin-left: 0;
 }
 .profil-contain {
@@ -676,7 +674,7 @@ input.display {
 
 @media only screen and (max-width: 1280px) {
   .css-2b097c-container {
-    width: 50%;
+    width: 55%;
   }
   .display-user-info {
     padding: 3px;

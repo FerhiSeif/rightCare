@@ -166,7 +166,6 @@
     "total_ticket": "Total Ticket",
     "today": "Today",
     "ticket_btn_create": "Create Ticket",
-    "tickets_message" : "Ticket Message",
     "search_placeholder": "Search",
     "search_filtrer": "Filtrer",
 
@@ -206,8 +205,37 @@
       "btn_view": "view",
       "nextPage": "Next",
       "prePage": "Prev"
+    },
+    "details_ticket": {
+      "header": {
+        "ticket_table": "Ticket Table",
+        "tickets_message" : "Ticket Message"
+      },
+      "ticket_number": "Ticket No. : ",
+      "customer_details": "CUSTOMER'S DETAILS",
+      "date": "Date : ",
+      "created": "Created : ",
+      "assignee": "Assignee : ",
+      "reassign": " Reassign",
+      "priority": "Priority : ",
+      "status": "Status : ",
+      "ticket_log_activities": "Ticket Log Activities",
+      "close_ticket": "Close ticket",
+      "assign_agent_ticket": "Assign Agent to Ticket",
+      "assign_ticket_myself": "Assign ticket to myself",
+      "search_agent_input": "Search agent",
+      "Assign": "Continue",
+      "priority_select": {
+        "high": "High",
+        "medium": "Medium",
+        "low": "Low"
+      },
+      "status_select": {
+        "pending": "Pending",
+        "resolved": "Resolved",
+        "new": "New"
+      }
     }
-
   }
 
 }
