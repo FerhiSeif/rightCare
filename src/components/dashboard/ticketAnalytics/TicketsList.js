@@ -190,7 +190,7 @@ class TicketsList extends Component {
       ),
     }));
     return (
-      <div style={{ padding: '20px' }}>
+      <div style={{ padding: '0' }}>
         <BootstrapTable
           keyField="id"
           data={productView}

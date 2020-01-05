@@ -109,7 +109,7 @@ class MessageTicket extends Component {
       label: (
         <>
           <button
-            className="list-ticket-btn"
+            className="ticket-select-status"
             style={{
               background: `${
                 elm.index == 'Pending'
@@ -129,7 +129,7 @@ class MessageTicket extends Component {
       ...elm,
       label: (
         <p
-          className="list-ticket-textpriority"
+          className="ticket-select-priority"
           style={{
             background: `${
               elm.index == 'High'

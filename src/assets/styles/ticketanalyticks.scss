@@ -382,12 +382,30 @@ input.display {
   margin-right: 10px;
 }
 .list-ticket-textpriority {
+  // color: #eb5923;
+  height: 33px;
+  background: #eb592321;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 64px;
+  font-weight: 500;
+  margin: 0 1rem;
+}
+.ticket-select-priority {
   width: 100px;
   height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   font-weight: 500;
+}
+.ticket-select-status {
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50%;
+  border: none;
+  margin-right: 10px;
 }
 .ticketinfos {
   // margin-left: 5%;
@@ -710,6 +728,20 @@ input.display {
   cursor: pointer;
   margin-left: 1rem;
 }
+
 .img-trash {
   cursor: pointer;
+}
+
+.table-bordered tbody tr td:nth-child(5) {
+  border-left: 1px solid #e5e5e5 !important;
+  border-bottom: 1px solid #e5e5e5 !important;
+  border-right: 1px solid #e5e5e5 !important;
+  text-align: center;
+}
+.table-bordered tbody tr td:last-child {
+  border-left: 1px solid #e5e5e5 !important;
+  border-bottom: 1px solid #e5e5e5 !important;
+  border-right: 1px solid #e5e5e5 !important;
+  text-align: center;
 }
