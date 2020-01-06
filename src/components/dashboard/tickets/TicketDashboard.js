@@ -129,7 +129,7 @@ class TicketDashboard extends Component {
                 }}
               >
                 <img className="view-more" src={SortBtn} alt="Sort Button" />
-                {t('tickets.search_filtrer')}
+                {t('tickets.search_filter')}
                 <img className="view-more" src={MoreIcon} alt="caneldar" />
               </button>
             </div>
@@ -139,7 +139,7 @@ class TicketDashboard extends Component {
             >
               <div className="priorityContainer">
                 {' '}
-                <span className="text-filter"> {t('tickets.search_filtrer_content.priority')} </span>
+                <span className="text-filter"> {t('tickets.search_filter_content.priority')} </span>
                 <FormGroup row>
                   <FormControlLabel
                     control={
@@ -150,7 +150,7 @@ class TicketDashboard extends Component {
                         color="primary"
                       />
                     }
-                    label={t('tickets.search_filtrer_content.priority_filter.all')}
+                    label={t('tickets.search_filter_content.priority_filter.all')}
                   />
                   <FormControlLabel
                     control={
@@ -161,7 +161,7 @@ class TicketDashboard extends Component {
                         color="primary"
                       />
                     }
-                    label={t('tickets.search_filtrer_content.priority_filter.high')}
+                    label={t('tickets.search_filter_content.priority_filter.high')}
                   />
                   <FormControlLabel
                     control={
@@ -172,7 +172,7 @@ class TicketDashboard extends Component {
                         color="primary"
                       />
                     }
-                    label={t('tickets.search_filtrer_content.priority_filter.medium')}
+                    label={t('tickets.search_filter_content.priority_filter.medium')}
                   />
                   <FormControlLabel
                     control={
@@ -183,13 +183,13 @@ class TicketDashboard extends Component {
                         color="primary"
                       />
                     }
-                    label={t('tickets.search_filtrer_content.priority_filter.low')}
+                    label={t('tickets.search_filter_content.priority_filter.low')}
                   />
                 </FormGroup>
               </div>
               <div className="statusContainer">
                 {' '}
-                <span className="text-filter"> {t('tickets.search_filtrer_content.status')} </span>
+                <span className="text-filter"> {t('tickets.search_filter_content.status')} </span>
                 <FormGroup row>
                   <FormControlLabel
                     control={
@@ -200,7 +200,7 @@ class TicketDashboard extends Component {
                         color="primary"
                       />
                     }
-                    label={t('tickets.search_filtrer_content.status_filter.all')}
+                    label={t('tickets.search_filter_content.status_filter.all')}
                   />
                   <FormControlLabel
                     control={
@@ -211,7 +211,7 @@ class TicketDashboard extends Component {
                         color="primary"
                       />
                     }
-                    label={t('tickets.search_filtrer_content.status_filter.new')}
+                    label={t('tickets.search_filter_content.status_filter.new')}
                   />
                   <FormControlLabel
                     control={
@@ -222,7 +222,7 @@ class TicketDashboard extends Component {
                         color="primary"
                       />
                     }
-                    label={t('tickets.search_filtrer_content.status_filter.pending')}
+                    label={t('tickets.search_filter_content.status_filter.pending')}
                   />
                   <FormControlLabel
                     control={
@@ -233,13 +233,13 @@ class TicketDashboard extends Component {
                         color="primary"
                       />
                     }
-                    label={t('tickets.search_filtrer_content.status_filter.resolve')}
+                    label={t('tickets.search_filter_content.status_filter.resolve')}
                   />
                 </FormGroup>
               </div>
               <div className="CategorieContainer">
                 {' '}
-                <span className="text-filter"> {t('tickets.search_filtrer_content.category')} </span>
+                <span className="text-filter"> {t('tickets.search_filter_content.category')} </span>
                 <FormGroup row>
                   <FormControlLabel
                     control={
@@ -250,7 +250,7 @@ class TicketDashboard extends Component {
                         color="primary"
                       />
                     }
-                    label={t('tickets.search_filtrer_content.category_filter.all')}
+                    label={t('tickets.search_filter_content.category_filter.all')}
                   />
                   <FormControlLabel
                     control={
@@ -261,7 +261,7 @@ class TicketDashboard extends Component {
                         color="primary"
                       />
                     }
-                    label={t('tickets.search_filtrer_content.category_filter.technical')}
+                    label={t('tickets.search_filter_content.category_filter.technical')}
                   />
                   <FormControlLabel
                     control={
@@ -272,7 +272,7 @@ class TicketDashboard extends Component {
                         color="primary"
                       />
                     }
-                    label={t('tickets.search_filtrer_content.category_filter.support')}
+                    label={t('tickets.search_filter_content.category_filter.support')}
                   />
                   <FormControlLabel
                     control={
@@ -283,13 +283,13 @@ class TicketDashboard extends Component {
                         color="primary"
                       />
                     }
-                    label={t('tickets.search_filtrer_content.category_filter.enquires')}
+                    label={t('tickets.search_filter_content.category_filter.enquires')}
                   />
                 </FormGroup>
               </div>
               <div className="modalSerachSetting">
                 <p className="clear-Filter" onClick={this.clearfilter}>
-                  {t('tickets.search_filtrer_content.clear_all_filters')}
+                  {t('tickets.search_filter_content.clear_all_filters')}
                 </p>
                 <p>
                   <span
@@ -300,10 +300,10 @@ class TicketDashboard extends Component {
                     }}
                     onClick={this.closeFilter}
                   >
-                    {t('tickets.search_filtrer_content.cancel')}
+                    {t('tickets.search_filter_content.cancel')}
                   </span>
                   <span style={{ color: '##0089E1', cursor: 'pointer' }}>
-                    {t('tickets.search_filtrer_content.apply')}
+                    {t('tickets.search_filter_content.apply')}
                   </span>
                 </p>
               </div>

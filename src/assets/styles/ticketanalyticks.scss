@@ -87,6 +87,9 @@ input::placeholder {
   width: 45% !important;
   margin-bottom: 30px;
 }
+.createTicket-large {
+  width: 100% !important;
+}
 
 .createTicket-div {
   background: #c8d3d6;
@@ -130,7 +133,7 @@ input::placeholder {
 }
 
 .upload-file-container {
-  width: 347px;
+  width: 100%;
   height: 186px;
   background: #ffffff 0% 0% no-repeat padding-box;
   border: 1px solid #c8d3d6;
@@ -193,8 +196,9 @@ input::placeholder {
   border: none;
   border-radius: 7px;
   padding: 16px;
-  margin-top: 100px;
   width: 200px;
+  margin-top: 100px;
+  margin-bottom: 100%;
 }
 .buttonserch {
   height: 42px;
@@ -733,6 +737,7 @@ input.display {
   cursor: pointer;
 }
 
+// refact design - Table Bootstrap
 .table-bordered tbody tr td:nth-child(5) {
   border-left: 1px solid #e5e5e5 !important;
   border-bottom: 1px solid #e5e5e5 !important;
@@ -744,4 +749,18 @@ input.display {
   border-bottom: 1px solid #e5e5e5 !important;
   border-right: 1px solid #e5e5e5 !important;
   text-align: center;
+}
+
+// refact desing - Quill Editor
+.rdw-editor-toolbar {
+  margin-bottom: 0 !important;
+  border: solid 1px #C8D3D6;
+  border-top-left-radius: 7px;
+  border-top-right-radius: 7px;
+}
+.rdw-editor-main {
+  border: solid 1px #C8D3D6;
+  border-top: none;
+  border-bottom-left-radius: 7px;
+  border-bottom-right-radius: 7px;
 }

@@ -14,27 +14,25 @@ import ProfileIcon from '../../../assets/images/profile/idpic.jpg';
 // import { render } from "enzyme";
 
 class CreateTicket extends Component {
-  constructor(props) {
-    super(props);
+  // eslint-disable-next-line react/state-in-constructor
+  state = {
+    assegneeModalOpen: false,
+    initAgents: [],
+    multiValue: '',
+    multiValuecat: '',
+    priority: [
+      { value: 'High', label: 'High' },
+      { value: 'Medium', label: 'Medium' },
+      { value: 'Low', label: 'Low' },
+    ],
+    category: [
+      { value: 'Technical', label: 'Technical' },
+      { value: 'Customer Care', label: 'Customer Care' },
+      { value: 'Enquires', label: 'Enquires' },
+    ],
+  };
 
-    this.state = {
-      assegneeModalOpen: false,
-      initAgents: FakeAgents,
-      multiValue: '',
-      multiValuecat: '',
-      priority: [
-        { value: 'High', label: 'High' },
-        { value: 'Medium', label: 'Medium' },
-        { value: 'Low', label: 'Low' },
-      ],
-      category: [
-        { value: 'Technical', label: 'Technical' },
-        { value: 'Customer Care', label: 'Customer Care' },
-        { value: 'Enquires', label: 'Enquires' },
-      ],
-    };
-  }
-
+  // eslint-disable-next-line react/sort-comp
   changeAvatre = (event) => {
     const image = event.target.files[0];
     // this.uploadPhoto(image);
@@ -57,7 +55,6 @@ class CreateTicket extends Component {
   // add agent
 
   // liste agents
-
   listAgents = (
     <ul className=" menu-list menu-list-ticket">
       {this.state.initAgents
@@ -102,22 +99,29 @@ class CreateTicket extends Component {
       },
     };
     // options: ['inline', 'blockType', 'fontSize', 'fontFamily', 'list', 'textAlign', 'colorPicker', 'link', 'embedded', 'emoji', 'image', 'remove', 'history']
+
+    const customStyles = {
+      option: (provided, state) => ({
+        ...provided,
+        color: state.isSelected ? '#222' : '#222',
+        text: 'center',
+      }),
+    };
+
     return (
       <>
         <div className="header-indicator">
-          <h3 className="header-indic-title1">Ticket Table </h3>
+          <h3 className="header-indic-title1">
+            { t('tickets.details_ticket.header.ticket_table') }
+          </h3>
+          {' > '}
           <p className="header-indic-title2">
-            {' '}
-            {t('tickets.tickets_creation')}
+            { t('tickets.create_ticket.text_create') }
           </p>
         </div>
         <div className="ticketnalytics-header">
           <h2 className="dashboard-title">
-            {kind === 'tickets'
-              ? t('tickets.tickets_creation')
-              : kind === 'dashboard'
-                ? t('dashboard.dashboard_overview')
-                : t('settings.settings_overview')}
+            { t('tickets.create_ticket.text_create') }
           </h2>
         </div>
         <div className="columns analytics-columns createTicket-conaitner">
@@ -130,16 +134,19 @@ class CreateTicket extends Component {
                     className="profilepicture-assignee"
                     alt="agent picture"
                   />
-                  <span className="createTicket-div-text">AdisaKola </span>
+                  <span className="createTicket-div-text">
+                    Adisa Kola
+                  </span>
                 </div>
                 <div className="createTicket-div">
                   <span className="createTicket-div-text">
-                    {' '}
                     AdisaKola@gmail.com
                   </span>
                 </div>
               </div>
-              <h3 className="customer-text">CUSTOMER'S DETAILS</h3>
+              <h3 className="customer-text">
+                { t('tickets.create_ticket.customer_details') }
+              </h3>
               <div className="input-createTicket">
                 <input
                   className="input createTicket"
@@ -163,14 +170,19 @@ class CreateTicket extends Component {
                 />
               </div>
             </div>
+
             <div className="secontInput-container">
-              <h3 className="textInputcontainer">Ticket Subject</h3>
+              <h3 className="textInputcontainer">
+                { t('tickets.create_ticket.ticket_subject') }
+              </h3>
               <input
-                className="input "
+                className="input //createTicket-large"
                 type="text"
-                placeholder=" Enter subject"
+                placeholder={t('tickets.create_ticket.ticket_subject_input')}
               />
-              <h3 className="textInputcontainer">Ticket Priority</h3>
+              <h3 className="textInputcontainer">
+                { t('tickets.create_ticket.ticket_priority') }
+              </h3>
               <div>
                 <Select
                   options={this.state.priority}
@@ -178,20 +190,46 @@ class CreateTicket extends Component {
                   value={this.state.multiValue}
                   isSearchable={false}
                   className="ticket-Select"
-                  placeholder="Select Ticket Priority"
+                  placeholder={t('tickets.create_ticket.ticket_priority_input')}
+                  styles={customStyles}
+                  theme={(theme) => ({
+                    ...theme,
+                    colors: {
+                      ...theme.colors,
+                      primary: '#eee',
+                      primary25: '#eee',
+                    },
+                  })}
                 />
               </div>
-              <h3 className="textInputcontainer">Ticket Category</h3>
+
+              {/*
+              <h3 className="textInputcontainer">
+                {t('tickets.create_ticket.ticket_category')}
+              </h3>
               <div>
                 <Select
                   options={this.state.category}
                   onChange={this.handleOnChangeCat}
                   value={this.state.multiValuecat}
                   isSearchable={false}
-                  placeholder="Select Ticket Category"
+                  placeholder={t('tickets.create_ticket.ticket_category_input')}
+                  styles={customStyles}
+                  theme={(theme) => ({
+                    ...theme,
+                    colors: {
+                      ...theme.colors,
+                      primary: '#eee',
+                      primary25: '#eee',
+                    },
+                  })}
                 />
               </div>
-              <h3 className="textInputcontainer">Ticket Massage</h3>
+              */}
+
+              <h3 className="textInputcontainer">
+                {t('tickets.create_ticket.ticket_message')}
+              </h3>
               <Editor
                 // toolbarHidden
                 toolbar={{
@@ -220,7 +258,7 @@ class CreateTicket extends Component {
                   className="Submit-ticketbtn"
                   onClick={() => createTicket()}
                 >
-                  Submit Ticket
+                  {t('tickets.create_ticket.ticket_btn_submit')}
                 </button>
               </div>
             </div>
@@ -238,7 +276,9 @@ class CreateTicket extends Component {
                 multiple
                 ref={(fileInput) => (this.fileInput = fileInput)}
               />
-              <p style={{ color: '#C8D3D6' }}>Upload Files</p>
+              <p style={{ color: '#C8D3D6' }}>
+                {t('tickets.create_ticket.upload_file')}
+              </p>
             </div>
             {/* <FileUploadProgress
               key="ex1"
@@ -259,7 +299,7 @@ class CreateTicket extends Component {
             <div className="assegnee-Container">
               <div className="assign-text-Contain">
                 <p style={{ color: '#657288', marginRight: '20px' }}>
-                  Assignee
+                  {t('tickets.create_ticket.assignee')}
                 </p>
                 <div className="assign-agent-Container">
                   <span
@@ -277,14 +317,14 @@ class CreateTicket extends Component {
                     }}
                   >
                     <h2 className="title assign-modal-title">
-                      Assign Agent to Ticket
+                      {t('tickets.create_ticket.assign_agent_ticket')}
                     </h2>
                     <ul className="menu-list menu-list-ticket">
                       {' '}
                       <li className="assign-self">
                         <img src={ProfileIcon} alt="portrait" />
                         <span className="user-name">
-                          Assign ticket to myself
+                          {t('tickets.create_ticket.assign_ticket_myself')}
                         </span>
                         {
                           // fetchDatas(item.id) ? (<span className="remove-user" onClick={()=>console.log('hii')/*(e) => handleRemoveAgent(e, item.id)*/}>-</span>)
@@ -306,7 +346,7 @@ class CreateTicket extends Component {
                       <input
                         className="input"
                         type="text"
-                        placeholder={t('onboard.steps.search_agent')}
+                        placeholder={t('tickets.create_ticket.search_agent_input')}
                       />
                       <img src={SearchIcon} alt="search" />
                     </div>
@@ -314,8 +354,11 @@ class CreateTicket extends Component {
                       className="modal-card-body"
                       style={{ width: '100%' }}
                     >
+
                       {this.listAgents}
+
                       {/* { kind === 'agent' ? (<div>{agentCount === 0 &&<span>This agent can not be found in the list.</span>}{content}</div>) : <Services kind={kind} handleChooseService={handleChooseService} checkedServices={checkedServices} /> } */}
+
                     </section>
                     <footer className="assign-modal-footer">
                       <button
@@ -323,7 +366,7 @@ class CreateTicket extends Component {
                         aria-label="close"
                         style={{ width: '100%' }}
                       >
-                        Assign
+                        {t('tickets.create_ticket.Assign')}
                       </button>
                     </footer>
                   </div>

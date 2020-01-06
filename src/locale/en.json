@@ -167,9 +167,9 @@
     "today": "Today",
     "ticket_btn_create": "Create Ticket",
     "search_placeholder": "Search",
-    "search_filtrer": "Filtrer",
+    "search_filter": "Filter",
 
-    "search_filtrer_content": {
+    "search_filter_content": {
       "priority": "priority",
       "priority_filter": {
         "all": "All",
@@ -235,7 +235,27 @@
         "resolved": "Resolved",
         "new": "New"
       }
+    },
+
+    "create_ticket": {
+      "text_create": "Create Ticket",
+      "customer_details": "CUSTOMER'S DETAILS",
+      "ticket_subject": "Ticket Subject",
+      "ticket_subject_input": "Enter subject",
+      "ticket_priority": "Ticket Priority",
+      "ticket_priority_input": "Select Ticket Priority",
+      "ticket_category": "Ticket Category",
+      "ticket_category_input": "Select Ticket Category",
+      "ticket_message": "Ticket Message",
+      "ticket_btn_submit": "Submit",
+      "upload_file": "Upload Files",
+      "assignee": "Assignee",
+      "assign_agent_ticket": "Assign Agent to Ticket",
+      "assign_ticket_myself": "Assign ticket to myself",
+      "search_agent_input": "Search agent",
+      "Assign": "Continue"
     }
+
   }
 
 }
