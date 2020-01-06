@@ -161,12 +161,82 @@
   },
   "tickets": {
     "tickets_overview": "Ticket",
-    "Tickets_creation": "Créer un Ticket",
+    "new_ticket": "Nouveau Ticket",
     "resolve_ticket": "Resolve Ticket",
     "pending_ticket": "Ticket En Attente",
-    "new_ticket": "Nouveau Ticket",
     "total_ticket": "Total Ticket",
     "today": "Aujourd'hui",
-    "tickets_message": "Ticket Message"
+    "ticket_btn_create": "Créer un Ticket",
+    "search_placeholder": "Recherche",
+    "search_filtrer": "Filtre",
+
+    "search_filtrer_content": {
+      "priority": "Priorité",
+      "priority_filter": {
+        "all": "Tout",
+        "high": "Haute",
+        "medium": "Moyenne",
+        "Low": "Faible"
+      },
+      "status": "Statut",
+      "status_filter": {
+        "all": "Tout",
+        "new": "Nouveau",
+        "pending": "En attente",
+        "resolve": "Résolu"
+      },
+      "category": "Catégorie",
+      "category_filter": {
+        "all": "Tout",
+        "technical": "Technique",
+        "support": "Support",
+        "enquires": "Demande"
+      },
+      "clear_all_filters": "effacer les filtres",
+      "cancel": "Annuler",
+      "apply": "Appliquer"
+    },
+    "table_list": {
+      "ticket_id": "ID TICKET",
+      "ticket_title": "TITRE TICKET",
+      "ticket_priority": "PRIORITÉ TICKET",
+      "created": "CRÉÉ PAR",
+      "status": "STATUT",
+      "action": "ACTION",
+      "btn_view": "voir",
+      "nextPage": "Suivant",
+      "prePage": "Précédant"
+    },
+    "details_ticket": {
+      "header": {
+        "ticket_table": "Liste des tickets",
+        "tickets_message" : "Message du ticket"
+      },
+      "ticket_number": "N° du Ticket : ",
+      "customer_details": "DÉTAILS DU CLIENT",
+      "date": "Date : ",
+      "created": "Créé : ",
+      "assignee": "Attribuer : ",
+      "reassign": " Réaffecter",
+      "priority": "Priorité : ",
+      "status": "Statut : ",
+      "ticket_log_activities": "Activités des tickets",
+      "close_ticket": "Fermer le ticket",
+      "assign_agent_ticket": "Attribuer un agent au ticket",
+      "assign_ticket_myself": "Attribuer un ticket à moi",
+      "search_agent_input": "Rechercher agent",
+      "Assign": "Attribuer",
+      "priority_select": {
+        "high": "Haute",
+        "medium": "Moyenne",
+        "low": "Faible"
+      },
+      "status_select": {
+        "pending": "En attente",
+        "resolved": "Résolue",
+        "new": "Nouveau"
+      }
+    }
   }
+
 }

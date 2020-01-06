@@ -375,15 +375,14 @@ input.display {
   width: 100%;
 }
 .list-ticket-btn {
-  width: 0px;
-  height: 11px;
-  border-radius: 24px;
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50%;
   border: none;
   margin-right: 10px;
 }
 .list-ticket-textpriority {
-  color: #eb5923;
-  width: 82px;
+  // color: #eb5923;
   height: 33px;
   background: #eb592321;
   display: flex;
@@ -391,9 +390,26 @@ input.display {
   align-items: center;
   border-radius: 64px;
   font-weight: 500;
+  margin: 0 1rem;
+}
+.ticket-select-priority {
+  width: 100px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 500;
+}
+.ticket-select-status {
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50%;
+  border: none;
+  margin-right: 10px;
 }
 .ticketinfos {
-  margin-left: 5%;
+  // margin-left: 5%;
+  margin-right: 0.5rem;
   width: 55%;
 }
 .ticketkeys {
@@ -435,7 +451,7 @@ input.display {
   height: 1px;
   margin-bottom: 10px;
 }
-.textblue {
+.text-blue {
   margin-left: 0;
 }
 .profil-contain {
@@ -669,14 +685,14 @@ input.display {
 }
 .resseign-messageTick{
   color: #0089E1;
-  margin-left: 10px;
+  margin-left: 10pxπ;
   text-decoration:underline;
   cursor:pointer
 }
 
 @media only screen and (max-width: 1280px) {
   .css-2b097c-container {
-    width: 50%;
+    width: 55%;
   }
   .display-user-info {
     padding: 3px;
@@ -690,4 +706,42 @@ input.display {
 .display-user-assegne {
   padding: 5px;
 }
+}
+
+// design BootstrapTable : pagination
+.react-bootstrap-table-page-btns-ul {
+  li {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  li:first-child {
+    border-top-left-radius: 10px !important;
+    border-bottom-left-radius: 10px !important;
+  }
+  li:last-child {
+    border-top-right-radius: 10px !important;
+    border-bottom-right-radius: 10px !important;
+  }
+}
+
+.button-trash-table {
+  cursor: pointer;
+  margin-left: 1rem;
+}
+
+.img-trash {
+  cursor: pointer;
+}
+
+.table-bordered tbody tr td:nth-child(5) {
+  border-left: 1px solid #e5e5e5 !important;
+  border-bottom: 1px solid #e5e5e5 !important;
+  border-right: 1px solid #e5e5e5 !important;
+  text-align: center;
+}
+.table-bordered tbody tr td:last-child {
+  border-left: 1px solid #e5e5e5 !important;
+  border-bottom: 1px solid #e5e5e5 !important;
+  border-right: 1px solid #e5e5e5 !important;
+  text-align: center;
 }
