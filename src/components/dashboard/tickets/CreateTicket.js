@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 // import PropTypes from "prop-types";
-// import FileUploadProgress from "react-fileupload-progress";
+import FileUploadProgress from 'react-fileupload-progress';
 import { Editor } from 'react-draft-wysiwyg';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import Select from 'react-select';
@@ -17,7 +17,7 @@ class CreateTicket extends Component {
   // eslint-disable-next-line react/state-in-constructor
   state = {
     assegneeModalOpen: false,
-    initAgents: [],
+    initAgents: FakeAgents,
     multiValue: '',
     multiValuecat: '',
     priority: [
@@ -280,7 +280,9 @@ class CreateTicket extends Component {
                 {t('tickets.create_ticket.upload_file')}
               </p>
             </div>
-            {/* <FileUploadProgress
+
+
+            <FileUploadProgress
               key="ex1"
               url="http://localhost:3000/api/upload"
               onProgress={(e, request, progress) => {
@@ -295,7 +297,10 @@ class CreateTicket extends Component {
               onAbort={(e, request) => {
                 console.log("abort", e, request);
               }}
-            /> */}
+            />
+
+
+            {/* modal assign agent */}
             <div className="assegnee-Container">
               <div className="assign-text-Contain">
                 <p style={{ color: '#657288', marginRight: '20px' }}>
@@ -373,6 +378,9 @@ class CreateTicket extends Component {
                 </div>
               </div>
             </div>
+            {/* ** ** */}
+
+
           </div>
         </div>
       </>
