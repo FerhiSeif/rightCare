@@ -2,7 +2,7 @@
 import uuid1 from 'uuid/v1';
 
 /* eslint-disable no-nested-ternary */
-export const APP_ENV = 'LOCAL'; // DEV, PROD, LOCAL
+export const APP_ENV = 'DEV'; // DEV, PROD, LOCAL
 export const DEBUG = true;
 export const TIMEOUT_HTTP_REQUEST = 3000;
 export const TIMEOUT_SOCKET_RESPONSE = 5000;
