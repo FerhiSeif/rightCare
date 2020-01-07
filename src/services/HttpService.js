@@ -13,7 +13,8 @@ const socket = io(SOCKET.BASE_URL);
 const GET_TICKET_SETTING = '/ticketsettings?sio_channel=';
 const CREATE_CUTOMERFILED_TICKET_SETTING = '/ticketsettings/add-customer-info';
 const UPDATE_SWITCH_TICKET_SETTING = '/ticketsettings';
-const ACTIVE_TICKET_SETTING = '/ticketsettings';
+// const ACTIVE_TICKET_SETTING = '/ticketsettings';
+const CREATE_TICKET = '/ticket';
 
 // const { sharedData, setSharedData } = useContext(SharedDataContext);
 
@@ -56,5 +57,15 @@ export const TicketSettingsHttpService = {
     };
     return axios.post(API.BASE_URL + UPDATE_SWITCH_TICKET_SETTING, params, queryQarams);
   },
+};
 
+export const CreateTicketHttpService = {
+  createTicket(params) {
+    const queryQarams = {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    };
+    return axios.post(API.BASE_URL + CREATE_TICKET, params, queryQarams);
+  },
 };

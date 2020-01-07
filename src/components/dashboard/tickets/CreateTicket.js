@@ -1,41 +1,87 @@
 import React, { Component } from 'react';
 // import PropTypes from "prop-types";
-// import FileUploadProgress from "react-fileupload-progress";
+
+// Use Socket io - import
+import io from 'socket.io-client';
+
+import { Formik, Form, Field } from 'formik';
+
+import FileUploadProgress from 'react-fileupload-progress';
 import { Editor } from 'react-draft-wysiwyg';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import Select from 'react-select';
 
 import FakeAgents from '../../../faker/agents';
-// import AntennaIcon from "../../assets/images/dashboard/antenna.svg";
 import upload from '../../../assets/images/tickets/upload.svg';
 import SearchIcon from '../../../assets/images/profile/search.svg';
 import ProfileIcon from '../../../assets/images/profile/idpic.jpg';
-// import "react-select/dist/react-select.css";
-// import { render } from "enzyme";
+
+/* START $$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
+import { TicketSettingsHttpService, CreateTicketHttpService } from '../../../services/HttpService';
+import { SOCKET, SIO_TICKET_SETTINGS } from '../../../constants/Constants';
+
+const socket = io(SOCKET.BASE_URL);
+/* END $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
 
 class CreateTicket extends Component {
-  constructor(props) {
-    super(props);
+  // eslint-disable-next-line react/state-in-constructor
+  state = {
+    assegneeModalOpen: false,
+    initAgents: FakeAgents,
+    multiValue: '',
+    // eslint-disable-next-line react/no-unused-state
+    multiValuecat: '',
+    priority: [
+      { value: 'High', label: 'High' },
+      { value: 'Medium', label: 'Medium' },
+      { value: 'Low', label: 'Low' },
+    ],
+    // eslint-disable-next-line react/no-unused-state
+    category: [
+      { value: 'Technical', label: 'Technical' },
+      { value: 'Customer Care', label: 'Customer Care' },
+      { value: 'Enquires', label: 'Enquires' },
+    ],
+    ticketSettingsInput: [],
+    dataInputTicket: [],
+  };
 
-    this.state = {
-      assegneeModalOpen: false,
-      initAgents: FakeAgents,
-      multiValue: '',
-      multiValuecat: '',
-      priority: [
-        { value: 'High', label: 'High' },
-        { value: 'Medium', label: 'Medium' },
-        { value: 'Low', label: 'Low' },
-      ],
-      category: [
-        { value: 'Technical', label: 'Technical' },
-        { value: 'Customer Care', label: 'Customer Care' },
-        { value: 'Enquires', label: 'Enquires' },
-      ],
-    };
+  componentDidMount() {
+    this.initSocketTicketSettings();
   }
 
-  changeAvatre = (event) => {
+  /* START $$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
+  onSocketGetTicketSettings = (response) => {
+    if (response && (response.status === 200 || response.status === 202)) {
+      this.setState({ ticketSettingsInput: response.data[0].customer_information.items });
+      console.log('onSocketGetTicketSettings : ', response.data[0].customer_information.items);
+
+      console.log('ticketSettings : ', this.state.ticketSettingsInput);
+    }
+  };
+
+  initSocketTicketSettings = () => {
+    console.log('initSocketTicketSettings : **** ');
+
+    socket.on(SIO_TICKET_SETTINGS, (response) => {
+      console.log('initSocketTicketSettings : ', response);
+      this.onSocketGetTicketSettings(response);
+    });
+
+    TicketSettingsHttpService.getDatasTicketSettings().then((response) => {
+      console.log('getDatasTicketSettings : ', response);
+
+      if ((response.status === 200 || response.status === 202)) {
+        console.log('test success : ', response);
+      } else {
+        console.log('test error : ', response);
+      }
+    });
+  };
+  /* END $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
+
+  // eslint-disable-next-line react/sort-comp
+  changeAvatar = (event) => {
     const image = event.target.files[0];
     // this.uploadPhoto(image);
     const fd = new FormData();
@@ -54,10 +100,8 @@ class CreateTicket extends Component {
     // });
   };
 
-  // add agent
 
   // liste agents
-
   listAgents = (
     <ul className=" menu-list menu-list-ticket">
       {this.state.initAgents
@@ -91,6 +135,72 @@ class CreateTicket extends Component {
     this.setState({ multiValuecat: value });
   };
 
+  handleValidateInput = (value) => {
+    console.log('value : ', value);
+
+    let error;
+    if (!value) {
+      error = 'This field is required';
+    } else {
+      switch (value) {
+        case 'email':
+          console.log('email : ', value);
+
+          if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value)) {
+            error = 'Invalid email address';
+          }
+          console.log('error : ', error);
+
+          break;
+        case 'text':
+          console.log('text : ', value);
+
+          if (!/^\s*[a-zA-Z,\s]+\s*$/i.test(value)) {
+            error = 'Invalid text field';
+          }
+          error = 'Invalid text field';
+          console.log('error : ', error);
+
+          break;
+        case 'number':
+          console.log('number : ', value);
+
+          if (!/^[0-9]{1,10}$/i.test(value)) {
+            error = 'Invalid number field';
+          }
+          break;
+        case 'date':
+          console.log('date : ', value);
+
+          if (!/^\d{1,2}\/\d{1,2}\/\d{4}$/i.test(value)) {
+            error = 'Invalid date field';
+          }
+          break;
+        default:
+          error = 'Field not found please select';
+      }
+    }
+
+    console.log('error *** : ', error);
+
+    return error;
+  };
+
+  handleFieldChange = (event, item, i) => {
+    console.log('event : ', event.currentTarget);
+    console.log('i : ', i);
+    const tabConst = this.state.dataInputTicket;
+
+    const { value } = event.currentTarget;
+    tabConst[i] = { type: item.type, name: item.name, value };
+
+    this.setState({ dataInputTicket: tabConst });
+
+    console.log('this.state.dataInputTicket : ', this.state.dataInputTicket);
+
+    // setState({ fieldLabel: value.toLowerCase(), fieldType: state.fieldType });
+  };
+
   render() {
     const {
       i18n, t, kind, createTicket,
@@ -101,76 +211,111 @@ class CreateTicket extends Component {
         paddingBottom: kind === 'channel' ? 0 : '1.125rem',
       },
     };
+
     // options: ['inline', 'blockType', 'fontSize', 'fontFamily', 'list', 'textAlign', 'colorPicker', 'link', 'embedded', 'emoji', 'image', 'remove', 'history']
+
+    const customStyles = {
+      option: (provided, state) => ({
+        ...provided,
+        color: state.isSelected ? '#222' : '#222',
+        text: 'center',
+      }),
+    };
+
     return (
       <>
         <div className="header-indicator">
-          <h3 className="header-indic-title1">Ticket Table </h3>
+          <h3 className="header-indic-title1">
+            { t('tickets.details_ticket.header.ticket_table') }
+          </h3>
+          {' > '}
           <p className="header-indic-title2">
-            {' '}
-            {t('tickets.tickets_creation')}
+            { t('tickets.create_ticket.text_create') }
           </p>
         </div>
         <div className="ticketnalytics-header">
           <h2 className="dashboard-title">
-            {kind === 'tickets'
-              ? t('tickets.tickets_creation')
-              : kind === 'dashboard'
-                ? t('dashboard.dashboard_overview')
-                : t('settings.settings_overview')}
+            { t('tickets.create_ticket.text_create') }
           </h2>
         </div>
         <div className="columns analytics-columns createTicket-conaitner">
           <div className="section1 ">
             <div className="firstInput-container">
-              <div className="input-createTicket">
+              <div className="header-create-ticket">
                 <div className="createTicket-div">
                   <img
                     src={ProfileIcon}
                     className="profilepicture-assignee"
                     alt="agent picture"
                   />
-                  <span className="createTicket-div-text">AdisaKola </span>
+                  <span className="createTicket-div-text">
+                    Adisa Kola
+                  </span>
                 </div>
                 <div className="createTicket-div">
                   <span className="createTicket-div-text">
-                    {' '}
                     AdisaKola@gmail.com
                   </span>
                 </div>
               </div>
-              <h3 className="customer-text">CUSTOMER'S DETAILS</h3>
-              <div className="input-createTicket">
-                <input
-                  className="input createTicket"
-                  type="text"
-                  placeholder="Enter First name"
-                />
-                <input
-                  className="input createTicket"
-                  type="text"
-                  placeholder="Enter Last name"
-                />
-                <input
-                  className="input createTicket"
-                  type="text"
-                  placeholder="Enter Email Adresse"
-                />
-                <input
-                  className="input createTicket"
-                  type="text"
-                  placeholder="Enter Telephone"
-                />
+              <h3 className="customer-text">
+                { t('tickets.create_ticket.customer_details') }
+              </h3>
+
+              <div className="input-ticket-setting">
+
+
+                <Formik
+                  initialValues={{
+                    email: '',
+                    text: '',
+                    number: '',
+                    date: '',
+                  }}
+                >
+                  {({ errors, touched }) => (
+                    <Form className="display-input">
+                      {this.state.ticketSettingsInput.length !== 0
+                            && this.state.ticketSettingsInput.map((item, i) => (
+                              <div className="div-input">
+                                <Field
+                                  key={i}
+                                  className="input //createTicket //input-create"
+                                  name={i}
+                                  validate={() => this.handleValidateInput(item.type)}
+                                  onChange={(e) => this.handleFieldChange(e, item, i)}
+                                  value={this.state.dataInputTicket[i] && this.state.dataInputTicket[i].value}
+                                  autocomplete="off"
+                                  type={item.type}
+                                  placeholder={item.name}
+                                />
+
+                                <span className="alert-danger">{errors.email && touched.email && errors.email}</span>
+                                <span className="alert-danger">{errors.text && touched.text && errors.text}</span>
+                                <span className="alert-danger">{errors.number && touched.number && errors.number}</span>
+                                <span className="alert-danger">{errors.date && touched.date && errors.date}</span>
+                              </div>
+                            ))}
+                    </Form>
+                  )}
+                </Formik>
+
+
               </div>
             </div>
+
             <div className="secontInput-container">
-              <h3 className="textInputcontainer">Ticket Subject</h3>
+              <h3 className="textInputcontainer">
+                { t('tickets.create_ticket.ticket_subject') }
+              </h3>
               <input
-                className="input "
+                className="input //createTicket-large"
                 type="text"
-                placeholder=" Enter subject"
+                placeholder={t('tickets.create_ticket.ticket_subject_input')}
               />
-              <h3 className="textInputcontainer">Ticket Priority</h3>
+              <h3 className="textInputcontainer">
+                { t('tickets.create_ticket.ticket_priority') }
+              </h3>
               <div>
                 <Select
                   options={this.state.priority}
@@ -178,20 +323,46 @@ class CreateTicket extends Component {
                   value={this.state.multiValue}
                   isSearchable={false}
                   className="ticket-Select"
-                  placeholder="Select Ticket Priority"
+                  placeholder={t('tickets.create_ticket.ticket_priority_input')}
+                  styles={customStyles}
+                  theme={(theme) => ({
+                    ...theme,
+                    colors: {
+                      ...theme.colors,
+                      primary: '#eee',
+                      primary25: '#eee',
+                    },
+                  })}
                 />
               </div>
-              <h3 className="textInputcontainer">Ticket Category</h3>
+
+              {/*
+              <h3 className="textInputcontainer">
+                {t('tickets.create_ticket.ticket_category')}
+              </h3>
               <div>
                 <Select
                   options={this.state.category}
                   onChange={this.handleOnChangeCat}
                   value={this.state.multiValuecat}
                   isSearchable={false}
-                  placeholder="Select Ticket Category"
+                  placeholder={t('tickets.create_ticket.ticket_category_input')}
+                  styles={customStyles}
+                  theme={(theme) => ({
+                    ...theme,
+                    colors: {
+                      ...theme.colors,
+                      primary: '#eee',
+                      primary25: '#eee',
+                    },
+                  })}
                 />
               </div>
-              <h3 className="textInputcontainer">Ticket Massage</h3>
+              */}
+
+              <h3 className="textInputcontainer">
+                {t('tickets.create_ticket.ticket_message')}
+              </h3>
               <Editor
                 // toolbarHidden
                 toolbar={{
@@ -220,7 +391,7 @@ class CreateTicket extends Component {
                   className="Submit-ticketbtn"
                   onClick={() => createTicket()}
                 >
-                  Submit Ticket
+                  {t('tickets.create_ticket.ticket_btn_submit')}
                 </button>
               </div>
             </div>
@@ -238,28 +409,35 @@ class CreateTicket extends Component {
                 multiple
                 ref={(fileInput) => (this.fileInput = fileInput)}
               />
-              <p style={{ color: '#C8D3D6' }}>Upload Files</p>
+              <p style={{ color: '#C8D3D6' }}>
+                {t('tickets.create_ticket.upload_file')}
+              </p>
             </div>
-            {/* <FileUploadProgress
+
+
+            <FileUploadProgress
               key="ex1"
               url="http://localhost:3000/api/upload"
               onProgress={(e, request, progress) => {
-                console.log("progress", e, request, progress);
+                console.log('progress', e, request, progress);
               }}
               onLoad={(e, request) => {
-                console.log("load", e, request);
+                console.log('load', e, request);
               }}
               onError={(e, request) => {
-                console.log("error", e, request);
+                console.log('error', e, request);
               }}
               onAbort={(e, request) => {
-                console.log("abort", e, request);
+                console.log('abort', e, request);
               }}
-            /> */}
+            />
+
+
+            {/* modal assign agent */}
             <div className="assegnee-Container">
               <div className="assign-text-Contain">
                 <p style={{ color: '#657288', marginRight: '20px' }}>
-                  Assignee
+                  {t('tickets.create_ticket.assignee')}
                 </p>
                 <div className="assign-agent-Container">
                   <span
@@ -277,14 +455,14 @@ class CreateTicket extends Component {
                     }}
                   >
                     <h2 className="title assign-modal-title">
-                      Assign Agent to Ticket
+                      {t('tickets.create_ticket.assign_agent_ticket')}
                     </h2>
                     <ul className="menu-list menu-list-ticket">
                       {' '}
                       <li className="assign-self">
                         <img src={ProfileIcon} alt="portrait" />
                         <span className="user-name">
-                          Assign ticket to myself
+                          {t('tickets.create_ticket.assign_ticket_myself')}
                         </span>
                         {
                           // fetchDatas(item.id) ? (<span className="remove-user" onClick={()=>console.log('hii')/*(e) => handleRemoveAgent(e, item.id)*/}>-</span>)
@@ -306,7 +484,7 @@ class CreateTicket extends Component {
                       <input
                         className="input"
                         type="text"
-                        placeholder={t('onboard.steps.search_agent')}
+                        placeholder={t('tickets.create_ticket.search_agent_input')}
                       />
                       <img src={SearchIcon} alt="search" />
                     </div>
@@ -314,8 +492,11 @@ class CreateTicket extends Component {
                       className="modal-card-body"
                       style={{ width: '100%' }}
                     >
+
                       {this.listAgents}
+
                       {/* { kind === 'agent' ? (<div>{agentCount === 0 &&<span>This agent can not be found in the list.</span>}{content}</div>) : <Services kind={kind} handleChooseService={handleChooseService} checkedServices={checkedServices} /> } */}
+
                     </section>
                     <footer className="assign-modal-footer">
                       <button
@@ -323,13 +504,16 @@ class CreateTicket extends Component {
                         aria-label="close"
                         style={{ width: '100%' }}
                       >
-                        Assign
+                        {t('tickets.create_ticket.Assign')}
                       </button>
                     </footer>
                   </div>
                 </div>
               </div>
             </div>
+            {/* ** ** */}
+
+
           </div>
         </div>
       </>

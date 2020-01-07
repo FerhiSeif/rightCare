@@ -168,9 +168,9 @@
     "today": "Aujourd'hui",
     "ticket_btn_create": "Créer un Ticket",
     "search_placeholder": "Recherche",
-    "search_filtrer": "Filtre",
+    "search_filter": "Filtre",
 
-    "search_filtrer_content": {
+    "search_filter_content": {
       "priority": "Priorité",
       "priority_filter": {
         "all": "Tout",
@@ -236,7 +236,27 @@
         "resolved": "Résolue",
         "new": "Nouveau"
       }
+    },
+
+    "create_ticket": {
+      "text_create": "Créer un ticket",
+      "customer_details": "DÉTAILS DU CLIENT",
+      "ticket_subject": "Objet du ticket",
+      "ticket_subject_input": "Entrez le sujet",
+      "ticket_priority": "Priorité des tickets",
+      "ticket_priority_input": "Sélectionnez la priorité",
+      "ticket_category": "Catégorie des tickets",
+      "ticket_category_input": "Sélectionnez la catégorie",
+      "ticket_message": "Message du ticket",
+      "ticket_btn_submit": "Envoyer",
+      "upload_file": "Télécharger des fichiers",
+      "assignee": "Assigner",
+      "assign_agent_ticket": "Attribuer un agent au ticket",
+      "assign_ticket_myself": "Attribuer un ticket à moi",
+      "search_agent_input": "Rechercher agent",
+      "Assign": "Attribuer"
     }
+
   }
 
 }
