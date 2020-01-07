@@ -1,17 +1,27 @@
 import React, { Component } from 'react';
 // import PropTypes from "prop-types";
+
+// Use Socket io - import
+import io from 'socket.io-client';
+
+import { Formik, Form, Field } from 'formik';
+
 import FileUploadProgress from 'react-fileupload-progress';
 import { Editor } from 'react-draft-wysiwyg';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import Select from 'react-select';
 
 import FakeAgents from '../../../faker/agents';
-// import AntennaIcon from "../../assets/images/dashboard/antenna.svg";
 import upload from '../../../assets/images/tickets/upload.svg';
 import SearchIcon from '../../../assets/images/profile/search.svg';
 import ProfileIcon from '../../../assets/images/profile/idpic.jpg';
-// import "react-select/dist/react-select.css";
-// import { render } from "enzyme";
+
+/* START $$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
+import { TicketSettingsHttpService, CreateTicketHttpService } from '../../../services/HttpService';
+import { SOCKET, SIO_TICKET_SETTINGS } from '../../../constants/Constants';
+
+const socket = io(SOCKET.BASE_URL);
+/* END $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
 
 class CreateTicket extends Component {
   // eslint-disable-next-line react/state-in-constructor
@@ -19,21 +29,59 @@ class CreateTicket extends Component {
     assegneeModalOpen: false,
     initAgents: FakeAgents,
     multiValue: '',
+    // eslint-disable-next-line react/no-unused-state
     multiValuecat: '',
     priority: [
       { value: 'High', label: 'High' },
       { value: 'Medium', label: 'Medium' },
       { value: 'Low', label: 'Low' },
     ],
+    // eslint-disable-next-line react/no-unused-state
     category: [
       { value: 'Technical', label: 'Technical' },
       { value: 'Customer Care', label: 'Customer Care' },
       { value: 'Enquires', label: 'Enquires' },
     ],
+    ticketSettingsInput: [],
+    dataInputTicket: [],
   };
 
+  componentDidMount() {
+    this.initSocketTicketSettings();
+  }
+
+  /* START $$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
+  onSocketGetTicketSettings = (response) => {
+    if (response && (response.status === 200 || response.status === 202)) {
+      this.setState({ ticketSettingsInput: response.data[0].customer_information.items });
+      console.log('onSocketGetTicketSettings : ', response.data[0].customer_information.items);
+
+      console.log('ticketSettings : ', this.state.ticketSettingsInput);
+    }
+  };
+
+  initSocketTicketSettings = () => {
+    console.log('initSocketTicketSettings : **** ');
+
+    socket.on(SIO_TICKET_SETTINGS, (response) => {
+      console.log('initSocketTicketSettings : ', response);
+      this.onSocketGetTicketSettings(response);
+    });
+
+    TicketSettingsHttpService.getDatasTicketSettings().then((response) => {
+      console.log('getDatasTicketSettings : ', response);
+
+      if ((response.status === 200 || response.status === 202)) {
+        console.log('test success : ', response);
+      } else {
+        console.log('test error : ', response);
+      }
+    });
+  };
+  /* END $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
+
   // eslint-disable-next-line react/sort-comp
-  changeAvatre = (event) => {
+  changeAvatar = (event) => {
     const image = event.target.files[0];
     // this.uploadPhoto(image);
     const fd = new FormData();
@@ -52,7 +100,6 @@ class CreateTicket extends Component {
     // });
   };
 
-  // add agent
 
   // liste agents
   listAgents = (
@@ -88,6 +135,72 @@ class CreateTicket extends Component {
     this.setState({ multiValuecat: value });
   };
 
+  handleValidateInput = (value) => {
+    console.log('value : ', value);
+
+    let error;
+    if (!value) {
+      error = 'This field is required';
+    } else {
+      switch (value) {
+        case 'email':
+          console.log('email : ', value);
+
+          if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value)) {
+            error = 'Invalid email address';
+          }
+          console.log('error : ', error);
+
+          break;
+        case 'text':
+          console.log('text : ', value);
+
+          if (!/^\s*[a-zA-Z,\s]+\s*$/i.test(value)) {
+            error = 'Invalid text field';
+          }
+          error = 'Invalid text field';
+          console.log('error : ', error);
+
+          break;
+        case 'number':
+          console.log('number : ', value);
+
+          if (!/^[0-9]{1,10}$/i.test(value)) {
+            error = 'Invalid number field';
+          }
+          break;
+        case 'date':
+          console.log('date : ', value);
+
+          if (!/^\d{1,2}\/\d{1,2}\/\d{4}$/i.test(value)) {
+            error = 'Invalid date field';
+          }
+          break;
+        default:
+          error = 'Field not found please select';
+      }
+    }
+
+    console.log('error *** : ', error);
+
+    return error;
+  };
+
+  handleFieldChange = (event, item, i) => {
+    console.log('event : ', event.currentTarget);
+    console.log('i : ', i);
+    const tabConst = this.state.dataInputTicket;
+
+    const { value } = event.currentTarget;
+    tabConst[i] = { type: item.type, name: item.name, value };
+
+    this.setState({ dataInputTicket: tabConst });
+
+    console.log('this.state.dataInputTicket : ', this.state.dataInputTicket);
+
+    // setState({ fieldLabel: value.toLowerCase(), fieldType: state.fieldType });
+  };
+
   render() {
     const {
       i18n, t, kind, createTicket,
@@ -98,6 +211,7 @@ class CreateTicket extends Component {
         paddingBottom: kind === 'channel' ? 0 : '1.125rem',
       },
     };
+
     // options: ['inline', 'blockType', 'fontSize', 'fontFamily', 'list', 'textAlign', 'colorPicker', 'link', 'embedded', 'emoji', 'image', 'remove', 'history']
 
     const customStyles = {
@@ -127,7 +241,7 @@ class CreateTicket extends Component {
         <div className="columns analytics-columns createTicket-conaitner">
           <div className="section1 ">
             <div className="firstInput-container">
-              <div className="input-createTicket">
+              <div className="header-create-ticket">
                 <div className="createTicket-div">
                   <img
                     src={ProfileIcon}
@@ -147,27 +261,46 @@ class CreateTicket extends Component {
               <h3 className="customer-text">
                 { t('tickets.create_ticket.customer_details') }
               </h3>
-              <div className="input-createTicket">
-                <input
-                  className="input createTicket"
-                  type="text"
-                  placeholder="Enter First name"
-                />
-                <input
-                  className="input createTicket"
-                  type="text"
-                  placeholder="Enter Last name"
-                />
-                <input
-                  className="input createTicket"
-                  type="text"
-                  placeholder="Enter Email Adresse"
-                />
-                <input
-                  className="input createTicket"
-                  type="text"
-                  placeholder="Enter Telephone"
-                />
+
+              <div className="input-ticket-setting">
+
+
+                <Formik
+                  initialValues={{
+                    email: '',
+                    text: '',
+                    number: '',
+                    date: '',
+                  }}
+                >
+                  {({ errors, touched }) => (
+                    <Form className="display-input">
+                      {this.state.ticketSettingsInput.length !== 0
+                            && this.state.ticketSettingsInput.map((item, i) => (
+                              <div className="div-input">
+                                <Field
+                                  key={i}
+                                  className="input //createTicket //input-create"
+                                  name={i}
+                                  validate={() => this.handleValidateInput(item.type)}
+                                  onChange={(e) => this.handleFieldChange(e, item, i)}
+                                  value={this.state.dataInputTicket[i] && this.state.dataInputTicket[i].value}
+                                  autocomplete="off"
+                                  type={item.type}
+                                  placeholder={item.name}
+                                />
+
+                                <span className="alert-danger">{errors.email && touched.email && errors.email}</span>
+                                <span className="alert-danger">{errors.text && touched.text && errors.text}</span>
+                                <span className="alert-danger">{errors.number && touched.number && errors.number}</span>
+                                <span className="alert-danger">{errors.date && touched.date && errors.date}</span>
+                              </div>
+                            ))}
+                    </Form>
+                  )}
+                </Formik>
+
+
               </div>
             </div>
 
@@ -286,16 +419,16 @@ class CreateTicket extends Component {
               key="ex1"
               url="http://localhost:3000/api/upload"
               onProgress={(e, request, progress) => {
-                console.log("progress", e, request, progress);
+                console.log('progress', e, request, progress);
               }}
               onLoad={(e, request) => {
-                console.log("load", e, request);
+                console.log('load', e, request);
               }}
               onError={(e, request) => {
-                console.log("error", e, request);
+                console.log('error', e, request);
               }}
               onAbort={(e, request) => {
-                console.log("abort", e, request);
+                console.log('abort', e, request);
               }}
             />
 

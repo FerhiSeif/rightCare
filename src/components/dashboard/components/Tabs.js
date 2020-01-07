@@ -40,6 +40,10 @@ const Tabs = (props) => {
 
   const [ticketSettings, setTicketSettings] = useState([]);
 
+  const {
+    priority, status, category, customer_information,
+  } = ticketSettings;
+
   /* START $$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
   const onSocketGetTicketSettings = (response) => {
     if (response && (response.status === 200 || response.status === 202)) {
@@ -47,10 +51,6 @@ const Tabs = (props) => {
       console.log('onSocketGetTicketSettings : ', response.data[0]);
     }
   };
-
-  const {
-    priority, status, category, customer_information,
-  } = ticketSettings;
 
   const initSocketTicketSettings = () => {
     console.log('initSocketTicketSettings : **** ');

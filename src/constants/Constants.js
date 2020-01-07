@@ -67,3 +67,5 @@ export const CONSTANTS_LANG = {
 export const SIO_TICKET_SETTINGS = `ticket_setting_${uuid1()}`;
 export const SIO_CREATE_CUSTOMER_TICKET_SETTINGS = `create_customer_ticket_setting_${uuid1()}`;
 export const SIO_UPDATE_SWITCH_TICKET_SETTINGS = `update_switch_ticket_setting_${uuid1()}`;
+
+export const SIO_CREATE_TICKET = `create_ticket_${uuid1()}`;

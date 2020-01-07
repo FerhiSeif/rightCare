@@ -429,13 +429,12 @@ class MessageTicket extends Component {
                 { t('tickets.details_ticket.ticket_log_activities') }
               </div>
               {ticketsLog.map((ticket, i) => (
-                <div
-                  className={`ticket-log ${
-                    i == ticketsLog.length - 1 ? 'last' : ''
-                  }`}
-                >
+                <div key={i} className={`ticket-log ${i === ticketsLog.length - 1 ? 'last' : ''}`}>
+
                   {/* <img src={} alt="profile picture"/> */}
+
                   <img src={ticket.agent} className="profilepicture-log" />
+
                   <div className="ticket-activities">
                     <p className="activity">{ticket.activity}</p>
                     <p className="activity-date ">{ticket.date}</p>

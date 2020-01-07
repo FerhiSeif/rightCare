@@ -135,6 +135,7 @@ const ContentCustomer = (props) => {
                   validate={() => validateField(state.fieldType)}
                   onChange={(e) => handleFieldChange(e)}
                   value={state.fieldLabel}
+                  autocomplete="off"
                 />
               {/*
                 <span className="alert-danger">{errors.email && touched.email && errors.email}</span>
