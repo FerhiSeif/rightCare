@@ -97,7 +97,7 @@ class MessageTicket extends Component {
 
   render() {
     const {
-      i18n, t, kind, createTicket,
+      i18n, t, kind, handleCreateTicket,
     } = this.props;
 
     const {
@@ -174,7 +174,7 @@ class MessageTicket extends Component {
         </div>
         <div className="ticketnalytics-header">
           <h2 className="dashboard-title">{ t('tickets.details_ticket.ticket_number') } #34421231</h2>
-          <button className="create_ticketbtn" onClick={() => createTicket()}>
+          <button className="create_ticketbtn" onClick={() => handleCreateTicket()}>
             + 
             {' '}
             { t('tickets.ticket_btn_create').toUpperCase() }
@@ -442,7 +442,7 @@ class MessageTicket extends Component {
                 </div>
               ))}
             </div>
-            <button className="clode_ticketbtn" onClick={() => createTicket()}>
+            <button className="clode_ticketbtn" onClick={() => handleCreateTicket()}>
               { t('tickets.details_ticket.close_ticket') }
             </button>
           </div>
@@ -456,7 +456,7 @@ MessageTicket.propTypes = {
   i18n: PropTypes.shape({}).isRequired,
   t: PropTypes.func.isRequired,
   kind: PropTypes.string.isRequired,
-  createTicket: PropTypes.func.isRequired,
+  handleCreateTicket: PropTypes.func.isRequired,
 };
 
 export default MessageTicket;

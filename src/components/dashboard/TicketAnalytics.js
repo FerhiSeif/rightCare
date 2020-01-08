@@ -11,10 +11,6 @@ class TicketAnalytics extends Component {
     this.state = { isOpen: false, status: 0 };
   }
 
-  handleOpenModal = () => {
-    this.setState({ isOpen: !this.state.isOpen });
-  };
-
   getStepContent = step => {
     const { i18n, t } = this.props;
     switch (step) {
@@ -24,25 +20,48 @@ class TicketAnalytics extends Component {
             t={t}
             i18n={i18n}
             kind="tickets"
-            createTicket={() => this.setState({ status: 1 })}
-            messageTicket={() => this.setState({ status: 2 })}
+            handleCreateTicket={() => this.handleCreateTicket()}
+            handleMessageTicket={() => this.handleMessageTicket()}
           />
         );
       case 1:
-        return <CreateTicket t={t} i18n={i18n} kind="tickets" />;
+        return (
+          <CreateTicket
+            t={t}
+            i18n={i18n}
+            kind="tickets"
+            handleCreateTicket={() => this.handleCreateTicket()}
+            handleMessageTicket={() => this.handleMessageTicket()}
+          />
+        );
       case 2:
         return (
           <MessageTicket
             t={t}
             i18n={i18n}
             kind="tickets"
-            createTicket={() => this.setState({ status: 1 })}
+            handleCreateTicket={() => this.setState({ status: 1 })}
           />
         );
       default:
         return 'Unknown step';
     }
   };
+
+
+  handleOpenModal = () => {
+    this.setState({ isOpen: !this.state.isOpen });
+  };
+
+  handleMessageTicket = (data) => {
+    console.log('data : ', data);
+
+    this.setState({ status: 2 });
+  }
+
+  handleCreateTicket() {
+    this.setState({ status: 1 });
+  }
 
   render() {
     // const { i18n, t, kind } = this.props;
@@ -54,7 +73,6 @@ class TicketAnalytics extends Component {
 TicketAnalytics.propTypes = {
   i18n: PropTypes.shape({}).isRequired,
   t: PropTypes.func.isRequired,
-  // kind: PropTypes.string.isRequired,
 };
 
 export default TicketAnalytics;

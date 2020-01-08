@@ -113,10 +113,10 @@ const ContentCustomer = (props) => {
             <Form>
               <div className="select div-select">
                 <Select
-                  styles={customStyles}
                   options={currLang === 'en' ? optionsEN : optionsFR}
                   className="App-Select-priority"
                   onChange={handleSelectChange}
+                  styles={customStyles}
                   theme={(theme) => ({
                     ...theme,
                     colors: {
