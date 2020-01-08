@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 
 // Use Socket io - import
@@ -13,9 +13,12 @@ import Content from './Content';
 /* START $$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
 import { TicketSettingsHttpService } from '../../../services/HttpService';
 import { SOCKET, SIO_TICKET_SETTINGS } from '../../../constants/Constants';
+/* END $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
+
+import { SharedDataContext } from '../../app/UseContext';
 
 const socket = io(SOCKET.BASE_URL);
-/* END $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
+
 
 const Tabs = (props) => {
   const {
@@ -37,6 +40,8 @@ const Tabs = (props) => {
       maxWidth: 'initial',
     },
   };
+
+  const { sharedDataContext, setSharedDataContext} = useContext(SharedDataContext);
 
   const [ticketSettings, setTicketSettings] = useState([]);
 
@@ -73,12 +78,13 @@ const Tabs = (props) => {
   /* END $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
 
   useEffect(() => {
-    initSocketTicketSettings();
-
+    if (sharedDataContext.socketConnected) {
+      initSocketTicketSettings();
+    }
     return () => {
       // cleanup
     };
-  }, []);
+  }, [sharedDataContext]);
 
   return (
     <div style={cardStyle.titleContainer}>

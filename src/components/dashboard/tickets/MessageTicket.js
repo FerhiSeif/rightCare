@@ -112,9 +112,9 @@ class MessageTicket extends Component {
             className="ticket-select-status"
             style={{
               background: `${
-                elm.index == 'Pending'
+                elm.index === 'Pending'
                   ? '#FF9B21'
-                  : elm.index == 'New'
+                  : elm.index === 'New'
                     ? '#0089E1'
                     : '#00BD39'
               }`,
@@ -132,16 +132,16 @@ class MessageTicket extends Component {
           className="ticket-select-priority"
           style={{
             background: `${
-              elm.index == 'High'
+              elm.index === 'High'
                 ? '#eb592321'
-                : elm.index == 'Low'
+                : elm.index === 'Low'
                   ? '#6572884a'
                   : '#ff9b214d'
             }`,
             color: `${
-              elm.index == 'High'
+              elm.index === 'High'
                 ? '#EB5923'
-                : elm.index == 'Low'
+                : elm.index === 'Low'
                   ? '#657288'
                   : '#FF9B21'
             }`,
