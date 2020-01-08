@@ -24,6 +24,7 @@ const Carder = (props) => {
     assignedAgents,
     i18n,
     currentStep,
+    handleCountAgentSelected,
   } = props;
 
   // chargement de la liste des agents
@@ -52,6 +53,8 @@ const Carder = (props) => {
           ...prevState,
           addAgentsChannel: updatedAgents,
         }));
+
+        handleCountAgentSelected(JSON.parse(localStorage.getItem('cr_services'))[0].agents.length);
       }
     }
 
@@ -72,6 +75,8 @@ const Carder = (props) => {
             ...prevState,
             addAgentsChannel: updatedAgents,
           }));
+
+          handleCountAgentSelected(JSON.parse(localStorage.getItem('cr_services'))[0].agents.length);
         }
       }
     }
@@ -88,7 +93,7 @@ const Carder = (props) => {
     <input type="checkbox" checked={selectAll} onClick={() => handleSelectAllAgents(selectAll)} />
   );
 
-  const handleAddAgent = (e, id) => {
+  const handleAddAgent = (id) => {
     const localService = JSON.parse(localStorage.getItem('cr_services'));
     const correspondingChannel = localService.find(
       (option) => option.type.toLowerCase().includes((type).toLowerCase()),
@@ -103,6 +108,8 @@ const Carder = (props) => {
       addAgentsChannel: updatedAgents,
     }));
 
+    handleCountAgentSelected(JSON.parse(localStorage.getItem('cr_services'))[0].agents.length);
+
     const { agents } = localService.find((option) => option.type.toLowerCase().includes((type).toLowerCase()));
     if (agents.length === FakeAgents.length) {
       setSelectAll(true);
@@ -111,7 +118,7 @@ const Carder = (props) => {
     setSelectAll(false);
   };
 
-  const handleRemoveAgent = (e, id) => {
+  const handleRemoveAgent = (id) => {
     const localService = JSON.parse(localStorage.getItem('cr_services'));
     const { agents } = localService.find((option) => option.type.toLowerCase().includes((type).toLowerCase()));
     if (agents.includes(id)) {
@@ -123,6 +130,8 @@ const Carder = (props) => {
         ...prevState,
         addAgentsChannel: updatedAgents,
       }));
+
+      handleCountAgentSelected(JSON.parse(localStorage.getItem('cr_services'))[0].agents.length);
 
       if (agents.length === FakeAgents.length) {
         setSelectAll(true);
@@ -147,10 +156,10 @@ const Carder = (props) => {
           <span className="user-name">{item.full_name}</span>
           {
             fetchDatas(item.id) ? (
-              <span className="remove-user" onClick={(e) => handleRemoveAgent(e, item.id)}> - </span>
+              <span className="remove-user" onClick={(e) => handleRemoveAgent(item.id)}> - </span>
             )
             : (
-              <span className="add-user" onClick={(e) => handleAddAgent(e, item.id)}> + </span>
+              <span className="add-user" onClick={(e) => handleAddAgent(item.id)}> + </span>
             )
           }
         </li>
@@ -260,6 +269,7 @@ Carder.propTypes = {
   checkedServices: PropTypes.shape({}).isRequired,
   assignedAgents: PropTypes.shape({}).isRequired,
   currentStep: PropTypes.number.isRequired,
+  handleCountAgentSelected: PropTypes.func.isRequired,
 };
 
 export default Carder;

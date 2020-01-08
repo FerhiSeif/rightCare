@@ -10,12 +10,14 @@ const AssignAgent = (props) => {
     checkedServices,
     containerWidth,
     i18n,
+    handleCountAgentSelected,
   } = props;
 
   const localService = JSON.parse(localStorage.getItem('cr_services'));
 
   return (
     <div className="card-container">
+
       { containerWidth > 768 && (
         localService.map((item, i) => (
           <Carder
@@ -39,10 +41,13 @@ const AssignAgent = (props) => {
             checkedServices={checkedServices}
             currentStep={2}
             i18n={i18n}
+            handleCountAgentSelected={handleCountAgentSelected}
           />
         ))
       )}
+
       {containerWidth <= 768 && <MobileAddAgents />}
+
     </div>
   );
 };
@@ -51,6 +56,7 @@ AssignAgent.propTypes = {
   t: PropTypes.func.isRequired,
   containerWidth: PropTypes.number.isRequired,
   checkedServices: PropTypes.shape({}).isRequired,
+  handleCountAgentSelected: PropTypes.func.isRequired,
 };
 
 export default withTranslation()(AssignAgent);

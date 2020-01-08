@@ -417,7 +417,7 @@ class CreateTicket extends Component {
                               <div className="div-input">
                                 <Field
                                   key={i}
-                                  className="input //createTicket //input-create"
+                                  className="input"
                                   name={i}
                                   validate={() => this.handleValidateInput(item.type)}
                                   onChange={(e) => this.handleInputChange(e, item, i)}
@@ -538,7 +538,7 @@ class CreateTicket extends Component {
             </div>
 
 
-            <FileUploadProgress
+            {/* <FileUploadProgress
               key="ex1"
               url="http://localhost:3000/api/upload"
               onProgress={(e, request, progress) => {
@@ -553,7 +553,7 @@ class CreateTicket extends Component {
               onAbort={(e, request) => {
                 console.log('abort', e, request);
               }}
-            />
+            /> */}
 
 
             {/* modal assign agent */}

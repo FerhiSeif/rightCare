@@ -78,9 +78,9 @@
   },
   "dashboard": {
     "number_of_agents": "Number of agents",
-    "pending_request": "Pending Request",
-    "new_request": "New Request",
-    "complete_request": "Complete Request",
+    "complete_request": "Complete Ticket",
+    "pending_request": "Pending Ticket",
+    "total_request": "Total Ticket",
     "add_agent": "Add agent",
     "dashboard_overview": "Dashboard overview",
     "live_updates": "Live Activities",

@@ -21,12 +21,13 @@ const CustomerInformationContent = (props) => {
             </div>
           ))}
 
-          <div className="//mr-0 children dash-child" onClick={() => handleAddRessourceModal(t('settings.customer_informations'), 'customer', t('settings.customer_informations_content.button_text'))}>
+          {/* <div className="//mr-0 children dash-child" onClick={() => handleAddRessourceModal(t('settings.customer_informations'), 'customer', t('settings.customer_informations_content.button_text'))}>
             <span className="tickets-plus">+</span>
             <span className="label-title //mr-2">
               {t('settings.customer_informations_content.new_field')}
             </span>
-          </div>
+          </div> */}
+
         </div>
       </div>
     </>

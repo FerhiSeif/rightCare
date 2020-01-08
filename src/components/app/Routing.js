@@ -40,6 +40,7 @@ const Routing = (props) => {
 
   const [sharedDataContext, setSharedDataContext] = useState({
     socketConnected: false,
+    userLogged: false,
   });
 
   const providerSharedDataContext = useMemo(() => ({ sharedDataContext, setSharedDataContext }), [sharedDataContext, setSharedDataContext]);
