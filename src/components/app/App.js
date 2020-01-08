@@ -46,6 +46,9 @@ class App extends Component {
   }
 
   componentDidMount() {
+    // reset localStorage
+    localStorage.removeItem('cr_services');
+
     /*
     SocketService.socketConnect();
     SocketService.socketDisconnect();

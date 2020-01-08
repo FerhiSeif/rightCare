@@ -20,7 +20,7 @@ const CustomerInformations = (props) => {
   });
 
   const handleChange = () => {
-    setState({ checked: !state.checked });
+    setState({ ...state, checked: !state.checked });
     handleSwitchTicketSetting(!state.checked, 'customer_information');
   };
 

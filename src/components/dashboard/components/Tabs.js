@@ -11,14 +11,13 @@ import {
 import Content from './Content';
 
 /* START $$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
-import { TicketSettingsHttpService } from '../../../services/HttpService';
+import { TicketSettingsHttpService, SocketService } from '../../../services/HttpService';
 import { SOCKET, SIO_TICKET_SETTINGS } from '../../../constants/Constants';
 /* END $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
 
 import { SharedDataContext } from '../../app/UseContext';
 
 const socket = io(SOCKET.BASE_URL);
-
 
 const Tabs = (props) => {
   const {
@@ -78,9 +77,13 @@ const Tabs = (props) => {
   /* END $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
 
   useEffect(() => {
-    if (sharedDataContext.socketConnected) {
-      initSocketTicketSettings();
-    }
+    initSocketTicketSettings();
+
+    console.log('sharedDataContext : ', sharedDataContext);
+
+    // if (sharedDataContext.socketConnected) {
+    //   initSocketTicketSettings();
+    // }
     return () => {
       // cleanup
     };

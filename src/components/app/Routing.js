@@ -41,6 +41,11 @@ const Routing = (props) => {
   const [sharedDataContext, setSharedDataContext] = useState({
     socketConnected: false,
     userLogged: false,
+    notification: {
+      active: false, // false , true
+      status: '', // success , danger,
+      content: { title: '', msg: '' },
+    },
   });
 
   const providerSharedDataContext = useMemo(() => ({ sharedDataContext, setSharedDataContext }), [sharedDataContext, setSharedDataContext]);
@@ -55,11 +60,6 @@ const Routing = (props) => {
       setSharedDataContext({ socketConnected: false });
     });
     return () => {
-      // Use Socket io - connect Socket
-      socket.on('connect', () => {
-        console.log('Connected socket');
-        setSharedDataContext({ socketConnected: true });
-      });
       socket.on('disconnect', () => {
         console.log('Disconnected socket');
         setSharedDataContext({ socketConnected: false });
