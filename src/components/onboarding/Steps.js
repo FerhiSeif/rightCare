@@ -83,6 +83,7 @@ function getStepContent(
   activeServices,
   handleBack,
   containerWidth,
+  handleCountAgentSelected,
 ) {
   switch (step) {
     case 0:
@@ -92,6 +93,7 @@ function getStepContent(
           activeServices={activeServices}
           handleBack={handleBack}
           containerWidth={containerWidth}
+          handleCountAgentSelected={handleCountAgentSelected}
         />
       );
     case 1:
@@ -118,6 +120,8 @@ export default function Steps(props) {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
 
+  const [countAgentSelected, setCountAgentSelected] = React.useState(0);
+
   const handleNext = () => {
     props.selectServiceRef.current.click();
     let newSkipped = skipped;
@@ -141,6 +145,10 @@ export default function Steps(props) {
     }
   };
   */
+
+  const handleCountAgentSelected = (count) => {
+    setCountAgentSelected(count);
+  };
 
   const {
     t,
@@ -195,6 +203,7 @@ export default function Steps(props) {
                         activeServices,
                         handleBack,
                         containerWidth,
+                        handleCountAgentSelected,
                       )
                     }
                   </div>
@@ -221,16 +230,22 @@ export default function Steps(props) {
                         </Link>
                       </>
                     ) : (
-                      <Button
-                        variant="contained"
-                        color="primary"
-                        onClick={handleNext}
-                        className={classes.button}
-                      >
-                        {t('onboard.continue')}
-                      </Button>
+                      <>
+                        {countAgentSelected > 0
+                        && (
+                        <Button
+                          variant="contained"
+                          color="primary"
+                          onClick={handleNext}
+                          className={classes.button}
+                        >
+                          {t('onboard.continue')}
+                        </Button>
+                        )}
+                      </>
                     )}
-                    {activeStep !== steps.length - 1 && (
+
+                    {/* {activeStep !== steps.length - 1 && (
                       <Link to="/dashboard" style={{ color: '#ffffff' }}>
                         <Button
                           variant="outlined"
@@ -240,7 +255,8 @@ export default function Steps(props) {
                           {t('onboard.skip')}
                         </Button>
                       </Link>
-                    )}
+                    )} */}
+
                   </div>
                 </div>
               </div>

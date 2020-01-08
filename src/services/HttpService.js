@@ -20,14 +20,16 @@ const CREATE_TICKET = '/ticket';
 
 export const SocketService = {
   socketConnect() {
+    console.log('sdhgjhgsjh');
+    
     // Use Socket io - connect Socket
     socket.on('connect', () => {
-      console.log('Connected socket');
+      console.log('Connected socket ***** ');
     });
   },
   socketDisconnect() {
     socket.on('disconnect', () => {
-      console.log('Disconnected socket');
+      console.log('Disconnected socket *****');
     });
   },
 

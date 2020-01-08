@@ -18,7 +18,7 @@ const TicketsCategory = (props) => {
   });
 
   const handleChange = () => {
-    setState({ checked: !state.checked });
+    setState({ ...state, checked: !state.checked });
     handleSwitchTicketSetting(!state.checked, 'category');
   };
 

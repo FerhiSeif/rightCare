@@ -3,10 +3,6 @@
 import React, { Component } from 'react';
 import { withTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
-
-// Use Socket io - import
-import io from 'socket.io-client';
-
 import Routing from './Routing';
 import BrowserLanguage from '../../utils/BrowserLanguage';
 // import LangIconEn from '../../assets/images/locale/uk.png';
@@ -16,11 +12,7 @@ import FakeChannels from '../../faker/channels';
 import { options as optionsLang } from '../../configs/options';
 
 /* START $$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
-// import constants
-import { SOCKET, CONSTANTS_LANG } from '../../constants/Constants';
-// import { SocketService } from '../../services/HttpService';
-
-const socket = io(SOCKET.BASE_URL);
+import { CONSTANTS_LANG } from '../../constants/Constants';
 /* END $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
 
 const selectServiceRef = React.createRef();
@@ -50,26 +42,17 @@ class App extends Component {
           is_active: false,
         },
       ],
-      // Use Socket io - Init state
-      socketConnected: false,
     };
   }
 
   componentDidMount() {
+    // reset localStorage
+    localStorage.removeItem('cr_services');
+
     /*
     SocketService.socketConnect();
     SocketService.socketDisconnect();
     */
-
-    // Use Socket io - connect Socket
-    socket.on('connect', () => {
-      console.log('Connected socket');
-      this.setState({ socketConnected: true });
-    });
-    socket.on('disconnect', () => {
-      console.log('Disconnected socket');
-      this.setState({ socketConnected: false });
-    });
 
     /* Detect & change Lang */
     if (localStorage.getItem(CONSTANTS_LANG.LOCAL_STORAGE_LANG_KEY)) {

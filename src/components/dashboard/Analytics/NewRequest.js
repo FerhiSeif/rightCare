@@ -22,7 +22,7 @@ const NewRequest = (props) => {
       <div className="card analytics-card-parent analytics-card-parent-new-request">
         <div className="card-content analytics-card">
           <p className="subtitle">
-            {t('dashboard.new_request')}
+            {t('dashboard.total_request')}
           </p>
           <p className="title">
             {requestCount}

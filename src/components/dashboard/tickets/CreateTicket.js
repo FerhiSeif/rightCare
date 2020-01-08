@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-// import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 
 // Use Socket io - import
 import io from 'socket.io-client';
@@ -7,8 +7,13 @@ import io from 'socket.io-client';
 import { Formik, Form, Field } from 'formik';
 
 import FileUploadProgress from 'react-fileupload-progress';
+
 import { Editor } from 'react-draft-wysiwyg';
+import { EditorState, convertToRaw } from 'draft-js';
+import draftToHtml from 'draftjs-to-html';
+// import htmlToDraft from 'html-to-draftjs';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
+
 import Select from 'react-select';
 
 import FakeAgents from '../../../faker/agents';
@@ -18,7 +23,7 @@ import ProfileIcon from '../../../assets/images/profile/idpic.jpg';
 
 /* START $$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
 import { TicketSettingsHttpService, CreateTicketHttpService } from '../../../services/HttpService';
-import { SOCKET, SIO_TICKET_SETTINGS } from '../../../constants/Constants';
+import { SOCKET, SIO_TICKET_SETTINGS, SIO_CREATE_TICKET } from '../../../constants/Constants';
 
 const socket = io(SOCKET.BASE_URL);
 /* END $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
@@ -28,22 +33,20 @@ class CreateTicket extends Component {
   state = {
     assegneeModalOpen: false,
     initAgents: FakeAgents,
-    multiValue: '',
-    // eslint-disable-next-line react/no-unused-state
-    multiValuecat: '',
-    priority: [
-      { value: 'High', label: 'High' },
-      { value: 'Medium', label: 'Medium' },
-      { value: 'Low', label: 'Low' },
-    ],
-    // eslint-disable-next-line react/no-unused-state
-    category: [
-      { value: 'Technical', label: 'Technical' },
-      { value: 'Customer Care', label: 'Customer Care' },
-      { value: 'Enquires', label: 'Enquires' },
-    ],
+
     ticketSettingsInput: [],
+    // eslint-disable-next-line react/no-unused-state
+    prioritySetting: [
+      // { value: 'High', label: 'High' },
+      // { value: 'Medium', label: 'Medium' },
+      // { value: 'Low', label: 'Low' },
+    ],
+
+    // eslint-disable-next-line react/no-unused-state
     dataInputTicket: [],
+    objetTicket: '',
+    priorityTicket: {},
+    messageTicket: EditorState.createEmpty(),
   };
 
   componentDidMount() {
@@ -54,9 +57,18 @@ class CreateTicket extends Component {
   onSocketGetTicketSettings = (response) => {
     if (response && (response.status === 200 || response.status === 202)) {
       this.setState({ ticketSettingsInput: response.data[0].customer_information.items });
-      console.log('onSocketGetTicketSettings : ', response.data[0].customer_information.items);
 
-      console.log('ticketSettings : ', this.state.ticketSettingsInput);
+      // refact datas priority
+      const refactPriority = [];
+      response.data[0].priority.items.map((item) => {
+        refactPriority.push({ value: item.name, label: item.label });
+      });
+      this.setState({ prioritySetting: refactPriority });
+
+      console.log('onSocketGetTicketSettings : ', response.data[0]);
+
+      console.log('ticketSettingsInput : ', this.state.ticketSettingsInput);
+      console.log('prioritySetting : ', this.state.prioritySetting);
     }
   };
 
@@ -126,15 +138,6 @@ class CreateTicket extends Component {
     </ul>
   );
 
-  // change ticket priotity
-  handleOnChangePrio = (value) => {
-    this.setState({ multiValue: value });
-  };
-
-  handleOnChangeCat = (value) => {
-    this.setState({ multiValuecat: value });
-  };
-
   handleValidateInput = (value) => {
     console.log('value : ', value);
 
@@ -186,9 +189,10 @@ class CreateTicket extends Component {
     return error;
   };
 
-  handleFieldChange = (event, item, i) => {
+  handleInputChange = (event, item, i) => {
     console.log('event : ', event.currentTarget);
     console.log('i : ', i);
+
     const tabConst = this.state.dataInputTicket;
 
     const { value } = event.currentTarget;
@@ -197,13 +201,146 @@ class CreateTicket extends Component {
     this.setState({ dataInputTicket: tabConst });
 
     console.log('this.state.dataInputTicket : ', this.state.dataInputTicket);
-
-    // setState({ fieldLabel: value.toLowerCase(), fieldType: state.fieldType });
   };
+
+  handleObjetChange = (event) => {
+    console.log('event : ', event.currentTarget);
+
+    const { value } = event.currentTarget;
+
+    this.setState({ objetTicket: value });
+
+    console.log('this.state.objetTicket : ', this.state.objetTicket);
+  };
+
+  handlePriorityChange = (value) => {
+    this.setState({ priorityTicket: value });
+
+    console.log('this.state.priorityTicket : ', this.state.priorityTicket);
+  };
+
+  onEditorStateChange = (messageTicket) => {
+    const valueEditor = draftToHtml(convertToRaw(messageTicket.getCurrentContent()));
+    this.setState({ messageTicket: valueEditor });
+  };
+
+  handleSubmitCreateTicket() {
+    console.log('vqsjvqshvjhsh');
+    
+    // eslint-disable-next-line react/destructuring-assignment
+    this.props.handleMessageTicket();
+
+    /*
+    console.log('this.state.dataInputTicket : ', this.state.dataInputTicket);
+    console.log('this.state.objetTicket : ', this.state.objetTicket);
+    console.log('this.state.priorityTicket : ', this.state.priorityTicket);
+    console.log('this.state.messageTicket : ', this.state.messageTicket);
+
+    this.buildDataCreateTicket(
+      this.state.dataInputTicket,
+      this.state.objetTicket,
+      this.state.priorityTicket,
+      this.state.messageTicket,
+    );
+
+    this.initSocketCreateTcicket();
+    */
+  }
+
+
+  /** Start - send customerFiled */
+  buildDataCreateTicket = (
+    dataInputTicket,
+    objetTicket,
+    priorityTicket,
+    messageTicket,
+  ) => {
+    const createTicket = {
+      sio_channel: SIO_CREATE_TICKET,
+      ticket_information: {
+        subject: objetTicket,
+        message: messageTicket,
+        files: [
+          null,
+        ],
+        priority: {
+          name: priorityTicket.value,
+          type: priorityTicket.label,
+        },
+        category: {
+          label: '----',
+        },
+        customer_information: dataInputTicket,
+        status: {
+          name: '----',
+          type: '----',
+        },
+        assigned_agent: {},
+        created_by: {},
+        closed: true,
+      },
+    };
+
+    if (localStorage && createTicket) {
+      localStorage.setItem('sv_tmp_create_ticket', JSON.stringify(createTicket));
+    }
+  };
+
+  handleCreateTicketSubmit = () => {
+    const createTicket = JSON.parse(localStorage.getItem('sv_tmp_create_ticket'));
+
+    CreateTicketHttpService.createTicket(createTicket)
+      .then((response) => {
+        if (response && response.data && response.data.status === 202) {
+          this.setState({ dataInputTicket: [] });
+          this.setState({ objetTicket: '' });
+          this.setState({ messageTicket: EditorState.createEmpty() });
+
+          // eslint-disable-next-line react/destructuring-assignment
+          this.props.handleMessageTicket(createTicket);
+
+          localStorage.removeItem('sv_tmp_create_ticket');
+
+          // toast(
+          //   <Notification
+          //     content={this.props.t("create_survey.new.created_successfully")}
+          //     icon="success"
+          //     reply={false}
+          //   />, {
+          //     type: toast.TYPE.SUCCESS,
+          // });
+        } else {
+          // toast(
+          //   <Notification
+          //     content={this.props.t("create_survey.new.created_failed")}
+          //     icon="danger"
+          //     reply={false}
+          //   />, {
+          //     type: toast.TYPE.ERROR,
+          // });
+        }
+      })
+      .catch((error) => {
+        console.log('**** print error ****', error);
+      });
+  };
+
+  onSocketCreateTicket = (response) => {
+    if (response && response.status === 200) {
+      console.log('onSocketCreateCustomerFiled : ', response);
+    }
+  };
+
+  initSocketCreateTcicket = () => {
+    socket.on(SIO_CREATE_TICKET, (response) => this.onSocketCreateTicket(response));
+    this.handleCreateTicketSubmit();
+  };
+  /** End - send customerFiled */
+
 
   render() {
     const {
-      i18n, t, kind, createTicket,
+      i18n, t, kind, handleMessageTicket,
     } = this.props;
     const { assegneeModalOpen } = this.state;
     const modalStyle = {
@@ -280,12 +417,12 @@ class CreateTicket extends Component {
                               <div className="div-input">
                                 <Field
                                   key={i}
-                                  className="input //createTicket //input-create"
+                                  className="input"
                                   name={i}
                                   validate={() => this.handleValidateInput(item.type)}
-                                  onChange={(e) => this.handleFieldChange(e, item, i)}
+                                  onChange={(e) => this.handleInputChange(e, item, i)}
                                   value={this.state.dataInputTicket[i] && this.state.dataInputTicket[i].value}
-                                  autocomplete="off"
+                                  autoComplete="off"
                                   type={item.type}
                                   placeholder={item.name}
                                 />
@@ -305,66 +442,52 @@ class CreateTicket extends Component {
             </div>
 
             <div className="secontInput-container">
-              <h3 className="textInputcontainer">
-                { t('tickets.create_ticket.ticket_subject') }
-              </h3>
-              <input
-                className="input //createTicket-large"
-                type="text"
-                placeholder={t('tickets.create_ticket.ticket_subject_input')}
-              />
-              <h3 className="textInputcontainer">
-                { t('tickets.create_ticket.ticket_priority') }
-              </h3>
               <div>
-                <Select
-                  options={this.state.priority}
-                  onChange={this.handleOnChangePrio}
-                  value={this.state.multiValue}
-                  isSearchable={false}
-                  className="ticket-Select"
-                  placeholder={t('tickets.create_ticket.ticket_priority_input')}
-                  styles={customStyles}
-                  theme={(theme) => ({
-                    ...theme,
-                    colors: {
-                      ...theme.colors,
-                      primary: '#eee',
-                      primary25: '#eee',
-                    },
-                  })}
+                <h3 className="textInputcontainer">
+                  { t('tickets.create_ticket.ticket_subject') }
+                </h3>
+                <input
+                  className="input //createTicket-large"
+                  type="text"
+                  placeholder={t('tickets.create_ticket.ticket_subject_input')}
+                  onChange={(e) => this.handleObjetChange(e)}
+                  value={this.state.objetTicket}
+                  autoComplete="off"
                 />
               </div>
 
-              {/*
-              <h3 className="textInputcontainer">
-                {t('tickets.create_ticket.ticket_category')}
-              </h3>
               <div>
-                <Select
-                  options={this.state.category}
-                  onChange={this.handleOnChangeCat}
-                  value={this.state.multiValuecat}
-                  isSearchable={false}
-                  placeholder={t('tickets.create_ticket.ticket_category_input')}
-                  styles={customStyles}
-                  theme={(theme) => ({
-                    ...theme,
-                    colors: {
-                      ...theme.colors,
-                      primary: '#eee',
-                      primary25: '#eee',
-                    },
-                  })}
-                />
+                <h3 className="textInputcontainer">
+                  { t('tickets.create_ticket.ticket_priority') }
+                </h3>
+                <div>
+                  <Select
+                    options={this.state.prioritySetting}
+                    onChange={(e) => this.handlePriorityChange(e)}
+                    isSearchable={false}
+                    className="ticket-Select"
+                    placeholder={t('tickets.create_ticket.ticket_priority_input')}
+                    styles={customStyles}
+                    theme={(theme) => ({
+                      ...theme,
+                      colors: {
+                        ...theme.colors,
+                        primary: '#eee',
+                        primary25: '#eee',
+                      },
+                    })}
+                  />
+                </div>
               </div>
-              */}
 
               <h3 className="textInputcontainer">
                 {t('tickets.create_ticket.ticket_message')}
               </h3>
               <Editor
-                // toolbarHidden
+                // onChange={(e) => this.handleMessageChange(e)}
+                messageTicket={this.state.messageTicket}
+                onEditorStateChange={this.onEditorStateChange}
+
                 toolbar={{
                   fontSize: { className: 'fontSizetoolbar' },
                   fontFamily: { className: 'fontFamilytoolbar' },
@@ -383,13 +506,13 @@ class CreateTicket extends Component {
                     indent: { className: 'indenttoolbar' },
                     outdent: { className: 'outdenttoolbar' },
                   },
-
                 }}
               />
+
               <div>
                 <button
                   className="Submit-ticketbtn"
-                  onClick={() => createTicket()}
+                  onClick={() => this.handleSubmitCreateTicket()}
                 >
                   {t('tickets.create_ticket.ticket_btn_submit')}
                 </button>
@@ -415,7 +538,7 @@ class CreateTicket extends Component {
             </div>
 
 
-            <FileUploadProgress
+            {/* <FileUploadProgress
               key="ex1"
               url="http://localhost:3000/api/upload"
               onProgress={(e, request, progress) => {
@@ -430,7 +553,7 @@ class CreateTicket extends Component {
               onAbort={(e, request) => {
                 console.log('abort', e, request);
               }}
-            />
+            /> */}
 
 
             {/* modal assign agent */}
@@ -520,5 +643,12 @@ class CreateTicket extends Component {
     );
   }
 }
+
+CreateTicket.propTypes = {
+  i18n: PropTypes.shape({}).isRequired,
+  t: PropTypes.func.isRequired,
+  kind: PropTypes.string.isRequired,
+  handleMessageTicket: PropTypes.func.isRequired,
+};
 
 export default CreateTicket;

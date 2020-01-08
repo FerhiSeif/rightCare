@@ -34,8 +34,11 @@ const DrawerLayout = (props) => {
       onClick={toggleDrawer(side, false)}
       onKeyDown={toggleDrawer(side, false)}
     >
+
       <Header containerWidth={containerWidth} />
+
       <Divider />
+
       <div className="menu-container">
         <MenuSide t={t} />
       </div>

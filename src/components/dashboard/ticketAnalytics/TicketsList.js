@@ -110,7 +110,7 @@ class TicketsList extends Component {
   }
 
   render() {
-    const { t, messageTicket } = this.props;
+    const { t, handleMessageTicket } = this.props;
     const selectRow = {
       mode: 'checkbox',
       clickToSelect: true,
@@ -177,7 +177,7 @@ class TicketsList extends Component {
       action: (
         // le bouton voir qui s'affiche dans le tableau
         <>
-          <button className="button" onClick={() => messageTicket()}>
+          <button className="button" onClick={() => handleMessageTicket()}>
             {t('tickets.table_list.btn_view')}
           </button>
 
@@ -205,7 +205,7 @@ class TicketsList extends Component {
 
 TicketsList.propTypes = {
   t: PropTypes.func.isRequired,
-  messageTicket: PropTypes.func.isRequired,
+  handleMessageTicket: PropTypes.func.isRequired,
 };
 
 export default TicketsList;

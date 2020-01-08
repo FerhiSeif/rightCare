@@ -1,5 +1,9 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import PropTypes from 'prop-types';
+
+// Use Socket io - import
+import io from 'socket.io-client';
+
 import {
   BrowserRouter as Router,
   Switch,
@@ -12,6 +16,12 @@ import Settings from '../dashboard/Settings';
 import Tickets from '../dashboard/Tickets';
 
 import { SharedDataContext } from './UseContext';
+
+/* START $$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
+import { SOCKET } from '../../constants/Constants';
+
+const socket = io(SOCKET.BASE_URL);
+/* END $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
 
 const Routing = (props) => {
   const {
@@ -28,15 +38,38 @@ const Routing = (props) => {
     i18n,
   } = props;
 
-  const [sharedData, setSharedData] = useState({
+  const [sharedDataContext, setSharedDataContext] = useState({
     socketConnected: false,
+    userLogged: false,
+    notification: {
+      active: false, // false , true
+      status: '', // success , danger,
+      content: { title: '', msg: '' },
+    },
   });
 
-  const sharedDataContext = useMemo(() => ({ sharedData, setSharedData }), [sharedData, setSharedData]);
+  const providerSharedDataContext = useMemo(() => ({ sharedDataContext, setSharedDataContext }), [sharedDataContext, setSharedDataContext]);
+
+  useEffect(() => {
+    socket.on('connect', () => {
+      console.log('Connected socket');
+      setSharedDataContext({ socketConnected: true });
+    });
+    socket.on('disconnect', () => {
+      console.log('Disconnected socket');
+      setSharedDataContext({ socketConnected: false });
+    });
+    return () => {
+      socket.on('disconnect', () => {
+        console.log('Disconnected socket');
+        setSharedDataContext({ socketConnected: false });
+      });
+    };
+  }, [sharedDataContext]);
 
   return (
-    <SharedDataContext.Provider value={sharedDataContext}>
-      <Router>
+    <Router>
+      <SharedDataContext.Provider value={providerSharedDataContext}>
         <Route exact path="/">
           <Welcome
             t={t}
@@ -94,8 +127,8 @@ const Routing = (props) => {
             />
           </Route>
         </Switch>
-      </Router>
-    </SharedDataContext.Provider>
+      </SharedDataContext.Provider>
+    </Router>
   );
 };
 

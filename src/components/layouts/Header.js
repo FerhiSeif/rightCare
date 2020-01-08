@@ -1,5 +1,5 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
 import Select from 'react-select';
 import DesktopLogo from '../../assets/images/logo/medium.png';
@@ -9,9 +9,11 @@ import SearchIcon from '../../assets/images/profile/search.svg';
 import DrawerIcon from '../../assets/images/dashboard/drawer.svg';
 import AnalyticsManager from '../dashboard/AnalyticsManager';
 import SettingsManager from '../dashboard/SettingsManager';
-import TicketsManager from '../dashboard/TicketsManager'
+import TicketsManager from '../dashboard/TicketsManager';
 import DrawerLayout from './DrawerLayout';
 import Notification from './utilities/Notification';
+
+import { SharedDataContext } from '../app/UseContext';
 
 const Header = (props) => {
   const {
@@ -25,6 +27,8 @@ const Header = (props) => {
     containerWidth,
     containerHeight,
   } = props;
+
+  const { sharedDataContext, setSharedDataContext } = useContext(SharedDataContext);
 
   const [state, setState] = React.useState({ left: false });
 
@@ -67,6 +71,7 @@ const Header = (props) => {
       fontSize: '0.875rem',
       color: '#657288',
       margin: '0 .5rem',
+      // width: '5rem',
     },
     search: {
       backgroundColor: kind === 'dashboard' ? '#fafbfd' : '#fff',
@@ -103,17 +108,23 @@ const Header = (props) => {
   };
 
   useEffect(() => {
+    // connection forcer du user
+    setSharedDataContext({ userLogged: true });
+
     handleAddNotification();
     return () => {
       handleCloseNotification();
     };
-  }, []);
+  }, [sharedDataContext.userLogged]);
 
   return (
-    <div className={`${(kind === 'dashboard' || kind === 'settings'|| kind === 'tickets') ? 'column dashboard is-four-fifths' : ''}`}>
+    <div className={`${(kind === 'dashboard' || kind === 'settings' || kind === 'tickets') ? 'column dashboard is-four-fifths' : ''}`}>
       <nav className="navbar" role="navigation" aria-label="main navigation" style={topNavCustomStyle.navbar}>
+
         { (containerWidth <= 768 && kind !== 'onboard') && <img src={DrawerIcon} className="menu-dash-icon" onClick={toggleDrawer('left', true)}/>}
+
         { containerWidth <= 768 && <DrawerLayout toggleDrawer={toggleDrawer} left={state.left} t={t} containerWidth={containerWidth} />}
+
         { (kind !== 'dashboard') && (kind !== 'settings') && (kind !== 'tickets')
         && (
           <div className="navbar-brand">
@@ -135,8 +146,12 @@ const Header = (props) => {
             </div>
           </div>
         )}
+
+        {/* Barre du haut */}
         <div id="navbarBasicExample" className="navbar-menu">
-          { (kind === 'dashboard' || kind === 'settings')
+
+          {/* Barre de recherche */}
+          {/* { (kind === 'dashboard' || kind === 'settings' || kind === 'tickets')
             && (
               <div className="navbar-start">
                 <div className="field navbar-item">
@@ -148,14 +163,16 @@ const Header = (props) => {
                   </p>
                 </div>
               </div>
-            )}
+            )} */}
+
+          {/* Zone d'affichage du user connecter & select langue */}
           <div className="navbar-end">
             <div className="navbar-item">
-              { isLogged
+              { sharedDataContext.userLogged
                 ? (
                   <>
                     <img alt="notif icon" src={NotifIcon} />
-                    <span style={topNavCustomStyle.userName}>Mashkour Abdel Aziz</span>
+                    <span style={topNavCustomStyle.userName}> Jordy N'Dri</span>
                     <img alt="profil icon" src={ProfileIcon} style={topNavCustomStyle.profile} />
                   </>
                 )

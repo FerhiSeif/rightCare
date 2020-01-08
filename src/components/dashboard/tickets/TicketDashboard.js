@@ -34,7 +34,7 @@ class TicketDashboard extends Component {
     };
   }
 
-  handleChange = event => {
+  handleChange = (event) => {
     this.setState({ [event.target.value]: event.target.checked });
   };
 
@@ -63,7 +63,10 @@ class TicketDashboard extends Component {
   };
 
   render() {
-    const { i18n, t, kind, createTicket, messageTicket } = this.props;
+    const {
+      i18n, t, kind, handleCreateTicket, handleMessageTicket,
+    } = this.props;
+
     const { isOpen } = this.state;
     return (
       <>
@@ -72,11 +75,13 @@ class TicketDashboard extends Component {
             {kind === 'tickets'
               ? t('tickets.tickets_overview')
               : kind === 'dashboard'
-              ? t('dashboard.dashboard_overview')
-              : t('settings.settings_overview')}
+                ? t('dashboard.dashboard_overview')
+                : t('settings.settings_overview')}
           </h2>
-          <button className="create_ticketbtn" onClick={() => createTicket()}>
-            + {t('tickets.ticket_btn_create').toUpperCase()}
+          <button className="create_ticketbtn" onClick={() => handleCreateTicket()}>
+            +
+            {' '}
+            {t('tickets.ticket_btn_create').toUpperCase()}
           </button>
         </div>
         <div className="columns analytics-columns">
@@ -123,7 +128,7 @@ class TicketDashboard extends Component {
                 className="button buttonFilter"
                 onClick={() => {
                   this.setState({
-                    isOpen: !isOpen
+                    isOpen: !isOpen,
                   });
                   this.clearfilter();
                 }}
@@ -139,150 +144,162 @@ class TicketDashboard extends Component {
             >
               <div className="priorityContainer">
                 {' '}
-                <span className="text-filter"> {t('tickets.search_filter_content.priority')} </span>
+                <span className="text-filter">
+                  {' '}
+                  {t('tickets.search_filter_content.priority')}
+                  {' '}
+                </span>
                 <FormGroup row>
                   <FormControlLabel
-                    control={
+                    control={(
                       <Checkbox
                         checked={this.state.allPriority}
                         onChange={this.handleChange}
                         value="allPriority"
                         color="primary"
                       />
-                    }
+)}
                     label={t('tickets.search_filter_content.priority_filter.all')}
                   />
                   <FormControlLabel
-                    control={
+                    control={(
                       <Checkbox
                         checked={this.state.high}
                         onChange={this.handleChange}
                         value="high"
                         color="primary"
                       />
-                    }
+)}
                     label={t('tickets.search_filter_content.priority_filter.high')}
                   />
                   <FormControlLabel
-                    control={
+                    control={(
                       <Checkbox
                         checked={this.state.medium}
                         onChange={this.handleChange}
                         value="medium"
                         color="primary"
                       />
-                    }
+)}
                     label={t('tickets.search_filter_content.priority_filter.medium')}
                   />
                   <FormControlLabel
-                    control={
+                    control={(
                       <Checkbox
                         checked={this.state.low}
                         onChange={this.handleChange}
                         value="low"
                         color="primary"
                       />
-                    }
+)}
                     label={t('tickets.search_filter_content.priority_filter.low')}
                   />
                 </FormGroup>
               </div>
               <div className="statusContainer">
                 {' '}
-                <span className="text-filter"> {t('tickets.search_filter_content.status')} </span>
+                <span className="text-filter">
+                  {' '}
+                  {t('tickets.search_filter_content.status')}
+                  {' '}
+                </span>
                 <FormGroup row>
                   <FormControlLabel
-                    control={
+                    control={(
                       <Checkbox
                         checked={this.state.allStatus}
                         onChange={this.handleChange}
                         value="allStatus"
                         color="primary"
                       />
-                    }
+)}
                     label={t('tickets.search_filter_content.status_filter.all')}
                   />
                   <FormControlLabel
-                    control={
+                    control={(
                       <Checkbox
                         checked={this.state.new}
                         onChange={this.handleChange}
                         value="new"
                         color="primary"
                       />
-                    }
+)}
                     label={t('tickets.search_filter_content.status_filter.new')}
                   />
                   <FormControlLabel
-                    control={
+                    control={(
                       <Checkbox
                         checked={this.state.pending}
                         onChange={this.handleChange}
                         value="pending"
                         color="primary"
                       />
-                    }
+)}
                     label={t('tickets.search_filter_content.status_filter.pending')}
                   />
                   <FormControlLabel
-                    control={
+                    control={(
                       <Checkbox
                         checked={this.state.resolve}
                         onChange={this.handleChange}
                         value="resolve"
                         color="primary"
                       />
-                    }
+)}
                     label={t('tickets.search_filter_content.status_filter.resolve')}
                   />
                 </FormGroup>
               </div>
               <div className="CategorieContainer">
                 {' '}
-                <span className="text-filter"> {t('tickets.search_filter_content.category')} </span>
+                <span className="text-filter">
+                  {' '}
+                  {t('tickets.search_filter_content.category')}
+                  {' '}
+                </span>
                 <FormGroup row>
                   <FormControlLabel
-                    control={
+                    control={(
                       <Checkbox
                         checked={this.state.allCategory}
                         onChange={this.handleChange}
                         value="allCategory"
                         color="primary"
                       />
-                    }
+)}
                     label={t('tickets.search_filter_content.category_filter.all')}
                   />
                   <FormControlLabel
-                    control={
+                    control={(
                       <Checkbox
                         checked={this.state.technical}
                         onChange={this.handleChange}
                         value="technical"
                         color="primary"
                       />
-                    }
+)}
                     label={t('tickets.search_filter_content.category_filter.technical')}
                   />
                   <FormControlLabel
-                    control={
+                    control={(
                       <Checkbox
                         checked={this.state.support}
                         onChange={this.handleChange}
                         value="support"
                         color="primary"
                       />
-                    }
+)}
                     label={t('tickets.search_filter_content.category_filter.support')}
                   />
                   <FormControlLabel
-                    control={
+                    control={(
                       <Checkbox
                         checked={this.state.enquires}
                         onChange={this.handleChange}
                         value="enquires"
                         color="primary"
                       />
-                    }
+)}
                     label={t('tickets.search_filter_content.category_filter.enquires')}
                   />
                 </FormGroup>
@@ -296,7 +313,7 @@ class TicketDashboard extends Component {
                     style={{
                       color: '#94A4BE',
                       marginRight: '32px',
-                      cursor: 'pointer'
+                      cursor: 'pointer',
                     }}
                     onClick={this.closeFilter}
                   >
@@ -311,7 +328,7 @@ class TicketDashboard extends Component {
 
             <TicketsList
               t={t}
-              messageTicket={() => messageTicket()}
+              handleMessageTicket={() => handleMessageTicket()}
             />
 
           </div>
@@ -325,8 +342,8 @@ TicketDashboard.propTypes = {
   i18n: PropTypes.shape({}).isRequired,
   t: PropTypes.func.isRequired,
   kind: PropTypes.string.isRequired,
-  createTicket: PropTypes.func.isRequired,
-  messageTicket: PropTypes.func.isRequired,
+  handleCreateTicket: PropTypes.func.isRequired,
+  handleMessageTicket: PropTypes.func.isRequired,
 };
 
 export default TicketDashboard;

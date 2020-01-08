@@ -45,7 +45,7 @@ const MobileAnalytics = (props) => {
           </div>
           <div className="analytics-children">
             <p className="subtitle">
-              {t('dashboard.new_request')}
+              {t('dashboard.total_request')}
             </p>
             <h3 className="status-new">123</h3>
           </div>

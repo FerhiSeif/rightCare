@@ -7,7 +7,7 @@ export const DEBUG = true;
 export const TIMEOUT_HTTP_REQUEST = 3000;
 export const TIMEOUT_SOCKET_RESPONSE = 5000;
 
-export const PROTOCOL = 'http';
+export const PROTOCOL = 'https';
 // 10.10.14.116:715 , betarcapi.right-com.com
 export const RC_API_BASE_DOMAIN_PROD = 'betarcapi.right-com.com';
 export const RC_API_BASE_DOMAIN_DEV = 'betarcapi.right-com.com';
@@ -67,5 +67,4 @@ export const CONSTANTS_LANG = {
 export const SIO_TICKET_SETTINGS = `ticket_setting_${uuid1()}`;
 export const SIO_CREATE_CUSTOMER_TICKET_SETTINGS = `create_customer_ticket_setting_${uuid1()}`;
 export const SIO_UPDATE_SWITCH_TICKET_SETTINGS = `update_switch_ticket_setting_${uuid1()}`;
-
 export const SIO_CREATE_TICKET = `create_ticket_${uuid1()}`;
