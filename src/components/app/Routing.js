@@ -53,16 +53,16 @@ const Routing = (props) => {
   useEffect(() => {
     socket.on('connect', () => {
       console.log('Connected socket');
-      setSharedDataContext({ socketConnected: true });
+      setSharedDataContext({ ...sharedDataContext, socketConnected: true });
     });
     socket.on('disconnect', () => {
       console.log('Disconnected socket');
-      setSharedDataContext({ socketConnected: false });
+      setSharedDataContext({ ...sharedDataContext, socketConnected: false });
     });
     return () => {
       socket.on('disconnect', () => {
         console.log('Disconnected socket');
-        setSharedDataContext({ socketConnected: false });
+        setSharedDataContext({ ...sharedDataContext, socketConnected: false });
       });
     };
   }, [sharedDataContext]);
@@ -81,6 +81,21 @@ const Routing = (props) => {
           />
         </Route>
         <Switch>
+          <Route path="/onboard">
+            <Steps
+              t={t}
+              changeLang={changeLang}
+              defaultLang={defaultLang}
+              kind="app"
+              isLogged={isLogged}
+              handleChooseService={handleChooseService}
+              checkedServices={checkedServices}
+              activeServices={activeServices}
+              selectServiceRef={selectServiceRef}
+              handleSimulateChooseServices={handleSimulateChooseServices}
+              containerWidth={containerWidth}
+            />
+          </Route>
           <Route path="/dashboard">
             <Dashboard
               t={t}
@@ -109,21 +124,6 @@ const Routing = (props) => {
               kind="settings"
               isLogged={isLogged}
               i18n={i18n}
-            />
-          </Route>
-          <Route path="/onboard">
-            <Steps
-              t={t}
-              changeLang={changeLang}
-              defaultLang={defaultLang}
-              kind="app"
-              isLogged={isLogged}
-              handleChooseService={handleChooseService}
-              checkedServices={checkedServices}
-              activeServices={activeServices}
-              selectServiceRef={selectServiceRef}
-              handleSimulateChooseServices={handleSimulateChooseServices}
-              containerWidth={containerWidth}
             />
           </Route>
         </Switch>

@@ -89,33 +89,25 @@ const Header = (props) => {
     }),
   };
 
-  // const [contentNotification, setContentNotification] = useState({ title: '', msg: '' });
-  const [activeNotification, setActiveNotification] = useState(false); // false , true
-  const [statusNotification, setStatusNotification] = useState(''); // '' , success , danger
-  const [contentNotification, setContentNotification] = useState({ title: '', msg: '' });
-
-  const handleAddNotification = (status = 'success', active = false, content = {}) => {
-    setContentNotification({ title: t('notification.title'), msg: t('notification.msg') });
-    // setContentNotification(content); // content = objet
-    setStatusNotification(status); // success , danger
-    setActiveNotification(active); // false , true
-  };
-
   const handleCloseNotification = () => {
-    setStatusNotification('');
-    setContentNotification({ title: '', msg: '' });
-    setActiveNotification(false); // false , true
+    setSharedDataContext({
+      ...sharedDataContext,
+      notification: {
+        active: false,
+        status: '',
+        content: { title: '', msg: '' },
+      },
+    });
   };
 
   useEffect(() => {
     // connection forcer du user
-    setSharedDataContext({ userLogged: true });
+    setSharedDataContext({ ...sharedDataContext, userLogged: true });
 
-    handleAddNotification();
     return () => {
       handleCloseNotification();
     };
-  }, [sharedDataContext.userLogged]);
+  }, [sharedDataContext.userLogged, sharedDataContext.notification]);
 
   return (
     <div className={`${(kind === 'dashboard' || kind === 'settings' || kind === 'tickets') ? 'column dashboard is-four-fifths' : ''}`}>
@@ -195,12 +187,12 @@ const Header = (props) => {
       </nav>
 
       { (kind === 'dashboard' || kind === 'tickets' || kind === 'settings')
-        && activeNotification === true && (
+        && sharedDataContext.notification.active === true && (
           <Notification
             t={t}
             handleCloseNotification={handleCloseNotification}
-            statusNotification={statusNotification}
-            contentNotification={contentNotification}
+            statusNotification={sharedDataContext.notification.status}
+            contentNotification={sharedDataContext.notification.content}
             i18n={i18n}
           />
       )}

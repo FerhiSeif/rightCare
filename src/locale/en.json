@@ -1,7 +1,19 @@
 {
   "notification": {
     "title": "Ticket status",
-    "msg": "have been update successfully"
+    "msg": "have been update successfully",
+
+    "msg_create_ticket_success": "have been create successfully",
+    "msg_create_ticket_error": "Ticket creation error"
+  },
+  "validation_Field_form": {
+    "alert": "This field is required",
+    "error": "Incorrect field validation",
+    "error_field_text": "Invalid text input",
+    "error_field_email": "Invalid email address",
+    "error_field_number": "Invalid number field",
+    "error_field_date": "Invalid date field",
+    "error_field_not_found": "Field not found please select"
   },
 
   "home": {

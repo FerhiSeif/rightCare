@@ -43,8 +43,8 @@ const Notification = (props) => {
 
 Notification.propTypes = {
   t: PropTypes.func.isRequired,
-  statusNotification: PropTypes.bool.isRequired,
-  contentNotification: PropTypes.string.isRequired,
+  statusNotification: PropTypes.string.isRequired,
+  contentNotification: PropTypes.objectOf.isRequired,
   handleCloseNotification: PropTypes.func.isRequired,
   i18n: PropTypes.shape({}).isRequired,
 };
