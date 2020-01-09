@@ -9,12 +9,13 @@
   "validation_Field_form": {
     "alert": "Ce champ est requis",
     "error": "Validation de champ incorrect",
-    "error_field_text": "Champ de text non valide",
+    "error_field_text": "Champ de texte non valide",
     "error_field_email": "Adresse e-mail invalide",
     "error_field_number": "Champ de numéro invalide",
     "error_field_date": "Champ de date non valide",
     "error_field_not_found": "Champ introuvable, veuillez sélectionner"
   },
+  "enter_placeholder_input": "Entrez votre",
 
   "home" : {
     "welcome_to": "Bienvenue à",
@@ -114,7 +115,7 @@
       "medium": "Moyenne",
       "urgent": "Urgente",
       "low": "Faible",
-      "not_urgent": "Pas urgent",
+      "not_urgent": "Pas urgente",
       "new_priority": "Nouvelle priorité",
       "button_text": "Ajouter une priorité",
       "ticket_priority_input": "Entrez le nom de priorité du ticket"
@@ -174,9 +175,9 @@
   "tickets": {
     "tickets_overview": "Ticket",
     "new_ticket": "Nouveau Ticket",
-    "resolve_ticket": "Resolve Ticket",
-    "pending_ticket": "Ticket En Attente",
-    "total_ticket": "Total Ticket",
+    "resolve_ticket": "Tickets resolus",
+    "pending_ticket": "Tickets En Attente",
+    "total_ticket": "Total Tickets",
     "today": "Aujourd'hui",
     "ticket_btn_create": "Créer un Ticket",
     "search_placeholder": "Recherche",

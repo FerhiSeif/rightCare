@@ -11,11 +11,12 @@ import {
 import Content from './Content';
 
 /* START $$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
-import { TicketSettingsHttpService, SocketService } from '../../../services/HttpService';
+import { TicketSettingsHttpService } from '../../../services/HttpService';
 import { SOCKET, SIO_TICKET_SETTINGS } from '../../../constants/Constants';
 /* END $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
 
 import { SharedDataContext } from '../../app/UseContext';
+import { CONSTANT } from '../../../constants/browser';
 
 const socket = io(SOCKET.BASE_URL);
 
@@ -50,9 +51,15 @@ const Tabs = (props) => {
 
   /* START $$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
   const onSocketGetTicketSettings = (response) => {
+    console.log('onSocketGetTicketSettings : ', response);
+
     if (response && (response.status === 200 || response.status === 202)) {
-      setTicketSettings(response.data[0]);
-      console.log('onSocketGetTicketSettings : ', response.data[0]);
+      if (localStorage.getItem(CONSTANT.LOCAL_STORAGE_LANG_KEY) === 'en') {
+        setTicketSettings(response.data[0].lang_en);
+      }
+      if (localStorage.getItem(CONSTANT.LOCAL_STORAGE_LANG_KEY) === 'fr') {
+        setTicketSettings(response.data[0].lang_fr);
+      }
     }
   };
 
@@ -77,8 +84,6 @@ const Tabs = (props) => {
   /* END $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
 
   useEffect(() => {
-    console.log('sharedDataContext : ', sharedDataContext);
-
     if (sharedDataContext.socketConnected) {
       initSocketTicketSettings();
     }

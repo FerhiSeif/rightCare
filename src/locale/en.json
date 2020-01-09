@@ -15,6 +15,7 @@
     "error_field_date": "Invalid date field",
     "error_field_not_found": "Field not found please select"
   },
+  "enter_placeholder_input": "Enter",
 
   "home": {
     "welcome_to": "Welcome to",
@@ -139,7 +140,7 @@
       "button_text": "Add Category ",
       "category_input": "Category name"
     },
-    "customer_informations": "Customer Informations",
+    "customer_informations": "Customer Information",
     "customer_informations_content": {
       "first_name": "First Name",
       "last_name": "Last Name",

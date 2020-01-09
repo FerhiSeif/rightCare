@@ -177,7 +177,7 @@ class TicketsList extends Component {
       action: (
         // le bouton voir qui s'affiche dans le tableau
         <>
-          <button className="button" onClick={() => handleMessageTicket()}>
+          <button className="button" onClick={() => handleMessageTicket('', '----', '')}>
             {t('tickets.table_list.btn_view')}
           </button>
 

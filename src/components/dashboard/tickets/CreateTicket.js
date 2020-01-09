@@ -24,6 +24,7 @@ import ProfileIcon from '../../../assets/images/profile/idpic.jpg';
 /* START $$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
 import { TicketSettingsHttpService, CreateTicketHttpService } from '../../../services/HttpService';
 import { SOCKET, SIO_TICKET_SETTINGS, SIO_CREATE_TICKET, REGEX_EMAIL, REGEX_TEXT, REGEX_NUMBER, REGEX_DATE } from '../../../constants/Constants';
+import { CONSTANT } from '../../../constants/browser';
 
 const socket = io(SOCKET.BASE_URL);
 /* END $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
@@ -50,36 +51,6 @@ class CreateTicket extends Component {
     this.initSocketTicketSettings();
   }
 
-  /* START $$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
-  onSocketGetTicketSettings = (response) => {
-    if (response && (response.status === 200 || response.status === 202)) {
-      this.setState({ ticketSettingsInput: response.data[0].customer_information.items });
-
-      // refact datas priority
-      const refactPriority = [];
-      response.data[0].priority.items.map((item) => {
-        refactPriority.push({ value: item.name, label: item.label });
-      });
-      this.setState({ prioritySetting: refactPriority });
-    }
-  };
-
-  initSocketTicketSettings = () => {
-    socket.on(SIO_TICKET_SETTINGS, (response) => {
-      // console.log('initSocketTicketSettings : ', response);
-      this.onSocketGetTicketSettings(response);
-    });
-
-    TicketSettingsHttpService.getDatasTicketSettings().then((response) => {
-      // console.log('getDatasTicketSettings : ', response);
-
-      if ((response.status === 200 || response.status === 202)) {
-        // console.log('test success : ', response);
-      }
-    });
-  };
-  /* END $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
-
   // eslint-disable-next-line react/sort-comp
   changeAvatar = (event) => {
     const image = event.target.files[0];
@@ -99,7 +70,6 @@ class CreateTicket extends Component {
     //   });
     // });
   };
-
 
   // liste agents
   listAgents = (
@@ -125,6 +95,44 @@ class CreateTicket extends Component {
         ))}
     </ul>
   );
+
+  /* START $$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
+  onSocketGetTicketSettings = (response) => {
+    if (response && (response.status === 200 || response.status === 202)) {
+      let responseDataPriority = {};
+      if (localStorage.getItem(CONSTANT.LOCAL_STORAGE_LANG_KEY) === 'en') {
+        this.setState({ ticketSettingsInput: response.data[0].lang_en.customer_information.items });
+        responseDataPriority = response.data[0].lang_en.priority.items;
+      }
+      if (localStorage.getItem(CONSTANT.LOCAL_STORAGE_LANG_KEY) === 'fr') {
+        this.setState({ ticketSettingsInput: response.data[0].lang_fr.customer_information.items });
+        responseDataPriority = response.data[0].lang_fr.priority.items;
+      }
+
+      // refact datas priority
+      const refactPriority = [];
+      responseDataPriority.map((item) => {
+        refactPriority.push({ value: item.name, label: item.name });
+      });
+      this.setState({ prioritySetting: refactPriority });
+    }
+  };
+
+  initSocketTicketSettings = () => {
+    socket.on(SIO_TICKET_SETTINGS, (response) => {
+      // console.log('initSocketTicketSettings : ', response);
+      this.onSocketGetTicketSettings(response);
+    });
+
+    TicketSettingsHttpService.getDatasTicketSettings().then((response) => {
+      // console.log('getDatasTicketSettings : ', response);
+
+      if ((response.status === 200 || response.status === 202)) {
+        // console.log('test success : ', response);
+      }
+    });
+  };
+  /* END $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
 
   handleInputChange = (event, item, type, i) => {
     const { dataInputTicket } = this.state;
@@ -252,7 +260,7 @@ class CreateTicket extends Component {
     CreateTicketHttpService.createTicket(dataCreateTicket)
       .then((response) => {
 
-      console.log('CreateTicketHttpService : ', response);
+        console.log('CreateTicketHttpService : ', response);
 
         if (response && response.data && response.data.status === 202) {
           this.setState({ dataInputTicket: [] });
@@ -293,7 +301,10 @@ class CreateTicket extends Component {
   };
 
   initSocketCreateTicket = () => {
-    socket.on(SIO_CREATE_TICKET, (response) => this.onSocketCreateTicket(response));
+    socket.on(SIO_CREATE_TICKET, (response) => {
+      console.log('initSocketCreateTicket : ', response);
+      this.onSocketCreateTicket(response);
+    });
     this.handleCreateTicketSubmit();
   };
   /** End - send customerFiled */
@@ -383,7 +394,7 @@ class CreateTicket extends Component {
                                   value={this.state.dataInputTicket[i] && this.state.dataInputTicket[i].value}
                                   autoComplete="off"
                                   type={item.type}
-                                  placeholder={item.name}
+                                  placeholder={`${t('enter_placeholder_input')} ${item.name}`}
                                 />
 
                                 <span className="alert-danger">
