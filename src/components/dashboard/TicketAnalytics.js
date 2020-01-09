@@ -19,7 +19,7 @@ const TicketAnalytics = (props) => {
   // };
 
   const handleMessageTicket = (statusValid, data, idNewTicket) => {
-    console.log('data parameter : ', data, idNewTicket);
+    console.log('data parameter : ', statusValid, data, idNewTicket);
 
     if (statusValid === 'success') {
       setStatus(2);
@@ -35,14 +35,20 @@ const TicketAnalytics = (props) => {
       return;
     }
 
-    setSharedDataContext({
-      ...sharedDataContext,
-      notification: {
-        active: true,
-        status: 'danger',
-        content: { title: '', msg: t('notification.msg_create_ticket_error') },
-      },
-    });
+    if (statusValid === 'error') {
+      setSharedDataContext({
+        ...sharedDataContext,
+        notification: {
+          active: true,
+          status: 'danger',
+          content: { title: '', msg: t('notification.msg_create_ticket_error') },
+        },
+      });
+    }
+
+    if (!statusValid && data && !idNewTicket) {
+      setStatus(2);
+    }
   };
 
   const handleCreateTicket = () => {
@@ -58,7 +64,7 @@ const TicketAnalytics = (props) => {
             i18n={i18n}
             kind="tickets"
             handleCreateTicket={() => handleCreateTicket()}
-            handleMessageTicket={() => handleMessageTicket()}
+            handleMessageTicket={(status, data, idNewTicket) => handleMessageTicket(status, data, idNewTicket)}
           />
         );
       case 1:

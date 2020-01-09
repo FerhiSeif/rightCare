@@ -328,7 +328,7 @@ class TicketDashboard extends Component {
 
             <TicketsList
               t={t}
-              handleMessageTicket={() => handleMessageTicket()}
+              handleMessageTicket={handleMessageTicket}
             />
 
           </div>
