@@ -40,7 +40,7 @@ const Tabs = (props) => {
     },
   };
 
-  const { sharedDataContext, setSharedDataContext} = useContext(SharedDataContext);
+  const { sharedDataContext, setSharedDataContext } = useContext(SharedDataContext);
 
   const [ticketSettings, setTicketSettings] = useState([]);
 
@@ -77,13 +77,11 @@ const Tabs = (props) => {
   /* END $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
 
   useEffect(() => {
-    initSocketTicketSettings();
-
     console.log('sharedDataContext : ', sharedDataContext);
 
-    // if (sharedDataContext.socketConnected) {
-    //   initSocketTicketSettings();
-    // }
+    if (sharedDataContext.socketConnected) {
+      initSocketTicketSettings();
+    }
     return () => {
       // cleanup
     };

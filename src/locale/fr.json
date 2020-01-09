@@ -1,7 +1,19 @@
 {
   "notification": {
     "title": "Le statut du ticket",
-    "msg": "a été modifié avec succès"
+    "msg": "a été modifié avec succès",
+
+    "msg_create_ticket_success": "a été créés avec succès",
+    "msg_create_ticket_error": "Erreur de crération de ticket"
+  },
+  "validation_Field_form": {
+    "alert": "Ce champ est requis",
+    "error": "Validation de champ incorrect",
+    "error_field_text": "Champ de text non valide",
+    "error_field_email": "Adresse e-mail invalide",
+    "error_field_number": "Champ de numéro invalide",
+    "error_field_date": "Champ de date non valide",
+    "error_field_not_found": "Champ introuvable, veuillez sélectionner"
   },
 
   "home" : {

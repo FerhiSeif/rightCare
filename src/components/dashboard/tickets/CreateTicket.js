@@ -6,7 +6,7 @@ import io from 'socket.io-client';
 
 import { Formik, Form, Field } from 'formik';
 
-import FileUploadProgress from 'react-fileupload-progress';
+// import FileUploadProgress from 'react-fileupload-progress';
 
 import { Editor } from 'react-draft-wysiwyg';
 import { EditorState, convertToRaw } from 'draft-js';
@@ -23,7 +23,7 @@ import ProfileIcon from '../../../assets/images/profile/idpic.jpg';
 
 /* START $$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
 import { TicketSettingsHttpService, CreateTicketHttpService } from '../../../services/HttpService';
-import { SOCKET, SIO_TICKET_SETTINGS, SIO_CREATE_TICKET } from '../../../constants/Constants';
+import { SOCKET, SIO_TICKET_SETTINGS, SIO_CREATE_TICKET, REGEX_EMAIL, REGEX_TEXT, REGEX_NUMBER, REGEX_DATE } from '../../../constants/Constants';
 
 const socket = io(SOCKET.BASE_URL);
 /* END $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
@@ -33,20 +33,17 @@ class CreateTicket extends Component {
   state = {
     assegneeModalOpen: false,
     initAgents: FakeAgents,
-
     ticketSettingsInput: [],
     // eslint-disable-next-line react/no-unused-state
-    prioritySetting: [
-      // { value: 'High', label: 'High' },
-      // { value: 'Medium', label: 'Medium' },
-      // { value: 'Low', label: 'Low' },
-    ],
-
+    prioritySetting: [],
     // eslint-disable-next-line react/no-unused-state
     dataInputTicket: [],
     objetTicket: '',
     priorityTicket: {},
     messageTicket: EditorState.createEmpty(),
+
+    errorValidator: [],
+    checkError: false,
   };
 
   componentDidMount() {
@@ -64,29 +61,20 @@ class CreateTicket extends Component {
         refactPriority.push({ value: item.name, label: item.label });
       });
       this.setState({ prioritySetting: refactPriority });
-
-      console.log('onSocketGetTicketSettings : ', response.data[0]);
-
-      console.log('ticketSettingsInput : ', this.state.ticketSettingsInput);
-      console.log('prioritySetting : ', this.state.prioritySetting);
     }
   };
 
   initSocketTicketSettings = () => {
-    console.log('initSocketTicketSettings : **** ');
-
     socket.on(SIO_TICKET_SETTINGS, (response) => {
-      console.log('initSocketTicketSettings : ', response);
+      // console.log('initSocketTicketSettings : ', response);
       this.onSocketGetTicketSettings(response);
     });
 
     TicketSettingsHttpService.getDatasTicketSettings().then((response) => {
-      console.log('getDatasTicketSettings : ', response);
+      // console.log('getDatasTicketSettings : ', response);
 
       if ((response.status === 200 || response.status === 202)) {
-        console.log('test success : ', response);
-      } else {
-        console.log('test error : ', response);
+        // console.log('test success : ', response);
       }
     });
   };
@@ -138,85 +126,68 @@ class CreateTicket extends Component {
     </ul>
   );
 
-  handleValidateInput = (value) => {
-    console.log('value : ', value);
+  handleInputChange = (event, item, type, i) => {
+    const { dataInputTicket } = this.state;
+    const { value } = event.currentTarget;
+    dataInputTicket[i] = { type: item.type, name: item.name, value };
+    this.setState({ dataInputTicket });
 
-    let error;
-    if (!value) {
-      error = 'This field is required';
+    const { t } = this.props;
+
+    const { errorValidator } = this.state; 
+
+    if (!type) {
+      errorValidator[i] = { text: t('validation_Field_form.alert') };
+      this.setState({ errorValidator });
+
     } else {
-      switch (value) {
+      switch (type) {
         case 'email':
-          console.log('email : ', value);
-
-          if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value)) {
-            error = 'Invalid email address';
+          if (!REGEX_EMAIL.test(value)) {
+            errorValidator[i] = { text: t('validation_Field_form.error_field_email') };
+            this.setState({ errorValidator });
+          } else {
+            this.setState({ errorValidator: [] });
           }
-          console.log('error : ', error);
-
           break;
         case 'text':
-          console.log('text : ', value);
-
-          if (!/^\s*[a-zA-Z,\s]+\s*$/i.test(value)) {
-            error = 'Invalid text field';
+          if (!REGEX_TEXT.test(value)) {
+            errorValidator[i] = { text: t('validation_Field_form.error_field_text') };
+            this.setState({ errorValidator });
+          } else {
+            this.setState({ errorValidator: [] });
           }
-          error = 'Invalid text field';
-          console.log('error : ', error);
-
           break;
         case 'number':
-          console.log('number : ', value);
-
-          if (!/^[0-9]{1,10}$/i.test(value)) {
-            error = 'Invalid number field';
+          if (!REGEX_NUMBER.test(value)) {
+            errorValidator[i] = { text: t('validation_Field_form.error_filed_number') };
+            this.setState({ errorValidator });
+          } else {
+            this.setState({ errorValidator: [] });
           }
           break;
         case 'date':
-          console.log('date : ', value);
-
-          if (!/^\d{1,2}\/\d{1,2}\/\d{4}$/i.test(value)) {
-            error = 'Invalid date field';
+          if (!REGEX_DATE.test(value)) {
+            errorValidator[i] = { text: t('validation_Field_form.error_field_date') };
+            this.setState({ errorValidator });
+          } else {
+            this.setState({ errorValidator: [] });
           }
           break;
         default:
-          error = 'Field not found please select';
+          errorValidator[i] = { text: t('validation_Field_form.error_field_not_found') };
+          this.setState({ errorValidator });
       }
     }
-
-    console.log('error *** : ', error);
-
-    return error;
-  };
-
-  handleInputChange = (event, item, i) => {
-    console.log('event : ', event.currentTarget);
-    console.log('i : ', i);
-
-    const tabConst = this.state.dataInputTicket;
-
-    const { value } = event.currentTarget;
-    tabConst[i] = { type: item.type, name: item.name, value };
-
-    this.setState({ dataInputTicket: tabConst });
-
-    console.log('this.state.dataInputTicket : ', this.state.dataInputTicket);
   };
 
   handleObjetChange = (event) => {
-    console.log('event : ', event.currentTarget);
-
     const { value } = event.currentTarget;
-
     this.setState({ objetTicket: value });
-
-    console.log('this.state.objetTicket : ', this.state.objetTicket);
   };
 
   handlePriorityChange = (value) => {
     this.setState({ priorityTicket: value });
-
-    console.log('this.state.priorityTicket : ', this.state.priorityTicket);
   };
 
   onEditorStateChange = (messageTicket) => {
@@ -225,28 +196,17 @@ class CreateTicket extends Component {
   };
 
   handleSubmitCreateTicket() {
-    console.log('vqsjvqshvjhsh');
-    
-    // eslint-disable-next-line react/destructuring-assignment
-    this.props.handleMessageTicket();
-
-    /*
-    console.log('this.state.dataInputTicket : ', this.state.dataInputTicket);
-    console.log('this.state.objetTicket : ', this.state.objetTicket);
-    console.log('this.state.priorityTicket : ', this.state.priorityTicket);
-    console.log('this.state.messageTicket : ', this.state.messageTicket);
+    const { dataInputTicket, objetTicket, priorityTicket, messageTicket } = this.state;
 
     this.buildDataCreateTicket(
-      this.state.dataInputTicket,
-      this.state.objetTicket,
-      this.state.priorityTicket,
-      this.state.messageTicket,
+      dataInputTicket,
+      objetTicket,
+      priorityTicket,
+      messageTicket,
     );
 
-    this.initSocketCreateTcicket();
-    */
+    this.initSocketCreateTicket();
   }
-
 
   /** Start - send customerFiled */
   buildDataCreateTicket = (
@@ -287,51 +247,52 @@ class CreateTicket extends Component {
   };
 
   handleCreateTicketSubmit = () => {
-    const createTicket = JSON.parse(localStorage.getItem('sv_tmp_create_ticket'));
+    const dataCreateTicket = JSON.parse(localStorage.getItem('sv_tmp_create_ticket'));
 
-    CreateTicketHttpService.createTicket(createTicket)
+    CreateTicketHttpService.createTicket(dataCreateTicket)
       .then((response) => {
+
+      console.log('CreateTicketHttpService : ', response);
+
         if (response && response.data && response.data.status === 202) {
           this.setState({ dataInputTicket: [] });
           this.setState({ objetTicket: '' });
           this.setState({ messageTicket: EditorState.createEmpty() });
 
-          // eslint-disable-next-line react/destructuring-assignment
-          this.props.handleMessageTicket(createTicket);
-
           localStorage.removeItem('sv_tmp_create_ticket');
 
-          // toast(
-          //   <Notification
-          //     content={this.props.t("create_survey.new.created_successfully")}
-          //     icon="success"
-          //     reply={false}
-          //   />, {
-          //     type: toast.TYPE.SUCCESS,
-          // });
+          // eslint-disable-next-line react/destructuring-assignment
+          this.props.handleMessageTicket('success', dataCreateTicket, '#132311');
+
+          /*
+          const data = {
+            dataInputTicket: this.state.dataInputTicket,
+            objetTicket: this.state.objetTicket,
+            priorityTicket: this.state.priorityTicket,
+            messageTicket: this.state.messageTicket,
+          };
+          this.props.handleMessageTicket('success', data, '#132311');
+          */
         } else {
-          // toast(
-          //   <Notification
-          //     content={this.props.t("create_survey.new.created_failed")}
-          //     icon="danger"
-          //     reply={false}
-          //   />, {
-          //     type: toast.TYPE.ERROR,
-          // });
+          // eslint-disable-next-line react/destructuring-assignment
+          this.props.handleMessageTicket('error', '--', '--');
         }
       })
       .catch((error) => {
         console.log('**** print error ****', error);
+
+        // eslint-disable-next-line react/destructuring-assignment
+        this.props.handleMessageTicket('error', '--', '--');
       });
   };
 
   onSocketCreateTicket = (response) => {
     if (response && response.status === 200) {
-      console.log('onSocketCreateCustomerFiled : ', response);
+      console.log('onSocketCreateTicket : ', response);
     }
   };
 
-  initSocketCreateTcicket = () => {
+  initSocketCreateTicket = () => {
     socket.on(SIO_CREATE_TICKET, (response) => this.onSocketCreateTicket(response));
     this.handleCreateTicketSubmit();
   };
@@ -414,23 +375,20 @@ class CreateTicket extends Component {
                     <Form className="display-input">
                       {this.state.ticketSettingsInput.length !== 0
                             && this.state.ticketSettingsInput.map((item, i) => (
-                              <div className="div-input">
+                              <div className="div-input" key={i}>
                                 <Field
-                                  key={i}
                                   className="input"
                                   name={i}
-                                  validate={() => this.handleValidateInput(item.type)}
-                                  onChange={(e) => this.handleInputChange(e, item, i)}
+                                  onChange={(e) => this.handleInputChange(e, item, item.type, i)}
                                   value={this.state.dataInputTicket[i] && this.state.dataInputTicket[i].value}
                                   autoComplete="off"
                                   type={item.type}
                                   placeholder={item.name}
                                 />
 
-                                <span className="alert-danger">{errors.email && touched.email && errors.email}</span>
-                                <span className="alert-danger">{errors.text && touched.text && errors.text}</span>
-                                <span className="alert-danger">{errors.number && touched.number && errors.number}</span>
-                                <span className="alert-danger">{errors.date && touched.date && errors.date}</span>
+                                <span className="alert-danger">
+                                  { this.state.errorValidator[i] && this.state.errorValidator[i].text }
+                                  </span>
                               </div>
                             ))}
                     </Form>

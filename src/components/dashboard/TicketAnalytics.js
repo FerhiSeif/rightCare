@@ -1,18 +1,55 @@
-import React, { Component } from 'react';
+import React, { useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 import TicketDashboard from './tickets/TicketDashboard';
 import CreateTicket from './tickets/CreateTicket';
 import MessageTicket from './tickets/MessageTicket';
 // import { render } from 'enzyme';
 
-class TicketAnalytics extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { isOpen: false, status: 0 };
-  }
+import { SharedDataContext } from '../app/UseContext';
 
-  getStepContent = step => {
-    const { i18n, t } = this.props;
+const TicketAnalytics = (props) => {
+  const { i18n, t, kind } = props;
+
+  // const [isOpen, setIsOpen] = useState(false);
+  const [status, setStatus] = useState(0);
+  const { sharedDataContext, setSharedDataContext } = useContext(SharedDataContext);
+
+  // const handleOpenModal = () => {
+  //   setIsOpen(!isOpen);
+  // };
+
+  const handleMessageTicket = (statusValid, data, idNewTicket) => {
+    console.log('data parameter : ', data, idNewTicket);
+
+    if (statusValid === 'success') {
+      setStatus(2);
+      setSharedDataContext({
+        ...sharedDataContext,
+        notification: {
+          active: true,
+          status: 'success',
+          content: { title: 'Tickets', msg: t('notification.msg_create_ticket_success') },
+        },
+      });
+
+      return;
+    }
+
+    setSharedDataContext({
+      ...sharedDataContext,
+      notification: {
+        active: true,
+        status: 'danger',
+        content: { title: '', msg: t('notification.msg_create_ticket_error') },
+      },
+    });
+  };
+
+  const handleCreateTicket = () => {
+    setStatus(1);
+  };
+
+  const getStepContent = (step) => {
     switch (step) {
       case 0:
         return (
@@ -20,8 +57,8 @@ class TicketAnalytics extends Component {
             t={t}
             i18n={i18n}
             kind="tickets"
-            handleCreateTicket={() => this.handleCreateTicket()}
-            handleMessageTicket={() => this.handleMessageTicket()}
+            handleCreateTicket={() => handleCreateTicket()}
+            handleMessageTicket={() => handleMessageTicket()}
           />
         );
       case 1:
@@ -30,8 +67,8 @@ class TicketAnalytics extends Component {
             t={t}
             i18n={i18n}
             kind="tickets"
-            handleCreateTicket={() => this.handleCreateTicket()}
-            handleMessageTicket={() => this.handleMessageTicket()}
+            handleCreateTicket={() => handleCreateTicket()}
+            handleMessageTicket={(status, data, idNewTicket) => handleMessageTicket(status, data, idNewTicket)}
           />
         );
       case 2:
@@ -40,7 +77,7 @@ class TicketAnalytics extends Component {
             t={t}
             i18n={i18n}
             kind="tickets"
-            handleCreateTicket={() => this.setState({ status: 1 })}
+            handleCreateTicket={() => setStatus(1)}
           />
         );
       default:
@@ -48,31 +85,17 @@ class TicketAnalytics extends Component {
     }
   };
 
-
-  handleOpenModal = () => {
-    this.setState({ isOpen: !this.state.isOpen });
-  };
-
-  handleMessageTicket = (data) => {
-    console.log('data : ', data);
-
-    this.setState({ status: 2 });
-  }
-
-  handleCreateTicket() {
-    this.setState({ status: 1 });
-  }
-
-  render() {
-    // const { i18n, t, kind } = this.props;
-    const { status } = this.state;
-    return <>{this.getStepContent(status)}</>;
-  }
-}
+  return (
+    <>
+      { getStepContent(status) }
+    </>
+  );
+};
 
 TicketAnalytics.propTypes = {
   i18n: PropTypes.shape({}).isRequired,
   t: PropTypes.func.isRequired,
+  kind: PropTypes.string.isRequired,
 };
 
 export default TicketAnalytics;
