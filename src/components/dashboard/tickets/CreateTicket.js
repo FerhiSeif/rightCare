@@ -134,7 +134,7 @@ class CreateTicket extends Component {
 
     const { t } = this.props;
 
-    const { errorValidator } = this.state;
+    const { errorValidator } = this.state; 
 
     if (!type) {
       errorValidator[i] = { text: t('validation_Field_form.alert') };
